@@ -609,7 +609,7 @@ export const growthPosts: Post[] = [
     datePublished: DATE,
     dateModified: UPDATED,
     readMinutes: 7,
-    related: ["mass-follow-twitter-limits", "growx-features-guide-scoring-filters-cleanup", "how-to-grow-on-twitter-x"],
+    related: ["mass-follow-twitter-limits", "circleboom-vs-growx", "how-to-grow-on-twitter-x"],
     sections: [
       {
         id: "why",
@@ -741,7 +741,7 @@ export const growthPosts: Post[] = [
     datePublished: DATE,
     dateModified: UPDATED,
     readMinutes: 8,
-    related: ["how-to-grow-on-twitter-x", "bulk-follow-twitter-safely", "twitter-follow-back-score-growx"],
+    related: ["how-to-grow-on-twitter-x", "circleboom-alternatives", "bulk-follow-twitter-safely"],
     sections: [
       {
         id: "intro",
