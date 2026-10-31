@@ -25,6 +25,7 @@ export function GET() {
     `- [How it works](${site.url}/how-it-works)`,
     `- [Pricing](${site.url}/pricing)`,
     `- [Free tools](${site.url}/tools)`,
+    `- [FAQ](${site.url}/faq): plans and payments, free trial, auto follow safety, scheduler, GrowX AI, analytics, privacy`,
     `- [Press kit](${site.url}/press)`,
     `- [Chrome Web Store](${site.chromeStoreUrl})`,
     "",

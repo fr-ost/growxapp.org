@@ -1,11 +1,12 @@
-import { IconChevronDown } from "@/components/icons";
+import Link from "next/link";
+import { IconArrowRight, IconChevronDown } from "@/components/icons";
 
 /**
  * Native <details>/<summary> accordion (works without JS). Colour changes are instant; the only
  * motion is the chevron turn, a short body fade-in and the left accent rule (scale only), all
  * behind the motion guard.
  */
-export function Faq({ items }: { items: readonly { q: string; a: string }[] }) {
+export function Faq({ items }: { items: readonly { q: string; a: string; more?: { href: string; label: string } }[] }) {
   return (
     <div className="divide-y divide-hairline overflow-clip rounded-3xl border border-hairline bg-white shadow-[var(--shadow-hair)]">
       {items.map((f) => (
@@ -21,6 +22,11 @@ export function Faq({ items }: { items: readonly { q: string; a: string }[] }) {
           </summary>
           <div className="faq-body px-5 pb-5 text-text-2 sm:px-6">
             <p className="max-w-[66ch] leading-relaxed [text-wrap:pretty]">{f.a}</p>
+            {f.more ? (
+              <Link href={f.more.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink hover:underline">
+                {f.more.label} <IconArrowRight size={15} className="nudge" />
+              </Link>
+            ) : null}
           </div>
         </details>
       ))}

@@ -95,6 +95,12 @@ export const IconGift = make(
   </>,
 );
 export const IconChevronDown = make(<path d="m6 9 6 6 6-6" />);
+export const IconSearch = make(
+  <>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </>,
+);
 export const IconActivity = make(<path d="M22 12h-4l-3 9L9 3l-3 9H2" />);
 export const IconFilter = make(<path d="M22 3H2l8 9.5V19l4 2v-8.5z" />);
 export const IconList = make(

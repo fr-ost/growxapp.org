@@ -27,6 +27,7 @@ Positioning since extension v2.4.4: **GrowX: The Ultimate X (Twitter) Growth Too
 | `/how-it-works` | how to grow on Twitter with GrowX | Twitter growth routine, X follow limits per day |
 | `/pricing` | GrowX pricing | free Twitter growth tool, free Twitter scheduler |
 | `/blog` | Twitter growth blog | X growth guides, Twitter tips |
+| FAQ (/faq) | GrowX FAQ, GrowX help, is GrowX safe, GrowX free trial, GrowX pricing questions | 40 questions in 8 topics with FAQPage data |
 | Blog posts (41) | see each post's `keywords` in `src/content/posts*.ts` | how to schedule tweets, best time to post on Twitter, who unfollowed me on Twitter, Twitter analytics guide, Twitter reply strategy, how to increase Twitter engagement, how to write a Twitter thread, AI tweet generator, Twitter algorithm, how to go viral on Twitter, how often to post on Twitter, tweet ideas, Twitter hashtags, Twitter bio ideas, Twitter shadowban, follow for follow, Twitter follower ratio, Twitter Lists, Twitter marketing strategy, more likes, views and reposts, X Communities, content calendar, repurposing content, pinned tweet ideas, personal branding, build in public, Circleboom alternatives, GrowX vs Circleboom cost, Circleboom vs GrowX, plus the growth guides |
 
 Both "X" and "Twitter" are used on purpose: many users still search "Twitter". Keywords are used naturally in titles, H1/H2s, first paragraphs and internal link text; no keyword stuffing, no hidden text.

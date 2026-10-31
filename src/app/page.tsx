@@ -498,9 +498,13 @@ export default function HomePage() {
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <SectionHeading eyebrow="FAQ" title="Questions, answered.">
-              Something else on your mind?{" "}
+              More answers in the{" "}
+              <Link href="/faq" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+                full FAQ
+              </Link>
+              , or{" "}
               <Link href="/contact" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
-                Contact support
+                contact support
               </Link>
               .
             </SectionHeading>

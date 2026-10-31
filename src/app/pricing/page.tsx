@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TierBadge } from "@/components/feature-lists";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
@@ -122,6 +123,12 @@ export default function PricingPage() {
           <div className="reveal mt-10">
             <Faq items={faqs} />
           </div>
+          <p className="mt-6 text-center text-text-2">
+            More questions?{" "}
+            <Link href="/faq" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+              Read the full FAQ
+            </Link>
+          </p>
         </Container>
       </Section>
       <CtaBand />

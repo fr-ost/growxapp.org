@@ -9,6 +9,7 @@ import robots from "@/app/robots";
 import { GET as feed } from "@/app/blog/feed.xml/route";
 import { site } from "@/config/site";
 import { FEATURE_SLUGS } from "@/content/feature-slugs";
+import { allFaqs, faqGroups } from "@/content/faq";
 
 const appDir = path.resolve(import.meta.dirname, "../src/app");
 const routeExists = (p: string) => {
@@ -138,3 +139,17 @@ import { readFileSync } from "node:fs";
 function require_text(f: string) {
   return readFileSync(f, "utf8");
 }
+
+describe("faq page content", () => {
+  it("has unique questions and topics, each with answers", () => {
+    expect(allFaqs.length).toBeGreaterThanOrEqual(40);
+    expect(new Set(allFaqs.map((f) => f.q)).size).toBe(allFaqs.length);
+    expect(new Set(faqGroups.map((g) => g.id)).size).toBe(faqGroups.length);
+    for (const f of allFaqs) expect(f.a.length).toBeGreaterThan(40);
+  });
+  it("links only to pages that exist and is in the sitemap", () => {
+    for (const f of allFaqs) if (f.more) expect(routeExists(f.more.href), f.more.href).toBe(true);
+    expect(sitemap().some((e) => e.url === `${site.url}/faq`)).toBe(true);
+    expect(faqLd(allFaqs).mainEntity).toHaveLength(allFaqs.length);
+  });
+});
