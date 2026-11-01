@@ -19,6 +19,7 @@ below is legitimate. Always say you are the developer when you post about GrowX.
 | Bold text generator | https://www.growxapp.org/tools/twitter-bold-text-generator | Bio and formatting questions, creator blogs |
 | 52 tweet templates | https://www.growxapp.org/tools/tweet-templates | "Tweet templates", "thread templates" resource lists, creator courses |
 | Bio generator | https://www.growxapp.org/tools/twitter-bio-generator | "What should I put in my bio" questions, profile guides |
+| Shadowban checker | https://www.growxapp.org/tools/twitter-shadowban-checker | "Am I shadowbanned" questions on Reddit, Quora and forums; free tool lists; social media guides |
 | Feature pages | https://www.growxapp.org/features/twitter-post-scheduler (and the other 6) | "Best Twitter scheduler / analytics / unfollow tool" lists |
 | Guides (41 posts) | https://www.growxapp.org/blog | Answers on Reddit, Quora, forums; newsletters |
 
@@ -104,6 +105,7 @@ Search for these questions and answer them properly first, then add one relevant
 - "how to write in bold on twitter" -> /tools/twitter-bold-text-generator
 - "what is a good engagement rate on twitter" -> /tools/twitter-engagement-rate-calculator
 - "how to write a twitter thread" -> /tools/twitter-thread-maker
+- "am I shadowbanned on twitter" / "how to check shadowban" / "twitter shadowban checker" -> /tools/twitter-shadowban-checker
 - "circleboom alternative" / "apps like circleboom" / "is circleboom worth it" -> /blog/circleboom-alternatives or /blog/growx-vs-circleboom-cost (say you built GrowX, and be fair about where Circleboom fits better)
 
 ## 5. Republish guides with a canonical link

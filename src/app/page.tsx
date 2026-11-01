@@ -440,7 +440,8 @@ export default function HomePage() {
             No sign-up, nothing to install, nothing you type leaves your computer.
           </SectionHeading>
           <ul data-spotlight-group="" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {toolNav.map((t, i) => (
+            {/* seven tools + "All free tools" fill two rows of four */}
+            {toolNav.slice(0, 7).map((t, i) => (
               <li key={t.href} className="reveal" style={stagger(i % 4)}>
                 <Link
                   href={t.href}
@@ -456,7 +457,7 @@ export default function HomePage() {
                 </Link>
               </li>
             ))}
-            <li className="reveal" style={stagger(toolNav.length % 4)}>
+            <li className="reveal" style={stagger(3)}>
               <Link
                 href="/tools"
                 data-spotlight="ink"

@@ -1,6 +1,6 @@
 import { CountUp } from "./count-up";
 
-export type ToolKey = "counter" | "thread" | "engagement" | "ratio" | "bold" | "templates" | "bio";
+export type ToolKey = "counter" | "thread" | "engagement" | "ratio" | "bold" | "templates" | "bio" | "shadowban";
 
 const BY_SLUG: Record<string, ToolKey> = {
   "tweet-character-counter": "counter",
@@ -10,6 +10,7 @@ const BY_SLUG: Record<string, ToolKey> = {
   "twitter-bold-text-generator": "bold",
   "tweet-templates": "templates",
   "twitter-bio-generator": "bio",
+  "twitter-shadowban-checker": "shadowban",
 };
 
 /** Maps a tool href (e.g. "/tools/tweet-templates") to its glyph. */
@@ -102,6 +103,21 @@ function Glyph({ tool, lg }: { tool: ToolKey; lg: boolean }) {
             <CountUp value={52} />
           </span>
         </span>
+      );
+    case "shadowban":
+      return (
+        <svg width={38 * s} height={38 * s} viewBox="0 0 40 40" fill="none" aria-hidden="true" className="overflow-visible">
+          <path d="M4 20s6-10 16-10 16 10 16 10-6 10-16 10S4 20 4 20z" stroke="var(--text-2)" strokeWidth="2.5" strokeLinejoin="round" />
+          <circle cx="20" cy="20" r="5" fill="var(--accent)" />
+          <path
+            d="M8 32 32 8"
+            stroke="var(--accent)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            className="origin-center fx:transition-[scale] fx:duration-300 fx:ease-glide fx:group-hover:scale-110"
+            style={{ transformBox: "fill-box" }}
+          />
+        </svg>
       );
     case "bio":
       return (

@@ -25,7 +25,8 @@ function ToolCluster() {
         data-spotlight-group=""
         className="relative grid grid-cols-4 gap-3 rounded-[2rem] bg-white/80 p-4 shadow-[var(--shadow-float)] ring-1 ring-hairline"
       >
-        {toolNav.map((t, i) => (
+        {/* seven glyphs + the "No sign-up" tile fill two rows of four */}
+        {toolNav.slice(0, 7).map((t, i) => (
           <span
             key={t.href}
             data-spotlight=""

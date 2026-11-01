@@ -134,6 +134,11 @@ export const faqGroups: FaqGroup[] = [
         more: { href: "/blog/bulk-follow-twitter-safely", label: "How to follow safely" },
       },
       {
+        q: "How can I check if my X account is shadowbanned?",
+        a: "Use the free GrowX shadowban checker. Enter your username and it builds five checks: account status, search suggestions, search results, reply visibility and notices from X. You open them from a second account or ask a friend, and it turns your answers into a result. No login and no sign-up.",
+        more: { href: "/tools/twitter-shadowban-checker", label: "Open the shadowban checker" },
+      },
+      {
         q: "What happens if X shows a warning?",
         a: "GrowX backs off automatically: it lowers its limits and rests before continuing, and posting pauses too. If you are signed out, the account is locked or X shows repeated automation warnings, it stops completely and never clicks through a challenge.",
       },

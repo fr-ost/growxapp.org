@@ -21,6 +21,8 @@ export function ToolPage({
   tool,
   children,
   faqs,
+  cta,
+  extraLd = [],
 }: {
   path: string;
   name: string;
@@ -29,6 +31,10 @@ export function ToolPage({
   tool: ReactNode;
   children: ReactNode;
   faqs: { q: string; a: string }[];
+  /** Overrides the closing call to action (the default is about writing and scheduling). */
+  cta?: { title: string; body: string };
+  /** Extra structured data for this tool, e.g. a HowTo. */
+  extraLd?: object[];
 }) {
   const others = toolNav.filter((t) => t.href !== path);
   return (
@@ -53,6 +59,7 @@ export function ToolPage({
             publisher: { "@id": `${site.url}/#organization` },
           },
           faqLd(faqs),
+          ...extraLd,
         ]}
       />
       <section className="relative overflow-clip border-b border-hairline">
@@ -119,7 +126,13 @@ export function ToolPage({
           </div>
         </Container>
       </Section>
-      <CtaBand title="Write it here. Schedule it with GrowX." body="GrowX's composer counts characters exactly like this tool, splits threads, adds images and posts at your best times. Free to start, with a 30-day Premium trial and no credit card." />
+      <CtaBand
+        title={cta?.title ?? "Write it here. Schedule it with GrowX."}
+        body={
+          cta?.body ??
+          "GrowX's composer counts characters exactly like this tool, splits threads, adds images and posts at your best times. Free to start, with a 30-day Premium trial and no credit card."
+        }
+      />
     </>
   );
 }

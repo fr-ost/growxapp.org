@@ -12,6 +12,7 @@ const pages: { path: string; priority: number; changeFrequency: "weekly" | "mont
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
   ...FEATURE_SLUGS.map((s) => ({ path: `/features/${s}`, priority: 0.9, changeFrequency: "monthly" as const })),
   { path: "/tools", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/tools/twitter-shadowban-checker", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tools/tweet-character-counter", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tools/twitter-thread-maker", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tools/twitter-engagement-rate-calculator", priority: 0.8, changeFrequency: "monthly" },

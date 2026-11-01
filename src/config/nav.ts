@@ -13,6 +13,7 @@ export const featureNav: { slug: FeatureSlug; label: string; blurb: string; icon
 ];
 
 export const toolNav = [
+  { href: "/tools/twitter-shadowban-checker", label: "Shadowban checker", blurb: "Test for a search ban and hidden replies" },
   { href: "/tools/tweet-character-counter", label: "Tweet character counter", blurb: "Count characters the way X does" },
   { href: "/tools/twitter-thread-maker", label: "Twitter thread maker", blurb: "Split long text into a numbered thread" },
   { href: "/tools/twitter-engagement-rate-calculator", label: "Engagement rate calculator", blurb: "How well a post landed with its viewers" },

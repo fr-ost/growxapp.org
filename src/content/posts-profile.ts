@@ -251,7 +251,7 @@ export const profilePosts: Post[] = [
         id: "check",
         heading: "How to check for a shadowban yourself",
         blocks: [
-          p("You do not need a special website for this. Third-party shadowban checkers can only look at the same public views you can, they cannot see how X treats your account internally, and they can fall behind when X changes how search and replies work. A careful manual check tells you just as much:"),
+          p("No website can see how X treats your account internally, and X only shows search and search suggestions to people who are signed in. So the most reliable test is to look at X the way a stranger does. Our free [Twitter shadowban checker](/tools/twitter-shadowban-checker) builds these checks for your username and turns your answers into a result, with no login and no sign-up. You can also run them by hand:"),
           ol(
             "Ask a friend who does **not** follow you, or use a second account, so you see what strangers see.",
             "From that account, type your name and handle into the search box and check whether you appear in the suggestions.",
