@@ -24,7 +24,7 @@ export function FeatureTile({ name, size = 19 }: { name: IconName; size?: number
  * label's arrow fades in and nudges on hover. Put the reveal on the parent <li>, not here,
  * so the reveal owns `translate` on the li and `lift` owns it on the card.
  */
-export function FeatureLinkCard({ href, icon, label, blurb }: { href: string; icon: IconName; label: string; blurb: string }) {
+export function FeatureLinkCard({ href, icon, label, blurb, badge }: { href: string; icon: IconName; label: string; blurb: string; badge?: string }) {
   return (
     <Link
       href={href}
@@ -35,6 +35,7 @@ export function FeatureLinkCard({ href, icon, label, blurb }: { href: string; ic
       <span className="min-w-0">
         <span className="flex items-center gap-1 font-bold">
           {label}
+          {badge ? <span className="rounded-full bg-accent px-2 py-px text-[10px] font-bold uppercase tracking-wider text-white">{badge}</span> : null}
           <IconArrowRight
             size={14}
             className="nudge shrink-0 text-accent-ink opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 motion-ok:transition-[opacity,translate] motion-ok:duration-200 motion-ok:ease-glide"

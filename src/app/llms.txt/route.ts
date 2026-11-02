@@ -1,4 +1,5 @@
 import { featurePages } from "@/content/feature-pages";
+import { CURRENT_VERSION } from "@/content/releases";
 import { latestFirst } from "@/content/posts";
 import { toolNav } from "@/config/nav";
 import { pricingTiers, TRIAL_DAYS } from "@/config/pricing";
@@ -25,6 +26,7 @@ export function GET() {
     `- [How it works](${site.url}/how-it-works)`,
     `- [Pricing](${site.url}/pricing)`,
     `- [Free tools](${site.url}/tools)`,
+    `- [What's new](${site.url}/whats-new): release notes for the GrowX extension (current version ${CURRENT_VERSION})`,
     `- [FAQ](${site.url}/faq): plans and payments, free trial, auto follow safety, scheduler, GrowX AI, analytics, privacy`,
     `- [Press kit](${site.url}/press)`,
     `- [Chrome Web Store](${site.chromeStoreUrl})`,

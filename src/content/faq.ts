@@ -54,7 +54,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Is GrowX free?",
-        a: "Yes. The free plan is free forever and includes the Safe and Balanced auto follow paces, sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, reply targets, analytics for your latest 30 posts, 7 days of follower history, goals and the cleanup scan with up to 200 unfollows per run.",
+        a: "Yes. The free plan is free forever and includes the Safe and Balanced auto follow paces, sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, reply targets, analytics for your latest 30 posts, 7 days of follower history, goals, List follow with up to 50 accounts at a time and the cleanup scan with up to 200 unfollows per run.",
       },
       {
         q: "How much does GrowX Premium cost?",
@@ -63,7 +63,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What do I get with Premium?",
-        a: "GrowX AI, unlimited scheduling, evergreen recycling and auto-plug, the Turbo and X Premium paces, the smart score and more source types, advanced filters and list import, full analytics with the weekly report, full follower history and follower quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account.",
+        a: "GrowX AI, unlimited scheduling, evergreen recycling and auto-plug, the Turbo and X Premium paces, the smart score and more source types, advanced filters and list import, lists of up to 5,000 for List follow, full analytics with the weekly report, full follower history and follower quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account.",
       },
       {
         q: "How do I pay?",
@@ -123,6 +123,11 @@ export const faqGroups: FaqGroup[] = [
         q: "How does GrowX auto follow work?",
         a: "You add source profiles, accounts in your niche, or let GrowX find them for you. GrowX follows the newest followers of those sources first, then everyone else in order of a follow-back score from 1 to 99 (minimum 55 by default), one account at a time with random delays, breaks and caps.",
         more: { href: "/features/twitter-auto-follow", label: "Smart auto follow" },
+      },
+      {
+        q: "Can GrowX follow a list of accounts I already have?",
+        a: "Yes. List follow, new in version 2.4.6, follows exactly the accounts on your own list. Paste usernames, @mentions or profile links, or upload a CSV or TXT file, and press Start. It uses the same pace and safety as the autopilot. Free: 50 accounts at a time; Premium: lists of up to 5,000.",
+        more: { href: "/features/twitter-list-follow", label: "List follow" },
       },
       {
         q: "How many people can GrowX follow per day?",

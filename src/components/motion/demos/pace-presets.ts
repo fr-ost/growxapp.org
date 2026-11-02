@@ -1,4 +1,4 @@
-/** Follow pace presets, exactly as in docs/PRODUCT_FACTS.md (extension v2.4.4). */
+/** Follow pace presets, exactly as in docs/PRODUCT_FACTS.md (extension v2.4.6). */
 export type PaceId = "safe" | "balanced" | "turbo" | "xpremium";
 
 export const PACE_PRESETS: readonly {

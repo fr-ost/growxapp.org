@@ -9,6 +9,7 @@ import { stagger } from "@/components/motion/stagger";
 import { StepRail } from "@/components/motion/step-rail";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { pageMetadata } from "@/lib/seo";
+import { CURRENT_VERSION } from "@/content/releases";
 
 export const metadata = pageMetadata({
   title: "How GrowX Works: Grow on X (Twitter) Step by Step",
@@ -101,7 +102,7 @@ export default function HowItWorksPage() {
       <Section className="bg-surface-2">
         <Container>
           <SectionHeading eyebrow="Pacing" title="Four paces, one set of safety rules" center>
-            Values from the current extension (v2.4.4). Every preset adds occasional longer pauses, rolling caps and automatic slow-down.
+            Values from the current extension (v{CURRENT_VERSION}). Every preset adds occasional longer pauses, rolling caps and automatic slow-down.
           </SectionHeading>
           <div className="mt-12">
             <PaceCards />

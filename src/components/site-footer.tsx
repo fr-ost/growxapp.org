@@ -7,6 +7,7 @@ import { Wordmark } from "@/components/motion/wordmark";
 import { Container } from "@/components/ui/primitives";
 import { featureNav, toolNav } from "@/config/nav";
 import { site } from "@/config/site";
+import { CURRENT_VERSION } from "@/content/releases";
 
 const cols = [
   {
@@ -17,6 +18,7 @@ const cols = [
       { href: "/pricing", label: "Pricing" },
       { href: "/tools", label: "Free tools" },
       { href: "/blog", label: "Blog" },
+      { href: "/whats-new", label: "What's new" },
       { href: "/faq", label: "FAQ" },
       { href: "/signup", label: "Start free" },
     ],
@@ -106,7 +108,7 @@ export function SiteFooter() {
           <p>&copy; {new Date().getFullYear()} GrowX · {site.author}</p>
           <p>Free plan forever · 30-day Premium trial, no credit card · Premium paid in crypto via NOWPayments</p>
           <div className="flex items-center gap-2">
-            <span className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[11px] text-white/70">v2.4.4 · Chrome 116+</span>
+            <span className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[11px] text-white/70">v{CURRENT_VERSION} · Chrome 116+</span>
             <MotionToggle />
           </div>
         </Container>

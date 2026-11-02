@@ -1,4 +1,5 @@
 import { site } from "@/config/site";
+import { CURRENT_VERSION } from "@/content/releases";
 
 /** Serialises structured data safely for an inline <script> (escapes "<" so content can't close the tag). */
 export function serializeJsonLd(data: unknown): string {
@@ -64,7 +65,8 @@ export const softwareLd = {
   description: site.description,
   applicationCategory: "BrowserApplication",
   applicationSubCategory: "Social media growth tool",
-  softwareVersion: "2.4.4",
+  softwareVersion: CURRENT_VERSION,
+  releaseNotes: `${site.url}/whats-new`,
   operatingSystem: "Chrome (Windows, macOS, Linux, ChromeOS)",
   browserRequirements: "Requires Google Chrome 116 or newer",
   url: site.url,

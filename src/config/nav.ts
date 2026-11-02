@@ -1,8 +1,8 @@
 import type { FeatureIcon } from "@/content/feature-types";
-import type { FeatureSlug } from "@/content/feature-slugs";
+import type { PillarSlug } from "@/content/feature-slugs";
 
 /** The feature menu (header, footer, home). Kept small so the client header stays light. */
-export const featureNav: { slug: FeatureSlug; label: string; blurb: string; icon: FeatureIcon }[] = [
+export const featureNav: { slug: PillarSlug; label: string; blurb: string; icon: FeatureIcon }[] = [
   { slug: "twitter-auto-follow", label: "Smart auto follow", blurb: "Follow people likely to follow back, at a safe pace", icon: "target" },
   { slug: "twitter-post-scheduler", label: "Post scheduler", blurb: "Queue posts and threads for your best times", icon: "calendar" },
   { slug: "ai-tweet-writer", label: "GrowX AI writer", blurb: "Ideas, hooks and threads, written on your computer", icon: "wand" },

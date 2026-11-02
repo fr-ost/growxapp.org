@@ -8,7 +8,7 @@ line break counts as one character. All text is plain ASCII, so the counts match
 
 - Use the **same name and primary short description everywhere**. Consistent details help search engines connect the listings.
 - Check prices on https://www.growxapp.org/pricing before you submit; the website is the source of truth.
-- Facts match extension v2.4.4 (`docs/PRODUCT_FACTS.md`). If the extension changes, update that file first, then this one.
+- Facts match extension v2.4.6 (`docs/PRODUCT_FACTS.md`). If the extension changes, update that file first, then this one.
 - No ratings, user counts, testimonials or promised results in any field, even when a form asks for "traction".
 - Logos, screenshots and a badge are on https://www.growxapp.org/press.
 
@@ -231,7 +231,7 @@ No. GrowX AI (Premium) uses the AI model built into Chrome and runs on your comp
 | Maker / founder | Shahriar Ahmed |
 | Contact email | support@growxapp.org |
 | Platform | Chrome extension (Chrome 116+, desktop: Windows, macOS, Linux, ChromeOS). Not a mobile app. |
-| Current version | 2.4.4 |
+| Current version | 2.4.6 |
 | Chrome Web Store link | {paste the store URL} |
 | Press kit, logos, screenshots | https://www.growxapp.org/press |
 | Pricing page | https://www.growxapp.org/pricing |

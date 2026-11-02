@@ -8,6 +8,7 @@ import { Container, PageHero, Section, SectionHeading } from "@/components/ui/pr
 import { pricingTiers, TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
+import { CURRENT_VERSION } from "@/content/releases";
 
 export const metadata = pageMetadata({
   title: "GrowX Press Kit: Logos, Screenshots & Facts",
@@ -41,9 +42,9 @@ export default function PressPage() {
     ["Name", "GrowX"],
     ["Full name", `GrowX: ${site.tagline}`],
     ["What it is", "Chrome extension for growing an X (Twitter) account"],
-    ["Main features", "Smart auto follow, post scheduler, GrowX AI writer, analytics, unfollower tracker, reply targets, cleanup"],
+    ["Main features", "Smart auto follow, List follow, post scheduler, GrowX AI writer, analytics, unfollower tracker, reply targets, cleanup"],
     ["Platform", "Desktop Chrome 116+ (Windows, macOS, Linux, ChromeOS)"],
-    ["Current version", "2.4.4"],
+    ["Current version", CURRENT_VERSION],
     ["Pricing", `Free plan; ${TRIAL_DAYS}-day Premium trial (no card); Premium ${prices}`],
     ["Developer", site.author],
     ["Website", site.url.replace("https://", "")],

@@ -1,5 +1,5 @@
 /**
- * Features of GrowX extension v2.4.4 and the Free / Premium split (from the extension's shared/plan.js and
+ * Features of GrowX extension v2.4.6 and the Free / Premium split (from the extension's shared/plan.js and
  * docs/PRODUCT_FACTS.md). Used by /features and the pricing comparison.
  */
 import type { FeatureSlug } from "@/content/feature-slugs";
@@ -32,7 +32,8 @@ export const featureGroups: readonly FeatureGroup[] = [
     summary: "Follows the newest followers of accounts in your niche, the people most likely to follow you back, at a safe pace.",
     detail: [
       "Add source profiles, or press Find sources for me. GrowX reads each source's newest followers every hour and follows the most recent ones first. Everyone else is ranked by a follow-back score from 1 to 99 and must pass your filters.",
-      "It runs in the background with random delays, breaks and rolling hourly and daily caps, slows down by itself after any warning from X, and stops when your account needs attention.",
+      "It runs in the background with random delays, breaks and rolling hourly and daily caps, slows down by itself after any warning from X, and stops when your account needs attention. If X limits follows for the day, GrowX waits just under the number X allowed, then returns to your full pace by itself.",
+      "New in 2.4.6: List follow follows exactly the accounts on your own list, pasted or from a CSV or TXT file, with the same pace and safety.",
     ],
     page: "twitter-auto-follow",
     features: [
@@ -41,10 +42,12 @@ export const featureGroups: readonly FeatureGroup[] = [
       { id: "score", title: "Follow-back score and core filters", description: "A 1-99 score plus audience size, ratio, photo, activity, age and exclude-keyword filters.", tier: "free" },
       { id: "safety", title: "Safety controls", description: "Active hours, warm-up, adaptive slow-down, follow verification, following-cap guard and Alt+Shift+S stop.", tier: "free" },
       { id: "leaderboard", title: "Source leaderboard", description: "Follow-back rate, retention and cost of every source.", tier: "free" },
+      { id: "list-follow", title: "List follow", description: "Follow exactly the accounts on your own list: paste names or links, or bring a CSV or TXT file. Up to 50 at a time.", tier: "free" },
       { id: "fast-pace", title: "Turbo and X Premium paces", description: "About 390 a day (Turbo) or 800 a day on accounts with X Premium; custom limits above Balanced.", tier: "premium" },
       { id: "smart-score", title: "Smart score", description: "The follow-back score learns from your own results.", tier: "premium" },
       { id: "more-sources", title: "More source types", description: "A post's reposts, replies and likes, searches and #hashtags, and X Lists.", tier: "premium" },
       { id: "advanced-filters", title: "Advanced filters and list import", description: "Include, location and verified filters, account age and last-active rules; paste a list to follow first.", tier: "premium" },
+      { id: "big-lists", title: "Big lists for List follow", description: "Follow lists of up to 5,000 accounts.", tier: "premium" },
       { id: "auto-replace", title: "Auto-replace weak sources", description: "Weak sources are swapped for the best auto-found ones while the autopilot runs.", tier: "premium" },
     ],
   },

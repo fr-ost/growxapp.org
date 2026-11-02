@@ -1,10 +1,11 @@
 import { DemoPaceStrip } from "@/components/motion/demos/pace-strip";
 import { PACE_PRESETS } from "@/components/motion/demos/pace-presets";
+import { CURRENT_VERSION } from "@/content/releases";
 
 const MAX_PER_DAY = 800;
 
 /**
- * "Pace presets (v2.4.4)": the real preset table from docs/PRODUCT_FACTS.md as a <dl>, each with an
+ * "Pace presets (current version)": the real preset table from docs/PRODUCT_FACTS.md as a <dl>, each with an
  * aria-hidden daily-cap bar (static width = perDay / 800; the fill draws with scroll), then the
  * Balanced rhythm strip. Lives on ink.
  */
@@ -13,7 +14,7 @@ export function PaceConsole() {
     <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.6)] sm:p-7">
       <div className="flex items-center justify-between gap-3">
         <p className="font-display text-lg font-bold text-white">Pace presets</p>
-        <span className="rounded-full border border-white/15 px-2 py-0.5 font-mono text-[11px] font-semibold text-white/70 tabular-nums">v2.4.4</span>
+        <span className="rounded-full border border-white/15 px-2 py-0.5 font-mono text-[11px] font-semibold text-white/70 tabular-nums">v{CURRENT_VERSION}</span>
       </div>
       <dl className="mt-5 divide-y divide-white/10">
         {PACE_PRESETS.map((p) => (

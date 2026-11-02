@@ -23,6 +23,7 @@ const pages: { path: string; priority: number; changeFrequency: "weekly" | "mont
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
   { path: "/about", priority: 0.6, changeFrequency: "yearly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/whats-new", priority: 0.6, changeFrequency: "weekly" },
   { path: "/press", priority: 0.4, changeFrequency: "yearly" },
   { path: "/contact", priority: 0.5, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },

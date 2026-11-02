@@ -12,6 +12,7 @@ import { stagger } from "@/components/motion/stagger";
 import { LinkButton } from "@/components/ui/button";
 import { featureNav, toolNav } from "@/config/nav";
 import { TRIAL_DAYS } from "@/config/pricing";
+import { CURRENT_VERSION } from "@/content/releases";
 
 const links = [
   { href: "/how-it-works", label: "How it works" },
@@ -247,8 +248,12 @@ export function SiteHeader() {
                       <span>Try Premium free for {TRIAL_DAYS} days</span>
                       <IconArrowRight size={16} className="nudge mt-0.5 shrink-0 text-accent-on-ink" />
                     </Link>
+                    <Link href="/whats-new" className="group inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
+                      <span>What&apos;s new in {CURRENT_VERSION}</span>
+                      <IconArrowRight size={16} className="nudge shrink-0 text-accent-on-ink" />
+                    </Link>
                     <Link href="/tools" className="group inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
-                      <span>7 free tools</span>
+                      <span>{toolNav.length} free tools</span>
                       <IconArrowRight size={16} className="nudge shrink-0 text-accent-on-ink" />
                     </Link>
                   </div>

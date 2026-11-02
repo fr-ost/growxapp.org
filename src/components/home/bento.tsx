@@ -13,9 +13,9 @@ import { DemoQueueSlots } from "@/components/motion/demos/queue-slots";
 import { DemoReplyTargets } from "@/components/motion/demos/reply-targets";
 import { stagger } from "@/components/motion/stagger";
 import { featureNav } from "@/config/nav";
-import type { FeatureSlug } from "@/content/feature-slugs";
+import type { PillarSlug } from "@/content/feature-slugs";
 
-const pillars: Record<FeatureSlug, string> = {
+const pillars: Record<PillarSlug, string> = {
   "twitter-auto-follow": "Follows the newest followers of accounts in your niche, the people most likely to follow you back.",
   "twitter-post-scheduler": "Queue posts and threads with images. GrowX posts them at your best times.",
   "ai-tweet-writer": "Ideas, rewrites, hooks and threads from GrowX AI, running privately on your computer.",
@@ -26,7 +26,7 @@ const pillars: Record<FeatureSlug, string> = {
 };
 
 /** Grid placement at md/lg (a 4 x 3 bento at lg) and the decorative demo for each pillar. */
-const layout: Record<FeatureSlug, { li: string; demo: ReactNode }> = {
+const layout: Record<PillarSlug, { li: string; demo: ReactNode }> = {
   "twitter-auto-follow": { li: "md:col-span-2 lg:row-span-2", demo: <DemoFollowQueue size="lg" decorative /> },
   "twitter-post-scheduler": { li: "md:col-span-2", demo: <DemoQueueSlots size="md" decorative /> },
   "ai-tweet-writer": { li: "", demo: <DemoAiDraft size="sm" decorative /> },

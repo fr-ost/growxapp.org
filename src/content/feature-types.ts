@@ -1,6 +1,6 @@
 import type { FeatureSlug } from "./feature-slugs";
 
-export type FeatureIcon = "target" | "calendar" | "wand" | "chart" | "users" | "userX" | "message";
+export type FeatureIcon = "target" | "calendar" | "wand" | "chart" | "users" | "userX" | "message" | "list";
 
 /** A feature landing page at /features/<slug>. Inline text supports **bold**, `code` and [label](/path). */
 export interface FeaturePage {

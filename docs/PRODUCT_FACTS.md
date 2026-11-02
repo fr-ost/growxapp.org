@@ -1,4 +1,4 @@
-# GrowX product facts (extension v2.4.4)
+# GrowX product facts (extension v2.4.6)
 
 The single reference for website copy. Every claim on the site and in the blog must match this file, which was
 taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`, `shared/whatsnew.js`,
@@ -6,7 +6,7 @@ taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`,
 update this file first.
 
 ## Identity
-- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.4.4.
+- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.4.6 (release notes: /whats-new, from `shared/whatsnew.js`).
 - Store description: "All-in-one X (Twitter) growth: smart auto follow, post scheduler, on-device AI writer, analytics, unfollower tracker, reply targets."
 - A Chrome extension (Chrome 116+, desktop: Windows, macOS, Linux, ChromeOS). Not a mobile app.
 - Works inside the user's own signed-in x.com session. Never asks for the X password, does not use X OAuth.
@@ -30,7 +30,16 @@ update this file first.
 - Safety: random delays, breaks, 8% longer pauses, optional active hours (08:00-23:30 default when turned on) and days, optional warm-up (daily cap starts at 60, +20/day), session target, following-cap guard (5,000 or ~10% above your follower count), adaptive slow-down after any X warning, follow verification (shadow-limit detection), stops on sign-out/lock/challenge/repeated automation warnings, emergency stop **Alt+Shift+S**, keeps the computer awake while running, resumes after Chrome restarts, runs in the background (service worker).
 - Filters (core, free): skip already-followed / follows-you, private, no photo, optional bio, min/max followers (15 / 8,000), min following (40), min ratio 0.4, min posts (5), min account age (30 d), last active (45 d), exclude keywords (adult terms by default), follow-back boost words.
 - Advanced filters (Premium): include keywords, location keywords, verified-only / skip verified, account age and last-active rules.
-- List import (Premium): paste a list of usernames to follow first.
+- List import (Premium): paste a list of usernames to follow first (inside the autopilot queue).
+- **X's daily follow limit (2.4.6)**: when X refuses follows after N follows in 24 h, GrowX holds at N-5 for the next 24 h, then returns to the user's full pace by itself. The pace's own number never changes; Start and "Try again now" (popup, sidebar, Sources) ask X again at once.
+- Pace and the Start button sit on Grow > Sources next to the sources (2.4.5); the pace can also be changed from the popup. Detailed settings fold behind one-line summaries.
+
+## List follow (new in 2.4.6, `shared/lists.js`)
+- Follows exactly the accounts on the user's own list. Own page in the sidebar, own Start; separate from the autopilot and only one of the two runs at a time.
+- Input: pasted names, @mentions or x.com / twitter.com profile and post links (separated by spaces, commas, semicolons or lines), or a CSV or TXT file (upload or drop). Prose lines only give their @mentions and links; all-digit tokens are ignored; duplicates and reserved pages removed.
+- States: waiting (queued), followed, requested (protected account), skipped with the reason (not found, suspended, blocked, followed before), failed. Retry, export; Stop keeps progress.
+- Same pace presets and safety as the autopilot.
+- Free: lists of 50 at a time (`FREE.listFollow`). Premium ("Big lists for List follow"): up to 5,000.
 - Never-follow list (blacklist).
 
 ## Create (posts and threads)

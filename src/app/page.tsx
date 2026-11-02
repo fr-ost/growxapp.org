@@ -45,6 +45,7 @@ import { getTier, TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
 import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
+import { CURRENT_VERSION } from "@/content/releases";
 
 export const metadata = pageMetadata({
   title: "GrowX: The Ultimate X (Twitter) Growth Tool",
@@ -101,6 +102,7 @@ const moreInGrowX = [
   "Auto-plug (Premium)",
   "Weekly report (Premium)",
   "VIP alerts (Premium)",
+  "List follow (CSV or TXT)",
   "List import (Premium)",
   "Emergency stop · Alt+Shift+S",
   "Chrome 116+ · desktop",
@@ -158,14 +160,14 @@ export default function HomePage() {
         <Container className="relative pb-12 pt-14 text-center sm:pt-20">
           <div className="hero-settle" style={stagger(0)}>
             <Link
-              href="/blog/growx-potential-best-practices-roadmap"
+              href="/whats-new"
               className="group inline-flex max-w-full items-center gap-2 rounded-3xl border border-hairline-strong bg-white/85 sm:rounded-full py-1 pl-1 pr-3 text-sm font-semibold text-text-2 shadow-[var(--shadow-hair)] hover:border-accent/30"
             >
               <span className="relative shrink-0 overflow-clip rounded-full bg-brand-deep px-2.5 py-0.5 text-xs font-bold text-white">
                 New
                 <span aria-hidden="true" data-decor="" className="stage-sweep" />
               </span>
-              <span className="min-w-0 text-left sm:whitespace-nowrap">Version 2.4.4: scheduler, AI writer and analytics</span>
+              <span className="min-w-0 text-left sm:whitespace-nowrap">New in {CURRENT_VERSION}: List follow from a CSV or your own list</span>
               <IconArrowRight size={15} className="nudge shrink-0 text-accent-ink" />
             </Link>
           </div>

@@ -23,6 +23,7 @@
 | Targeting | Score, audience size, follow ratio, posts, avatar, protected, boost keywords | `rejectReason`, `scoreUser` | Free |
 | Targeting | Include/exclude/location keywords, verified filters, account age, last-active window | `rejectReason` | Premium |
 | Targeting | Bulk "Import a list to follow" | dashboard modal | Premium |
+| List follow | Follow exactly the accounts on your own list (paste, CSV, TXT) | List follow page | Free: 50 at a time; Premium: up to 5,000 |
 | Insight | History, growth chart, source stats, monthly goal planner, backup/restore | analytics, history, settings pages | Free |
 | Cleanup | Account scan and review (inactive / not following back) with filters, search, sort | `startScan`, `shared/cleanup.js` | Free |
 | Cleanup | Manual selection and unfollow at a safe pace, up to a reasonable daily amount | `unfStart` | Free (limit TBD) |

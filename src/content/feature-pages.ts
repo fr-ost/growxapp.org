@@ -2,7 +2,7 @@ import type { FeaturePage } from "./feature-types";
 
 /**
  * Feature landing pages (/features/<slug>), one per main search intent, in FEATURE_SLUGS order.
- * Every claim must match docs/PRODUCT_FACTS.md (extension v2.4.4). No invented statistics, user counts,
+ * Every claim must match docs/PRODUCT_FACTS.md (extension v2.4.6). No invented statistics, user counts,
  * ratings, testimonials or result promises; screenshots use demo data and their numbers are never quoted.
  */
 export const featurePages: FeaturePage[] = [
@@ -150,7 +150,7 @@ export const featurePages: FeaturePage[] = [
       },
     ],
     relatedPosts: ["how-growx-auto-follow-works", "twitter-follow-back-score-growx", "bulk-follow-twitter-safely", "follow-for-follow-twitter", "twitter-follower-ratio", "mass-follow-twitter-limits"],
-    related: ["twitter-unfollow-tool", "twitter-unfollower-tracker", "twitter-reply-targets"],
+    related: ["twitter-list-follow", "twitter-unfollow-tool", "twitter-unfollower-tracker"],
   },
   {
     slug: "twitter-post-scheduler",
@@ -984,6 +984,102 @@ export const featurePages: FeaturePage[] = [
     ],
     relatedPosts: ["twitter-reply-strategy", "twitter-lists-guide", "how-to-increase-twitter-engagement", "twitter-algorithm-explained", "how-to-grow-on-twitter-x", "how-to-go-viral-on-twitter"],
     related: ["ai-tweet-writer", "twitter-auto-follow", "twitter-analytics"],
+  },
+  {
+    slug: "twitter-list-follow",
+    nav: "List follow",
+    blurb: "Follow exactly the accounts on your own list, from pasted names or a CSV or TXT file.",
+    icon: "list",
+    seoTitle: "Follow a List of Twitter Accounts: X List Follow",
+    description:
+      "Follow a list of Twitter accounts from pasted usernames, links or a CSV or TXT file. GrowX List follow works at a safe pace, free for 50 at a time.",
+    keywords: [
+      "follow a list of Twitter accounts",
+      "bulk follow Twitter list",
+      "follow accounts from CSV",
+      "import usernames to follow on X",
+      "Twitter list follow tool",
+      "mass follow from a list",
+      "GrowX",
+    ],
+    eyebrow: "New in version 2.4.6",
+    h1: "Follow a list of Twitter accounts, exactly as you wrote it",
+    lead:
+      "List follow follows exactly the accounts on your own list: paste usernames, @mentions or profile links, or bring a CSV or TXT file. GrowX works through it at your pace, with the same safety as the autopilot, and shows what happened to every account.",
+    image: { src: "/screens/grow.webp", alt: "GrowX Grow page with the Safe, Balanced, Turbo, X Premium and Custom pace presets that List follow also uses (demo data)" },
+    highlights: [
+      {
+        title: "Paste, upload or drop",
+        text: "Paste names, @mentions or x.com links, or upload or drop a CSV or TXT file. Sentences only give up their @mentions and links, not every word.",
+      },
+      {
+        title: "Exactly your list",
+        text: "No sources and no scoring: GrowX follows the accounts you listed, in order, separate from the autopilot.",
+      },
+      {
+        title: "Every account accounted for",
+        text: "Waiting, followed, requested (for protected accounts) or skipped with the reason. Retry the ones that failed and export the list.",
+      },
+      {
+        title: "Same pace and safety",
+        text: "Random delays, breaks, hourly and daily caps and a stop on any warning from X. Only one of List follow and the autopilot runs at a time.",
+      },
+      {
+        title: "Stop keeps your progress",
+        text: "Press Stop whenever you like; the list remembers who was followed and carries on from there when you press Start.",
+      },
+      {
+        title: "Lists of up to 5,000",
+        text: "The free plan follows lists of 50 accounts at a time. Premium takes lists of up to 5,000.",
+        premium: true,
+      },
+    ],
+    steps: [
+      { title: "Bring your list", text: "Open **List follow** in the GrowX dashboard and paste usernames or links, or upload a CSV or TXT file." },
+      { title: "Check it", text: "GrowX shows the accounts it found and ignores anything that isn't a username, such as plain words or IDs." },
+      { title: "Press Start", text: "GrowX follows the list at your pace and marks each account as followed, requested or skipped with the reason." },
+    ],
+    sections: [
+      {
+        heading: "When to use List follow instead of the autopilot",
+        paragraphs: [
+          "The [smart auto follow](/features/twitter-auto-follow) autopilot finds people for you: it reads the newest followers of accounts in your niche and ranks them by a follow-back score. **List follow** is for when you already know exactly who you want to follow: speakers from an event, members of a community, people from a spreadsheet you built, or accounts a colleague shared with you.",
+          "The two are separate. List follow has its own page in the dashboard sidebar and its own Start button, and only one of them runs at a time, so your account never follows from two queues at once.",
+        ],
+      },
+      {
+        heading: "Bring a list in any format",
+        paragraphs: [
+          "Paste a plain list of usernames separated by spaces, commas, semicolons or new lines, with or without the @. Profile and post links work too: `x.com/name` and `twitter.com/name/status/1` both become `name`. If a line reads like a sentence, such as a pasted post or bio, GrowX takes only its @mentions and profile links instead of every word, and plain numbers are skipped because they are usually IDs or counts.",
+          "You can also upload or drop a **CSV or TXT file**. GrowX finds the column that holds the usernames, removes duplicates and pages that are not accounts, and tells you how many it found and how many lines it ignored.",
+        ],
+      },
+      {
+        heading: "Safe pace, clear results",
+        paragraphs: [
+          "List follow uses the same pace presets and safety as the autopilot: random delays between follows, breaks, rolling hourly and daily caps, and an automatic slow-down or stop when X shows a warning. No tool can promise zero risk on X, so start with the Safe or Balanced pace.",
+          "Every account ends up in one state you can see: **followed**, **requested** (a protected account, so a follow request was sent), **skipped** with the reason (not found, suspended, blocked or followed before) or **failed** when X kept refusing. Retry the failed ones, export the list, and press Stop at any time without losing your progress.",
+        ],
+        bullets: [
+          "Free: lists of up to 50 accounts at a time",
+          "Premium: lists of up to 5,000 accounts",
+          "If X limits follows for the day, GrowX waits just under the number X allowed, then returns to your full pace by itself",
+        ],
+      },
+    ],
+    plans: {
+      free: ["List follow with up to 50 accounts at a time", "Paste, CSV or TXT import", "Same pace presets and safety as the autopilot", "Retry, export and Stop without losing progress"],
+      premium: ["Lists of up to 5,000 accounts", "Turbo and X Premium paces", "Everything in smart auto follow Premium"],
+    },
+    faq: [
+      { q: "How do I follow a list of Twitter accounts?", a: "Open List follow in the GrowX dashboard, paste the usernames or profile links or upload a CSV or TXT file, and press Start. GrowX follows exactly those accounts at your pace and shows the result for each one." },
+      { q: "How many accounts can I follow from a list?", a: "On the free plan, lists of up to 50 accounts at a time. Premium takes lists of up to 5,000. The pace's hourly and daily caps still apply, so a long list is followed over several days." },
+      { q: "What file formats does List follow accept?", a: "Pasted text, a CSV file or a TXT file. Usernames can be written with or without the @, or as x.com or twitter.com profile and post links." },
+      { q: "Can List follow and the autopilot run together?", a: "No, one runs at a time so your account never follows from two queues at once. Stop one before you start the other; Stop keeps your progress." },
+      { q: "What happens to protected or suspended accounts on my list?", a: "A protected account gets a follow request and is marked requested. Accounts that are not found, suspended, blocked or already followed are skipped, with the reason shown next to each one." },
+    ],
+    relatedPosts: ["bulk-follow-twitter-safely", "mass-follow-twitter-limits", "how-growx-auto-follow-works"],
+    related: ["twitter-auto-follow", "twitter-unfollow-tool", "twitter-unfollower-tracker"],
   },
 ];
 
