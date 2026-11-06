@@ -42,7 +42,7 @@ const faqs = [
   { q: "Does GrowX work if I close the popup or the X tab?", a: "Yes. The engine runs in the extension's background service worker and keeps going until you press Stop. It uses an open x.com tab or a small pinned one, and resumes after Chrome restarts. Chrome itself needs to stay open." },
   { q: "Do scheduled posts go out when my computer is off?", a: "No. GrowX posts through your signed-in x.com tab in Chrome, so Chrome must be running. A post that is more than six hours late is never posted by itself: it waits for you as missed." },
   { q: "What happens if X shows a warning?", a: "GrowX backs off automatically: it lowers its limits and rests before continuing, and posting pauses too. If you are signed out, the account is locked or X issues repeated automation warnings, it stops completely and never clicks through a challenge." },
-  { q: "Is my data uploaded anywhere?", a: "Your settings, sources, queue, posts, history and analytics are stored in your browser. GrowX talks to x.com for your account and does not upload your X data. GrowX AI runs on your computer. Optional anonymous usage counts can be switched off." },
+  { q: "Is my data uploaded anywhere?", a: "Your settings, sources, queue, posts, history and analytics are stored in your browser. GrowX talks to x.com for your account and does not upload your X data. GrowX AI runs on your computer. Anonymous usage counts are optional, and feature usage is shared only if you say yes; both can be switched off." },
   { q: "Does GrowX need my X password or API keys?", a: "No. It works through the X session already signed in to your Chrome browser. It does not ask for, see or store your X password and does not use X OAuth or API keys." },
 ];
 

@@ -9,9 +9,63 @@ export interface Release {
   groups: { title: string; items: string[] }[];
 }
 
-export const CURRENT_VERSION = "2.4.6";
+export const CURRENT_VERSION = "2.4.7";
+
+/** The extension's interface languages (shared/i18n.js LANGS): BCP 47 code, native name, English name. */
+export const LANGUAGES: { code: string; native: string; english: string }[] = [
+  { code: "en", native: "English", english: "English" },
+  { code: "es", native: "Español", english: "Spanish" },
+  { code: "pt-BR", native: "Português (Brasil)", english: "Portuguese (Brazil)" },
+  { code: "fr", native: "Français", english: "French" },
+  { code: "de", native: "Deutsch", english: "German" },
+  { code: "it", native: "Italiano", english: "Italian" },
+  { code: "nl", native: "Nederlands", english: "Dutch" },
+  { code: "pl", native: "Polski", english: "Polish" },
+  { code: "tr", native: "Türkçe", english: "Turkish" },
+  { code: "ru", native: "Русский", english: "Russian" },
+  { code: "uk", native: "Українська", english: "Ukrainian" },
+  { code: "ar", native: "العربية", english: "Arabic" },
+  { code: "hi", native: "हिन्दी", english: "Hindi" },
+  { code: "id", native: "Bahasa Indonesia", english: "Indonesian" },
+  { code: "fil", native: "Filipino", english: "Filipino" },
+  { code: "vi", native: "Tiếng Việt", english: "Vietnamese" },
+  { code: "th", native: "ไทย", english: "Thai" },
+  { code: "ja", native: "日本語", english: "Japanese" },
+  { code: "ko", native: "한국어", english: "Korean" },
+  { code: "zh-CN", native: "简体中文", english: "Chinese (Simplified)" },
+  { code: "zh-TW", native: "繁體中文", english: "Chinese (Traditional)" },
+];
 
 export const releases: Release[] = [
+  {
+    version: "2.4.7",
+    title: "GrowX now speaks your language",
+    intro: "GrowX is now available in 21 languages and picks your browser's language by itself. Plus a new, optional way to help shape GrowX.",
+    groups: [
+      {
+        title: "New: GrowX in your language",
+        items: [
+          "21 languages: English, Español, Português (Brasil), Français, Deutsch, Italiano, Nederlands, Polski, Türkçe, Русский, Українська, العربية, हिन्दी, Bahasa Indonesia, Filipino, Tiếng Việt, ไทย, 日本語, 한국어, 简体中文 and 繁體中文",
+          "GrowX uses your browser's language by itself; pick another one in Settings, Appearance or on the welcome page",
+          "The popup, the dashboard, the welcome page and notifications are translated, and Arabic reads right to left",
+          "Your posts, names and anything you type are never translated",
+          "GrowX's name and description in Chrome are translated for 52 locales",
+        ],
+      },
+      {
+        title: "New: share feature usage (optional)",
+        items: [
+          "GrowX asks once whether you want to share which features you use, and nothing is sent until you say yes",
+          "Only feature names, results and rounded numbers, never your X account, handles, posts, AI prompts, email or lists. [Privacy policy](/privacy)",
+          "Change it any time in Settings, General; turning it off deletes anything not yet sent",
+        ],
+      },
+      {
+        title: "Fixes",
+        items: ["Notifications now appear in your language too, and times inside them read correctly in right-to-left languages"],
+      },
+    ],
+  },
   {
     version: "2.4.6",
     title: "List follow, and calmer around X's limits",

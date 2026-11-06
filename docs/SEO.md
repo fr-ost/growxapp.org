@@ -24,7 +24,7 @@ Positioning since extension v2.4.4: **GrowX: The Ultimate X (Twitter) Growth Too
 | `/tools/tweet-templates` | tweet templates | Twitter templates, thread templates, tweet hooks |
 | `/tools/twitter-bio-generator` | Twitter bio generator | X bio generator, Twitter bio ideas |
 | `/features/twitter-list-follow` | follow a list of Twitter accounts | bulk follow Twitter list, follow accounts from CSV, import usernames to follow |
-| `/whats-new` | GrowX update / changelog | GrowX release notes, GrowX 2.4.6 |
+| `/whats-new` | GrowX update / changelog | GrowX release notes, GrowX 2.4.7, GrowX languages (21 native language names, `lang` tagged; SoftwareApplication `inLanguage`) |
 | `/tools/twitter-shadowban-checker` | Twitter shadowban checker | shadowban test, X shadowban checker, free shadowban checker, Twitter search ban test, ghost ban (WebApplication + HowTo + FAQPage) |
 | `/press` | GrowX press kit | GrowX logo, GrowX screenshots |
 | `/how-it-works` | how to grow on Twitter with GrowX | Twitter growth routine, X follow limits per day |

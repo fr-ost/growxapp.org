@@ -1,5 +1,5 @@
 /**
- * Features of GrowX extension v2.4.6 and the Free / Premium split (from the extension's shared/plan.js and
+ * Features of GrowX extension v2.4.7 and the Free / Premium split (from the extension's shared/plan.js and
  * docs/PRODUCT_FACTS.md). Used by /features and the pricing comparison.
  */
 import type { FeatureSlug } from "@/content/feature-slugs";
@@ -136,9 +136,10 @@ export const featureGroups: readonly FeatureGroup[] = [
     title: "Everything else",
     summary: "The little things that make GrowX pleasant to use every day.",
     detail: [
-      "A setup wizard, 8 colour themes and dark mode, a command palette (Ctrl+K), phone and tablet layouts, a quick post box in the popup, backup and restore, and optional sync of your settings through Chrome.",
+      "GrowX speaks 21 languages and picks your browser's language by itself. A setup wizard, 8 colour themes and dark mode, a command palette (Ctrl+K), phone and tablet layouts, a quick post box in the popup, backup and restore, and optional sync of your settings through Chrome.",
     ],
     features: [
+      { id: "languages", title: "21 languages", description: "English, Español, Português, Français, Deutsch, 日本語, 한국어, 中文, हिन्दी, العربية, Türkçe and more; Arabic reads right to left.", tier: "free" },
       { id: "ux", title: "Themes, dark mode and Ctrl+K", description: "8 colour themes, dark mode, density and font options and a command palette.", tier: "free" },
       { id: "sync", title: "Backup, restore and Chrome sync", description: "Export a backup file, or sync settings, sources and templates through Chrome.", tier: "free" },
       { id: "workspaces", title: "Multiple X accounts", description: "A separate workspace (sources, queue and posts) for every X account you use.", tier: "premium" },

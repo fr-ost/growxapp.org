@@ -102,6 +102,7 @@ const moreInGrowX = [
   "Auto-plug (Premium)",
   "Weekly report (Premium)",
   "VIP alerts (Premium)",
+  "21 languages",
   "List follow (CSV or TXT)",
   "List import (Premium)",
   "Emergency stop · Alt+Shift+S",
@@ -167,7 +168,7 @@ export default function HomePage() {
                 New
                 <span aria-hidden="true" data-decor="" className="stage-sweep" />
               </span>
-              <span className="min-w-0 text-left sm:whitespace-nowrap">New in {CURRENT_VERSION}: List follow from a CSV or your own list</span>
+              <span className="min-w-0 text-left sm:whitespace-nowrap">New in {CURRENT_VERSION}: GrowX now speaks 21 languages</span>
               <IconArrowRight size={15} className="nudge shrink-0 text-accent-ink" />
             </Link>
           </div>

@@ -45,6 +45,7 @@ export default function PressPage() {
     ["Main features", "Smart auto follow, List follow, post scheduler, GrowX AI writer, analytics, unfollower tracker, reply targets, cleanup"],
     ["Platform", "Desktop Chrome 116+ (Windows, macOS, Linux, ChromeOS)"],
     ["Current version", CURRENT_VERSION],
+    ["Languages", "21 (English, Spanish, Portuguese, French, German, Japanese, Korean, Chinese, Hindi, Arabic and more)"],
     ["Pricing", `Free plan; ${TRIAL_DAYS}-day Premium trial (no card); Premium ${prices}`],
     ["Developer", site.author],
     ["Website", site.url.replace("https://", "")],

@@ -5,14 +5,14 @@ import { RichText } from "@/components/rich-text";
 import { ExternalButton, LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
 import { site } from "@/config/site";
-import { CURRENT_VERSION, releases } from "@/content/releases";
+import { CURRENT_VERSION, LANGUAGES, releases } from "@/content/releases";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: `What's New in GrowX ${CURRENT_VERSION}: List Follow & More`,
-  description: `What's new in GrowX ${CURRENT_VERSION}: List follow from a CSV, TXT or pasted names, calmer handling of X's daily follow limit, plus the full release notes.`,
+  title: `What's New in GrowX ${CURRENT_VERSION}: 21 Languages & More`,
+  description: `What's new in GrowX ${CURRENT_VERSION}: the extension in 21 languages, optional feature-usage sharing, List follow from a CSV or TXT file and full release notes.`,
   path: "/whats-new",
-  keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", "GrowX 2.4.6", "GrowX List follow", "what's new in GrowX"],
+  keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", "GrowX 2.4.7", "GrowX languages", "GrowX List follow", "what's new in GrowX"],
 });
 
 export default function WhatsNewPage() {
@@ -35,8 +35,8 @@ export default function WhatsNewPage() {
                 <IconChrome size={20} /> Get the update
               </ExternalButton>
             ) : null}
-            <LinkButton href="/features/twitter-list-follow" variant="secondary" size="lg">
-              See List follow <IconArrowRight size={17} className="nudge" />
+            <LinkButton href="#languages" variant="secondary" size="lg">
+              See the 21 languages <IconArrowRight size={17} className="nudge" />
             </LinkButton>
           </>
         }
@@ -50,6 +50,28 @@ export default function WhatsNewPage() {
       <Section className="pt-4 sm:pt-6 lg:pt-8">
         <Container className="max-w-4xl space-y-8">
           <ReleaseCard release={latest} latest />
+          <section id="languages" aria-labelledby="languages-h" className="scroll-mt-24 rounded-3xl border border-hairline bg-surface-2 p-6 sm:p-8">
+            <h2 id="languages-h" className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+              GrowX in {LANGUAGES.length} languages
+            </h2>
+            <p className="mt-2 text-text-2">
+              GrowX picks your browser&apos;s language by itself. To choose another, open Settings, Appearance in the GrowX dashboard.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2" data-testid="language-list">
+              {LANGUAGES.map((l) => (
+                <li key={l.code}>
+                  <span
+                    lang={l.code}
+                    dir={l.code === "ar" ? "rtl" : undefined}
+                    title={l.english}
+                    className="inline-flex items-center rounded-full border border-hairline-strong bg-white px-3.5 py-1.5 text-sm font-semibold text-text"
+                  >
+                    {l.native}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
           {older.map((r) => (
             <ReleaseCard key={r.version} release={r} />
           ))}

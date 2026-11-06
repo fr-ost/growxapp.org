@@ -42,6 +42,11 @@ export const faqGroups: FaqGroup[] = [
         more: { href: "/signup", label: "Create a free account" },
       },
       {
+        q: "What languages is GrowX available in?",
+        a: "21 languages: English, Spanish, Portuguese (Brazil), French, German, Italian, Dutch, Polish, Turkish, Russian, Ukrainian, Arabic, Hindi, Indonesian, Filipino, Vietnamese, Thai, Japanese, Korean and Chinese (Simplified and Traditional). GrowX uses your browser's language by itself, and you can pick another one in Settings, Appearance. Your own posts are never translated.",
+        more: { href: "/whats-new", label: "What's new in 2.4.7" },
+      },
+      {
         q: "Is GrowX made by X or Twitter?",
         a: "No. GrowX is an independent product built by Shahriar Ahmed. It is not affiliated with or endorsed by X Corp.",
         more: { href: "/about", label: "About GrowX" },
@@ -244,7 +249,8 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Does GrowX collect usage data?",
-        a: "Only optional anonymous usage counts: a random install id, the version and coarse counts, with no X data. You can switch them off in settings.",
+        a: "Only if you allow it. Anonymous usage counts (a random install id, the version and coarse counts) are on by default and can be switched off. Since version 2.4.7, GrowX also asks once whether you want to share which features you use; nothing is sent unless you say yes. Neither ever includes your X account, posts, AI prompts, email or lists, and both can be turned off in settings.",
+        more: { href: "/privacy", label: "Privacy policy" },
       },
       {
         q: "What happens to my data if I uninstall GrowX?",

@@ -210,6 +210,11 @@ for (const l of links) {
   await p.locator('[data-testid="template-list"] input').first().fill("cold email");
   ok("tweet templates: fill-in shows the finished post", (await p.locator('[data-testid="template-list"]').innerText()).includes("What's the best advice you've ever gotten about cold email?"));
 
+  await p.goto(BASE + "/whats-new", { waitUntil: "networkidle" });
+  ok("whats-new: latest release first and 21 languages listed", (await p.locator("article").first().innerText()).includes("v2.4.7") && (await p.locator('[data-testid="language-list"] > li').count()) === 21 && (await p.locator('[data-testid="language-list"] [lang="ar"][dir="rtl"]').count()) === 1);
+  const swLangs = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => [].concat(JSON.parse(s.textContent))).find((d) => d["@type"] === "SoftwareApplication")?.inLanguage?.length ?? 0);
+  ok("whats-new: SoftwareApplication lists the 21 languages", swLangs === 21, String(swLangs));
+
   await p.goto(BASE + "/faq", { waitUntil: "networkidle" });
   const faqTotal = await p.locator("main details").count();
   const faqLdCount = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => [].concat(JSON.parse(s.textContent))).find((d) => d["@type"] === "FAQPage")?.mainEntity.length ?? 0);

@@ -90,7 +90,7 @@ export function Bento() {
         <Link href="/features" data-spotlight="ink" className={`${tile} on-ink border-white/10 bg-ink text-white`}>
           <h3 className="font-display text-lg font-bold tracking-tight">And much more</h3>
           <p className="mt-2 text-sm leading-relaxed text-white/75 [text-wrap:pretty]">
-            Daily goals and streaks, a workspace per X account, 8 colour themes, dark mode and a command palette.
+            21 languages, daily goals and streaks, a workspace per X account, 8 colour themes, dark mode and a command palette.
           </p>
           <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-white/70">
             <Kbd tone="ink">Ctrl</Kbd> + <Kbd tone="ink">K</Kbd>

@@ -1,4 +1,4 @@
-# GrowX product facts (extension v2.4.6)
+# GrowX product facts (extension v2.4.7)
 
 The single reference for website copy. Every claim on the site and in the blog must match this file, which was
 taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`, `shared/whatsnew.js`,
@@ -6,7 +6,7 @@ taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`,
 update this file first.
 
 ## Identity
-- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.4.6 (release notes: /whats-new, from `shared/whatsnew.js`).
+- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.4.7 (release notes: /whats-new, from `shared/whatsnew.js`).
 - Store description: "All-in-one X (Twitter) growth: smart auto follow, post scheduler, on-device AI writer, analytics, unfollower tracker, reply targets."
 - A Chrome extension (Chrome 116+, desktop: Windows, macOS, Linux, ChromeOS). Not a mobile app.
 - Works inside the user's own signed-in x.com session. Never asks for the X password, does not use X OAuth.
@@ -85,6 +85,8 @@ update this file first.
 - Optional **Chrome sync** of settings, sources, never-follow list, people and templates (through Chrome's own sync storage, no GrowX server).
 - Setup wizard, What's new window, **8 colour themes**, dark mode, density/font options, **command palette (Ctrl+K)**, phone and tablet layouts.
 - Backup and restore (export/import a file).
+- **Languages (2.4.7, `shared/i18n.js`, `i18n/*.json`)**: the interface in 21 languages: English, Español, Português (Brasil), Français, Deutsch, Italiano, Nederlands, Polski, Türkçe, Русский, Українська, العربية, हिन्दी, Bahasa Indonesia, Filipino, Tiếng Việt, ไทย, 日本語, 한국어, 简体中文, 繁體中文. Auto-picks the browser language; change in Settings > Appearance or on the welcome page. Popup, dashboard, welcome page and notifications are translated; Arabic is right to left; user text is never translated. The extension's name and description in Chrome (`_locales`) cover 52 locales.
+- **Share feature usage (2.4.7, optional, `shared/analytics.js`, `background-analytics.js`)**: asked once; sent only after "Share feature usage" AND while "Share anonymous usage stats" is on. Events (fixed schema: event names, enums, buckets, small counts, version, OS) go to the GrowX telemetry server (Cloudflare Worker), which validates and forwards to GrowX's Google Analytics 4 property. Carries the random install id, a session number and, when signed in to a GrowX account, a truncated SHA-256 of the account id plus plan type. Never X handle/account, follows, sources, lists, posts, drafts, replies, AI prompts or output, email, password, tokens, cookies, links or pages visited. Unanswered events wait locally (max 100, max ~3 days); "No thanks" or turning either setting off deletes them. Change in Settings > General.
 - Data: settings, queue, history, posts and analytics stay in the browser (`chrome.storage`). Optional anonymous usage counts (random install id, version, coarse counts; no X data) can be switched off.
 
 ## Plans (website is the source of truth for prices)

@@ -61,7 +61,7 @@ export function PrivacyMap({ children }: { children?: ReactNode }) {
             </div>
           </div>
         </div>
-        <p className="mt-3 text-center text-xs text-muted">Optional anonymous usage counts can be switched off.</p>
+        <p className="mt-3 text-center text-xs text-muted">Anonymous usage counts and feature usage are optional and can be switched off.</p>
       </div>
       {children}
     </div>
