@@ -1078,7 +1078,7 @@ export const featurePages: FeaturePage[] = [
       { q: "Can List follow and the autopilot run together?", a: "No, one runs at a time so your account never follows from two queues at once. Stop one before you start the other; Stop keeps your progress." },
       { q: "What happens to protected or suspended accounts on my list?", a: "A protected account gets a follow request and is marked requested. Accounts that are not found, suspended, blocked or already followed are skipped, with the reason shown next to each one." },
     ],
-    relatedPosts: ["bulk-follow-twitter-safely", "mass-follow-twitter-limits", "how-growx-auto-follow-works"],
+    relatedPosts: ["how-to-build-a-twitter-follow-list", "bulk-follow-twitter-safely", "mass-follow-twitter-limits"],
     related: ["twitter-auto-follow", "twitter-unfollow-tool", "twitter-unfollower-tracker"],
   },
 ];

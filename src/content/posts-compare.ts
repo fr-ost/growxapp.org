@@ -12,6 +12,7 @@ const ol = (...items: string[]): Block => ({ type: "ol", items });
 const note = (text: string): Block => ({ type: "note", text });
 
 const DATE = "2026-10-31";
+const UPDATED = "2026-11-07";
 const TRY =
   "GrowX is free to install from the Chrome Web Store, and you can [create a free account](/signup) to try every Premium feature free for 30 days, no credit card needed.";
 const TRADEMARK =
@@ -37,7 +38,7 @@ export const comparePosts: Post[] = [
       "GrowX",
     ],
     datePublished: DATE,
-    dateModified: DATE,
+    dateModified: UPDATED,
     readMinutes: 8,
     related: ["growx-vs-circleboom-cost", "circleboom-vs-growx", "best-twitter-growth-tools"],
     sections: [
@@ -98,7 +99,7 @@ export const comparePosts: Post[] = [
           ul(
             "**Buffer**: a scheduler for many social networks with a free plan. A good fit if X is just one of several channels you post to and you mainly need a calendar.",
             "**Typefully**: a writing and scheduling app built around threads and long posts, popular with writers who care about drafting.",
-            "**Hypefury**: an X scheduling tool known for evergreen reposting and automatic follow-up replies on posts that take off.",
+            "**Hypefury** was long known for evergreen reposting and auto-plugs on X, but its pricing page now says it no longer supports X. See [Hypefury alternatives for X](/blog/hypefury-alternatives).",
             "**X Pro**: X's own multi-column dashboard (formerly TweetDeck), included with some X Premium tiers. Useful for monitoring lists and searches and scheduling from X itself.",
             "**X's built-in tools**: the native composer can schedule posts, and X Premium includes analytics. Fine for occasional use.",
           ),

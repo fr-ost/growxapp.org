@@ -1,6 +1,6 @@
 # Answer bank for Reddit, Quora and forums
 
-Fifteen answers to questions people ask about X (Twitter) all the time. Each one is meant to solve the problem on its own, even if
+Nineteen answers to questions people ask about X (Twitter) all the time. Each one is meant to solve the problem on its own, even if
 nobody clicks the link. The link is a bonus for people who want more.
 
 ## Rules (read before posting)
@@ -16,7 +16,7 @@ nobody clicks the link. The link is a bonus for people who want more.
 5. **Always keep the disclosure line** when the answer mentions GrowX or links to growxapp.org.
 6. **One link at most.** If the thread already has a good answer, add something new or move on.
 7. **Check facts before posting.** X changes features often (for example, scheduling in the composer). The GrowX facts here match
-   extension v2.4.4; see `docs/PRODUCT_FACTS.md`.
+   extension v2.4.7; see `docs/PRODUCT_FACTS.md`.
 8. **Log each answer** in the tracker in `docs/BACKLINKS.md` (section 8).
 
 Where these questions come up: Reddit (for example r/Twitter, r/socialmedia, r/SocialMediaMarketing, r/Entrepreneur and niche
@@ -270,7 +270,7 @@ Week-by-week plan: https://www.growxapp.org/blog/first-1000-followers-on-x
 
 **How people ask it:** "Am I shadowbanned on Twitter?" / "How do I check if I'm shadowbanned on X?" / "My views dropped to nothing, is it
 a shadowban?"
-**Link:** https://www.growxapp.org/blog/twitter-shadowban
+**Link:** https://www.growxapp.org/tools/twitter-shadowban-checker (or the guide: https://www.growxapp.org/blog/twitter-shadowban)
 
 **Answer (170 words):**
 
@@ -278,7 +278,7 @@ X doesn't officially use the word, but it does limit the visibility of some acco
 excluding posts from search, ranking replies lower or showing posts to fewer people. First rule out normal dips: reach moves with topic,
 timing and whatever else is happening on X.
 
-Check it yourself (shadowban checker sites only see the same public views you do):
+Check it yourself, from the outside (X only shows search to signed-in people, so a website can't see this for you):
 
 1. From an account that doesn't follow you (a friend's or a second one), type your name in search and check the suggestions.
 2. Search an exact phrase from a recent post, in quotes, under Latest.
@@ -288,7 +288,7 @@ Check it yourself (shadowban checker sites only see the same public views you do
 If something is limited: pause automation, stop follow and unfollow churn, mass tagging and copy-paste replies, post normally and give it
 time. X doesn't say how long limits last. Don't open a new account to get around it; X's rules prohibit that.
 
-More detail: https://www.growxapp.org/blog/twitter-shadowban
+I made a free checker that builds these checks for your handle and turns your answers into a result, no login: https://www.growxapp.org/tools/twitter-shadowban-checker
 
 (Disclosure: I build GrowX.)
 
@@ -423,3 +423,93 @@ niche so the system can find your readers; and avoid spammy patterns like follow
 Longer explainer: https://www.growxapp.org/blog/twitter-algorithm-explained
 
 (Disclosure: I build GrowX.)
+
+---
+
+## 16. What's a good Hypefury alternative for X now?
+
+**How people ask it:** "Hypefury stopped supporting Twitter, what are you using?" / "Alternative to Hypefury for X evergreen tweets?"
+**Link:** https://www.growxapp.org/blog/hypefury-alternatives
+
+**Answer (150 words):**
+
+Hypefury's pricing page now says it no longer supports X, so you need a new home for three jobs: your queue, evergreen posts and
+auto-plugs. Before you pick a tool, list which of those you actually used.
+
+- **Queue with time slots**: most schedulers do this; check that threads and images work and that character counting matches X.
+- **Evergreen**: you want variants and a long gap between repeats, not the same text every week. Prune your library first and keep only
+  posts that beat your usual engagement.
+- **Auto-plug**: a reply with your offer once a post passes a like threshold.
+
+If you also want growth tools, I build GrowX, a Chrome extension with a queue, evergreen recycling and auto-plug (those two are
+Premium) plus auto follow and analytics. It posts from your own Chrome, so the computer has to be on at post time. Write-up:
+https://www.growxapp.org/blog/hypefury-alternatives
+
+(Disclosure: I build GrowX.)
+
+---
+
+## 17. How do I get verified on X?
+
+**How people ask it:** "How to get the blue check on Twitter?" / "Why did my checkmark disappear?"
+**Link:** https://www.growxapp.org/blog/how-to-get-verified-on-twitter
+
+**Answer (130 words):**
+
+The old application-based badge is gone. Per X's Help Center, the blue checkmark needs an active subscription to a tier that
+includes it, then X reviews the account. You also need a verified phone number.
+
+Things that trip people up:
+
+1. Changing your profile photo, display name or @handle removes the checkmark until the account is reviewed again, so finish your profile
+   before subscribing.
+2. The checkmark doesn't mean ID verification.
+3. X can remove it at any time, for example for rule violations, and it goes away when the subscription ends.
+
+Whether it's worth it depends on how much you post and reply. Measure views and replies for two weeks before and after.
+More: https://www.growxapp.org/blog/how-to-get-verified-on-twitter
+
+(Disclosure: I build GrowX.)
+
+---
+
+## 18. Do Twitter engagement groups work?
+
+**How people ask it:** "Should I join a Telegram engagement group for X?" / "Do engagement pods help on Twitter?"
+**Link:** https://www.growxapp.org/blog/twitter-engagement-groups
+
+**Answer (130 words):**
+
+They make posts look busier for a while, but:
+
+- The engagement comes from members in other niches, so the algorithm learns the wrong audience for you.
+- X's platform manipulation and spam policy covers coordinated activity meant to inflate engagement, so the accounts involved risk limits.
+- Your analytics stop telling you what your real audience likes.
+- You spend your time liking dozens of posts instead of writing.
+
+What works better: reply early and thoughtfully to big accounts in your niche, post when your followers are online, and keep a small
+circle of peers who read each other because they want to, not because they have to.
+https://www.growxapp.org/blog/twitter-engagement-groups
+
+(Disclosure: I build GrowX.)
+
+---
+
+## 19. How do I follow a list of accounts from a spreadsheet?
+
+**How people ask it:** "Bulk follow Twitter accounts from CSV?" / "I have a list of handles from an event, how do I follow them all?"
+**Link:** https://www.growxapp.org/blog/how-to-build-a-twitter-follow-list
+
+**Answer (120 words):**
+
+Don't follow them all in one sitting: bursts of follows are what X's limits watch for. Spread them over a few days, with random gaps
+and breaks, and stop if X shows any warning. Also check your following limit: everyone can follow 5,000 accounts, and above that the
+limit grows with your followers.
+
+Then make the follow count: reply to one of their posts within a few days.
+
+If you want it done for you, GrowX's List follow takes pasted handles, links or a CSV/TXT file and follows exactly those accounts at a
+human pace (free for 50 at a time). Guide: https://www.growxapp.org/blog/how-to-build-a-twitter-follow-list
+
+(Disclosure: I build GrowX.)
+

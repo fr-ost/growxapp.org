@@ -40,6 +40,7 @@ export interface Post {
 
 import { brandPosts } from "./posts-brand";
 import { comparePosts } from "./posts-compare";
+import { round4Posts } from "./posts-round4";
 import { createPosts } from "./posts-create";
 import { growthPosts } from "./posts-growth";
 import { insightPosts } from "./posts-insights";
@@ -732,7 +733,7 @@ const corePosts: Post[] = [
   },
 ];
 
-export const posts: Post[] = [...corePosts, ...growthPosts, ...createPosts, ...insightPosts, ...strategyPosts, ...profilePosts, ...marketingPosts, ...brandPosts, ...comparePosts];
+export const posts: Post[] = [...corePosts, ...growthPosts, ...createPosts, ...insightPosts, ...strategyPosts, ...profilePosts, ...marketingPosts, ...brandPosts, ...comparePosts, ...round4Posts];
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 export const latestFirst = () => [...posts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
