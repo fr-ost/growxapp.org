@@ -21,7 +21,7 @@ below is legitimate. Always say you are the developer when you post about GrowX.
 | Bio generator | https://www.growxapp.org/tools/twitter-bio-generator | "What should I put in my bio" questions, profile guides |
 | Shadowban checker | https://www.growxapp.org/tools/twitter-shadowban-checker | "Am I shadowbanned" questions on Reddit, Quora and forums; free tool lists; social media guides |
 | Feature pages | https://www.growxapp.org/features/twitter-post-scheduler (and the other 6) | "Best Twitter scheduler / analytics / unfollow tool" lists |
-| Guides (48 posts) | https://www.growxapp.org/blog | Answers on Reddit, Quora, forums; newsletters |
+| Guides (54 posts) | https://www.growxapp.org/blog | Answers on Reddit, Quora, forums; newsletters |
 
 Vary the link text: `GrowX`, `growxapp.org`, `GrowX for X (Twitter)`, a tool's name, or a guide's title. Do not use the same keyword-rich anchor everywhere.
 
@@ -31,6 +31,7 @@ Vary the link text: `GrowX`, `growxapp.org`, `GrowX for X (Twitter)`, a tool's n
 |---|---|---|
 | `guest-posts.md` | 3 original guest-post drafts (about 950 words each) with title options, author bio and a pitch email | Pitch each draft to one blog at a time; edit the first-person draft so every line matches your experience |
 | `answer-bank.md` | 19 helpful answers to common X (Twitter) questions, each with one link and a disclosure line | Use only where the question is really asked; adapt each answer to the thread, never paste the same text twice |
+| `round-5.md` | November 2026, part 2: six new guides as assets, broken-link outreach for dead BlackMagic and outdated Hypefury links, unlinked brand mentions, a podcast/YouTube guest pitch | Start with broken-link building (section 2): it gives authors a reason to update their article |
 | `round-4.md` | November 2026 plan: new assets (Hypefury alternatives, shadowban checker, List follow, 21 languages), timely Hypefury outreach, resource outreach, short descriptions in 5 languages, 2 guest post outlines | Start with section 2 (former Hypefury users) while the topic is fresh |
 | `directory-copy.md` | Copy sized for directory forms: taglines, 160/300/1,000-character descriptions, feature bullets, tags, pricing, FAQ | Paste into the directories in section 3; check prices on /pricing first |
 

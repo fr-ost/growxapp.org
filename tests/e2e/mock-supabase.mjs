@@ -79,6 +79,10 @@ mkUser("other@example.com", true);
 mkUser("brokendb@example.com", true); // simulates a project without migrations
 mkUser("nopay@example.com", true); // only the payments table is missing
 const ADMIN_USER = mkUser("admin@example.com", true); // listed in public.admins
+mkUser("support-target@example.com", false); // admin console: confirm email, suspend / unsuspend, sign out everywhere
+const adminActions = []; // public.admin_actions (append-only)
+const userById = (id) => [...users.values()].find((u) => u.id === id) ?? null;
+const banned = (u) => !!u.banned_until && new Date(u.banned_until).getTime() > Date.now();
 // ---- admin state (public.admins, premium_gifts + events, early_bird_settings + events)
 const adminIds = new Set([ADMIN_USER.id]);
 // One confirmed early-bird payment of the admin account (for invoices).
@@ -91,6 +95,40 @@ const ebStatus = () => ({ state: !eb.enabled ? "off" : eb.sold >= eb.cap ? "sold
 const emailOf = (id) => [...users.values()].find((u) => u.id === id)?.email ?? null;
 const DUR = { "7d": 7, "30d": 30, "90d": 90, "1y": 365 };
 const adminRpc = {
+  admin_stats: () => {
+    const all = [...users.values()];
+    const day = (d) => d.toISOString().slice(0, 10);
+    const signups = Array.from({ length: 14 }, (_, i) => { const d = new Date(Date.now() - (13 - i) * 86400000); return { day: day(d), count: all.filter((u) => u.created_at.slice(0, 10) === day(d)).length }; });
+    const ok = mockPayments.filter((x) => x.status === "succeeded");
+    const gross = ok.reduce((n, x) => n + x.amount_minor, 0);
+    return { users_total: all.length, users_7d: all.length, users_30d: all.length, unconfirmed: all.filter((u) => !u.email_confirmed_at).length, suspended: all.filter(banned).length, admins: adminIds.size,
+      trials_active: trials.size, trials_total: trials.size, paid_active: 0, lifetime: 0, gifts_active: gifts.filter((g) => g.status === "active").length, payments_succeeded: ok.length, payments_30d: ok.length,
+      revenue: { USD: { gross, refunded: 0, net: gross } }, revenue_30d: { USD: gross }, orders_open: 0, orders_refund_required: 0, x_accounts_active: xbindings.size, sessions_active: active.size, signups_14d: signups };
+  },
+  admin_list_users: ({ p_query, p_filter, p_limit, p_offset }) => {
+    const q = String(p_query || "").trim().toLowerCase(); const x = q.replace(/^@/, "");
+    const rows = [...users.values()].map((u) => ({ id: u.id, email: u.email, created_at: u.created_at, last_sign_in_at: null, email_confirmed_at: u.email_confirmed_at, banned_until: u.banned_until ?? null,
+      providers: u.app_metadata.providers, trial_active: trials.has(u.id), trial_used: trials.has(u.id), paid_active: false,
+      gift_active: gifts.some((g) => g.user_id === u.id && g.status === "active"), payments: mockPayments.filter((pp) => pp.user_id === u.id && pp.status === "succeeded").length,
+      x_accounts: [...xbindings.values()].filter((b) => b.user_id === u.id).map((b) => b.username), is_admin: adminIds.has(u.id) }))
+      .filter((r) => !q || r.email.includes(q) || r.id === q || [...xbindings.values()].some((b) => b.user_id === r.id && b.normalized_username.includes(x)))
+      .filter((r) => ({ all: true, premium: r.paid_active || r.gift_active, trial: r.trial_active && !r.gift_active, free: !r.trial_active && !r.gift_active, paid: r.payments > 0, gift: r.gift_active,
+        unconfirmed: !r.email_confirmed_at, suspended: !!r.banned_until && new Date(r.banned_until) > new Date(), admins: r.is_admin })[p_filter || "all"])
+      .reverse();
+    return { status: "ok", total: rows.length, limit: p_limit, offset: p_offset, rows: rows.slice(p_offset, p_offset + p_limit) };
+  },
+  admin_revoke_sessions: ({ p_admin, p_user, p_reason }) => {
+    if (!String(p_reason || "").trim()) return { status: "error", code: "reason_required" };
+    if (p_user === p_admin) return { status: "error", code: "self" };
+    let n = 0; for (const [id, uid] of [...sessions]) if (uid === p_user) { sessions.delete(id); n++; }
+    let m = 0; for (const k of [...active.keys()]) if (k.startsWith(p_user)) { active.delete(k); m++; }
+    adminActions.unshift({ id: adminActions.length + 1, admin_id: p_admin, target_user_id: p_user, action: "revoke_sessions", reason: p_reason, details: { auth_sessions: n, active_slots: m }, created_at: new Date().toISOString() });
+    return { status: "ok", sessions: n };
+  },
+  admin_log_action: ({ p_admin, p_target, p_action, p_reason, p_details }) => {
+    adminActions.unshift({ id: adminActions.length + 1, admin_id: p_admin, target_user_id: p_target, action: p_action, reason: p_reason, details: p_details ?? {}, created_at: new Date().toISOString() });
+    return { status: "ok", id: adminActions.length };
+  },
   admin_find_user: ({ p_email }) => { const u = users.get(String(p_email).trim().toLowerCase()); return u ? { status: "ok", user_id: u.id, email: u.email, created_at: u.created_at } : { status: "not_found" }; },
   admin_grant_gift: ({ p_admin, p_user, p_duration, p_reason }) => {
     if (gifts.some((g) => g.user_id === p_user && g.status === "active" && (!g.expires_at || Date.parse(g.expires_at) > Date.now()))) return { status: "active_gift_exists" };
@@ -147,6 +185,18 @@ http.createServer(async (req, res) => {
     const u = mkUser(body.email, body.email.startsWith("instant"));
     return send(res, 200, u.email_confirmed_at ? session(u) : u);
   }
+  const adminUser = p.match(/^\/auth\/v1\/admin\/users\/([0-9a-f-]{36})$/);
+  if (adminUser) {
+    if (!(req.headers.authorization || "").includes("service-key")) return send(res, 401, { msg: "not admin" });
+    const tu = userById(adminUser[1]);
+    if (!tu) return send(res, 404, { code: 404, error_code: "user_not_found", msg: "User not found" });
+    if (req.method === "PUT") {
+      if (body.ban_duration) tu.banned_until = body.ban_duration === "none" ? null : new Date(Date.now() + 100 * 365 * 86400000).toISOString();
+      if (body.email_confirm && !tu.email_confirmed_at) tu.email_confirmed_at = new Date().toISOString();
+      if (body.email && body.email !== tu.email) { if (users.has(body.email)) return send(res, 422, { error_code: "email_exists", msg: "taken" }); users.delete(tu.email); tu.email = body.email; users.set(tu.email, tu); }
+    }
+    return send(res, 200, tu);
+  }
   if (p === "/auth/v1/token") {
     const gt = url.searchParams.get("grant_type");
     if (gt === "refresh_token") {
@@ -157,6 +207,7 @@ http.createServer(async (req, res) => {
     const u = users.get(body.email);
     if (!u || body.password !== "correct-horse-1") return send(res, 400, { code: 400, error_code: "invalid_credentials", msg: "Invalid login credentials" });
     if (!u.email_confirmed_at) return send(res, 400, { code: 400, error_code: "email_not_confirmed", msg: "Email not confirmed" });
+    if (banned(u)) return send(res, 400, { code: 400, error_code: "user_banned", msg: "User is banned" });
     return send(res, 200, session(u));
   }
   if (p === "/auth/v1/user") { const u = authUser(req); if (!u) return send(res, 401, { code: 401, error_code: "bad_jwt", msg: "invalid JWT" }); return send(res, 200, u); }
@@ -198,12 +249,15 @@ http.createServer(async (req, res) => {
   if (isService && req.method === "GET") {
     const eqId = (url.searchParams.get("user_id") || "").replace("eq.", "");
     if (table === "admins") return send(res, 200, adminIds.has(eqId) ? [{ user_id: eqId }] : []);
-    if (table === "premium_gifts") return send(res, 200, gifts);
+    if (table === "premium_gifts") return send(res, 200, eqId ? gifts.filter((g) => g.user_id === eqId) : gifts);
     if (table === "premium_gift_events") return send(res, 200, giftEvents);
     if (table === "early_bird_events") return send(res, 200, ebEvents);
     if (table === "x_account_bindings") return send(res, 200, [...xbindings.values(), ...releasedBindings].filter((b) => b.user_id === eqId));
-    if (table === "x_account_binding_events") return send(res, 200, xEvents.filter((e) => e.user_id === eqId));
-    if (table === "payments") return send(res, 200, paymentsFor(url, null));
+    if (table === "x_account_binding_events") return send(res, 200, eqId ? xEvents.filter((e) => e.user_id === eqId) : xEvents.filter((e) => String(e.actor).startsWith("support:")));
+    if (table === "admin_actions") { const t = (url.searchParams.get("target_user_id") || "").replace("eq.", ""); return send(res, 200, adminActions.filter((a) => !t || a.target_user_id === t)); }
+    if (table === "trials") return send(res, 200, trials.has(eqId) ? [trials.get(eqId)] : []);
+    if (table === "active_sessions") return send(res, 200, [...active].filter(([k]) => k.startsWith(eqId)).map(([k]) => ({ slot: k.split(":")[1], activated_at: new Date().toISOString() })));
+    if (table === "payments") return send(res, 200, paymentsFor(url, eqId || null));
     if (table === "profiles") { const ids = (url.searchParams.get("id") || "").replace(/^eq\./, "").replace(/^in\.\(|\)$/g, "").split(",").filter(Boolean); return send(res, 200, ids.map((id) => ({ id, email: emailOf(id) }))); }
     return send(res, 200, []); // health-check probes and empty tables
   }

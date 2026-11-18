@@ -93,7 +93,7 @@ for (const l of links) {
 
 // ---------- SEO audit (rendered HTML, as a crawler sees it)
 {
-  const SEO_PAGES = ["/", "/features", "/features/twitter-auto-follow", "/features/twitter-post-scheduler", "/features/ai-tweet-writer", "/features/twitter-analytics", "/features/twitter-unfollower-tracker", "/features/twitter-unfollow-tool", "/features/twitter-reply-targets", "/features/twitter-list-follow", "/tools", "/tools/tweet-character-counter", "/tools/twitter-thread-maker", "/tools/twitter-engagement-rate-calculator", "/tools/twitter-follower-ratio-calculator", "/tools/twitter-bold-text-generator", "/tools/tweet-templates", "/tools/twitter-bio-generator", "/tools/twitter-shadowban-checker", "/press", "/how-it-works", "/pricing", "/about", "/blog", "/blog/how-growx-auto-follow-works", "/blog/growx-features-guide-scoring-filters-cleanup", "/blog/growx-potential-best-practices-roadmap", "/blog/how-to-schedule-tweets", "/blog/best-time-to-post-on-twitter", "/blog/how-to-write-a-twitter-thread", "/blog/ai-tweet-writer-growx-ai", "/blog/who-unfollowed-me-on-twitter", "/blog/twitter-analytics-guide", "/blog/twitter-reply-strategy", "/blog/how-to-increase-twitter-engagement", "/blog/twitter-algorithm-explained", "/blog/how-to-go-viral-on-twitter", "/blog/how-often-to-post-on-twitter", "/blog/tweet-ideas", "/blog/twitter-hashtags-guide", "/blog/twitter-bio-ideas", "/blog/twitter-shadowban", "/blog/follow-for-follow-twitter", "/blog/twitter-follower-ratio", "/blog/twitter-lists-guide", "/blog/twitter-marketing-strategy", "/blog/how-to-get-more-likes-on-twitter", "/blog/how-to-get-more-views-on-twitter", "/blog/how-to-get-more-reposts-on-twitter", "/blog/x-communities-guide", "/blog/twitter-content-calendar", "/blog/repurpose-content-for-twitter", "/blog/pinned-tweet-ideas", "/blog/personal-branding-on-twitter", "/blog/build-in-public-on-twitter", "/blog/circleboom-alternatives", "/blog/growx-vs-circleboom-cost", "/blog/circleboom-vs-growx", "/blog/hypefury-alternatives", "/blog/typefully-vs-tweet-hunter", "/blog/how-to-get-verified-on-twitter", "/blog/twitter-engagement-groups", "/blog/how-to-find-your-niche-on-twitter", "/blog/how-to-build-a-twitter-follow-list", "/blog/grow-on-twitter-in-your-language", "/faq", "/whats-new", "/contact"];
+  const SEO_PAGES = ["/", "/features", "/features/twitter-auto-follow", "/features/twitter-post-scheduler", "/features/ai-tweet-writer", "/features/twitter-analytics", "/features/twitter-unfollower-tracker", "/features/twitter-unfollow-tool", "/features/twitter-reply-targets", "/features/twitter-list-follow", "/tools", "/tools/tweet-character-counter", "/tools/twitter-thread-maker", "/tools/twitter-engagement-rate-calculator", "/tools/twitter-follower-ratio-calculator", "/tools/twitter-bold-text-generator", "/tools/tweet-templates", "/tools/twitter-bio-generator", "/tools/twitter-shadowban-checker", "/press", "/how-it-works", "/pricing", "/about", "/blog", "/blog/how-growx-auto-follow-works", "/blog/growx-features-guide-scoring-filters-cleanup", "/blog/growx-potential-best-practices-roadmap", "/blog/how-to-schedule-tweets", "/blog/best-time-to-post-on-twitter", "/blog/how-to-write-a-twitter-thread", "/blog/ai-tweet-writer-growx-ai", "/blog/who-unfollowed-me-on-twitter", "/blog/twitter-analytics-guide", "/blog/twitter-reply-strategy", "/blog/how-to-increase-twitter-engagement", "/blog/twitter-algorithm-explained", "/blog/how-to-go-viral-on-twitter", "/blog/how-often-to-post-on-twitter", "/blog/tweet-ideas", "/blog/twitter-hashtags-guide", "/blog/twitter-bio-ideas", "/blog/twitter-shadowban", "/blog/follow-for-follow-twitter", "/blog/twitter-follower-ratio", "/blog/twitter-lists-guide", "/blog/twitter-marketing-strategy", "/blog/how-to-get-more-likes-on-twitter", "/blog/how-to-get-more-views-on-twitter", "/blog/how-to-get-more-reposts-on-twitter", "/blog/x-communities-guide", "/blog/twitter-content-calendar", "/blog/repurpose-content-for-twitter", "/blog/pinned-tweet-ideas", "/blog/personal-branding-on-twitter", "/blog/build-in-public-on-twitter", "/blog/circleboom-alternatives", "/blog/growx-vs-circleboom-cost", "/blog/circleboom-vs-growx", "/blog/hypefury-alternatives", "/blog/typefully-vs-tweet-hunter", "/blog/how-to-get-verified-on-twitter", "/blog/twitter-engagement-groups", "/blog/how-to-find-your-niche-on-twitter", "/blog/how-to-build-a-twitter-follow-list", "/blog/grow-on-twitter-in-your-language", "/blog/how-to-get-more-followers-on-twitter", "/blog/twitter-hooks", "/blog/unfollow-inactive-accounts-twitter", "/blog/best-chrome-extensions-for-twitter", "/blog/twitter-growth-plan", "/blog/twitter-analytics-tools", "/faq", "/whats-new", "/contact"];
   const titles = new Set(), descs = new Set();
   const sp = await b.newPage();
   for (const path of SEO_PAGES) {
@@ -724,6 +724,57 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   ok("invoice: Save as PDF gives exactly one A4 page", pdfPages === 1, `${pdfPages} pages`);
   const other404 = await up.goto(BASE + "/invoices/eeeeeeee-0000-4000-8000-000000000001");
   ok("invoice: another (non-admin) user gets 404", other404.status() === 404, String(other404.status()));
+  // ---- admin console: overview, users directory, user page, account controls, payments, audit log
+  await ap.goto(BASE + "/admin");
+  ok("admin console: overview statistics and section tabs", /users/i.test(await ap.locator("[data-testid=admin-stats]").innerText()) && (await ap.locator("nav[aria-label='Admin sections'] a").count()) === 4);
+  const consoleNo = [];
+  for (const path of ["/admin/users", "/admin/payments", "/admin/audit", "/admin/users/00000000-0000-4000-8000-000000000001"]) consoleNo.push((await up.goto(BASE + path)).status());
+  consoleNo.push(await up.evaluate(async () => (await fetch("/api/admin/users/00000000-0000-4000-8000-000000000001/actions", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "suspend", reason: "not an admin" }) })).status));
+  ok("non-admin: console pages and the account action API answer 404", consoleNo.every((x) => x === 404), JSON.stringify(consoleNo));
+  await ap.goto(BASE + "/admin/users?q=support-target");
+  const ut = await ap.locator("[data-testid=user-table]").innerText();
+  ok("admin console: search finds the user", (await ap.locator("[data-testid=user-table] tbody tr").count()) === 1 && /support-target@example\.com/.test(ut) && /Unconfirmed/.test(ut), ut.replace(/\s+/g, " ").slice(0, 200));
+  await ap.click("[data-testid=user-table] a:has-text('support-target@example.com')");
+  await ap.waitForURL("**/admin/users/*");
+  const userUrl = ap.url();
+  const ud = await ap.locator("main").innerText();
+  ok("admin console: user page shows account, plan, gifts, payments, X accounts and history", ["Plan and access", "Premium gifts", "Payments and orders", "X accounts", "Admin history for this user", "Controls"].every((x) => ud.includes(x)));
+  const actions = ap.locator("[data-testid=user-actions]");
+  const act = async (label, reason, confirm) => {
+    await actions.getByRole("button", { name: label, exact: true }).click();
+    await actions.getByLabel("Reason").fill(reason);
+    await actions.getByRole("button", { name: `${label}…`, exact: true }).click();
+    await actions.getByRole("button", { name: `Confirm: ${confirm}` }).click();
+    await actions.locator("[role=status]", { hasText: "Recorded in the audit log" }).waitFor({ timeout: 10000 });
+  };
+  ok("admin console: an action needs a reason before it can be confirmed", await (async () => { await actions.getByRole("button", { name: "Suspend account", exact: true }).click(); const dis = await actions.getByRole("button", { name: "Suspend account…", exact: true }).isDisabled(); await actions.getByRole("button", { name: "Suspend account", exact: true }).click(); return dis; })());
+  await act("Confirm email", "Verified by support in a test", "Mark as confirmed");
+  await ap.goto(userUrl);
+  ok("admin console: email confirmed", !(await ap.locator("main").innerText()).includes("Email not confirmed"));
+
+  const tctx = await b.newContext({ viewport: { width: 1280, height: 900 } });
+  const tp = await signIn(tctx, "support-target@example.com");
+  await act("Suspend account", "Spam reports in a test", "Suspend now");
+  ok("suspend: the user's open session stops working at once", (await tp.evaluate(async () => (await fetch("/api/entitlement", { cache: "no-store" })).status)) === 401);
+  const blocked = await (async () => { const pg = await tctx.newPage(); await pg.goto(BASE + "/login"); await pg.fill("#email", "support-target@example.com"); await pg.fill("#password", "correct-horse-1"); await pg.click("button[type=submit]"); return pg.waitForURL("**/dashboard", { timeout: 4000 }).then(() => false, () => true); })();
+  ok("suspend: the user cannot sign in again", blocked);
+  await ap.goto(userUrl);
+  await act("Lift suspension", "Appeal accepted in a test", "Lift suspension");
+  const tp2 = await signIn(tctx, "support-target@example.com");
+  ok("unsuspend: the user can sign in again", tp2.url().includes("/dashboard"));
+  await ap.goto(userUrl);
+  await act("Sign out everywhere", "Shared password in a test", "Sign out now");
+  ok("sign out everywhere: the user's session is revoked", (await tp2.evaluate(async () => (await fetch("/api/entitlement", { cache: "no-store" })).status)) === 401);
+  await tctx.close();
+
+  await ap.goto(userUrl);
+  const uhist = await ap.locator("[aria-label='User admin history']").innerText();
+  ok("admin console: the user's history lists every action with the admin and reason", ["Confirmed email", "Suspended", "Unsuspended", "Signed out everywhere"].every((x) => uhist.includes(x)) && /admin@example\.com/.test(uhist) && /Spam reports in a test/.test(uhist), uhist.replace(/\s+/g, " ").slice(0, 300));
+  await ap.goto(BASE + "/admin/audit");
+  const audit = await ap.locator("[aria-label='Audit log']").innerText();
+  ok("admin console: audit log merges account, gift, X-account and early-bird changes", /Suspended/.test(audit) && /support-target@example\.com/.test(audit) && /Gift/.test(audit) && /X account/.test(audit) && /Early bird/.test(audit), audit.replace(/\s+/g, " ").slice(0, 300));
+  await ap.goto(BASE + "/admin/payments");
+  ok("admin console: payments page lists payments with buyers", /admin@example\.com/.test(await ap.locator("[data-testid=payments-table]").innerText()));
   ok("admin pages: no runtime errors", aerrs.length === 0, aerrs.join(" | "));
   await uctx.close(); await actx.close();
 }

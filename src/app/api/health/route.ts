@@ -29,6 +29,7 @@ const TABLE_PROBES: Record<string, string> = {
   premium_gift_events: "id",
   early_bird_settings: "id",
   early_bird_events: "id",
+  admin_actions: "id",
 };
 
 /**

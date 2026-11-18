@@ -1,12 +1,15 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { AdminNav, fmtDate as fmtAdminDate, fmtMoney } from "@/components/admin/admin-nav";
 import { AllocationIncrease, EarlyBirdEditor } from "@/components/admin/early-bird-admin";
 import { GiftAudit, GiftList, GrantGift } from "@/components/admin/gifts-admin";
 import { XAccountsAdmin } from "@/components/admin/x-accounts-admin";
 import { AppShell, Panel } from "@/components/app-shell";
-import { IconAt, IconGift, IconMail, IconStar } from "@/components/icons";
+import { IconAt, IconChart, IconGift, IconMail, IconStar, IconUsers } from "@/components/icons";
 import { Notice } from "@/components/ui/primitives";
 import { getTier } from "@/config/pricing";
 import { isAdmin } from "@/lib/admin/auth";
+import { listUsers, loadAdminActions, loadStats, planLabel, type AdminStats } from "@/lib/admin/console";
 import { loadEarlyBirdAdmin, loadGifts, loadInvoices } from "@/lib/admin/data";
 import { pageMetadata } from "@/lib/seo";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -24,14 +27,57 @@ export default async function AdminPage() {
   if (!(await isAdmin(user.id))) notFound();
 
   const admin = createAdminClient();
-  const [gifts, eb, invoices] = await Promise.all([loadGifts(admin).catch(() => null), loadEarlyBirdAdmin(admin).catch(() => null), loadInvoices(admin).catch(() => null)]);
+  const [gifts, eb, invoices, stats, recent, actions] = await Promise.all([
+    loadGifts(admin).catch(() => null),
+    loadEarlyBirdAdmin(admin).catch(() => null),
+    loadInvoices(admin).catch(() => null),
+    loadStats(admin, user.id).catch(() => null),
+    listUsers(admin, user.id, { q: "", filter: "all", page: 1 }).catch(() => null),
+    loadAdminActions(admin, { limit: 8 }).catch(() => null),
+  ]);
   const lifetime = getTier("PRO_LIFETIME");
 
   return (
     <AppShell email={user.email} admin active="/admin">
       <div className="animate-fade-up">
         <h1 className="text-3xl font-extrabold tracking-tight">Admin</h1>
-        <p className="mt-1 text-text-2">Premium gifts, X accounts and the Lifetime early-bird offer. Every change is recorded with your account and the time.</p>
+        <p className="mt-1 text-text-2">Users, payments, Premium gifts, X accounts and the Lifetime early-bird offer. Every change is recorded with your account and the time.</p>
+        <div className="mt-4"><AdminNav current="/admin" /></div>
+      </div>
+
+      <Panel title="Overview" icon={<IconChart size={17} />}>
+        {stats ? <Overview stats={stats} /> : <Notice tone="error">Statistics could not be loaded. Check that the admin console migration is applied.</Notice>}
+      </Panel>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Panel title="Newest users" icon={<IconUsers size={17} />} action={<Link href="/admin/users" className="text-sm font-semibold text-accent-ink hover:underline">All users →</Link>}>
+          {recent?.rows.length ? (
+            <ul className="divide-y divide-border text-sm" aria-label="Newest users">
+              {recent.rows.slice(0, 8).map((r) => (
+                <li key={r.id} className="flex flex-wrap justify-between gap-2 py-2">
+                  <Link href={`/admin/users/${r.id}`} className="font-semibold text-accent-ink hover:underline">{r.email ?? r.id}</Link>
+                  <span className="text-text-2">{planLabel(r)} · {fmtAdminDate(r.createdAt)}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted">{recent ? "No users yet." : "Users could not be loaded."}</p>
+          )}
+        </Panel>
+        <Panel title="Recent admin actions" icon={<IconUsers size={17} />} action={<Link href="/admin/audit" className="text-sm font-semibold text-accent-ink hover:underline">Audit log →</Link>}>
+          {actions?.length ? (
+            <ul className="space-y-1.5 text-sm" aria-label="Recent admin actions">
+              {actions.map((a) => (
+                <li key={a.id}>
+                  <strong>{a.label}</strong>{a.target ? <> · {a.targetUserId ? <Link href={`/admin/users/${a.targetUserId}`} className="text-accent-ink hover:underline">{a.target}</Link> : a.target}</> : null}
+                  <span className="block text-xs text-text-2">{fmtAdminDate(a.createdAt)} · by {a.admin}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted">{actions ? "No account actions yet." : "The admin log could not be loaded."}</p>
+          )}
+        </Panel>
       </div>
 
       <Panel title="Premium Gifts" icon={<IconGift size={17} />}>
@@ -144,3 +190,50 @@ export default async function AdminPage() {
     </AppShell>
   );
 }
+
+function Overview({ stats }: { stats: AdminStats }) {
+  const usd = stats.revenue.USD ?? { gross: 0, refunded: 0, net: 0 };
+  const other = Object.keys(stats.revenue).filter((c) => c !== "USD");
+  const cards: [string, string, string?][] = [
+    ["Users", String(stats.users_total), `+${stats.users_7d} this week · +${stats.users_30d} in 30 days`],
+    ["Premium (paid)", String(stats.paid_active), `${stats.lifetime} lifetime`],
+    ["Gifts running", String(stats.gifts_active)],
+    ["Trials running", String(stats.trials_active), `${stats.trials_total} started in total`],
+    ["Revenue (net)", fmtMoney(usd.net), `gross ${fmtMoney(usd.gross)} · refunded ${fmtMoney(usd.refunded)}`],
+    ["Last 30 days", fmtMoney(stats.revenue_30d.USD ?? 0), `${stats.payments_30d} payment${stats.payments_30d === 1 ? "" : "s"}`],
+    ["Linked X accounts", String(stats.x_accounts_active), `${stats.sessions_active} active sessions`],
+    ["Needs attention", String(stats.orders_refund_required + stats.unconfirmed), `${stats.orders_refund_required} refunds to make · ${stats.unconfirmed} unconfirmed emails · ${stats.suspended} suspended`],
+  ];
+  const max = Math.max(1, ...stats.signups_14d.map((d) => d.count));
+  return (
+    <div className="space-y-6">
+      {stats.orders_refund_required > 0 ? (
+        <Notice tone="warn">
+          {stats.orders_refund_required} paid {stats.orders_refund_required === 1 ? "order needs" : "orders need"} a manual refund. <Link href="/admin/payments" className="font-semibold underline">See payments</Link>.
+        </Notice>
+      ) : null}
+      <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4" data-testid="admin-stats">
+        {cards.map(([k, v, sub]) => (
+          <div key={k} className="rounded-xl border border-border px-4 py-3">
+            <dt className="text-xs font-semibold uppercase tracking-wider text-muted">{k}</dt>
+            <dd className="mt-1 text-xl font-bold tabular-nums">{v}</dd>
+            {sub ? <dd className="mt-0.5 text-xs text-text-2">{sub}</dd> : null}
+          </div>
+        ))}
+      </dl>
+      {other.length ? <p className="text-xs text-muted">Also received in: {other.map((c) => `${fmtMoney(stats.revenue[c].net, c)} net`).join(", ")}.</p> : null}
+      <div>
+        <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-muted">Sign-ups, last 14 days</h3>
+        <div className="flex h-28 items-end gap-1.5" role="img" aria-label={`Sign-ups per day: ${stats.signups_14d.map((d) => d.count).join(", ")}`}>
+          {stats.signups_14d.map((d) => (
+            <div key={d.day} className="flex flex-1 flex-col items-center gap-1">
+              <span className="text-[10px] tabular-nums text-text-2">{d.count || ""}</span>
+              <span className="w-full rounded-t bg-accent/80" style={{ height: `${Math.max(2, (d.count / max) * 80)}px` }} title={`${d.day}: ${d.count}`} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+

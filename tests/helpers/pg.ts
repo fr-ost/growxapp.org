@@ -8,7 +8,8 @@ export const MIGRATIONS_DIR = path.resolve(import.meta.dirname, "../../supabase/
 export const SUPABASE_STUBS = `
   create role anon nologin; create role authenticated nologin; create role service_role nologin bypassrls;
   create schema auth;
-  create table auth.users (id uuid primary key, email text);
+  create table auth.users (id uuid primary key, email text, created_at timestamptz not null default now(), last_sign_in_at timestamptz,
+    email_confirmed_at timestamptz, banned_until timestamptz, raw_app_meta_data jsonb not null default '{}'::jsonb);
   create table auth.sessions (id uuid primary key, user_id uuid not null references auth.users (id) on delete cascade, not_after timestamptz);
   create table auth.refresh_tokens (id bigserial primary key, session_id uuid references auth.sessions (id) on delete cascade, revoked boolean not null default false);
   create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;

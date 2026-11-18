@@ -1,4 +1,25 @@
-# Admin dashboard: Premium gifts + Lifetime Early Bird editor
+# Admin console: users, payments, audit log, Premium gifts, Early Bird
+
+## Console (users, account controls, payments, audit log)
+
+Migration: `supabase/migrations/20261118120000_admin_console.sql`. **Not yet applied to production; review it, then apply it** (Supabase SQL Editor or `supabase db push`). It is additive: one append-only table (`admin_actions`) and four functions (`admin_list_users`, `admin_stats`, `admin_revoke_sessions`, `admin_log_action`). No existing table, row or function changes. Until it is applied, the new pages show "could not be loaded" and the account controls refuse with `console_not_installed` (nothing is changed). `/api/health` lists `admin_actions` as missing until then.
+
+Pages (admins only; everyone else gets a 404):
+* `/admin`: overview (users, new sign-ups, paid Premium, lifetime, gifts, trials, net and 30-day revenue, refunds to make, unconfirmed emails, suspended accounts, linked X accounts, active sessions, 14-day sign-up chart), newest users, recent admin actions, then the gift, invoice, X-account and early-bird panels.
+* `/admin/users`: search by email (contains), exact user id or linked X username; filters (premium, trial, free, has paid, gift, unconfirmed, suspended, admins); newest first, 25 per page.
+* `/admin/users/:id`: everything about one account: sign-in details, effective plan (same entitlement logic as the extension), trial, subscriptions, payments (with invoice links), checkout orders, slot grants, gifts (grant, extend, revoke), linked X accounts (change, unlink, history), active sessions, and that user's admin history.
+* `/admin/payments`: all payments with a status filter, orders that need a manual refund (`refund_required`), open checkouts. Read-only.
+* `/admin/audit`: one timeline of every admin change: account controls, gifts, X-account corrections and early-bird edits.
+
+Account controls (`POST /api/admin/users/:id/actions`; reason required, explicit confirmation, logged in `admin_actions` with the admin, time, reason and details):
+* **Sign out everywhere**: deletes the user's Supabase Auth sessions (and so their refresh tokens) and active-session slots; the website and the extension are signed out. The user can sign in again. If the database refuses to touch `auth.sessions`, the action reports `auth_sessions_denied`.
+* **Suspend / lift suspension**: Supabase Auth ban (`ban_duration`), plus sign-out everywhere. Paid access, payments and all records are kept.
+* **Confirm email**, **send password reset** (the same email as "Forgot password"), **change email** (to a confirmed address no other account uses; the old and new address are logged).
+* Not on your own account. Against another admin only "lift suspension" and "confirm email" are allowed (remove them from `public.admins` first).
+
+Deliberately not available: deleting accounts (payments and orders block it, and deleting would erase the trial record and reopen a free trial), creating payments or marking orders as paid, editing subscriptions or trials, and granting X-account slots without a payment. To give Premium, use a gift.
+
+## Premium gifts and Early Bird (applied 2026-10-16)
 
 Page: `/admin` (signed-in administrators only; everyone else gets a 404). Migration: `supabase/migrations/20261016165539_admin_gifts_early_bird.sql`. **Applied to production on 2026-10-16** and verified (RLS on all new tables, admin functions service-role only, early bird unchanged: enabled, 100 remaining, 0 sold). The owner account was added to `public.admins`.
 

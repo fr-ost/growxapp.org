@@ -26,7 +26,7 @@ interface Event {
   reason: string | null;
   created_at: string;
 }
-interface Result {
+export interface XAccountsResult {
   userId: string;
   email: string;
   bindings: Binding[];
@@ -36,9 +36,9 @@ interface Result {
 async function call(url: string, init?: RequestInit) {
   try {
     const res = await fetch(url, { ...init, headers: { "Content-Type": "application/json" }, cache: "no-store" });
-    return { ok: res.ok, json: (await res.json().catch(() => ({}))) as Result & { error?: { message?: string } } };
+    return { ok: res.ok, json: (await res.json().catch(() => ({}))) as XAccountsResult & { error?: { message?: string } } };
   } catch {
-    return { ok: false, json: { error: { message: "Network error." } } as Result & { error?: { message?: string } } };
+    return { ok: false, json: { error: { message: "Network error." } } as XAccountsResult & { error?: { message?: string } } };
   }
 }
 
@@ -100,10 +100,13 @@ function BindingRow({ b, onDone }: { b: Binding; onDone: (msg: string) => void }
   );
 }
 
-/** Find a user by email and correct or unlink their linked X usernames. Every change is audited server-side. */
-export function XAccountsAdmin() {
-  const [email, setEmail] = useState("");
-  const [data, setData] = useState<Result | null>(null);
+/**
+ * Find a user by email and correct or unlink their linked X usernames. Every change is audited server-side.
+ * With `initial` (the admin user page, loaded on the server) it shows that account straight away without the search form.
+ */
+export function XAccountsAdmin({ initial }: { initial?: XAccountsResult } = {}) {
+  const [email, setEmail] = useState(initial?.email ?? "");
+  const [data, setData] = useState<XAccountsResult | null>(initial ?? null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>(null);
 
@@ -125,7 +128,7 @@ export function XAccountsAdmin() {
 
   return (
     <div className="space-y-4">
-      <form onSubmit={search} className="flex flex-col gap-2 sm:flex-row">
+      <form onSubmit={search} className={`flex flex-col gap-2 sm:flex-row ${initial ? "hidden" : ""}`}>
         <label className="sr-only" htmlFor="xadmin_email">User email</label>
         <input id="xadmin_email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="user@example.com" className={input} />
         <Button type="submit" variant="secondary" disabled={busy}>Find user</Button>
