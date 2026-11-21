@@ -1,6 +1,6 @@
 -- Admin console: user directory, statistics, session sign-out and a general admin audit log.
 --
--- Additive and non-destructive: one new append-only table and five new functions. No existing table, row or
+-- Additive and non-destructive: one new append-only table and four new functions. No existing table, row or
 -- function is changed. Like the gift and early-bird functions, every function re-checks public.admins (so a server
 -- bug cannot let a non-admin act) and is executable by the website server (service_role) only, never by browser roles.
 --

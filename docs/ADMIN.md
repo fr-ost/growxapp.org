@@ -2,7 +2,7 @@
 
 ## Console (users, account controls, payments, audit log)
 
-Migration: `supabase/migrations/20261118120000_admin_console.sql`. **Not yet applied to production; review it, then apply it** (Supabase SQL Editor or `supabase db push`). It is additive: one append-only table (`admin_actions`) and four functions (`admin_list_users`, `admin_stats`, `admin_revoke_sessions`, `admin_log_action`). No existing table, row or function changes. Until it is applied, the new pages show "could not be loaded" and the account controls refuse with `console_not_installed` (nothing is changed). `/api/health` lists `admin_actions` as missing until then.
+Migration: `supabase/migrations/20261121052111_admin_console.sql`. **Applied to production on 2026-11-21** (version `20261121052111`). It is additive: one append-only table (`admin_actions`) and four functions (`admin_list_users`, `admin_stats`, `admin_revoke_sessions`, `admin_log_action`), executable by the website server (service_role) only. No existing table, row or function changed. On a database without it (a fresh project or a new branch), the new pages show "could not be loaded", the account controls refuse with `console_not_installed` (nothing is changed), and `/api/health` lists `admin_actions` as missing.
 
 Pages (admins only; everyone else gets a 404):
 * `/admin`: overview (users, new sign-ups, paid Premium, lifetime, gifts, trials, net and 30-day revenue, refunds to make, unconfirmed emails, suspended accounts, linked X accounts, active sessions, 14-day sign-up chart), newest users, recent admin actions, then the gift, invoice, X-account and early-bird panels.

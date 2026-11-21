@@ -45,7 +45,7 @@ describe("admin console authorization", () => {
 
 describe("user directory", () => {
   it("searches by email, user id and linked X username, newest first, with paging", async () => {
-    const a = await userWith("alice.search@example.com");
+    const a = await userWith("alice.search@example.com", "created_at=now() - interval '1 minute'"); // explicit: same-millisecond inserts would tie
     const b = await userWith("bob.search@example.com");
     expect((await rpc("public.register_x_account($1, 'BobOnX')", [b])).status).toBe("linked");
 
