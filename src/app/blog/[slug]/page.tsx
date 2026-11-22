@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostBody, PostCard, TableOfContents, formatPostDate } from "@/components/blog";
 import { PostCover } from "@/components/blog/post-cover";
+import { FeatureLinkCard } from "@/components/features/feature-card";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
 import { IconArrowRight, IconChrome, IconClock } from "@/components/icons";
@@ -12,6 +13,8 @@ import { BorderBeam } from "@/components/motion/border-beam";
 import { stagger } from "@/components/motion/stagger";
 import { ExternalButton, LinkButton } from "@/components/ui/button";
 import { Badge, Container, Eyebrow, Section } from "@/components/ui/primitives";
+import { getFeaturePage } from "@/content/feature-pages";
+import { featuresForPost } from "@/content/post-features";
 import { getPost, posts } from "@/content/posts";
 import { toolNav } from "@/config/nav";
 import { site } from "@/config/site";
@@ -42,6 +45,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPost((await params).slug);
   if (!post) notFound();
   const related = post.related.map((s) => getPost(s)).filter((p): p is NonNullable<typeof p> => !!p);
+  const features = featuresForPost(post).map((s) => getFeaturePage(s)).filter((f): f is NonNullable<typeof f> => !!f);
 
   return (
     <>
@@ -154,7 +158,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <Section className="bg-surface-2">
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <h2 className="reveal-heading h-rule text-2xl font-extrabold tracking-tight sm:text-3xl">Keep reading</h2>
+              <h2 className="reveal-heading h-rule text-2xl font-extrabold tracking-tight sm:text-3xl">Related guides</h2>
               <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
                 All articles <IconArrowRight size={15} className="nudge" />
               </Link>
@@ -166,6 +170,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </li>
               ))}
             </ul>
+            {features.length ? (
+              <>
+                <h2 className="reveal-heading mt-14 text-xl font-extrabold tracking-tight sm:text-2xl">GrowX features for this</h2>
+                <ul data-spotlight-group="" className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {features.map((f, i) => (
+                    <li key={f.slug} className="reveal" style={stagger(i % 3)}>
+                      <FeatureLinkCard href={`/features/${f.slug}`} icon={f.icon} label={f.nav} blurb={f.blurb} />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
           </Container>
         </Section>
       ) : null}
