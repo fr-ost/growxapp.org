@@ -11,8 +11,8 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Free X (Twitter) Tools: Templates, Counters & More",
-  description: "7 free X (Twitter) tools from GrowX: tweet templates, bio generator, character counter, thread maker, engagement and ratio calculators, bold text. No sign-up.",
-  path: "/tools",
+  description: "8 free X (Twitter) tools from GrowX: shadowban checker, tweet templates, bio generator, character counter, thread maker and calculators. No sign-up.",
+  path: "/tools", defaultImage: false,
   keywords: ["free Twitter tools", "free X tools", "tweet character counter", "Twitter thread maker", "Twitter engagement rate calculator", "Twitter bold text generator", "tweet templates", "Twitter bio generator", "Twitter tools online"],
 });
 
@@ -49,14 +49,14 @@ function ToolCluster() {
 export default function ToolsPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", path: "/" }, { name: "Free tools", path: "/tools" }])]} />
+      <JsonLd data={[breadcrumbLd([{ name: "Home", path: "/" }, { name: "Free tools", path: "/tools" }]), webPageLd({ path: "/tools", type: "CollectionPage", name: "Free X (Twitter) tools", description: "Free browser tools for X (Twitter) from GrowX. No sign-up.", about: false })]} />
       <PageHero
         eyebrow={
           <Eyebrow>
             <CountUp value={toolNav.length} /> free tools
           </Eyebrow>
         }
-        title={<>Free X (Twitter) tools, <span className="text-gradient">no sign-up</span>.</>}
+        title={<>Free X (Twitter) tools, <span className="text-gradient">no sign-up.</span></>}
         aside={<ToolCluster />}
       >
         <p>Small, fast tools that run in your browser. Nothing you type leaves your computer.</p>

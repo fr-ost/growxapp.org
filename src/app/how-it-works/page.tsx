@@ -64,7 +64,7 @@ export default function HowItWorksPage() {
           faqLd(faqs),
         ]}
       />
-      <PageHero eyebrow="How it works" title={<>How to grow on X with GrowX, <span className="text-gradient">step by step</span>.</>}>
+      <PageHero eyebrow="How it works" title={<>How to grow on X with GrowX, <span className="text-gradient">step by step.</span></>}>
         <p>From install to your weekly check-in: what the GrowX Chrome extension does for you, and the few minutes a day it leaves to you.</p>
       </PageHero>
 

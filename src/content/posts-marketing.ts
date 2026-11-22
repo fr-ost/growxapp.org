@@ -212,7 +212,7 @@ export const marketingPosts: Post[] = [
     seoTitle: "How to Get More Likes on Twitter (X) Without Shortcuts",
     title: "How to Get More Likes on Twitter (X): Hooks, Formats, Timing and Real Community",
     description:
-      "How to get more likes on Twitter (X) with better hooks, formats, images, timing and replies, why bought likes backfire, and how GrowX helps you measure them.",
+      "How to get more likes on Twitter (X) with better hooks, formats, images, timing and replies, why bought likes backfire, and how to measure them.",
     excerpt:
       "There is no shortcut to more likes on X. Here is what actually earns them: better first lines, formats, images, timing, replies and a circle of real readers.",
     category: "Engage",
@@ -564,7 +564,7 @@ export const marketingPosts: Post[] = [
     seoTitle: "How to Get More Retweets and Reposts on X (Twitter)",
     title: "How to Get More Reposts on Twitter (X): Shareable Formats That Earn Retweets",
     description:
-      "How to get more retweets and reposts on X (Twitter): shareable formats, data you own, threads, quote posts and asking without begging, plus where GrowX helps.",
+      "How to get more retweets and reposts on X (Twitter): shareable formats, data you own, threads, quote posts and asking without begging.",
     excerpt:
       "Reposts carry your posts into timelines you cannot reach yourself. Here is how to write posts people are glad to share, and how to ask without begging.",
     category: "Engage",

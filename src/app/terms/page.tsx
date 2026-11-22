@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Terms of Service",
-  description: "Terms of service for the GrowX website, accounts, Premium plans and the GrowX Chrome extension.",
+  description: "Terms of service for GrowX: accounts, the free plan and trial, prepaid Premium plans and payments, acceptable use, liability and how to reach us.",
   path: "/terms",
 });
 

@@ -159,7 +159,7 @@ export const featurePages: FeaturePage[] = [
     icon: "calendar",
     seoTitle: "Twitter Scheduler: Schedule Tweets & Threads on X Free",
     description:
-      "Schedule tweets and threads on X for free with GrowX, a Twitter scheduler in Chrome: queue slots, a best time to post heat map, calendar, drafts and templates.",
+      "Schedule tweets and threads free with GrowX, an X post scheduler for Chrome: queue slots, a best-time heat map, calendar, drafts and templates.",
     keywords: [
       "Twitter scheduler",
       "schedule tweets",
@@ -298,7 +298,7 @@ export const featurePages: FeaturePage[] = [
     icon: "wand",
     seoTitle: "AI Tweet Writer & Generator: Private, On-Device AI",
     description:
-      "GrowX AI is an AI tweet writer that runs on your computer inside Chrome: write, improve, hooks and threads for X posts. Private, no API key, no per-use fees.",
+      "GrowX AI is an AI tweet writer that runs on your computer in Chrome: write, improve, hooks and threads for X posts. Private, no API key, no per-use fees.",
     keywords: [
       "AI tweet writer",
       "AI tweet generator",

@@ -190,7 +190,7 @@ export const profilePosts: Post[] = [
     seoTitle: "Twitter Shadowban: How to Check and Fix It on X",
     title: "Twitter Shadowban: Am I Shadowbanned on X, Why It Happens and How to Fix It",
     description:
-      "Twitter shadowban explained: what X really limits, how to check if you are shadowbanned, common causes, how to recover, and how GrowX paces automation safely.",
+      "Twitter shadowban explained: what X really limits, how to check if you're shadowbanned, common causes, how to recover and how to pace automation.",
     excerpt:
       "X doesn't call it a shadowban, but it does limit the visibility of some accounts and posts. Here is how to tell, what usually causes it and what to do about it.",
     category: "Guides",
@@ -362,7 +362,7 @@ export const profilePosts: Post[] = [
     seoTitle: "Follow for Follow on Twitter (F4F): Does It Work?",
     title: "Follow for Follow on Twitter (F4F): Does It Work, and What to Do Instead",
     description:
-      "Does follow for follow on Twitter work? The honest pros and cons of F4F on X, a targeted alternative, and how to tune GrowX for follow backs or real niche fans.",
+      "Does follow for follow on Twitter work? The honest pros and cons of F4F on X, a targeted alternative, and how to tune GrowX for real follow backs.",
     excerpt:
       "F4F can grow a follower count fast, but those followers rarely read you. Here is an honest look at follow for follow on X, and how to aim for people who will.",
     category: "Guides",
@@ -501,7 +501,7 @@ export const profilePosts: Post[] = [
     seoTitle: "Twitter Follower Ratio: Following vs Followers on X",
     title: "Twitter Follower Ratio Explained: Following vs Followers, the 5,000 Follow Limit and How to Improve It",
     description:
-      "What your Twitter follower ratio says about you, how X's 5,000 follow limit works and how to improve your ratio. Try the free GrowX follower ratio calculator.",
+      "What your Twitter follower ratio says, how X's 5,000 follow limit works and how to improve your ratio. Try the free follower ratio calculator.",
     excerpt:
       "Your follower ratio is a quick credibility signal, and it decides how far past 5,000 you can follow. Here is how to read it and how to improve it without tricks.",
     category: "Insights",
@@ -641,7 +641,7 @@ export const profilePosts: Post[] = [
     seoTitle: "Twitter Lists: How to Use X Lists (+ List Ideas)",
     title: "Twitter Lists Guide: How to Use X Lists to Follow Your Niche, Find Replies and Grow",
     description:
-      "How to use Twitter Lists on X: private vs public Lists, list ideas for your niche, finding reply opportunities, and using Lists as GrowX auto follow sources.",
+      "How to use Twitter Lists on X: private vs public Lists, list ideas for your niche, finding reply chances, and using Lists as auto follow sources.",
     excerpt:
       "Lists turn X into a set of focused feeds you control. Here is how to set them up, which Lists are worth making and how to use them to find conversations worth joining.",
     category: "Engage",

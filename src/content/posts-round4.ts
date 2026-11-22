@@ -331,7 +331,7 @@ export const round4Posts: Post[] = [
     seoTitle: "Twitter Engagement Groups (Pods): Do They Work on X?",
     title: "Twitter Engagement Groups and Pods: Do They Work on X, and What to Do Instead",
     description:
-      "Twitter engagement groups and pods promise quick likes and replies. Here is how they work, the risks under X's rules, and better ways to earn real engagement.",
+      "Twitter engagement groups and pods promise quick likes and replies. How they work, the risks under X's rules, and better ways to earn engagement.",
     excerpt:
       "Engagement groups trade likes and replies to game the algorithm. They can look like they work for a week. Here is why they backfire and what works better.",
     category: "Engage",
@@ -436,7 +436,7 @@ export const round4Posts: Post[] = [
     seoTitle: "How to Find Your Niche on Twitter (X): A Simple Method",
     title: "How to Find Your Niche on Twitter (X): A Simple Method to Choose What to Post About",
     description:
-      "How to find your niche on Twitter (X): a simple four-step method, niche ideas, how narrow to go and how to test a niche in two weeks before committing to it.",
+      "How to find your niche on Twitter (X): a simple four-step method, niche ideas, how narrow to go and how to test a niche for two weeks first.",
     excerpt:
       "Accounts with a clear niche grow faster because people know what they get when they follow. Here is a simple way to choose yours and test it before you commit.",
     category: "Guides",
@@ -677,7 +677,7 @@ export const round4Posts: Post[] = [
     seoTitle: "How to Grow on X (Twitter) in Your Own Language",
     title: "How to Grow on X (Twitter) in Your Own Language: A Guide for Non-English Creators",
     description:
-      "How to grow on X (Twitter) when you post in Spanish, Portuguese, Hindi, Arabic or any language besides English: audience, timing, hashtags, replies and tools.",
+      "How to grow on X (Twitter) when you post in Spanish, Portuguese, Hindi, Arabic or another language: audience, timing, hashtags, replies and tools.",
     excerpt:
       "Posting in your own language is an advantage, not a handicap. Here is how to grow on X in Spanish, Portuguese, Hindi, Japanese or any other language.",
     category: "Guides",

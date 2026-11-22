@@ -173,7 +173,7 @@ export const round5Posts: Post[] = [
     seoTitle: "Twitter Hooks: 40 Tweet Hook Examples and Formulas",
     title: "Twitter Hooks: 40 Tweet Hook Formulas and Examples You Can Fill In",
     description:
-      "40 Twitter hook formulas with fill-in examples: curiosity, results, opinions, lists, stories and questions, plus how to write and test your own tweet hooks.",
+      "40 Twitter hook formulas with fill-in examples: curiosity, results, opinions, lists, stories and questions, plus how to write and test your own.",
     excerpt:
       "The first line decides whether anyone reads the rest. Here are 40 fill-in hook formulas for X, how to write your own and how to test which ones work for you.",
     category: "Create",
@@ -387,7 +387,7 @@ export const round5Posts: Post[] = [
     seoTitle: "How to Unfollow Inactive Accounts on Twitter (X)",
     title: "How to Unfollow Inactive Accounts on Twitter (X) Without Losing the Ones That Matter",
     description:
-      "How to find and unfollow inactive accounts on Twitter (X): what counts as inactive, which threshold to pick, who to keep and how to unfollow at a safe pace.",
+      "How to find and unfollow inactive accounts on Twitter (X): what counts as inactive, which threshold to pick, who to keep and how to unfollow safely.",
     excerpt:
       "Accounts that stopped posting months ago still take up room in your following. Here is how to find them, decide who to keep and unfollow the rest safely.",
     category: "Guides",
@@ -535,7 +535,7 @@ export const round5Posts: Post[] = [
     seoTitle: "Best Chrome Extensions for Twitter (X) in 2026",
     title: "The Best Chrome Extensions for Twitter (X) in 2026, Organised by the Job You Need Done",
     description:
-      "The best Chrome extensions for Twitter (X) by job: growth, scheduling, AI writing, analytics, focus and utilities, and how to check one before you install it.",
+      "The best Chrome extensions for Twitter (X) by job: growth, scheduling, AI writing, analytics and focus, plus how to vet one before you install it.",
     excerpt:
       "Instead of a list of names that goes stale, here is how to pick a Chrome extension for each X job, what to check before you install one and where GrowX fits.",
     category: "Guides",
@@ -841,7 +841,7 @@ export const round5Posts: Post[] = [
     seoTitle: "Twitter Analytics Tools: What to Use and What to Measure",
     title: "Twitter Analytics Tools in 2026: What to Measure, What X Shows You and When You Need More",
     description:
-      "Twitter analytics tools by type: what X's own analytics show, what extensions and dashboards add, what to measure and how to choose an analytics tool for X.",
+      "Twitter analytics tools by type: what X's own analytics show, what extensions and dashboards add, what to measure and how to pick a tool for X.",
     excerpt:
       "X shows you some numbers, tools show you more, and some long-running tools have closed. Here is what to measure and how to choose an analytics tool for X.",
     category: "Insights",

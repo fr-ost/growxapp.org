@@ -90,7 +90,7 @@ export function SiteFooter() {
         </div>
         {cols.map((c) => (
           <nav key={c.title} aria-label={c.title}>
-            <h2 className="text-sm font-bold text-white">{c.title}</h2>
+            <p className="text-sm font-bold text-white">{c.title}</p>
             <ul className="mt-4 space-y-2.5">
               {c.links.map((l) => (
                 <li key={l.href}>

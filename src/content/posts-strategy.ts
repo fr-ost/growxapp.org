@@ -183,7 +183,7 @@ export const strategyPosts: Post[] = [
     seoTitle: "How to Go Viral on Twitter (X): What Actually Helps",
     title: "How to Go Viral on Twitter (X): Raise Your Odds Without Chasing Tricks",
     description:
-      "How to go viral on Twitter (X): hooks, formats, timing and early replies that raise your odds, and how GrowX helps you capture followers when a post takes off.",
+      "How to go viral on Twitter (X): hooks, formats, timing and early replies that raise your odds, and how to turn a post that takes off into followers.",
     excerpt:
       "Nobody can force a post to go viral on X. Here is how to raise your odds with better hooks, formats and timing, and how to be ready when one takes off.",
     category: "Guides",
@@ -508,7 +508,7 @@ export const strategyPosts: Post[] = [
     seoTitle: "60 Tweet Ideas: What to Tweet When You Are Stuck",
     title: "60 Tweet Ideas and Fill-In Templates for When You Don't Know What to Tweet",
     description:
-      "60 tweet ideas with fill-in templates: hooks, lessons, lists, stories, opinions and threads for X (Twitter), plus how GrowX templates and AI help you write.",
+      "60 tweet ideas with fill-in templates: hooks, lessons, lists, stories, opinions and threads for X (Twitter), plus how GrowX helps you write them.",
     excerpt:
       "Sixty tweet ideas grouped by type, each with a short fill-in template, so you never open the composer on X with nothing to say.",
     category: "Create",

@@ -2,8 +2,9 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { posts, getPost } from "@/content/posts";
-import { serializeJsonLd, faqLd, breadcrumbLd, softwareLd } from "@/components/json-ld";
-import { pageMetadata } from "@/lib/seo";
+import { serializeJsonLd, faqLd, breadcrumbLd, softwareLd, SOFTWARE_ID } from "@/components/json-ld";
+import { pricingTiers } from "@/config/pricing";
+import { fullTitle, pageMetadata } from "@/lib/seo";
 import sitemap from "@/app/sitemap";
 import robots from "@/app/robots";
 import { GET as feed } from "@/app/blog/feed.xml/route";
@@ -31,9 +32,9 @@ describe("blog content", () => {
   });
 
   it.each(posts.map((p) => [p.slug, p] as const))("%s has SEO-sized metadata and valid structure", (_s, p) => {
-    expect(p.seoTitle.length).toBeLessThanOrEqual(60);
-    expect(p.description.length).toBeGreaterThanOrEqual(110);
-    expect(p.description.length).toBeLessThanOrEqual(160);
+    expect(fullTitle(p.seoTitle).length).toBeLessThanOrEqual(60);
+    expect(p.description.length).toBeGreaterThanOrEqual(120);
+    expect(p.description.length).toBeLessThanOrEqual(155);
     expect(p.title.length).toBeGreaterThan(30);
     expect(p.keywords.length).toBeGreaterThanOrEqual(4);
     expect(p.sections.length).toBeGreaterThanOrEqual(5);
@@ -58,7 +59,8 @@ describe("blog content", () => {
 describe("pageMetadata", () => {
   it("builds title, canonical, OG, Twitter large card and merges keywords", () => {
     const m = pageMetadata({ title: "Test", description: "d", path: "/x", keywords: ["custom"] });
-    expect(m.title).toBe("Test");
+    expect(m.title).toEqual({ absolute: "Test | GrowX" });
+    expect(m.alternates?.types).toMatchObject({ "application/rss+xml": [{ url: "/blog/feed.xml" }] });
     expect(m.alternates?.canonical).toBe("/x");
     expect(m.twitter).toMatchObject({ card: "summary_large_image" });
     expect(m.keywords).toContain("custom");
@@ -77,6 +79,13 @@ describe("pageMetadata", () => {
   });
   it("absolute title skips the template", () => {
     expect(pageMetadata({ title: "Home", absoluteTitle: true, description: "d", path: "/" }).title).toEqual({ absolute: "Home" });
+  });
+  it("adds the brand suffix only when it is not redundant and the title stays within 60 characters", () => {
+    expect(fullTitle("Pricing")).toBe("Pricing | GrowX");
+    expect(fullTitle("GrowX Features: Auto Follow, Scheduler, AI & Analytics")).toBe("GrowX Features: Auto Follow, Scheduler, AI & Analytics");
+    const long = "How to Schedule Tweets on X (Twitter): A Practical Guide";
+    expect(fullTitle(long)).toBe(long);
+    expect(fullTitle("x".repeat(52))).toHaveLength(60);
   });
 });
 

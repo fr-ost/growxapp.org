@@ -490,7 +490,7 @@ export default function HomePage() {
               .slice(0, 3)
               .map((p, i) => (
                 <li key={p.slug} className="relative" style={stagger(i % 3)}>
-                  <PostCard post={p} />
+                  <PostCard post={p} headingLevel="h3" />
                 </li>
               ))}
           </ul>

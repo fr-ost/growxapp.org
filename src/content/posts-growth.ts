@@ -364,7 +364,7 @@ export const growthPosts: Post[] = [
     seoTitle: "Mass Follow on Twitter: X Follow Limits & Risks",
     title: "Mass Follow on Twitter (X): Follow Limits, Risks and a Safer Way to Do It",
     description:
-      "Thinking about mass following on Twitter (X)? Learn how follow limits work, what gets accounts restricted and how GrowX smart auto follow keeps the pace safer.",
+      "Thinking about mass following on Twitter (X)? Learn how follow limits work, what gets accounts restricted and how to keep your follow pace safer.",
     excerpt: "What really happens when you mass follow on X, why limits exist and how to stay inside them.",
     category: "Guides",
     keywords: ["mass follow Twitter", "Twitter follow limit", "X follow limit per day", "Twitter follow limit reached", "safe Twitter auto follow", "X (Twitter) growth tool", "GrowX"],

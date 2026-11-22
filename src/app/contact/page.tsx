@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "GrowX Support & Contact",
-  description: "Get help with the GrowX X (Twitter) auto follow Chrome extension: email support@growxapp.org or message the developer on Telegram.",
+  description: "Get help with GrowX, the X (Twitter) growth extension for Chrome: email support@growxapp.org or message the developer on Telegram for setup or billing.",
   path: "/contact",
   keywords: ["GrowX support", "GrowX contact", "X auto follow help"],
 });
@@ -15,8 +15,8 @@ export const metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Support", path: "/contact" }])} />
-      <PageHero eyebrow="Support" title={<>We&apos;re here to <span className="text-gradient">help</span>.</>}>
+      <JsonLd data={[breadcrumbLd([{ name: "Home", path: "/" }, { name: "Support", path: "/contact" }]), webPageLd({ path: "/contact", type: "ContactPage", name: "GrowX support and contact", description: "Email support or message the GrowX developer on Telegram.", about: false })]} />
+      <PageHero eyebrow="Support" title={<>We&apos;re here to <span className="text-gradient">help.</span></>}>
         Questions, bug reports, feature requests or account help: reach the GrowX developer directly.
       </PageHero>
       <Section>

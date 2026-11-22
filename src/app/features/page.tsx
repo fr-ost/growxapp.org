@@ -42,13 +42,13 @@ export default function FeaturesPage() {
       <JsonLd
         data={[
           breadcrumbLd([{ name: "Home", path: "/" }, { name: "Features", path: "/features" }]),
-          { ...softwareLd, "@id": `${abs("/features")}#software` },
+          webPageLd({ path: "/features", type: "CollectionPage", name: "GrowX features", description: "Every GrowX feature for growing on X (Twitter), with what is Free and what is Premium." }),
           faqLd(faqs),
         ]}
       />
       <PageHero
         eyebrow="Features"
-        title={<>Every tool you need to <span className="text-gradient">grow on X</span>.</>}
+        title={<>Every tool you need to <span className="text-gradient">grow on X.</span></>}
         actions={
           <>
             {site.chromeStoreUrl ? (

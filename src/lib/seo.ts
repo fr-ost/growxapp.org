@@ -17,9 +17,12 @@ export const baseKeywords = [
 export const DEFAULT_OG_IMAGE = "/opengraph-image";
 
 export interface PageSeo {
-  /** <title> without the site suffix (the layout template adds " | GrowX"). Keep under ~55 chars. */
+  /**
+   * <title>, primary keyword first. " | GrowX" is appended only when the title does not already name GrowX and the
+   * result stays within 60 characters (see fullTitle). scripts/seo-check.mjs enforces the 60-character limit.
+   */
   title: string;
-  /** Meta description, 120-160 chars. */
+  /** Meta description, 120-155 chars, with a benefit and a call to action. */
   description: string;
   path: string;
   keywords?: string[];
@@ -28,24 +31,36 @@ export interface PageSeo {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
-  /** Overrides the "| GrowX" suffix handling (home page). */
+  /** Never add the " | GrowX" suffix (home page). */
   absoluteTitle?: boolean;
-  /** Pages with their own opengraph-image route (blog posts) set false; everything else gets the default card. */
+  /** Pages with their own opengraph-image route set false; everything else gets the default card. */
   defaultImage?: boolean;
 }
 
+export const TITLE_MAX = 60;
+
+/** The <title> as rendered: the brand suffix only where it is not redundant and still fits. */
+export function fullTitle(title: string, absolute = false): string {
+  const suffixed = `${title} | ${site.name}`;
+  if (absolute || title.includes(site.name) || suffixed.length > TITLE_MAX) return title;
+  return suffixed;
+}
+
+/** The blog feed, linked from every page (a page-level `alternates` replaces the layout's, so it is repeated here). */
+export const RSS_ALTERNATE = { "application/rss+xml": [{ url: "/blog/feed.xml", title: "GrowX Blog" }] };
+
 export function pageMetadata(opts: PageSeo): Metadata {
-  const fullTitle = opts.absoluteTitle ? opts.title : `${opts.title} | ${site.name}`;
+  const title = fullTitle(opts.title, opts.absoluteTitle);
   // A page-level openGraph replaces the root one, so the default image must be repeated here.
   const images = opts.defaultImage === false ? undefined : [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "GrowX: The Ultimate X (Twitter) Growth Tool" }];
   return {
-    title: opts.absoluteTitle ? { absolute: opts.title } : opts.title,
+    title: { absolute: title },
     description: opts.description,
     keywords: [...new Set([...(opts.keywords ?? []), ...baseKeywords])],
-    alternates: { canonical: opts.path },
+    alternates: { canonical: opts.path, types: RSS_ALTERNATE },
     authors: [{ name: site.author, url: site.authorUrl }],
     openGraph: {
-      title: fullTitle,
+      title,
       description: opts.description,
       url: opts.path,
       siteName: site.name,
@@ -56,7 +71,7 @@ export function pageMetadata(opts: PageSeo): Metadata {
         ? { publishedTime: opts.publishedTime, modifiedTime: opts.modifiedTime ?? opts.publishedTime, authors: [site.author] }
         : {}),
     },
-    twitter: { card: "summary_large_image", title: fullTitle, description: opts.description, ...(images ? { images: [DEFAULT_OG_IMAGE] } : {}) },
+    twitter: { card: "summary_large_image", title, description: opts.description, ...(images ? { images: [DEFAULT_OG_IMAGE] } : {}) },
     robots: opts.noindex
       ? { index: false, follow: false }
       : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },

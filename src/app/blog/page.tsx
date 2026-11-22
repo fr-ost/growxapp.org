@@ -13,8 +13,8 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Twitter (X) Growth Blog: Guides & Tips",
-  description: "Practical guides to grow on X (Twitter): auto follow, scheduling tweets, best time to post, threads, analytics, replies and unfollowers, from the GrowX team.",
-  path: "/blog",
+  description: "Practical guides to grow on X (Twitter): auto follow, scheduling, best time to post, threads, analytics, replies and unfollowers. Start reading free.",
+  path: "/blog", defaultImage: false,
   keywords: ["Twitter growth blog", "X growth guides", "how to grow on Twitter", "Twitter tips", "schedule tweets", "Twitter analytics guide"],
 });
 
@@ -89,7 +89,7 @@ export default function BlogIndexPage() {
           },
         ]}
       />
-      <PageHero eyebrow="Blog" title={<>Learn to grow on X, <span className="text-gradient">one guide at a time</span>.</>}>
+      <PageHero eyebrow="Blog" title={<>Learn to grow on X, <span className="text-gradient">one guide at a time.</span></>}>
         <p>Practical, honest guides on growing an X (Twitter) account: who to follow, what and when to post, how to reply and how to read your numbers.</p>
       </PageHero>
       <Section className="pt-10 sm:pt-12 lg:pt-14">

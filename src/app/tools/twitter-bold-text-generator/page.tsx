@@ -7,8 +7,8 @@ const PATH = "/tools/twitter-bold-text-generator";
 
 export const metadata = pageMetadata({
   title: "Twitter Bold Text Generator: Bold & Italic for X",
-  description: "Free Twitter bold text generator: turn text into bold, italic, script and more for X posts and bios, then copy it. By GrowX, works in your browser, no sign-up.",
-  path: PATH,
+  description: "Free Twitter bold text generator: turn text into bold, italic, script and more for X posts and bios, then copy it. Works in your browser, no sign-up.",
+  path: PATH, defaultImage: false,
   keywords: ["Twitter bold text generator", "bold text for Twitter", "italic text Twitter", "X bold text", "Twitter font generator", "fancy text for Twitter bio"],
 });
 

@@ -55,7 +55,7 @@ const corePosts: Post[] = [
     seoTitle: "How X Auto Follow Works: GrowX Smart Follow Engine",
     title: "How GrowX Auto Follow Works: The Complete Guide to Smart Following on X (Twitter)",
     description:
-      "How smart auto follow in GrowX, the X (Twitter) growth tool for Chrome, finds, scores and follows people at a human pace, with caps, breaks and safety stops.",
+      "How GrowX smart auto follow finds, scores and follows people on X (Twitter) at a human pace, with caps, breaks and safety stops. See how it works.",
     excerpt:
       "From source profiles and recent followers first to scoring, pacing, safety stops and the source leaderboard: exactly what happens when you press Start in GrowX.",
     category: "How it works",
@@ -274,7 +274,7 @@ const corePosts: Post[] = [
     seoTitle: "GrowX Features Guide: Scoring, Filters, Insights",
     title: "GrowX Features Guide: Follow-Back Scoring, Targeting Filters, Insights and Cleanup Tools",
     description:
-      "How GrowX scores accounts 1-99, how the Premium smart score learns, which filters are free, and how Insights and Cleanup work in this X (Twitter) growth tool.",
+      "How GrowX scores accounts 1-99, how the Premium smart score learns, which filters are free, and how Insights and Cleanup work. Read the full guide.",
     excerpt:
       "A deep dive into the follow-back score and smart score, sources, every targeting filter, Insights analytics and the Cleanup tools for unfollowing inactive and non-following accounts.",
     category: "Features",
