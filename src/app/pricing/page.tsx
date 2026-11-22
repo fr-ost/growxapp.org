@@ -62,6 +62,8 @@ export default function PricingPage() {
             </div>
           </div>
           <div className="pt-8">
+            {/* The plan cards use h3 names; this keeps the outline h1 > h2 > h3. */}
+            <h2 className="sr-only">Plans and prices</h2>
             <PricingCards />
           </div>
         </Container>

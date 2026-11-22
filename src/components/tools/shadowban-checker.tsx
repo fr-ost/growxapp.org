@@ -233,6 +233,7 @@ export function ShadowbanChecker() {
               people, and your own account always sees your own posts.
             </p>
           </div>
+          <h2 className="sr-only">The checks</h2>
           <ol className="mt-4 space-y-4" data-testid="sb-checks">
             {CHECK_IDS.map((id, i) => {
               const c = CHECKS[id];

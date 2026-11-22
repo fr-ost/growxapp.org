@@ -6,7 +6,7 @@
  *   node scripts/seo-check.mjs --verbose  # also prints every page's title and description lengths
  *
  * Fails (exit 1) on any indexable page with: a missing or duplicate title or description, a title over 60
- * characters, a description over 155, not exactly one <h1>, a missing or non-absolute canonical, invalid JSON-LD,
+ * characters, a description over 155, not exactly one <h1>, a skipped heading level, a missing or wrong canonical, invalid JSON-LD,
  * review/rating markup, an FAQPage whose questions are not visible on the page, or an @id reference that resolves to
  * nothing. Also fails when a sitemap URL has no prerendered page, or the 404 page has the wrong title.
  * Descriptions under 120 characters are reported as warnings.
@@ -198,6 +198,11 @@ for (const file of files) {
   else if (description.length > 155) fail(route, `description is ${description.length} chars (max 155)`);
   else if (description.length < 120) warn(route, `description is ${description.length} chars (aim for 120-155)`);
   if (h1s !== 1) fail(route, `${h1s} <h1> elements`);
+  const levels = [...html.replace(/<script[\s\S]*?<\/script>/g, "").matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
+  levels.forEach((l, i) => {
+    if (i > 0 && l > levels[i - 1] + 1) fail(route, `heading level skips from h${levels[i - 1]} to h${l}`);
+  });
+  if (levels[0] !== undefined && levels[0] !== 1) fail(route, `first heading is h${levels[0]}, not h1`);
   const expected = `${SITE}${route === "/" ? "" : route}`;
   if (!canonical) fail(route, "missing canonical");
   else if (canonical !== expected) fail(route, `canonical is ${canonical}, expected ${expected}`);

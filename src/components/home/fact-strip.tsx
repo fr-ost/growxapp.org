@@ -25,16 +25,20 @@ export function FactStrip() {
         </div>
         <dl className="mt-6 grid grid-cols-2 overflow-clip rounded-3xl border border-hairline bg-white shadow-[var(--shadow-hair)] lg:grid-cols-5">
           {facts.map((f, i) => (
+            // A <dl> may group each dt/dd pair in one <div>, but no deeper: the reveal sits on the pair's own elements.
             <div
               key={f.label}
-              className={`border-hairline p-5 sm:p-7 ${i < 4 ? "border-b lg:border-b-0 lg:border-r" : "col-span-2 lg:col-span-1"} ${i % 2 === 0 && i < 4 ? "border-r" : ""}`}
+              className={`flex flex-col-reverse gap-1.5 border-hairline p-5 sm:p-7 ${i < 4 ? "border-b lg:border-b-0 lg:border-r" : "col-span-2 lg:col-span-1"} ${i % 2 === 0 && i < 4 ? "border-r" : ""}`}
             >
-              <div className="reveal flex flex-col-reverse gap-1.5" style={stagger(i)}>
-                <dt className="text-sm font-medium text-text-2">{f.label}</dt>
-                <dd className="text-gradient w-fit font-display text-[clamp(2.25rem,1.7rem+1.8vw,3.25rem)] font-extrabold leading-none tracking-[-0.04em] tabular-nums">
-                  {f.value}
-                </dd>
-              </div>
+              <dt className="reveal text-sm font-medium text-text-2" style={stagger(i)}>
+                {f.label}
+              </dt>
+              <dd
+                className="reveal text-gradient w-fit font-display text-[clamp(2.25rem,1.7rem+1.8vw,3.25rem)] font-extrabold leading-none tracking-[-0.04em] tabular-nums"
+                style={stagger(i)}
+              >
+                {f.value}
+              </dd>
             </div>
           ))}
         </dl>

@@ -91,6 +91,7 @@ export function TemplateLibrary() {
           ))}
         </div>
       </div>
+      <h2 className="sr-only">Templates</h2>
       <ul className="mt-8 grid gap-4 md:grid-cols-2" data-testid="template-list">
         {list.map((t, i) => {
           const category = TEMPLATE_CATEGORIES.find((c) => c.id === t.cat);
