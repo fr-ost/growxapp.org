@@ -7,10 +7,8 @@ import { stagger } from "@/components/motion/stagger";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/primitives";
 
-export const metadata: Metadata = {
-  title: { absolute: "Page not found | GrowX" },
-  robots: { index: false, follow: true },
-};
+// Next.js adds <meta name="robots" content="noindex"> to not-found pages itself (and answers with a 404 status).
+export const metadata: Metadata = { title: { absolute: "Page not found | GrowX" } };
 
 const popular = [
   { href: "/", label: "Home" },
