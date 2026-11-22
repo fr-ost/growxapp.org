@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PostCard } from "@/components/blog";
 import { FeatureIcon } from "@/components/feature-icon";
 import { FeatureLinkCard } from "@/components/features/feature-card";
+import { LimitsTable } from "@/components/features/limits-table";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
 import { IconArrowRight, IconCheck, IconChrome, IconStar } from "@/components/icons";
@@ -18,6 +19,7 @@ import { stagger } from "@/components/motion/stagger";
 import { RichText } from "@/components/rich-text";
 import { ExternalButton, LinkButton } from "@/components/ui/button";
 import { Badge, Container, Eyebrow, Section, SectionHeading } from "@/components/ui/primitives";
+import { toolNav } from "@/config/nav";
 import { TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
 import { featurePages, getFeaturePage } from "@/content/feature-pages";
@@ -41,6 +43,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
   if (!page) notFound();
   const posts = page.relatedPosts.map((s) => getPost(s)).filter((p): p is NonNullable<typeof p> => !!p).slice(0, 6);
   const related = page.related.map((s) => getFeaturePage(s)).filter((p): p is NonNullable<typeof p> => !!p);
+  const tools = page.tools.map((href) => toolNav.find((t) => t.href === href)).filter((t): t is NonNullable<typeof t> => !!t);
   const path = `/features/${page.slug}`;
 
   return (
@@ -105,7 +108,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
       {/* HIGHLIGHTS */}
       <Section>
         <Container>
-          <SectionHeading eyebrow="What you get" title={`${page.nav}, done right.`} center />
+          <SectionHeading eyebrow="What you get" title={page.xHeading} center />
           <ul data-spotlight-group="" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {page.highlights.map((h, i) => (
               <li key={h.title} className="reveal" style={stagger(i % 3)}>
@@ -189,6 +192,9 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
           <SectionHeading eyebrow="Plans" title="What's free, what's Premium" center>
             Every Premium feature is included in the free {TRIAL_DAYS}-day trial. No credit card.
           </SectionHeading>
+          <div className="reveal mt-10">
+            <LimitsTable name={page.nav} rows={page.limits} />
+          </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             <div className="lift h-full rounded-3xl border border-hairline bg-white p-7 shadow-[var(--shadow-hair)]">
               <h3 className="flex items-center justify-between text-lg font-bold">
@@ -249,6 +255,27 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
                 {related.map((r, i) => (
                   <li key={r.slug} className="reveal" style={stagger(i % 3)}>
                     <FeatureLinkCard href={`/features/${r.slug}`} icon={r.icon} label={r.nav} blurb={r.blurb} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+          {tools.length ? (
+            <>
+              <h2 className="reveal-heading mt-14 text-2xl font-extrabold tracking-tight">Free tools for this job</h2>
+              <ul className="mt-6 grid gap-4 md:grid-cols-3">
+                {tools.map((t, i) => (
+                  <li key={t.href} className="reveal" style={stagger(i % 3)}>
+                    <Link
+                      href={t.href}
+                      className="group lift flex h-full flex-col rounded-3xl border border-hairline bg-white p-5 shadow-[var(--shadow-hair)]"
+                    >
+                      <span className="font-bold group-hover:text-accent-ink">{t.label}</span>
+                      <span className="mt-1 flex-1 text-sm text-text-2">{t.blurb}. Free, no sign-up.</span>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
+                        Open tool <IconArrowRight size={15} className="nudge" />
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ul>

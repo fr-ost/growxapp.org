@@ -28,6 +28,12 @@ export interface FeaturePage {
   sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
   plans: { free: string[]; premium: string[] };
   faq: { q: string; a: string }[];
+  /** Heading over the highlights, with the X keyword variant ("X post scheduler", "auto follow on X"). */
+  xHeading: string;
+  /** Free vs Premium at a glance, real limits only ("-" = not included). */
+  limits: { label: string; free: string; premium: string }[];
+  /** Free tools (/tools/...) that help with the same job. */
+  tools: string[];
   /** Blog post slugs to recommend. */
   relatedPosts: string[];
   /** Other feature pages to recommend. */
