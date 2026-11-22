@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CtaBand } from "@/components/home/cta-band";
 import styles from "@/components/conversion/about.module.css";
 import { IconArrowRight, IconChrome, IconLock, IconShield, IconStar, IconTarget } from "@/components/icons";
-import { JsonLd, abs, authorLd, breadcrumbLd } from "@/components/json-ld";
+import { JsonLd, ORG_ID, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { BorderBeam } from "@/components/motion/border-beam";
 import { GrowthLine } from "@/components/motion/growth-line";
 import { stagger } from "@/components/motion/stagger";
@@ -31,14 +31,7 @@ export default function AboutPage() {
       <JsonLd
         data={[
           breadcrumbLd([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
-          {
-            "@context": "https://schema.org",
-            "@type": "AboutPage",
-            name: "About GrowX",
-            url: abs("/about"),
-            mainEntity: { "@id": `${site.url}/#organization` },
-          },
-          { "@context": "https://schema.org", ...authorLd, "@type": "Person", jobTitle: "Developer", worksFor: { "@id": `${site.url}/#organization` } },
+          webPageLd({ path: "/about", type: "AboutPage", name: "About GrowX", description: `GrowX is an independent X (Twitter) growth tool for Chrome by ${site.author}.`, about: false, extra: { mainEntity: { "@id": ORG_ID } } }),
         ]}
       />
       <PageHero eyebrow="About" title={<>Growth tools built for <span className="text-gradient">careful</span> people.</>}>

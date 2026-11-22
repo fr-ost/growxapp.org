@@ -4,7 +4,7 @@ import { FeatureGroups } from "@/components/feature-lists";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
 import { IconChrome } from "@/components/icons";
-import { JsonLd, abs, breadcrumbLd, faqLd, softwareLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbLd, faqLd, webPageLd } from "@/components/json-ld";
 import { demoForGroup } from "@/components/motion/demos/demo-map";
 import { ScrollSpy } from "@/components/motion/scroll-spy";
 import { stagger } from "@/components/motion/stagger";

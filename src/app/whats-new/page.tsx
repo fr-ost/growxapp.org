@@ -1,6 +1,6 @@
 import { CtaBand } from "@/components/home/cta-band";
 import { IconArrowRight, IconChrome } from "@/components/icons";
-import { JsonLd, abs, breadcrumbLd, softwareLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { RichText } from "@/components/rich-text";
 import { ExternalButton, LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
@@ -22,7 +22,7 @@ export default function WhatsNewPage() {
       <JsonLd
         data={[
           breadcrumbLd([{ name: "Home", path: "/" }, { name: "What's new", path: "/whats-new" }]),
-          { ...softwareLd, "@id": `${abs("/whats-new")}#software` },
+          webPageLd({ path: "/whats-new", name: `What's new in GrowX ${CURRENT_VERSION}`, description: "Release notes for the GrowX Chrome extension, newest first." }),
         ]}
       />
       <PageHero

@@ -118,10 +118,19 @@ describe("structured data", () => {
     expect(s).not.toContain("</script>");
     expect(JSON.parse(s).a).toContain("</script>");
   });
-  it("software markup is free-only with no ratings or review counts", () => {
+  it("software markup has the real plans as offers and no ratings or review counts", () => {
     const text = JSON.stringify(softwareLd);
     expect(text).not.toMatch(/aggregateRating|ratingValue|reviewCount|review"/);
-    expect(softwareLd.offers.price).toBe("0");
+    expect(softwareLd["@id"]).toBe(SOFTWARE_ID);
+    expect(softwareLd.offers.map((o) => [o.name, o.price, o.priceCurrency])).toEqual([
+      ["Free", "0", "USD"],
+      ["Premium Monthly", "1.99", "USD"],
+      ["Premium Yearly", "14.99", "USD"],
+      ["Premium Lifetime", "59.99", "USD"],
+    ]);
+    expect(softwareLd.offers.map((o) => o.price)).toEqual(pricingTiers.map((t) => (t.priceCents ? (t.priceCents / 100).toFixed(2) : "0")));
+    expect(softwareLd.offers[3].description).toContain("$29.99 for the first 100");
+    for (const o of softwareLd.offers) expect(o.url).toBe(`${site.url}/pricing`);
   });
   it("faq and breadcrumb builders produce schema.org shapes", () => {
     expect(faqLd([{ q: "Q", a: "A" }]).mainEntity[0]).toMatchObject({ "@type": "Question", name: "Q" });

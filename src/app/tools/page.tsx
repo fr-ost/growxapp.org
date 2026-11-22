@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CtaBand } from "@/components/home/cta-band";
 import { IconArrowRight } from "@/components/icons";
-import { JsonLd, breadcrumbLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { CountUp } from "@/components/motion/count-up";
 import { stagger } from "@/components/motion/stagger";
 import { ToolGlyph, toolKey } from "@/components/motion/tool-glyph";

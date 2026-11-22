@@ -5,7 +5,7 @@ import { Faq } from "@/components/home/faq";
 import { TrialTicket } from "@/components/conversion/trial-ticket";
 import { IconCheck, IconInfo } from "@/components/icons";
 import { PricingCards } from "@/components/pricing-cards";
-import { JsonLd, breadcrumbLd, faqLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbLd, faqLd, webPageLd } from "@/components/json-ld";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { featureGroups } from "@/config/features";
 import { TRIAL_DAYS } from "@/config/pricing";
@@ -30,7 +30,13 @@ const faqs = [
 export default function PricingPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: "Home", path: "/" }, { name: "Pricing", path: "/pricing" }]), faqLd(faqs)]} />
+      <JsonLd
+        data={[
+          breadcrumbLd([{ name: "Home", path: "/" }, { name: "Pricing", path: "/pricing" }]),
+          webPageLd({ path: "/pricing", name: "GrowX pricing", description: "The GrowX Free plan and Premium for 30 days, 365 days or lifetime, paid in crypto, with a free 30-day trial." }),
+          faqLd(faqs),
+        ]}
+      />
       <PageHero eyebrow="Pricing" title={<>Simple pricing. <span className="text-gradient">Free forever.</span></>} aside={<TrialTicket />}>
         Start free, try Premium for {TRIAL_DAYS} days, upgrade when it makes sense.
         <span className="mt-3 block font-semibold text-text">The {TRIAL_DAYS}-day Premium trial is completely free. No credit card needed.</span>

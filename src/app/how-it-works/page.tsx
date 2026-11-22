@@ -14,7 +14,7 @@ import { CURRENT_VERSION } from "@/content/releases";
 export const metadata = pageMetadata({
   title: "How GrowX Works: Grow on X (Twitter) Step by Step",
   description:
-    "How the GrowX Chrome extension works: add sources and auto follow safely, schedule posts for your best times, reply early, read your analytics and clean up.",
+    "How the GrowX Chrome extension works: add sources and auto follow safely, schedule posts for your best times, reply early, read analytics, clean up.",
   path: "/how-it-works",
   keywords: ["how to grow on Twitter", "how GrowX works", "Twitter growth routine", "how X auto follow works", "X follow limits per day", "schedule tweets"],
 });

@@ -3,12 +3,11 @@ import { PostCard, formatPostDate } from "@/components/blog";
 import { PostCover } from "@/components/blog/post-cover";
 import { CtaBand } from "@/components/home/cta-band";
 import { IconArrowRight, IconClock } from "@/components/icons";
-import { JsonLd, abs, authorLd, breadcrumbLd } from "@/components/json-ld";
+import { JsonLd, ORG_ID, abs, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { ScrollSpy } from "@/components/motion/scroll-spy";
 import { stagger } from "@/components/motion/stagger";
 import { Badge, Container, PageHero, Section } from "@/components/ui/primitives";
 import { latestFirst, type Post } from "@/content/posts";
-import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -69,24 +68,21 @@ export default function BlogIndexPage() {
       <JsonLd
         data={[
           breadcrumbLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }]),
-          {
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "@id": abs("/blog"),
+          webPageLd({
+            path: "/blog",
+            type: "CollectionPage",
             name: "GrowX Blog",
             description: "Guides on growing on X (Twitter): auto follow, scheduling, threads, analytics, replies and cleanup.",
-            url: abs("/blog"),
-            inLanguage: "en",
-            publisher: { "@id": `${site.url}/#organization` },
-            blogPost: posts.map((p) => ({
-              "@type": "BlogPosting",
-              headline: p.title,
-              url: abs(`/blog/${p.slug}`),
-              datePublished: p.datePublished,
-              dateModified: p.dateModified,
-              author: authorLd,
-            })),
-          },
+            about: false,
+            extra: {
+              publisher: { "@id": ORG_ID },
+              // A plain list of URLs (Google's summary-page format); each post page carries its full BlogPosting.
+              mainEntity: {
+                "@type": "ItemList",
+                itemListElement: posts.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: abs(`/blog/${p.slug}`) })),
+              },
+            },
+          }),
         ]}
       />
       <PageHero eyebrow="Blog" title={<>Learn to grow on X, <span className="text-gradient">one guide at a time.</span></>}>

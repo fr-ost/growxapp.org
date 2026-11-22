@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-import { JsonLd, organizationLd, websiteLd } from "@/components/json-ld";
 import { site } from "@/config/site";
 import { baseKeywords } from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
@@ -55,7 +54,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <JsonLd data={[organizationLd, websiteLd]} />
         <SiteHeader />
         <main id="main" className="flex flex-1 flex-col">
           {children}

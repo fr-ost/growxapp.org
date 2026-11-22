@@ -10,7 +10,7 @@ export const metadata = pageMetadata({
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" updated="October 2026">
+    <LegalPage title="Terms of Service" path="/terms" description={metadata.description as string} updated="October 2026">
       <h2>1. Who we are</h2>
       <p>GrowX is provided by {site.legalName}, {site.legalAddress}. These terms cover the GrowX website, accounts and the GrowX Chrome extension.</p>
       <h2>2. Not affiliated with X</h2>

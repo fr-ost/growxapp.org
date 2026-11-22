@@ -10,7 +10,7 @@ export const metadata = pageMetadata({
 
 export default function RefundPolicyPage() {
   return (
-    <LegalPage title="Refund Policy" updated="October 2026">
+    <LegalPage title="Refund Policy" path="/refund-policy" description={metadata.description as string} updated="October 2026">
       <p>This policy explains how refunds and cancellations work for GrowX Premium.</p>
       <h2>1. Plans covered</h2>
       <p>Monthly ($1.99), yearly ($14.99), lifetime ($59.99, or $29.99 for the first 100 buyers). The free plan and the 30-day trial cost nothing and need no refund.</p>

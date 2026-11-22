@@ -7,7 +7,7 @@ import { FeatureLinkCard } from "@/components/features/feature-card";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
 import { IconArrowRight, IconCheck, IconChrome, IconStar } from "@/components/icons";
-import { JsonLd, abs, breadcrumbLd, faqLd, softwareLd } from "@/components/json-ld";
+import { JsonLd, abs, breadcrumbLd, faqLd, webPageLd } from "@/components/json-ld";
 import { Screenshot } from "@/components/marketing/screenshot";
 import { Backdrop } from "@/components/motion/backdrop";
 import { BorderBeam } from "@/components/motion/border-beam";
@@ -52,17 +52,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
             { name: "Features", path: "/features" },
             { name: page.nav, path },
           ]),
-          {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "@id": `${abs(path)}#webpage`,
-            name: page.h1,
-            description: page.description,
-            url: abs(path),
-            about: { "@id": `${site.url}/#software` },
-            primaryImageOfPage: abs(page.image.src),
-          },
-          { ...softwareLd, "@id": `${abs(path)}#software` },
+          webPageLd({ path, name: page.h1, description: page.description, extra: { primaryImageOfPage: abs(page.image.src) } }),
           faqLd(page.faq),
         ]}
       />

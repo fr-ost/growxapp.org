@@ -6,7 +6,7 @@ import { PostCover } from "@/components/blog/post-cover";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
 import { IconArrowRight, IconChrome, IconClock } from "@/components/icons";
-import { JsonLd, abs, authorLd, breadcrumbLd, faqLd } from "@/components/json-ld";
+import { JsonLd, ORG_ID, WEBSITE_ID, abs, authorLd, breadcrumbLd, faqLd } from "@/components/json-ld";
 import { Backdrop } from "@/components/motion/backdrop";
 import { BorderBeam } from "@/components/motion/border-beam";
 import { stagger } from "@/components/motion/stagger";
@@ -56,7 +56,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "@id": `${abs(`/blog/${post.slug}`)}#article`,
+            url: abs(`/blog/${post.slug}`),
             mainEntityOfPage: abs(`/blog/${post.slug}`),
+            isPartOf: { "@id": WEBSITE_ID },
             headline: post.title,
             description: post.description,
             keywords: post.keywords.join(", "),
@@ -66,7 +68,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             inLanguage: "en",
             articleSection: post.category,
             author: authorLd,
-            publisher: { "@id": `${site.url}/#organization` },
+            publisher: { "@id": ORG_ID },
           },
           ...(post.faq?.length ? [faqLd(post.faq)] : []),
         ]}

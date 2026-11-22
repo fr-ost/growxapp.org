@@ -1,5 +1,5 @@
 import { IconArrowRight, IconMail, IconSend } from "@/components/icons";
-import { JsonLd, breadcrumbLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
 import { Container, IconBubble, Notice, PageHero, Section } from "@/components/ui/primitives";
 import { site } from "@/config/site";

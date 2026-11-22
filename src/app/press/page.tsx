@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { CtaBand } from "@/components/home/cta-band";
 import { IconDownload, IconMail } from "@/components/icons";
-import { JsonLd, breadcrumbLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
 import { CopyButton } from "@/components/tools/ui";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";

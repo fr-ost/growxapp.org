@@ -10,7 +10,7 @@ export const metadata = pageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated="November 2026">
+    <LegalPage title="Privacy Policy" path="/privacy" description={metadata.description as string} updated="November 2026">
       <p>
         This policy describes how the GrowX website handles personal data. The GrowX Chrome extension has its own
         privacy policy inside the extension; this page covers the website, the optional account system and the

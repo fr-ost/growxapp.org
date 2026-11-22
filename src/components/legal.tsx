@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
 
 /**
@@ -6,9 +7,10 @@ import { Container, PageHero, Section } from "@/components/ui/primitives";
  * (no reveals) and reads at a 68ch measure. data-progress-article drives the header's
  * reading-progress bar across the article body.
  */
-export function LegalPage({ title, updated, children }: { title: string; updated: string; children: ReactNode }) {
+export function LegalPage({ title, path, description, updated, children }: { title: string; path: string; description: string; updated: string; children: ReactNode }) {
   return (
     <>
+      <JsonLd data={[breadcrumbLd([{ name: "Home", path: "/" }, { name: title, path }]), webPageLd({ path, name: title, description, about: false })]} />
       <PageHero eyebrow="Legal" title={title}>
         Last updated {updated}
       </PageHero>

@@ -24,7 +24,7 @@ import {
   IconWand,
   IconZap,
 } from "@/components/icons";
-import { JsonLd, faqLd, softwareLd } from "@/components/json-ld";
+import { JsonLd, faqLd, softwareLd, webPageLd } from "@/components/json-ld";
 import { Screenshot } from "@/components/marketing/screenshot";
 import { Backdrop } from "@/components/motion/backdrop";
 import { BorderBeam } from "@/components/motion/border-beam";
@@ -47,11 +47,14 @@ import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
 import { CURRENT_VERSION } from "@/content/releases";
 
+const metadataTitle = "GrowX: The Ultimate X (Twitter) Growth Tool";
+const metadataDescription =
+  "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, post scheduler, AI writer, analytics and unfollower tracker. Free to start.";
+
 export const metadata = pageMetadata({
-  title: "GrowX: The Ultimate X (Twitter) Growth Tool",
+  title: metadataTitle,
   absoluteTitle: true,
-  description:
-    "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, post scheduler, AI writer, analytics and unfollower tracker. Free to start.",
+  description: metadataDescription,
   path: "/",
   keywords: [
     "X growth tool",
@@ -153,7 +156,7 @@ export default function HomePage() {
   const yearly = getTier("PRO_YEARLY");
   return (
     <>
-      <JsonLd data={[softwareLd, faqLd(faqs)]} />
+      <JsonLd data={[webPageLd({ path: "/", name: metadataTitle, description: metadataDescription }), softwareLd, faqLd(faqs)]} />
 
       {/* HERO: settles in (never fades), then the stage straightens with scroll */}
       <section className="relative overflow-clip">
