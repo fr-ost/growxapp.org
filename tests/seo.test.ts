@@ -11,6 +11,11 @@ import { GET as feed } from "@/app/blog/feed.xml/route";
 import { site } from "@/config/site";
 import { FEATURE_SLUGS } from "@/content/feature-slugs";
 import { allFaqs, faqGroups } from "@/content/faq";
+import { alternativePages, getAlternative } from "@/content/alternatives";
+import { featurePages } from "@/content/feature-pages";
+import { featuresForPost } from "@/content/post-features";
+import { toolNav } from "@/config/nav";
+import { fullTitle as titleOf } from "@/lib/seo";
 
 const appDir = path.resolve(import.meta.dirname, "../src/app");
 const routeExists = (p: string) => {
@@ -20,6 +25,8 @@ const routeExists = (p: string) => {
   if (blog) return !!getPost(blog[1]);
   const feature = clean.match(/^\/features\/([^/]+)$/);
   if (feature) return (FEATURE_SLUGS as readonly string[]).includes(feature[1]);
+  const alternative = clean.match(/^\/alternatives\/([^/]+)$/);
+  if (alternative) return !!getAlternative(alternative[1]);
   return existsSync(path.join(appDir, clean, "page.tsx")) || existsSync(path.join(appDir, clean, "route.ts"));
 };
 
@@ -175,5 +182,48 @@ describe("faq page content", () => {
     for (const f of allFaqs) if (f.more) expect(routeExists(f.more.href), f.more.href).toBe(true);
     expect(sitemap().some((e) => e.url === `${site.url}/faq`)).toBe(true);
     expect(faqLd(allFaqs).mainEntity).toHaveLength(allFaqs.length);
+  });
+});
+
+describe("alternatives pages", () => {
+  const words = (v: unknown) => JSON.stringify(v).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").split(/\s+/).length;
+  it.each(alternativePages.map((a) => [a.slug, a] as const))("%s: SEO-sized, real content, fair and honest", (_s, a) => {
+    expect(titleOf(a.seoTitle).length).toBeLessThanOrEqual(60);
+    expect(a.description.length).toBeGreaterThanOrEqual(120);
+    expect(a.description.length).toBeLessThanOrEqual(155);
+    const body = { ...a, keywords: [], relatedPosts: [], relatedFeatures: [] };
+    expect(words(body)).toBeGreaterThan(800);
+    expect(a.theyDoWell.length).toBeGreaterThanOrEqual(2);
+    expect(a.pickThem.length).toBeGreaterThanOrEqual(2);
+    expect(a.table.length).toBeGreaterThanOrEqual(8);
+    // no competitor prices, ratings or review language
+    const them = JSON.stringify([a.summary, a.theyDoWell, a.table.map((r) => r.them), a.pickThem]);
+    expect(them).not.toMatch(/\$\d|per month|\/mo\b|rating|stars?\b|reviews?\b/i);
+    for (const p of a.relatedPosts) expect(getPost(p), p).toBeTruthy();
+    for (const l of linksIn(JSON.stringify(a))) expect(routeExists(l), l).toBe(true);
+  });
+  it("the guides they build on link back to them", () => {
+    const text = JSON.stringify([getPost("hypefury-alternatives"), getPost("typefully-vs-tweet-hunter")]);
+    for (const a of alternativePages) expect(text).toContain(`/alternatives/${a.slug}`);
+  });
+});
+
+describe("internal linking", () => {
+  it.each(featurePages.map((f) => [f.slug, f] as const))("feature %s links tools, 3+ guides and pricing, with an X heading and real limits", (_s, f) => {
+    expect(f.tools.length).toBeGreaterThanOrEqual(1);
+    for (const t of f.tools) expect(toolNav.some((n) => n.href === t), t).toBe(true);
+    expect(f.relatedPosts.filter((p) => getPost(p)).length).toBeGreaterThanOrEqual(3);
+    expect(f.xHeading).toMatch(/\bX\b/);
+    expect(f.limits.length).toBeGreaterThanOrEqual(4);
+    for (const r of f.limits) expect(r.free && r.premium && r.label).toBeTruthy();
+  });
+  it("every post links to 2-3+ related posts and 1-2 feature pages", () => {
+    for (const p of posts) {
+      expect(p.related.filter((r) => getPost(r)).length, p.slug).toBeGreaterThanOrEqual(2);
+      const f = featuresForPost(p);
+      expect(f.length, p.slug).toBeGreaterThanOrEqual(1);
+      expect(f.length, p.slug).toBeLessThanOrEqual(2);
+      for (const s of f) expect((FEATURE_SLUGS as readonly string[]).includes(s), s).toBe(true);
+    }
   });
 });

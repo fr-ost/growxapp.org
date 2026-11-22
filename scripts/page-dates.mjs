@@ -16,7 +16,7 @@ import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 
 const root = new URL("..", import.meta.url).pathname;
 const out = new URL("../src/content/page-dates.json", import.meta.url);
-const git = (...args) => execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
+const git = (...args) => execFileSync("git", args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
 
 if (git("rev-parse", "--is-shallow-repository") === "true") {
   console.error("Shallow clone: run `git fetch --unshallow` first so old pages keep their real dates.");

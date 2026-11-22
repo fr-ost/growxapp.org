@@ -19,6 +19,7 @@ const cols = [
       { href: "/tools", label: "Free tools" },
       { href: "/blog", label: "Blog" },
       { href: "/whats-new", label: "What's new" },
+      { href: "/alternatives", label: "Compare tools" },
       { href: "/faq", label: "FAQ" },
       { href: "/signup", label: "Start free" },
     ],

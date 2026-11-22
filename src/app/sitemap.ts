@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { alternativePages } from "@/content/alternatives";
 import { FEATURE_SLUGS } from "@/content/feature-slugs";
 import { posts } from "@/content/posts";
 import { site } from "@/config/site";
@@ -28,6 +29,8 @@ const pages: { path: string; priority: number; changeFrequency: "weekly" | "mont
   { path: "/tools/twitter-bold-text-generator", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tools/tweet-templates", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tools/twitter-bio-generator", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/alternatives", priority: 0.7, changeFrequency: "monthly" },
+  ...alternativePages.map((a) => ({ path: `/alternatives/${a.slug}`, priority: 0.7, changeFrequency: "monthly" as const })),
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
   { path: "/about", priority: 0.6, changeFrequency: "yearly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },

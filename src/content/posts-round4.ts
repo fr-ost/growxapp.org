@@ -78,6 +78,7 @@ export const round4Posts: Post[] = [
           ),
           p("Posting has its own safety rules: a daily cap (20 by default), a minimum gap of 5 minutes and a pause on any warning from X. The free plan keeps up to 10 posts waiting at once; Premium removes the limit."),
           note("One honest difference: GrowX posts from your own Chrome, so the computer has to be on with Chrome open at the scheduled time. A post that would go out more than 6 hours late is never posted by itself; it waits as missed."),
+          p("For a side-by-side table, see [GrowX as a Hypefury alternative](/alternatives/hypefury)."),
         ],
       },
       {
@@ -163,6 +164,7 @@ export const round4Posts: Post[] = [
             "**GrowX** is a Chrome extension for growing on X. It combines smart auto follow, a scheduler, an on-device AI writer, analytics, an unfollower tracker, reply targets and cleanup.",
           ),
           p("Pick Typefully if writing is the job. Pick Tweet Hunter if you want an inspiration library and an all-in-one content suite. Pick GrowX if you want to grow your audience and handle daily X work in one inexpensive tool on your desktop."),
+          p("For side-by-side tables, see GrowX as a [Typefully alternative](/alternatives/typefully) and as a [Tweet Hunter alternative](/alternatives/tweet-hunter)."),
         ],
       },
       {
