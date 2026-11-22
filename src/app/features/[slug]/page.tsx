@@ -33,7 +33,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const page = getFeaturePage((await params).slug);
   if (!page) return {};
-  return pageMetadata({ title: page.seoTitle, description: page.description, path: `/features/${page.slug}`, keywords: page.keywords });
+  return pageMetadata({ title: page.seoTitle, description: page.description, path: `/features/${page.slug}`, defaultImage: false, keywords: page.keywords });
 }
 
 export default async function FeatureLandingPage({ params }: { params: Promise<{ slug: string }> }) {

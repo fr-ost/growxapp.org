@@ -9,7 +9,7 @@ const PATH = "/tools/twitter-shadowban-checker";
 export const metadata = pageMetadata({
   title: "Free Twitter Shadowban Checker: Test Your X Account",
   description: "Free Twitter shadowban checker: test your X account for a search ban, search suggestion ban and hidden replies. No login, no sign-up, nothing to install.",
-  path: PATH,
+  path: PATH, defaultImage: false,
   keywords: [
     "Twitter shadowban checker",
     "shadowban checker",

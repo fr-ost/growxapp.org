@@ -8,7 +8,7 @@ const PATH = "/tools/twitter-engagement-rate-calculator";
 export const metadata = pageMetadata({
   title: "Twitter Engagement Rate Calculator (Free)",
   description: "Free Twitter engagement rate calculator: enter a post's views, likes, reposts, replies and bookmarks to get its engagement rate on X. By GrowX, no sign-up.",
-  path: PATH,
+  path: PATH, defaultImage: false,
   keywords: ["Twitter engagement rate calculator", "X engagement rate", "engagement rate calculator", "tweet engagement rate", "how to calculate engagement rate on Twitter"],
 });
 

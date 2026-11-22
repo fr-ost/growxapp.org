@@ -8,7 +8,7 @@ const PATH = "/tools/twitter-follower-ratio-calculator";
 export const metadata = pageMetadata({
   title: "Twitter Follower Ratio Calculator & Follow Limit",
   description: "Free Twitter follower ratio calculator: see your followers-to-following ratio and how close you are to X's 5,000 follow limit. By GrowX, no sign-up.",
-  path: PATH,
+  path: PATH, defaultImage: false,
   keywords: ["Twitter follower ratio calculator", "following to followers ratio", "Twitter follow limit 5000", "X follow limit", "Twitter ratio", "follow ratio"],
 });
 

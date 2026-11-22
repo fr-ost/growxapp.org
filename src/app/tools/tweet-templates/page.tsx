@@ -8,7 +8,7 @@ const PATH = "/tools/tweet-templates";
 export const metadata = pageMetadata({
   title: "52 Tweet Templates: Free Fill-In Templates for X",
   description: "52 free tweet templates for X (Twitter): hooks, threads, lists, stories, questions, build in public and replies. Fill in the blanks and copy. By GrowX.",
-  path: PATH,
+  path: PATH, defaultImage: false,
   keywords: ["tweet templates", "Twitter templates", "X post templates", "thread templates", "tweet hooks", "build in public templates", "Twitter content templates"],
 });
 

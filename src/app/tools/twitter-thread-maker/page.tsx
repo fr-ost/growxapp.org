@@ -8,7 +8,7 @@ const PATH = "/tools/twitter-thread-maker";
 export const metadata = pageMetadata({
   title: "Twitter Thread Maker: Split Text Into a Thread",
   description: "Free Twitter thread maker: paste long text and split it into numbered X posts that each fit 280 characters, at natural breaks. By GrowX, no sign-up needed.",
-  path: PATH,
+  path: PATH, defaultImage: false,
   keywords: ["Twitter thread maker", "thread maker", "X thread generator", "split text into tweets", "tweet splitter", "thread splitter"],
 });
 

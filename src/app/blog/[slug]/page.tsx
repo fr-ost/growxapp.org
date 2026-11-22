@@ -62,7 +62,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             headline: post.title,
             description: post.description,
             keywords: post.keywords.join(", "),
-            image: abs(`/blog/${post.slug}/opengraph-image`),
+            image: abs(`/blog/${post.slug}/opengraph-image/card`),
             datePublished: post.datePublished,
             dateModified: post.dateModified,
             inLanguage: "en",

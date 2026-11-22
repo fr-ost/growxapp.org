@@ -8,7 +8,7 @@ const PATH = "/tools/tweet-character-counter";
 export const metadata = pageMetadata({
   title: "Tweet Character Counter: Free X Character Count",
   description: "Free tweet character counter that counts like X (Twitter): links as 23, emoji and CJK as 2, with the 280 and 25,000 limits. By GrowX, no sign-up needed.",
-  path: PATH,
+  path: PATH, defaultImage: false,
   keywords: ["tweet character counter", "Twitter character counter", "X character count", "280 character counter", "tweet length checker", "character limit Twitter"],
 });
 

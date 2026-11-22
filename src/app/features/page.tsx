@@ -23,8 +23,8 @@ const groupDemos = Object.fromEntries(featureGroups.map((g) => [g.id, demoForGro
 export const metadata = pageMetadata({
   title: "GrowX Features: Auto Follow, Scheduler, AI & Analytics",
   description:
-    "Every GrowX feature: smart auto follow, post scheduler, GrowX AI writer, analytics, unfollower tracker, reply targets and cleanup, with what's Free and Premium.",
-  path: "/features",
+    "Every GrowX feature: smart auto follow, X post scheduler, AI writer, analytics, unfollower tracker, reply targets and cleanup. See what's free.",
+  path: "/features", defaultImage: false,
   keywords: ["X growth tool features", "Twitter auto follow", "Twitter scheduler", "AI tweet writer", "Twitter analytics", "Twitter unfollower tracker", "Twitter unfollow tool"],
 });
 

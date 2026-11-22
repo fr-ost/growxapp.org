@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "GrowX Pricing: Free Plan, Premium & 30-Day Trial",
   description: "GrowX is free forever. Premium from $1.99: 30 days, 365 days or lifetime ($29.99 for the first 100 buyers, then $59.99). Free 30-day trial, no credit card.",
-  path: "/pricing",
+  path: "/pricing", defaultImage: false,
   keywords: ["GrowX pricing", "GrowX Premium", "free Twitter growth tool", "free Twitter scheduler", "Twitter growth tool pricing", "free X auto follow"],
 });
 
