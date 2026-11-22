@@ -43,6 +43,8 @@ export const site = {
   telegram: [
     { label: "Shahriar Ahmed", href: "https://t.me/igfrostt" },
   ],
+  /** Browser and installed-app theme colour (meta theme-color and the web manifest): the page background behind the header. */
+  themeColor: "#fffcfb",
   /** Shown in legal drafts. Provided by the owner. */
   legalName: "Shahriar Ahmed Tushar",
   legalAddress: "Rajshahi, Bangladesh",

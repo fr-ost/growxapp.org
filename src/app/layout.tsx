@@ -33,7 +33,13 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: `${site.name}: ${site.tagline}`, description: site.description },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
-  icons: { icon: "/icon.png", apple: "/icon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   manifest: "/manifest.webmanifest",
   formatDetection: { telephone: false, email: false, address: false },
   verification: {
@@ -42,7 +48,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#fffcfb", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: site.themeColor, colorScheme: "light" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
