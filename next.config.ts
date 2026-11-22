@@ -31,11 +31,30 @@ const csp = [
   "frame-ancestors 'none'",
 ].join("; ");
 
+/** Screenshots and badges never change in place: a new image gets a new file name, so a year-long immutable cache is safe. */
+const IMMUTABLE = "public, max-age=31536000, immutable";
+/** Icons, the logo and social cards can change under the same URL: cache for a week, then revalidate in the background. */
+const REVALIDATE = "public, max-age=604800, stale-while-revalidate=2592000";
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    // Optimised screenshots are cached for a year (the source files are never replaced in place).
+    minimumCacheTTL: 31536000,
+  },
   async headers() {
     const headers = process.env.NODE_ENV === "production" ? [...securityHeaders, { key: "Content-Security-Policy", value: csp }] : securityHeaders;
-    return [{ source: "/:path*", headers }];
+    const cache = (source: string, value: string) => ({ source, headers: [{ key: "Cache-Control", value }] });
+    return [
+      { source: "/:path*", headers },
+      cache("/screens/:file*", IMMUTABLE),
+      cache("/badges/:file*", IMMUTABLE),
+      cache("/fonts/:file*", IMMUTABLE),
+      ...["/icon.png", "/logo.svg", "/favicon.ico", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/icon-maskable-512.png"].map((p) =>
+        cache(p, REVALIDATE),
+      ),
+    ];
   },
 };
 
