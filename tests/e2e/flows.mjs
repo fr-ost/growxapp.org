@@ -107,7 +107,8 @@ for (const l of links) {
         ogUrl: q('meta[property="og:url"]', "content"), twCard: q('meta[name="twitter:card"]', "content"), robots: q('meta[name="robots"]', "content"),
         lang: document.documentElement.lang, h1: document.querySelectorAll("h1").length, h2: document.querySelectorAll("h2").length,
         imgsNoAlt: [...document.images].filter((i) => !i.hasAttribute("alt")).length,
-        ld: ld.flat().map((x) => x && x["@type"]),
+        // one @graph per page: the types of every node in it
+        ld: ld.flat().flatMap((x) => (x && x["@graph"]) || [x]).flatMap((x) => [].concat(x && x["@type"])),
         ldBad: ld.some((x) => x === null),
         words: (document.querySelector("main")?.innerText ?? "").split(/\s+/).length,
       };
@@ -146,8 +147,10 @@ for (const l of links) {
   ok("llms.txt served as text with features and guides", llms.status === 200 && (llms.headers.get("content-type") ?? "").includes("text/plain") && llmsText.includes("/features/twitter-post-scheduler") && llmsText.includes("/blog/how-to-schedule-tweets"));
   const feed = await fetch(BASE + "/blog/feed.xml");
   ok("RSS feed served as XML", feed.status === 200 && (feed.headers.get("content-type") ?? "").includes("xml"));
-  const og = await fetch(BASE + "/blog/how-growx-auto-follow-works/opengraph-image");
+  const og = await fetch(BASE + "/blog/how-growx-auto-follow-works/opengraph-image/card");
   ok("per-post Open Graph image renders (png)", og.status === 200 && (og.headers.get("content-type") ?? "").includes("image/png"), og.status + " " + og.headers.get("content-type"));
+  const oldOg = await fetch(BASE + "/blog/how-growx-auto-follow-works/opengraph-image", { redirect: "manual" });
+  ok("old per-post Open Graph URLs redirect to the card", oldOg.status === 308 && (oldOg.headers.get("location") ?? "").endsWith("/blog/how-growx-auto-follow-works/opengraph-image/card"), oldOg.status + " " + oldOg.headers.get("location"));
   const mf = await fetch(BASE + "/manifest.webmanifest");
   ok("web manifest served", mf.status === 200);
   // Mahfuz removed from every rendered page
@@ -212,12 +215,14 @@ for (const l of links) {
 
   await p.goto(BASE + "/whats-new", { waitUntil: "networkidle" });
   ok("whats-new: latest release first and 21 languages listed", (await p.locator("article").first().innerText()).includes("v2.4.7") && (await p.locator('[data-testid="language-list"] > li').count()) === 21 && (await p.locator('[data-testid="language-list"] [lang="ar"][dir="rtl"]').count()) === 1);
-  const swLangs = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => [].concat(JSON.parse(s.textContent))).find((d) => d["@type"] === "SoftwareApplication")?.inLanguage?.length ?? 0);
-  ok("whats-new: SoftwareApplication lists the 21 languages", swLangs === 21, String(swLangs));
+  // the SoftwareApplication is defined once, on the home page; other pages refer to it by @id
+  await p.goto(BASE + "/", { waitUntil: "networkidle" });
+  const swLangs = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => JSON.parse(s.textContent)["@graph"] ?? []).find((d) => d["@type"] === "SoftwareApplication")?.inLanguage?.length ?? 0);
+  ok("home: SoftwareApplication lists the 21 languages", swLangs === 21, String(swLangs));
 
   await p.goto(BASE + "/faq", { waitUntil: "networkidle" });
   const faqTotal = await p.locator("main details").count();
-  const faqLdCount = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => [].concat(JSON.parse(s.textContent))).find((d) => d["@type"] === "FAQPage")?.mainEntity.length ?? 0);
+  const faqLdCount = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => JSON.parse(s.textContent)["@graph"] ?? []).find((d) => d["@type"] === "FAQPage")?.mainEntity.length ?? 0);
   ok("faq: every question rendered and in FAQPage data", faqTotal >= 40 && faqLdCount === faqTotal, `${faqTotal} details, ${faqLdCount} in JSON-LD`);
   ok("faq: linked from the main navigation", (await p.locator('nav[aria-label="Main"] a[href="/faq"]').count()) === 1);
   await p.fill('[data-testid="faq-search"]', "refund");
@@ -836,10 +841,21 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
       await p.addStyleTag({ content: "html{scroll-behavior:auto!important}" });
       await scrollToBottom(p);
       await p.waitForTimeout(1000);
-      const m = await p.evaluate(() => ({
-        stuck: [...document.querySelectorAll(".reveal, .reveal-heading, .reveal-scale, .reveal-clip")].filter((el) => parseFloat(getComputedStyle(el).opacity) < 0.99).length,
-        counts: [...document.querySelectorAll("[data-count]")].filter((el) => el.textContent.trim() !== el.getAttribute("data-count")).map((el) => `${el.textContent}/${el.getAttribute("data-count")}`),
-      }));
+      const m = await p.evaluate(async () => {
+        const hidden = () => [...document.querySelectorAll(".reveal, .reveal-heading, .reveal-scale, .reveal-clip")].filter((el) => parseFloat(getComputedStyle(el).opacity) < 0.99);
+        // Sections with content-visibility: auto pause their (already started) reveal while off screen, so judge
+        // each remaining element the way a visitor sees it: once it is on screen again.
+        let stuck = 0;
+        for (const el of hidden()) {
+          el.scrollIntoView({ block: "center", behavior: "instant" });
+          await new Promise((r) => setTimeout(r, 900));
+          if (parseFloat(getComputedStyle(el).opacity) < 0.99) stuck++;
+        }
+        return {
+          stuck,
+          counts: [...document.querySelectorAll("[data-count]")].filter((el) => el.textContent.trim() !== el.getAttribute("data-count")).map((el) => `${el.textContent}/${el.getAttribute("data-count")}`),
+        };
+      });
       ok(`motion ${path}: every reveal is opaque after scrolling`, m.stuck === 0, `${m.stuck} stuck`);
       ok(`motion ${path}: every counter shows its true value after scrolling`, m.counts.length === 0, m.counts.join(","));
     }
