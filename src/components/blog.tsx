@@ -1,47 +1,15 @@
-import Link from "next/link";
-import { PostCover } from "@/components/blog/post-cover";
-import { IconArrowRight, IconClock, IconInfo } from "@/components/icons";
+import { PostCardView } from "@/components/blog/post-card";
+import { IconInfo } from "@/components/icons";
 import { ScrollSpy } from "@/components/motion/scroll-spy";
 import { RichText } from "@/components/rich-text";
-import { Badge } from "@/components/ui/primitives";
 import type { Block, Post } from "@/content/posts";
 
-export const formatPostDate = (iso: string) =>
-  new Intl.DateTimeFormat("en", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
+export { formatPostDate } from "@/components/blog/format-date";
 
-/**
- * Post teaser used on home, feature pages and the blog. Scroll reveal + 2px hover lift,
- * a cursor spotlight (fine pointers) and a seeded category cover whose two layers part on hover.
- * The whole card is clickable through the title's stretched link.
- */
+/** A post teaser card (see PostCardView). Pass a full Post; only the summary fields reach the browser. */
 export function PostCard({ post, headingLevel = "h2" }: { post: Post; headingLevel?: "h2" | "h3" }) {
-  const H = headingLevel;
-  return (
-    <article
-      data-spotlight=""
-      className="reveal lift group relative flex h-full flex-col overflow-clip rounded-3xl border border-hairline bg-white p-6 shadow-hair"
-    >
-      <PostCover slug={post.slug} category={post.category} className="-mx-6 -mt-6 mb-5 aspect-[16/7] border-b border-hairline" />
-      <div className="flex items-center gap-3">
-        <Badge tone="accent">{post.category}</Badge>
-        <span className="flex items-center gap-1 text-xs tabular-nums text-muted">
-          <IconClock size={13} /> {post.readMinutes} min read
-        </span>
-      </div>
-      <H className="mt-4 text-balance text-xl font-bold leading-snug tracking-tight">
-        <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 group-hover:text-accent-ink">
-          {post.title}
-        </Link>
-      </H>
-      <p className="mt-3 flex-1 text-pretty text-sm leading-relaxed text-text-2">{post.excerpt}</p>
-      <div className="mt-5 flex items-center justify-between border-t border-hairline pt-4 text-sm">
-        <time dateTime={post.datePublished} className="tabular-nums text-muted">{formatPostDate(post.datePublished)}</time>
-        <span className="inline-flex items-center gap-1 font-semibold text-accent-ink">
-          Read <IconArrowRight size={15} className="nudge" />
-        </span>
-      </div>
-    </article>
-  );
+  const { slug, title, excerpt, category, readMinutes, datePublished } = post;
+  return <PostCardView post={{ slug, title, excerpt, category, readMinutes, datePublished }} headingLevel={headingLevel} />;
 }
 
 function BlockView({ block }: { block: Block }) {
