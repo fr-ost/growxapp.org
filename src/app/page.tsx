@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 import { PostCard } from "@/components/blog";
@@ -51,22 +52,26 @@ const metadataTitle = "GrowX: The Ultimate X (Twitter) Growth Tool";
 const metadataDescription =
   "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, post scheduler, AI writer, analytics and unfollower tracker. Free to start.";
 
-export const metadata = pageMetadata({
-  title: metadataTitle,
-  absoluteTitle: true,
-  description: metadataDescription,
-  path: "/",
-  keywords: [
-    "X growth tool",
-    "Twitter growth tool",
-    "how to grow on Twitter",
-    "Twitter auto follow",
-    "Twitter scheduler",
-    "AI tweet writer",
-    "Twitter analytics",
-    "who unfollowed me on Twitter",
-  ],
-});
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: metadataTitle,
+    absoluteTitle: true,
+    description: metadataDescription,
+    path: "/",
+    keywords: [
+      "X growth tool",
+      "Twitter growth tool",
+      "how to grow on Twitter",
+      "Twitter auto follow",
+      "Twitter scheduler",
+      "AI tweet writer",
+      "Twitter analytics",
+      "who unfollowed me on Twitter",
+    ],
+  }),
+  // Toolfound listing verification (home page only).
+  other: { "toolfound-verify": "9eb0ec65d3fe914812dfb406c44e5c452a634e953d04d2b6" },
+};
 
 type Icon = ComponentType<{ size?: number; className?: string }>;
 

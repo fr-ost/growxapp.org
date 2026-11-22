@@ -2,8 +2,16 @@ import type { MetadataRoute } from "next";
 import { FEATURE_SLUGS } from "@/content/feature-slugs";
 import { posts } from "@/content/posts";
 import { site } from "@/config/site";
+import pageDates from "@/content/page-dates.json";
 
-const BUILD = new Date();
+/**
+ * <lastmod> is the date a page's own content last changed (src/content/page-dates.json, written by
+ * scripts/page-dates.mjs from git history), never the build time. Posts use their dateModified; the blog index uses
+ * its newest post.
+ */
+const DATES: Record<string, string> = pageDates;
+const newestPost = posts.map((p) => p.dateModified).sort().at(-1)!;
+export const lastModifiedFor = (path: string): string | undefined => (path === "/blog" ? newestPost : DATES[path]);
 
 const pages: { path: string; priority: number; changeFrequency: "weekly" | "monthly" | "yearly" }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
@@ -35,13 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages.map((p) => ({
       url: `${site.url}${p.path === "/" ? "" : p.path}`,
-      lastModified: BUILD,
+      lastModified: lastModifiedFor(p.path),
       changeFrequency: p.changeFrequency,
       priority: p.priority,
     })),
     ...posts.map((p) => ({
       url: `${site.url}/blog/${p.slug}`,
-      lastModified: new Date(`${p.dateModified}T00:00:00Z`),
+      lastModified: p.dateModified,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

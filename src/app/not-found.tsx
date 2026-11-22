@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { IconArrowRight } from "@/components/icons";
 import { Backdrop } from "@/components/motion/backdrop";
@@ -6,7 +7,13 @@ import { stagger } from "@/components/motion/stagger";
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/primitives";
 
+export const metadata: Metadata = {
+  title: { absolute: "Page not found | GrowX" },
+  robots: { index: false, follow: true },
+};
+
 const popular = [
+  { href: "/", label: "Home" },
   { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
   { href: "/tools", label: "Free tools" },

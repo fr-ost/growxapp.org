@@ -97,6 +97,11 @@ describe("sitemap, robots and feed", () => {
     for (const bad of ["/dashboard", "/account", "/login", "/signup", "/reset-password", "/api"]) expect(urls.some((u) => u.includes(bad))).toBe(false);
     expect(new Set(urls).size).toBe(urls.length);
   });
+  it("every page has a real content date, not the build time", () => {
+    const entries = sitemap();
+    for (const e of entries) expect(e.lastModified, e.url).toMatch(/^\d{4}-\d{2}-\d{2}/);
+    expect(new Set(entries.map((e) => String(e.lastModified))).size).toBeGreaterThan(5);
+  });
   it("every sitemap URL maps to a real route", () => {
     for (const u of urls) expect(routeExists(new URL(u).pathname)).toBe(true);
   });
@@ -104,6 +109,7 @@ describe("sitemap, robots and feed", () => {
     const r = robots();
     expect(JSON.stringify(r.rules)).toContain("/dashboard");
     expect(r.sitemap).toBe(`${site.url}/sitemap.xml`);
+    expect(r).not.toHaveProperty("host");
   });
   it("RSS feed is valid-looking XML with all posts", async () => {
     const xml = await feed().text();
