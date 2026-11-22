@@ -135,6 +135,9 @@ h3 { letter-spacing: -0.012em; }
 /* =========================================================== surfaces */
 .text-gradient { background: linear-gradient(100deg, #e8283a 0%, #e11d2e 45%, #9f1239 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .text-sheen { background-image: linear-gradient(100deg, #e8283a 0%, #e11d2e 22.5%, #9f1239 50%, #ff4b5c 62%, #9f1239 78%, #e11d2e 100%); background-size: 200% 100%; background-position: 0 0; }
+/* Long pages: let the browser skip style, layout and paint for sections far below the fold until they come near.
+   No visual change; the remembered size (auto) keeps the scrollbar steady once a section has rendered. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 960px; }
 /* Blog post cover mesh (PostCover sets the two gradient centres, --c1 and --c2, per post). */
 .post-cover-bg { background: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1.2px) 0 0 / 16px 16px, radial-gradient(85% 120% at var(--c1), rgb(255 75 92 / 0.92), transparent 62%), radial-gradient(80% 110% at var(--c2), rgb(159 18 57 / 0.9), transparent 66%), linear-gradient(160deg, #3a1420, #160d12); }
 .bg-brand { background: linear-gradient(135deg, #ff4b5c 0%, #e11d2e 45%, #9f1239 100%); }

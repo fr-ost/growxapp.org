@@ -42,7 +42,8 @@ export function ScrollStory({
         ))}
         {caption && rowsCaption ? <p className="story__rows-caption -mt-14 text-xs text-muted">{caption}</p> : null}
       </div>
-      <div className="story__stage">
+      {/* A visual repeat of the steps' inline visuals for the sticky layout, so it is hidden from assistive tech. */}
+      <div className="story__stage" aria-hidden="true">
         <ol aria-hidden="true" className="mb-4 flex gap-1.5">
           {steps.map((s, i) => (
             <li key={s.key} className="relative h-1 flex-1 overflow-clip rounded-full bg-hairline-strong">

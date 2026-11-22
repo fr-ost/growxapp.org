@@ -194,71 +194,74 @@ export function SiteHeader() {
               Features{" "}
               <IconChevronDown size={15} className={`motion-ok:transition-[rotate] motion-ok:duration-200 motion-ok:ease-glide ${menu ? "rotate-180" : ""}`} />
             </button>
+            {/* The panel's links are rendered only while it is open: every page's HTML stays small (the footer carries the same links). */}
             <div id={menuId} hidden={!menu} className="absolute left-1/2 top-full w-[46rem] -translate-x-1/2 pt-3" onKeyDown={onMenuKey}>
-              <div
-                ref={menuPanelRef}
-                className="grid grid-cols-[minmax(0,1fr)_13rem] gap-2 rounded-3xl border border-hairline bg-white p-2.5 shadow-[var(--shadow-float)] motion-ok:transition-[opacity,translate,scale] motion-ok:duration-200 motion-ok:ease-glide motion-ok:starting:-translate-y-1.5 motion-ok:starting:scale-[.985] motion-ok:starting:opacity-0"
-              >
-                <ul className="grid grid-cols-2 gap-1">
-                  {featureNav.map((f, i) => (
+              {menu ? (
+                <div
+                  ref={menuPanelRef}
+                  className="grid grid-cols-[minmax(0,1fr)_13rem] gap-2 rounded-3xl border border-hairline bg-white p-2.5 shadow-[var(--shadow-float)] motion-ok:transition-[opacity,translate,scale] motion-ok:duration-200 motion-ok:ease-glide motion-ok:starting:-translate-y-1.5 motion-ok:starting:scale-[.985] motion-ok:starting:opacity-0"
+                >
+                  <ul className="grid grid-cols-2 gap-1">
+                    {featureNav.map((f, i) => (
+                      <li
+                        key={f.slug}
+                        style={stagger(i)}
+                        className="motion-ok:transition-[opacity,translate] motion-ok:delay-[calc(var(--i)*18ms)] motion-ok:duration-200 motion-ok:ease-glide motion-ok:starting:translate-y-1 motion-ok:starting:opacity-0"
+                      >
+                        <Link
+                          href={`/features/${f.slug}`}
+                          aria-current={pathname === `/features/${f.slug}` ? "page" : undefined}
+                          className="group flex gap-3 rounded-2xl p-3 hover:bg-tint focus-visible:bg-tint"
+                        >
+                          <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent-ink group-hover:text-white group-focus-visible:text-white">
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0 rounded-xl bg-accent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 motion-ok:transition-opacity motion-ok:duration-200"
+                            />
+                            <FeatureIcon name={f.icon} size={19} className="relative" />
+                          </span>
+                          <span>
+                            <span className="block text-sm font-bold text-text">{f.label}</span>
+                            <span className="mt-0.5 block text-xs leading-snug text-muted">{f.blurb}</span>
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
                     <li
-                      key={f.slug}
-                      style={stagger(i)}
+                      style={stagger(featureNav.length)}
                       className="motion-ok:transition-[opacity,translate] motion-ok:delay-[calc(var(--i)*18ms)] motion-ok:duration-200 motion-ok:ease-glide motion-ok:starting:translate-y-1 motion-ok:starting:opacity-0"
                     >
-                      <Link
-                        href={`/features/${f.slug}`}
-                        aria-current={pathname === `/features/${f.slug}` ? "page" : undefined}
-                        className="group flex gap-3 rounded-2xl p-3 hover:bg-tint focus-visible:bg-tint"
-                      >
-                        <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent-ink group-hover:text-white group-focus-visible:text-white">
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-0 rounded-xl bg-accent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 motion-ok:transition-opacity motion-ok:duration-200"
-                          />
-                          <FeatureIcon name={f.icon} size={19} className="relative" />
+                      <Link href="/features" className="group flex h-full items-center gap-3 rounded-2xl bg-surface-2 p-3 hover:bg-tint focus-visible:bg-tint">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink text-white">
+                          <IconArrowRight size={18} className="nudge" />
                         </span>
                         <span>
-                          <span className="block text-sm font-bold text-text">{f.label}</span>
-                          <span className="mt-0.5 block text-xs leading-snug text-muted">{f.blurb}</span>
+                          <span className="block text-sm font-bold text-text">All features</span>
+                          <span className="mt-0.5 block text-xs leading-snug text-muted">Everything in GrowX, Free vs Premium</span>
                         </span>
                       </Link>
                     </li>
-                  ))}
-                  <li
-                    style={stagger(featureNav.length)}
-                    className="motion-ok:transition-[opacity,translate] motion-ok:delay-[calc(var(--i)*18ms)] motion-ok:duration-200 motion-ok:ease-glide motion-ok:starting:translate-y-1 motion-ok:starting:opacity-0"
-                  >
-                    <Link href="/features" className="group flex h-full items-center gap-3 rounded-2xl bg-surface-2 p-3 hover:bg-tint focus-visible:bg-tint">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink text-white">
-                        <IconArrowRight size={18} className="nudge" />
-                      </span>
-                      <span>
-                        <span className="block text-sm font-bold text-text">All features</span>
-                        <span className="mt-0.5 block text-xs leading-snug text-muted">Everything in GrowX, Free vs Premium</span>
-                      </span>
-                    </Link>
-                  </li>
-                </ul>
-                <div className="on-ink relative flex flex-col justify-between overflow-clip rounded-2xl bg-ink p-5 text-white">
-                  <GrowthLine className="pointer-events-none absolute -bottom-6 -right-6 size-36 text-white/10" strokeWidth={5} />
-                  <p className="relative text-xs font-bold uppercase tracking-[0.12em] text-white/60">GrowX Premium</p>
-                  <div className="relative mt-6 grid gap-3">
-                    <Link href="/signup" className="group inline-flex items-start gap-2 text-sm font-bold leading-snug text-white hover:text-white">
-                      <span>Try Premium free for {TRIAL_DAYS} days</span>
-                      <IconArrowRight size={16} className="nudge mt-0.5 shrink-0 text-accent-on-ink" />
-                    </Link>
-                    <Link href="/whats-new" className="group inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
-                      <span>What&apos;s new in {CURRENT_VERSION}</span>
-                      <IconArrowRight size={16} className="nudge shrink-0 text-accent-on-ink" />
-                    </Link>
-                    <Link href="/tools" className="group inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
-                      <span>{toolNav.length} free tools</span>
-                      <IconArrowRight size={16} className="nudge shrink-0 text-accent-on-ink" />
-                    </Link>
+                  </ul>
+                  <div className="on-ink relative flex flex-col justify-between overflow-clip rounded-2xl bg-ink p-5 text-white">
+                    <GrowthLine className="pointer-events-none absolute -bottom-6 -right-6 size-36 text-white/10" strokeWidth={5} />
+                    <p className="relative text-xs font-bold uppercase tracking-[0.12em] text-white/60">GrowX Premium</p>
+                    <div className="relative mt-6 grid gap-3">
+                      <Link href="/signup" className="group inline-flex items-start gap-2 text-sm font-bold leading-snug text-white hover:text-white">
+                        <span>Try Premium free for {TRIAL_DAYS} days</span>
+                        <IconArrowRight size={16} className="nudge mt-0.5 shrink-0 text-accent-on-ink" />
+                      </Link>
+                      <Link href="/whats-new" className="group inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
+                        <span>What&apos;s new in {CURRENT_VERSION}</span>
+                        <IconArrowRight size={16} className="nudge shrink-0 text-accent-on-ink" />
+                      </Link>
+                      <Link href="/tools" className="group inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
+                        <span>{toolNav.length} free tools</span>
+                        <IconArrowRight size={16} className="nudge shrink-0 text-accent-on-ink" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
           {links.map((l) => (
@@ -312,68 +315,72 @@ export function SiteHeader() {
         hidden={!open}
         className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto overscroll-contain border-t border-hairline bg-white px-4 pb-8 pt-4 lg:hidden motion-ok:transition-[opacity,translate] motion-ok:duration-200 motion-ok:ease-glide motion-ok:starting:-translate-y-2 motion-ok:starting:opacity-0"
       >
-        <nav aria-label="Mobile" onClick={closeAll}>
-          <p className="px-1 text-xs font-bold uppercase tracking-[0.12em] text-muted">Features</p>
-          <ul className="mt-2 grid gap-1">
-            {featureNav.map((f, i) => (
-              <li key={f.slug} style={stagger(Math.min(i, 10))} className={mobileItem}>
-                <Link href={`/features/${f.slug}`} className="flex items-center gap-3 rounded-2xl px-1 py-2.5 font-semibold">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-soft text-accent-ink">
-                    <FeatureIcon name={f.icon} size={18} />
-                  </span>
-                  {f.label}
-                </Link>
-              </li>
-            ))}
-            <li style={stagger(Math.min(featureNav.length, 10))} className={mobileItem}>
-              <Link href="/features" className="flex items-center gap-3 rounded-2xl px-1 py-2.5 font-semibold text-accent-ink">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-white">
-                  <IconArrowRight size={17} />
-                </span>
-                All features
-              </Link>
-            </li>
-          </ul>
-          <ul className="mt-4 border-t border-hairline pt-2">
-            {links.map((l, i) => (
-              <li key={l.href} style={stagger(Math.min(featureNav.length + 1 + i, 10))} className={mobileItem}>
-                <Link
-                  href={l.href}
-                  aria-current={isActive(l.href) ? "page" : undefined}
-                  className="flex items-center justify-between border-b border-hairline py-3.5 text-lg font-semibold aria-[current=page]:text-accent-ink"
-                >
-                  {l.label}
-                  <IconChevronDown size={18} className="-rotate-90 text-muted" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <ul className="mt-3 grid gap-1">
-            {toolNav.map((t) => (
-              <li key={t.href}>
-                <Link href={t.href} className="flex items-center gap-2 py-1.5 text-sm font-medium text-text-2">
-                  <IconTool size={15} className="text-accent" /> {t.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="mt-5 grid gap-3" onClick={closeAll}>
-          {signedIn ? (
-            <LinkButton href="/dashboard" size="lg">
-              Go to dashboard
-            </LinkButton>
-          ) : (
-            <>
-              <LinkButton href="/signup" size="lg">
-                Start free
-              </LinkButton>
-              <LinkButton href="/login" variant="secondary" size="lg">
-                Log in
-              </LinkButton>
-            </>
-          )}
-        </div>
+        {open ? (
+          <>
+            <nav aria-label="Mobile" onClick={closeAll}>
+              <p className="px-1 text-xs font-bold uppercase tracking-[0.12em] text-muted">Features</p>
+              <ul className="mt-2 grid gap-1">
+                {featureNav.map((f, i) => (
+                  <li key={f.slug} style={stagger(Math.min(i, 10))} className={mobileItem}>
+                    <Link href={`/features/${f.slug}`} className="flex items-center gap-3 rounded-2xl px-1 py-2.5 font-semibold">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-soft text-accent-ink">
+                        <FeatureIcon name={f.icon} size={18} />
+                      </span>
+                      {f.label}
+                    </Link>
+                  </li>
+                ))}
+                <li style={stagger(Math.min(featureNav.length, 10))} className={mobileItem}>
+                  <Link href="/features" className="flex items-center gap-3 rounded-2xl px-1 py-2.5 font-semibold text-accent-ink">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-white">
+                      <IconArrowRight size={17} />
+                    </span>
+                    All features
+                  </Link>
+                </li>
+              </ul>
+              <ul className="mt-4 border-t border-hairline pt-2">
+                {links.map((l, i) => (
+                  <li key={l.href} style={stagger(Math.min(featureNav.length + 1 + i, 10))} className={mobileItem}>
+                    <Link
+                      href={l.href}
+                      aria-current={isActive(l.href) ? "page" : undefined}
+                      className="flex items-center justify-between border-b border-hairline py-3.5 text-lg font-semibold aria-[current=page]:text-accent-ink"
+                    >
+                      {l.label}
+                      <IconChevronDown size={18} className="-rotate-90 text-muted" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul className="mt-3 grid gap-1">
+                {toolNav.map((t) => (
+                  <li key={t.href}>
+                    <Link href={t.href} className="flex items-center gap-2 py-1.5 text-sm font-medium text-text-2">
+                      <IconTool size={15} className="text-accent" /> {t.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="mt-5 grid gap-3" onClick={closeAll}>
+              {signedIn ? (
+                <LinkButton href="/dashboard" size="lg">
+                  Go to dashboard
+                </LinkButton>
+              ) : (
+              <>
+                  <LinkButton href="/signup" size="lg">
+                    Start free
+                  </LinkButton>
+                  <LinkButton href="/login" variant="secondary" size="lg">
+                    Log in
+                  </LinkButton>
+              </>
+              )}
+            </div>
+          </>
+        ) : null}
       </div>
     </header>
   );

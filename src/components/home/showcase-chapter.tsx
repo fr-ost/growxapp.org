@@ -174,7 +174,8 @@ export function showcaseSteps(): StoryStep[] {
   return chapters.map((c) => ({
     key: c.key,
     content: <ChapterCopy c={c} />,
-    visual: <Screenshot src={c.image} alt={c.alt} sizes={SIZES} />,
+    // The sticky stage repeats each step's screenshot (lazy, hidden from assistive tech); the step's own copy keeps the alt text.
+    visual: <Screenshot src={c.image} alt="" sizes={SIZES} />,
     pops: <Annotation ring={c.ring} chip={c.chip} />,
     inlineVisual: (
       <div className="reveal-scale">

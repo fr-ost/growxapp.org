@@ -240,7 +240,7 @@ export default function HomePage() {
       <FactStrip />
 
       {/* PILLARS */}
-      <Section>
+      <Section className="cv-auto">
         <Container>
           <SectionHeading eyebrow="Everything in one extension" title="Seven growth tools. One simple dashboard." center>
             Stop juggling a follow tool, a scheduler and an analytics app. GrowX does the daily work of growing on X in one place.
@@ -269,7 +269,7 @@ export default function HomePage() {
       </Section>
 
       {/* HOW IT WORKS */}
-      <Section>
+      <Section className="cv-auto">
         <Container>
           <SectionHeading eyebrow="How it works" title="Set up in five minutes." center>
             A setup wizard walks you through it. After that, GrowX works in the background.
@@ -361,7 +361,7 @@ export default function HomePage() {
       </InkStage>
 
       {/* PRIVATE BY DESIGN */}
-      <Section>
+      <Section className="cv-auto">
         <Container>
           <SectionHeading eyebrow="Private by design" title="Your data stays with you." center />
           <div className="mt-12">
@@ -392,7 +392,7 @@ export default function HomePage() {
       </Section>
 
       {/* PRICING TEASER: prices never move */}
-      <Section className="bg-surface-2">
+      <Section className="cv-auto bg-surface-2">
         <Container>
           <SectionHeading eyebrow="Pricing" title="Free forever. Premium when you want more." center>
             Start free and try every Premium feature for {TRIAL_DAYS} days. No credit card needed.
@@ -445,7 +445,7 @@ export default function HomePage() {
       </Section>
 
       {/* FREE TOOLS */}
-      <Section>
+      <Section className="cv-auto">
         <Container>
           <SectionHeading eyebrow="Free tools" title="Free X (Twitter) tools, right in your browser." center>
             No sign-up, nothing to install, nothing you type leaves your computer.
@@ -485,7 +485,7 @@ export default function HomePage() {
       </Section>
 
       {/* BLOG */}
-      <Section className="bg-surface-2">
+      <Section className="cv-auto bg-surface-2">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading eyebrow="Guides" title="Learn to grow on X" />
@@ -506,7 +506,7 @@ export default function HomePage() {
       </Section>
 
       {/* FAQ */}
-      <Section>
+      <Section className="cv-auto">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <SectionHeading eyebrow="FAQ" title="Questions, answered.">
