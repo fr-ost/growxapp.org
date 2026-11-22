@@ -50,6 +50,7 @@ const pages = {
   "/faq": ["src/app/faq/page.tsx", "src/content/faq.ts"],
   "/whats-new": ["src/app/whats-new/page.tsx", "src/content/releases.ts"],
   "/press": ["src/app/press/page.tsx"],
+  "/featured": ["src/app/featured/page.tsx", "src/data/badges.ts"],
   "/contact": ["src/app/contact/page.tsx"],
   "/privacy": ["src/app/privacy/page.tsx"],
   "/terms": ["src/app/terms/page.tsx"],

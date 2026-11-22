@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { liveBadges } from "./src/data/badges";
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -16,13 +17,16 @@ const google = {
   frame: "https://td.doubleclick.net https://www.googletagmanager.com",
 };
 
+// Image hosts of the directory badges shown in the footer and on /featured (their official <img> URLs, never proxied).
+const badgeHosts = [...new Set(liveBadges.flatMap((b) => [...(b.html ?? "").matchAll(/src="(https:\/\/[^/"]+)/g)].map((m) => m[1])))].join(" ");
+
 // Production-only CSP (dev needs eval for HMR). Inline scripts are required by
 // Next.js hydration unless nonces are used, which would make every page dynamic.
 const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline' ${google.script}`,
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: ${google.img}`,
+  `img-src 'self' data: blob: ${google.img} ${badgeHosts}`,
   "font-src 'self' data:",
   `connect-src 'self' ${google.connect}`,
   `frame-src ${google.frame}`,

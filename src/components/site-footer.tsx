@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { IconChrome, IconMail } from "@/components/icons";
+import { FeaturedOn } from "@/components/featured-on";
 import { Aurora } from "@/components/motion/aurora";
 import { MotionToggle } from "@/components/motion/motion-toggle";
 import { Wordmark } from "@/components/motion/wordmark";
@@ -44,6 +45,7 @@ const cols = [
     links: [
       { href: "/about", label: "About" },
       { href: "/press", label: "Press kit" },
+      { href: "/featured", label: "Featured on" },
       { href: "/contact", label: "Support" },
       { href: "/login", label: "Log in" },
       { href: "/privacy", label: "Privacy policy" },
@@ -104,6 +106,11 @@ export function SiteFooter() {
           </nav>
         ))}
       </Container>
+      <div className="relative border-t border-white/10">
+        <Container className="py-6">
+          <FeaturedOn />
+        </Container>
+      </div>
       <div className="relative border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-white/60 lg:flex-row lg:text-left">
           <p>&copy; {new Date().getFullYear()} GrowX · {site.author}</p>
