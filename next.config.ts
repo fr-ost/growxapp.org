@@ -42,6 +42,10 @@ const REVALIDATE = "public, max-age=604800, stale-while-revalidate=2592000";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    // Post social cards moved to /opengraph-image/card (per-post alt text); keep links that X and others cached working.
+    return [{ source: "/blog/:slug/opengraph-image", destination: "/blog/:slug/opengraph-image/card", permanent: true }];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     // Optimised screenshots are cached for a year (the source files are never replaced in place).
