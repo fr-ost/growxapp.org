@@ -9,10 +9,10 @@ import { CURRENT_VERSION, LANGUAGES, releases } from "@/content/releases";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: `What's New in GrowX ${CURRENT_VERSION}: 21 Languages & More`,
-  description: `What's new in GrowX ${CURRENT_VERSION}: the extension in 21 languages, optional feature-usage sharing, List follow from a CSV or TXT file and full release notes.`,
+  title: `What's New in GrowX ${CURRENT_VERSION}: AI Reply Assistant`,
+  description: `What's new in GrowX ${CURRENT_VERSION}: an AI Reply Assistant and one-click AI reply buttons on X, a list of your devices, and the full release notes.`,
   path: "/whats-new",
-  keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", "GrowX 2.4.7", "GrowX languages", "GrowX List follow", "what's new in GrowX"],
+  keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", `GrowX ${CURRENT_VERSION}`, "GrowX AI Reply Assistant", "AI reply buttons on X", "GrowX languages", "what's new in GrowX"],
 });
 
 export default function WhatsNewPage() {
@@ -35,8 +35,8 @@ export default function WhatsNewPage() {
                 <IconChrome size={20} /> Get the update
               </ExternalButton>
             ) : null}
-            <LinkButton href="#languages" variant="secondary" size="lg">
-              See the 21 languages <IconArrowRight size={17} className="nudge" />
+            <LinkButton href="/features/twitter-reply-targets" variant="secondary" size="lg">
+              See the AI Reply Assistant <IconArrowRight size={17} className="nudge" />
             </LinkButton>
           </>
         }

@@ -9,7 +9,7 @@ export interface Release {
   groups: { title: string; items: string[] }[];
 }
 
-export const CURRENT_VERSION = "2.4.7";
+export const CURRENT_VERSION = "2.5.0";
 
 /** The extension's interface languages (shared/i18n.js LANGS): BCP 47 code, native name, English name. */
 export const LANGUAGES: { code: string; native: string; english: string }[] = [
@@ -37,6 +37,82 @@ export const LANGUAGES: { code: string; native: string; english: string }[] = [
 ];
 
 export const releases: Release[] = [
+  {
+    version: "2.5.0",
+    title: "AI Reply Assistant",
+    intro: "GrowX AI now writes your replies: one click beside X's reply box, or a draft under every fresh post in Engage. You approve each one.",
+    groups: [
+      {
+        title: "New: AI reply buttons on X (Premium)",
+        items: [
+          "Tone buttons right beside X's reply box: AI Reply, Insightful, Friendly, Witty, Supportive, Curious and Professional",
+          "One click and GrowX AI writes a reply to that post into the box; another click swaps in a new one",
+          "More options shows three replies to pick from, with the tone, length and approach",
+          "You can edit the reply, and you press X's Reply button yourself",
+        ],
+      },
+      {
+        title: "New: AI Reply Assistant (Premium)",
+        items: [
+          "Engage, AI Reply Assistant (the page was called Reply targets): GrowX AI drafts a reply under every fresh post, in your tone and voice",
+          "Pick the tone, the length (short, medium or detailed), the approach and whether to use emojis; your choice is saved",
+          "Edit and send one, or approve several and send them one at a time, 45 to 90 seconds apart (up to 10 at once, 80 a day)",
+          "Every reply is checked first: no repeat of a reply from the last 14 days, no placeholders left in, nothing over 280 characters",
+          "The list of fresh posts and replying or liking by hand stay free. [See the AI Reply Assistant](/features/twitter-reply-targets)",
+        ],
+      },
+      {
+        title: "Safe by design",
+        items: [
+          "You read and approve every reply; GrowX never replies by itself",
+          "GrowX AI runs on your computer: private, no API key",
+        ],
+      },
+    ],
+  },
+  {
+    version: "2.4.9",
+    title: "See and manage your devices",
+    intro: "See every device your GrowX account is signed in on, and sign any of them out.",
+    groups: [
+      {
+        title: "New: Your devices",
+        items: [
+          "Settings, Accounts & sync lists every device or Chrome profile your GrowX account is signed in on, by browser and system, with this device marked",
+          "Sign any other device out from there; it stops at once",
+          "Recently signed out shows which device went and why",
+          "When every place is taken, signing in asks which device to sign out, or cancel and nobody is signed out",
+        ],
+      },
+      {
+        title: "Better",
+        items: ["Spotted a clumsy translation? Settings, Appearance has a link to suggest a better one", "More of GrowX is translated, in every language"],
+      },
+      {
+        title: "Fixes",
+        items: ["The popup no longer needs scrolling while the autopilot runs", "\"See it in Accounts & sync\" now leads to your devices"],
+      },
+    ],
+  },
+  {
+    version: "2.4.8",
+    title: "Use GrowX on more devices",
+    intro: "Your GrowX account can now stay signed in on one device per X account slot.",
+    groups: [
+      {
+        title: "New: one device per X account slot",
+        items: [
+          "Your GrowX account stays signed in on as many devices or Chrome profiles as it has X account slots: 2 for everyone, one more for every extra slot",
+          "Signing in on one device too many signs out only the device used least recently",
+          "Accounts & sync shows how many devices your account can use",
+        ],
+      },
+      {
+        title: "Fixes",
+        items: ["A few short words that stayed in English, such as Followers, Following and Replies, are translated now", "After a sign-out, the message says why, in your language"],
+      },
+    ],
+  },
   {
     version: "2.4.7",
     title: "GrowX now speaks your language",

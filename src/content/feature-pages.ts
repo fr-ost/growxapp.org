@@ -2,7 +2,7 @@ import type { FeaturePage } from "./feature-types";
 
 /**
  * Feature landing pages (/features/<slug>), one per main search intent, in FEATURE_SLUGS order.
- * Every claim must match docs/PRODUCT_FACTS.md (extension v2.4.6). No invented statistics, user counts,
+ * Every claim must match docs/PRODUCT_FACTS.md (extension v2.5.0). No invented statistics, user counts,
  * ratings, testimonials or result promises; screenshots use demo data and their numbers are never quoted.
  */
 export const featurePages: FeaturePage[] = [
@@ -345,8 +345,8 @@ export const featurePages: FeaturePage[] = [
         premium: true,
       },
       {
-        title: "Reply ideas",
-        text: "Suggested replies for posts in Reply targets. You edit them and send them yourself.",
+        title: "AI replies",
+        text: "Drafts under fresh posts in the AI Reply Assistant, and one-click tone buttons beside X's reply box. You approve every reply.",
         premium: true,
       },
       {
@@ -390,14 +390,14 @@ export const featurePages: FeaturePage[] = [
         heading: "What GrowX AI can do",
         paragraphs: [
           "GrowX AI is part of GrowX Premium and appears as buttons where you already write, so you never copy text between tabs. Every suggestion uses the niche and voice settings you chose, which keeps the output closer to how you actually write than a blank prompt in a general chatbot.",
-          "None of these actions post anything. GrowX AI fills the composer or shows suggestions; you decide what to keep, edit it and then post, schedule or queue it yourself. Replies suggested in [Reply targets](/features/twitter-reply-targets) are only sent when you press the button, and GrowX never sends DMs.",
+          "None of these actions post anything. GrowX AI fills the composer or shows suggestions; you decide what to keep, edit it and then post, schedule or queue it yourself. Replies drafted in the [AI Reply Assistant](/features/twitter-reply-targets) go out only after you approve them, and with the reply buttons on X you press X's own Reply button. GrowX never replies by itself and never sends DMs.",
         ],
         bullets: [
           "**Write**: a post from a topic or a rough idea",
           "**Improve**: a clearer, tighter version of your draft",
           "**Hooks**: several opening lines to choose from",
           "**Thread it**: a long draft or notes turned into a numbered thread",
-          "**Reply ideas**: suggested replies to fresh posts in your niche",
+          "**AI replies**: drafts under fresh posts in the [AI Reply Assistant](/features/twitter-reply-targets), and tone buttons right beside X's reply box (new in 2.5.0)",
           "**Weekly summary**: a short read on how your week went",
         ],
       },
@@ -425,7 +425,7 @@ export const featurePages: FeaturePage[] = [
       ],
       premium: [
         "GrowX AI: Write, Improve, Hooks and Thread it",
-        "AI reply ideas in Reply targets",
+        "AI Reply Assistant and AI reply buttons on X",
         "Weekly AI summary",
         "Runs on your computer: no API key, no per-use fees",
         "All included in the free 30-day Premium trial, no credit card",
@@ -450,13 +450,13 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "Will GrowX AI post or reply on X automatically?",
-        a: "No. It only fills the composer or suggests text. You decide what to post, and replies are only sent when you press the button.",
+        a: "No. It fills the composer or drafts replies. You decide what to post, and a reply goes out only after you approve it: you send it, or press Send approved, or press X's own Reply button.",
       },
     ],
     xHeading: "An AI writer for X posts, hooks and threads",
     limits: [
       { label: "GrowX AI: Write, Improve, Hooks, Thread it", free: "-", premium: "Included, on your computer" },
-      { label: "AI reply ideas in Reply targets", free: "-", premium: "Included" },
+      { label: "AI replies: AI Reply Assistant and buttons on X", free: "-", premium: "Included" },
       { label: "Weekly AI summary", free: "-", premium: "Included" },
       { label: "Templates", free: "52 built-in plus your own", premium: "52 built-in plus your own" },
       { label: "Thread splitter", free: "Thread it without AI", premium: "Thread it with AI" },
@@ -903,52 +903,54 @@ export const featurePages: FeaturePage[] = [
   },
   {
     slug: "twitter-reply-targets",
-    nav: "Reply targets",
-    blurb: "Find fresh posts from bigger accounts in your niche and reply early, while it counts.",
+    nav: "AI Reply Assistant",
+    blurb: "Fresh posts in your niche, ranked to reply early, with GrowX AI drafting replies you approve.",
     icon: "message",
-    seoTitle: "Twitter Engagement Tool: Reply to Big Accounts Early",
+    seoTitle: "AI Reply Assistant for X (Twitter): Reply Early, Approve All",
     description:
-      "GrowX Reply targets is a Twitter engagement tool that finds fresh posts from big accounts in your niche so you can reply early on X. You press send.",
+      "GrowX's AI Reply Assistant finds fresh posts in your niche and drafts replies in your tone with on-device AI. You approve every reply. Free 30-day trial.",
     keywords: [
-      "Twitter engagement tool",
+      "AI reply assistant",
+      "AI reply generator for Twitter",
+      "AI replies on X",
+      "Twitter reply generator",
       "reply to big accounts early",
+      "Twitter engagement tool",
       "reply guy tool",
-      "Twitter reply strategy",
-      "X engagement tool",
-      "find tweets to reply to",
-      "Twitter VIP alerts",
       "GrowX",
     ],
-    eyebrow: "Engage",
-    h1: "Reply early to the right posts on X with Reply targets",
+    eyebrow: "Engage · New in 2.5.0",
+    h1: "An AI Reply Assistant for X that drafts, and lets you decide",
     lead:
-      "Replies on fresh posts from bigger accounts are a common way to get discovered on X. GrowX collects new posts from your sources, VIPs and anyone you add, ranks them by freshness and momentum, and lets you reply and like in one place. Nothing is sent until you press the button.",
+      "Early, thoughtful replies under bigger posts are one of the fastest ways to get seen on X. GrowX finds fresh posts from the accounts you watch, ranks them by how fast they take off, and GrowX AI drafts a reply to each one in your tone, on your computer. You read and approve every reply; GrowX never replies by itself.",
     image: { src: "/screens/overview.webp", alt: "GrowX Home dashboard with daily goals, upcoming posts, this week on X and the popup with pace controls (demo data)" },
     highlights: [
       {
-        title: "Fresh posts only",
-        text: "Posts younger than 120 minutes by default, so your reply lands while the conversation is still active.",
+        title: "Fresh posts, ranked",
+        text: "Posts younger than 120 minutes by default from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off.",
       },
       {
-        title: "Ranked by momentum",
-        text: "Targets are ranked by freshness and how fast they take off, so the posts worth replying to come first.",
+        title: "Reply and like by hand",
+        text: "Reply and like from GrowX without switching tabs. Nothing goes out until you press the button, and GrowX never sends DMs.",
       },
       {
-        title: "You press send",
-        text: "Reply and like from GrowX without switching tabs. Nothing is sent by itself, and GrowX never sends DMs.",
-      },
-      {
-        title: "People and VIPs",
-        text: "Tag people, add notes, mark VIPs and watch flags, and see mutuals and fans you don't follow back yet.",
-      },
-      {
-        title: "VIP alerts",
-        text: "Get a notification when a VIP posts, so you can be one of the first to reply.",
+        title: "AI drafts in your tone",
+        text: "GrowX AI drafts a reply under each post: insightful, friendly, witty, supportive, curious or professional, short, medium or detailed.",
         premium: true,
       },
       {
-        title: "AI reply ideas",
-        text: "Suggested replies from GrowX AI, running on your computer in your niche and voice. Edit them before you send.",
+        title: "Checked before it can be sent",
+        text: "No repeat of a reply from the last 14 days, no placeholders left in, nothing over 280 characters, and a warning on generic text, links or hashtags.",
+        premium: true,
+      },
+      {
+        title: "Approve several, send in turn",
+        text: "Approve a few drafts and GrowX sends them one at a time, 45 to 90 seconds apart, up to 10 at once and 80 a day.",
+        premium: true,
+      },
+      {
+        title: "AI reply buttons on X",
+        text: "Tone buttons right beside X's own reply box: one click writes a reply into it. You edit it if you like and press Reply yourself.",
         premium: true,
       },
     ],
@@ -958,12 +960,12 @@ export const featurePages: FeaturePage[] = [
         text: "Your auto follow sources are already included. Add VIPs and anyone else whose posts you want to reply to.",
       },
       {
-        title: "Open Reply targets",
-        text: "In Engage, GrowX shows fresh posts from those accounts, ranked by freshness and how fast they are taking off.",
+        title: "Open the AI Reply Assistant",
+        text: "In Engage, GrowX lists fresh posts from those accounts, ranked by how fast they take off. With Premium, press **Draft with AI** on a post or **Draft replies for all** (the top 10).",
       },
       {
-        title: "Reply and like",
-        text: "Write a thoughtful reply, or start from an AI idea with Premium, and press the button to send it from your account.",
+        title: "Read, edit, approve",
+        text: "Change a draft, ask for a new or shorter one, then send it, or approve several and press **Send approved**. Stop at any time.",
       },
     ],
     sections: [
@@ -971,82 +973,94 @@ export const featurePages: FeaturePage[] = [
         heading: "Why replying early works on X",
         paragraphs: [
           "A good reply under a popular post can be read by many more people than a post from a small account, and some of those readers click through to profiles that add something useful. Timing matters: replies posted while a post is still fresh have a better chance of being seen near the top, while a reply added hours later often sits below many others.",
-          "The hard part is noticing those posts in time. Refreshing a handful of big accounts by hand all day is distracting, and the home timeline does not show posts in order of opportunity. Reply targets does the watching for you, so you can spend a short, focused session replying instead of an hour scrolling and hoping to catch the right post.",
+          "The hard part is noticing those posts in time and then writing something worth reading, fast. GrowX does the watching: it keeps posts younger than 120 minutes by default from your [auto follow](/features/twitter-auto-follow) sources, your VIPs and anyone you add, and ranks each one by freshness and how fast it is taking off. Those sources are the accounts your ideal audience already follows, so a visible reply there puts you in front of the same people GrowX is following for you.",
         ],
       },
       {
-        heading: "How Reply targets finds and ranks posts",
+        heading: "How the AI reply assistant drafts on X",
         paragraphs: [
-          "GrowX looks at recent posts from three groups: the **sources** you use for [auto follow](/features/twitter-auto-follow), the people you marked as **VIPs**, and anyone else you add. By default it keeps posts younger than 120 minutes and drops older ones. Each post is ranked by freshness and how fast it is taking off, so a post that is gaining traction rises above one that is quiet.",
-          "Using your auto follow sources is deliberate. Those accounts are the ones your ideal audience already follows, so a visible reply there puts you in front of the same kind of people GrowX is following for you. Someone who notices your reply and then sees a follow from you has two reasons to look at your profile.",
-        ],
-      },
-      {
-        heading: "Replies, likes and the People list",
-        paragraphs: [
-          "You can reply to and like target posts directly from GrowX, without switching between tabs. GrowX only sends a reply or a like **when you press the button**; nothing is posted by itself, and GrowX never sends DMs. Everything happens in your own signed-in x.com session, and GrowX never asks for your X password.",
-          "**People** is a lightweight contact list for X. Add tags and notes, mark VIPs and watch flags, and see your mutuals and the fans you don't follow back yet. Fans who regularly like and reply to you are good people to follow back and engage with, and the [top fans list](/features/twitter-unfollower-tracker) in Insights shows exactly who they are.",
+          "With **Premium**, **GrowX AI** drafts a reply under each fresh post, using your niche and voice from Settings and the options you pick: the **tone** (insightful, friendly, witty, supportive, curious or professional), the **length** (short, medium or detailed), the **approach** (add a point, ask a question, share an experience, or agree and build on it) and whether to use emojis. Your choice is saved. Press **Draft with AI** on one post, or **Draft replies for all** to draft the 10 highest-ranked posts one by one, with a Stop button.",
+          "GrowX AI runs **on your computer**, using the AI model built into Chrome, the same as the [GrowX AI writer](/features/ai-tweet-writer): your drafts are not sent to GrowX and there is no API key. It never invents facts; where a number or name is needed it leaves a {placeholder} for you, and a draft with a placeholder left in cannot be sent.",
         ],
         bullets: [
-          "**Tags and notes**: remember who someone is and what you talked about",
-          "**VIPs and watch flags**: the accounts you never want to miss",
-          "**Mutuals**: people who follow you and whom you follow back",
-          "**Fans you don't follow back yet**: an easy list to return the favour",
+          "**New draft** and **Shorter** on every draft; your edits are kept as you type",
+          "No repeat of a reply you sent in the last 14 days, nothing over 280 characters, no two replies in one batch alike",
+          "A warning on generic text, links and hashtags, so you can fix them before sending",
         ],
       },
       {
-        heading: "VIP alerts and AI reply ideas (Premium)",
+        heading: "You approve every reply",
         paragraphs: [
-          "With **Premium**, **VIP alerts** send a notification when one of your VIPs posts, so you can reply while the post is still minutes old rather than finding it later in the day. Keep the list short and focused on the accounts that matter most in your niche; alerts for too many accounts quickly turn into noise you start to ignore.",
-          "**AI reply ideas** use GrowX AI, which runs on your computer with the model built into Chrome, to suggest replies that fit your niche and voice. Treat them as starting points: add your own experience or a specific detail, because generic replies are easy to spot. The [Twitter reply strategy guide](/blog/twitter-reply-strategy) covers what makes a reply worth reading.",
+          "GrowX **never replies by itself**. You can send one reply, or approve several and press **Send approved**: they go out one at a time, 45 to 90 seconds apart, up to 10 at once and within an 80-a-day cap. Stop at any time. GrowX stops by itself when X asks for a break, when Premium ends or when another X account is signed in, and approved replies only go out from the account they were approved on.",
+          "Replying and liking by hand from the list of fresh posts **stays free**, and GrowX only sends a reply or a like when you press the button. Everything happens in your own signed-in x.com session; GrowX never asks for your X password and never sends DMs. No tool can promise zero risk on X, so keep replies specific and spread them out.",
+        ],
+      },
+      {
+        heading: "AI reply buttons right in X (Premium)",
+        paragraphs: [
+          "Since version 2.5.0, a row of one-click buttons sits right beside **X's own reply box**, under a post and in X's reply dialog: AI Reply (your usual tone), Insightful, Friendly, Witty, Supportive, Curious and Professional, plus a button to swap in another reply and **More options**, which shows three replies to pick from with the tone, length and approach. Only reply boxes get them, never the box for a new post.",
+          "One click and GrowX AI writes a reply to that post into X's box. You can still edit it, and **you press X's Reply button yourself**; GrowX never presses it. The buttons follow X's light, Dim and Lights out themes and your GrowX language, and you can turn them off on the AI Reply Assistant page. For what makes a reply worth reading, see the [Twitter reply strategy guide](/blog/twitter-reply-strategy).",
+        ],
+      },
+      {
+        heading: "People, VIPs and alerts",
+        paragraphs: [
+          "**People** is a lightweight contact list for X: add tags and notes, mark VIPs and watch flags, and see your mutuals and the fans you don't follow back yet. With **Premium**, **VIP alerts** send a notification when one of your VIPs posts, so you can reply while the post is still minutes old. Keep the list short; alerts for too many accounts turn into noise.",
         ],
       },
     ],
     plans: {
       free: [
-        "Reply targets from your sources, VIPs and accounts you add",
+        "Fresh posts from your sources, VIPs and accounts you add",
         "Ranking by freshness and how fast posts take off",
         "Reply and like from GrowX when you press the button",
         "People: tags, notes, VIPs, watch flags, mutuals and fans",
       ],
       premium: [
+        "AI Reply Assistant: drafts in your tone, length and approach",
+        "Approve several and send them one at a time (up to 10 at once, 80 a day)",
+        "AI reply buttons beside X's own reply box",
         "VIP alerts when a VIP posts",
-        "AI reply ideas from on-device GrowX AI",
         "All included in the free 30-day Premium trial, no credit card",
       ],
     },
     faq: [
       {
         q: "Does GrowX reply to tweets automatically?",
-        a: "No. GrowX shows reply targets and lets you reply and like from one screen, but nothing is sent until you press the button. It never sends DMs.",
+        a: "No. GrowX AI drafts replies, but you read and approve every one. You send a reply yourself, or approve several and press Send approved, and GrowX sends them one at a time, 45 to 90 seconds apart. GrowX never replies by itself and never sends DMs.",
       },
       {
-        q: "How do I find tweets to reply to on Twitter?",
-        a: "Pick accounts your audience follows and watch for their newest posts. GrowX's Reply targets does this for you, keeping posts younger than 120 minutes by default and ranking them by how fast they take off.",
+        q: "What is the GrowX AI Reply Assistant?",
+        a: "The Engage page that lists fresh posts from the accounts you watch, ranked by how fast they take off, with GrowX AI drafting a reply to each one in your tone. The list and replying by hand are free; the AI drafts and sending approved replies are Premium.",
+      },
+      {
+        q: "Where does GrowX AI write my replies?",
+        a: "On your own computer, using the AI model built into Chrome. Your drafts are not sent to GrowX and there is no API key.",
+      },
+      {
+        q: "Can GrowX write a reply right inside X?",
+        a: "Yes, with Premium. Tone buttons sit beside X's own reply box; one click writes a reply into it. You can edit it, and you press X's Reply button yourself.",
       },
       {
         q: "How early should I reply to a big account's post on X?",
-        a: "As early as you can while still adding something useful. Early replies have more time to be seen, which is why Reply targets focuses on posts from roughly the last two hours by default.",
-      },
-      {
-        q: "What is the reply guy strategy on X?",
-        a: "It means growing by leaving thoughtful replies on larger accounts in your niche. It works best with replies that add a real insight or experience, not one-word agreement.",
+        a: "As early as you can while still adding something useful. Early replies have more time to be seen, which is why GrowX focuses on posts from roughly the last two hours by default.",
       },
       {
         q: "Can I get notified when a specific Twitter account posts?",
         a: "Yes, with Premium. Mark the account as a VIP in GrowX and VIP alerts will notify you when they post.",
       },
     ],
-    xHeading: "Reply targets: reply early to fresh posts on X",
+    xHeading: "An AI reply assistant for X that you stay in charge of",
     limits: [
-      { label: "Reply targets from sources, VIPs and accounts you add", free: "Included", premium: "Included" },
-      { label: "Ranking by freshness and how fast posts take off", free: "Included", premium: "Included" },
+      { label: "Fresh posts from sources, VIPs and accounts you add", free: "Included", premium: "Included" },
       { label: "Reply and like when you press the button", free: "Included", premium: "Included" },
+      { label: "AI reply drafts (tone, length, approach)", free: "-", premium: "Included, on your computer" },
+      { label: "Send approved replies", free: "-", premium: "One at a time, 45-90 s apart, up to 10 at once, 80 a day" },
+      { label: "AI reply buttons beside X's reply box", free: "-", premium: "Included" },
       { label: "VIP alerts when a VIP posts", free: "-", premium: "Included" },
-      { label: "AI reply ideas", free: "-", premium: "Included, from on-device GrowX AI" },
     ],
     tools: ["/tools/tweet-character-counter", "/tools/twitter-engagement-rate-calculator"],
-    relatedPosts: ["twitter-reply-strategy", "twitter-lists-guide", "how-to-increase-twitter-engagement", "twitter-algorithm-explained", "how-to-grow-on-twitter-x", "how-to-go-viral-on-twitter"],
+    relatedPosts: ["twitter-reply-strategy", "ai-tweet-writer-growx-ai", "how-to-increase-twitter-engagement", "twitter-lists-guide", "twitter-algorithm-explained", "how-to-go-viral-on-twitter"],
     related: ["ai-tweet-writer", "twitter-auto-follow", "twitter-analytics"],
   },
   {

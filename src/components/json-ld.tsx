@@ -159,7 +159,8 @@ export const softwareLd = {
     "GrowX AI writer that runs on your computer",
     "Post analytics, topics and formats that work",
     "Unfollower tracker: who followed and who unfollowed you",
-    "Reply targets to reply early to fresh posts in your niche",
+    "AI Reply Assistant: fresh posts in your niche, ranked to reply early, with AI-drafted replies you approve",
+    "AI reply buttons beside X's reply box",
     "Cleanup of non-followers and inactive accounts",
   ],
 };

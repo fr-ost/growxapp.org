@@ -9,8 +9,8 @@ import { pricingTiers } from "@/config/pricing";
 import type { ProductId } from "@/lib/billing/catalog";
 
 const perks: Record<string, string[]> = {
-  FREE: ["Safe & Balanced auto follow", "Schedule up to 10 posts at a time", "Analytics for your latest 30 posts", "Who unfollowed you (7 days)", "Reply targets & cleanup scan"],
-  PRO_MONTHLY: ["Everything in Free", "GrowX AI writer", "Unlimited scheduling & evergreen", "Turbo pace & smart score", "Full analytics & follower history", "Bulk unfollow & auto cleanup"],
+  FREE: ["Safe & Balanced auto follow", "Schedule up to 10 posts at a time", "Analytics for your latest 30 posts", "Who unfollowed you (7 days)", "Fresh posts to reply to & cleanup scan"],
+  PRO_MONTHLY: ["Everything in Free", "GrowX AI writer & AI Reply Assistant", "Unlimited scheduling & evergreen", "Turbo pace & smart score", "Full analytics & follower history", "Bulk unfollow & auto cleanup"],
   PRO_YEARLY: ["Everything in Premium", "About $1.25 per month", "One payment for 365 days"],
   PRO_LIFETIME: ["Everything in Premium", "Pay once", "No renewal payments"],
 };

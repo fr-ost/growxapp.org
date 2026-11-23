@@ -1,14 +1,14 @@
 import { DemoFrame, demoAtoms as f, type DemoProps } from "./frame";
 import s from "./reply-targets.module.css";
 
-const LABEL = "fresh posts from your niche ranked so you can reply early; nothing is sent unless you press Reply.";
+const LABEL = "fresh posts from your niche ranked so you can reply early; you approve every reply.";
 
-/** Reply targets: the post that is taking off rises to the top and gets a Reply button. */
+/** AI Reply Assistant: the post that is taking off rises to the top and gets a Reply button. */
 export function DemoReplyTargets(props: DemoProps) {
   return (
     <DemoFrame title="GrowX · Engage" label={LABEL} {...props}>
       <div className={f.head}>
-        <span className={f.headTitle}>Reply targets</span>
+        <span className={f.headTitle}>AI Reply Assistant</span>
         <span className={f.chip}>Younger than 120 min</span>
       </div>
       <div className={s.list}>
@@ -39,7 +39,7 @@ export function DemoReplyTargets(props: DemoProps) {
           <span className={`${f.chip} ${f.mono} ${s.age}`}>26 min</span>
         </div>
       </div>
-      <p className={f.foot}>Nothing is sent unless you press Reply.</p>
+      <p className={f.foot}>You approve every reply. GrowX never replies by itself.</p>
     </DemoFrame>
   );
 }

@@ -1,4 +1,4 @@
-# GrowX product facts (extension v2.4.7)
+# GrowX product facts (extension v2.5.0)
 
 The single reference for website copy. Every claim on the site and in the blog must match this file, which was
 taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`, `shared/whatsnew.js`,
@@ -6,7 +6,7 @@ taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`,
 update this file first.
 
 ## Identity
-- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.4.7 (release notes: /whats-new, from `shared/whatsnew.js`).
+- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.5.0 (release notes: /whats-new, from `shared/whatsnew.js`; detailed record in the extension's CHANGELOG.md).
 - Store description: "All-in-one X (Twitter) growth: smart auto follow, post scheduler, on-device AI writer, analytics, unfollower tracker, reply targets."
 - A Chrome extension (Chrome 116+, desktop: Windows, macOS, Linux, ChromeOS). Not a mobile app.
 - Works inside the user's own signed-in x.com session. Never asks for the X password, does not use X OAuth.
@@ -70,7 +70,11 @@ update this file first.
 - Everything is read through an x.com tab that is already open, one small step per minute at most.
 
 ## Engage
-- **Reply targets**: fresh posts (default: younger than 120 minutes) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. Reply and like from GrowX (only when you press the button; nothing is sent by itself). AI reply ideas (Premium).
+- **AI Reply Assistant** (2.5.0; the page was called Reply targets): fresh posts (default: younger than 120 minutes) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. Reply and like by hand from GrowX: free, only when you press the button.
+- **AI drafts (Premium, `aiReply`)**: GrowX AI drafts a reply under each fresh post in your niche and voice (Settings - AI writer), on your computer. Options, saved: tone (Insightful, Friendly, Witty, Supportive, Curious, Professional), length (Short, Medium, Detailed), approach (add a point, ask a question, share an experience, agree and build on it), emojis on/off. Draft with AI on one post, or Draft replies for all (the 10 highest-ranked posts, one by one, with Stop). New draft and Shorter on each draft; edits are kept.
+- **Checks before a draft can be sent**: no repeat of a reply sent in the last 14 days, no `{placeholders}` left in, nothing over 280 characters, no two replies in one batch alike; generic text, links and hashtags get a warning.
+- **Send approved (Premium)**: send one reply, or approve several and press Send approved: they go out one at a time, 45-90 s apart, up to 10 at once and within an 80-a-day cap. Stop at any time; GrowX stops by itself when X asks for a break, when Premium ends or when another X account is signed in (approved replies only go out from the account they were approved on). **GrowX never replies by itself: you read and approve every reply.**
+- **AI reply buttons on X (Premium, 2.5.0)**: one-click buttons beside X's own reply box (under a post and in X's reply dialog, never the new-post box): AI Reply (your usual tone), Insightful, Friendly, Witty, Supportive, Curious, Professional, a swap button and More options (three replies to pick from, with tone, length and approach). GrowX AI writes the reply into X's box; you can edit it and you press X's Reply yourself (GrowX never presses it). Follows X's light, Dim and Lights out themes; can be turned off on the AI Reply Assistant page. Free: a click shows the Premium offer.
 - **People**: tags, notes, VIP and watch flags, mutuals, fans you don't follow back yet.
 - **VIP alerts (Premium)**: a notification when a VIP posts.
 
@@ -82,6 +86,7 @@ update this file first.
 
 ## Everything else
 - **Multiple X accounts: a workspace per X account (Premium)**. Every GrowX account links 2 X usernames free; extra slots $0.99 each (one-time).
+- **Devices (2.4.8, 2.4.9)**: a GrowX account stays signed in on as many devices or Chrome profiles as it has X account slots (2 for everyone, +1 per extra slot); signing in on one too many signs out only the least recently used device. The website's own sign-ins follow the same limit, counted separately. **Your devices** (Settings - Accounts & sync) lists every device by browser and system, with this device marked and when each was last used, and signs any other one out; "Recently signed out" says which device went and why; signing in when every place is taken asks which device to sign out.
 - Optional **Chrome sync** of settings, sources, never-follow list, people and templates (through Chrome's own sync storage, no GrowX server).
 - Setup wizard, What's new window, **8 colour themes**, dark mode, density/font options, **command palette (Ctrl+K)**, phone and tablet layouts.
 - Backup and restore (export/import a file).

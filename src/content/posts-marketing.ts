@@ -170,7 +170,7 @@ export const marketingPosts: Post[] = [
           ul(
             "**Scheduler:** the [post scheduler](/features/twitter-post-scheduler) has queue slots (09:00, 13:00 and 18:30 by default), a calendar, drafts and a **best time to post** heat map built from your own posts' engagement and when your followers are active. Chrome needs to be running for scheduled posts to go out. The free plan keeps up to 10 posts waiting at once; Premium is unlimited.",
             "**Analytics:** views, likes, reposts, replies, bookmarks and engagement rate for your recent posts (your latest 30 on the free plan), plus **What works**, which compares topics and formats.",
-            "**Reply targets:** [Reply targets](/features/twitter-reply-targets) collect fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off. You write every reply, and nothing is sent until you press the button.",
+            "**AI Reply Assistant:** the [AI Reply Assistant](/features/twitter-reply-targets) collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off. You write every reply, and nothing is sent until you press the button.",
             "**Auto follow of a niche audience:** [smart auto follow](/features/twitter-auto-follow) follows the newest followers of source profiles you choose, such as peers and industry accounts, scores other candidates by how likely they are to follow back, and paces follows with random delays, breaks and caps. On Premium, include keywords and location keywords help a local or specialist business focus its follows.",
           ),
           note(SAFETY_NOTE),
@@ -345,7 +345,7 @@ export const marketingPosts: Post[] = [
             "**Post analytics:** [Twitter analytics](/features/twitter-analytics) show views, likes, reposts, replies, bookmarks and engagement rate for your recent posts, your latest 30 on the free plan.",
             "**What works:** compares topics and formats such as questions, images, text, threads and links by engagement, so you can see what your audience responds to.",
             "**Top fans:** shows who likes and replies to you most, the core of your circle of readers.",
-            "**Reply targets:** [Reply targets](/features/twitter-reply-targets) collect fresh posts (younger than 120 minutes by default) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off. You write every reply, and nothing is sent until you press the button.",
+            "**AI Reply Assistant:** the [AI Reply Assistant](/features/twitter-reply-targets) collects fresh posts (younger than 120 minutes by default) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off. You write every reply, and nothing is sent until you press the button.",
             "**Best time to post:** a week by 24-hour heat map from your own posts' engagement and when your followers are active, with queue slots to post at those hours.",
           ),
         ],
@@ -523,7 +523,7 @@ export const marketingPosts: Post[] = [
             "**Post analytics:** [Twitter analytics](/features/twitter-analytics) show views, likes, reposts, replies, bookmarks and engagement rate for your recent posts, refreshed every 3 hours while x.com is open. The free plan covers your latest 30 posts.",
             "**What works:** compares topics and formats (questions, images, text, threads, links) by engagement.",
             "**Which posts brought followers** (Premium): new followers in the 24 hours after each post above your usual pace, so you can see which views turned into followers.",
-            "**Reply targets:** [Reply targets](/features/twitter-reply-targets) surface fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. You write every reply, and nothing is sent until you press the button.",
+            "**AI Reply Assistant:** the [AI Reply Assistant](/features/twitter-reply-targets) surfaces fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. You write every reply, and nothing is sent until you press the button.",
             "**Best time to post:** a heat map from your own posts' engagement and when your followers are active, plus queue slots in the scheduler so posts go out at those hours while Chrome is running.",
           ),
         ],
@@ -744,7 +744,7 @@ export const marketingPosts: Post[] = [
     seoTitle: "X Communities Guide: How to Use Twitter Communities",
     title: "X Communities Guide: How to Find, Join and Use Twitter Communities to Meet Your Niche",
     description:
-      "How to use X Communities (Twitter Communities): finding and joining, posting, rules and moderation, meeting your niche, and how GrowX reply targets help.",
+      "How to use X Communities (Twitter Communities): finding and joining, posting, rules and moderation, meeting your niche, and how GrowX helps you reply.",
     excerpt:
       "X Communities are focused spaces where your niche already gathers. Here is how to find good ones, post well, respect the rules and turn conversations into relationships.",
     category: "Engage",
@@ -863,7 +863,7 @@ export const marketingPosts: Post[] = [
         blocks: [
           p("GrowX does not read or post to X Communities. It works with your own timeline and the accounts you choose, which makes it a useful complement to the relationships you start in a Community:"),
           ul(
-            "**Reply targets:** add the members you want to keep talking with, and [Reply targets](/features/twitter-reply-targets) collect their fresh posts (younger than 120 minutes by default), together with posts from your sources and VIPs, ranked by freshness and how fast they take off. You write every reply, and nothing is sent until you press the button.",
+            "**AI Reply Assistant:** add the members you want to keep talking with, and the [AI Reply Assistant](/features/twitter-reply-targets) collects their fresh posts (younger than 120 minutes by default), together with posts from your sources and VIPs, ranked by freshness and how fast they take off. You write every reply, and nothing is sent until you press the button.",
             "**People:** tag members with the Community's name, add notes about what you talked about, and use VIP and watch flags. With **VIP alerts** (Premium), you get a notification when a VIP posts.",
             "**X Lists and source profiles:** put members you like in an X List, as explained in our [Twitter Lists guide](/blog/twitter-lists-guide). On Premium, [smart auto follow](/features/twitter-auto-follow) can use X Lists as a source, and any account in your niche can be a source profile whose newest followers GrowX follows at a paced, human speed.",
           ),
@@ -897,7 +897,7 @@ export const marketingPosts: Post[] = [
       },
       {
         q: "Does GrowX work with X Communities?",
-        a: "GrowX does not read or post to Communities. It complements them with Reply targets, the People list and, on Premium, X Lists as an auto follow source for the members you meet.",
+        a: "GrowX does not read or post to Communities. It complements them with the AI Reply Assistant, the People list and, on Premium, X Lists as an auto follow source for the members you meet.",
       },
     ],
   },

@@ -1,4 +1,5 @@
 import { TRIAL_DAYS } from "@/config/pricing";
+import { CURRENT_VERSION } from "@/content/releases";
 
 /**
  * The /faq page: every common question in one place, grouped by topic. Answers are plain text (they are also
@@ -24,7 +25,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "What is GrowX?",
-        a: "GrowX is a Chrome extension that brings the main X (Twitter) growth jobs into one dashboard: smart auto follow, a post and thread scheduler, the GrowX AI writer, post analytics, an unfollower tracker, reply targets and cleanup tools for non-followers and inactive accounts.",
+        a: "GrowX is a Chrome extension that brings the main X (Twitter) growth jobs into one dashboard: smart auto follow, a post and thread scheduler, the GrowX AI writer, post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools for non-followers and inactive accounts.",
         more: { href: "/features", label: "See all features" },
       },
       {
@@ -44,7 +45,7 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "What languages is GrowX available in?",
         a: "21 languages: English, Spanish, Portuguese (Brazil), French, German, Italian, Dutch, Polish, Turkish, Russian, Ukrainian, Arabic, Hindi, Indonesian, Filipino, Vietnamese, Thai, Japanese, Korean and Chinese (Simplified and Traditional). GrowX uses your browser's language by itself, and you can pick another one in Settings, Appearance. Your own posts are never translated.",
-        more: { href: "/whats-new", label: "What's new in 2.4.7" },
+        more: { href: "/whats-new", label: `What's new in ${CURRENT_VERSION}` },
       },
       {
         q: "Is GrowX made by X or Twitter?",
@@ -59,7 +60,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Is GrowX free?",
-        a: "Yes. The free plan is free forever and includes the Safe and Balanced auto follow paces, sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, reply targets, analytics for your latest 30 posts, 7 days of follower history, goals, List follow with up to 50 accounts at a time and the cleanup scan with up to 200 unfollows per run.",
+        a: "Yes. The free plan is free forever and includes the Safe and Balanced auto follow paces, sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, fresh posts to reply to, analytics for your latest 30 posts, 7 days of follower history, goals, List follow with up to 50 accounts at a time and the cleanup scan with up to 200 unfollows per run.",
       },
       {
         q: "How much does GrowX Premium cost?",
@@ -68,7 +69,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What do I get with Premium?",
-        a: "GrowX AI, unlimited scheduling, evergreen recycling and auto-plug, the Turbo and X Premium paces, the smart score and more source types, advanced filters and list import, lists of up to 5,000 for List follow, full analytics with the weekly report, full follower history and follower quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account.",
+        a: "GrowX AI, the AI Reply Assistant and AI reply buttons on X, unlimited scheduling, evergreen recycling and auto-plug, the Turbo and X Premium paces, the smart score and more source types, advanced filters and list import, lists of up to 5,000 for List follow, full analytics with the weekly report, full follower history and follower quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account.",
       },
       {
         q: "How do I pay?",
@@ -108,6 +109,10 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "Can I use GrowX with more than one X account?",
         a: "Yes. Every GrowX account links 2 X usernames for free, and extra slots cost $0.99 each, one time. On Premium, each X account gets its own workspace with its own settings, queue and history.",
+      },
+      {
+        q: "On how many devices can I use GrowX?",
+        a: "Your GrowX account stays signed in on as many devices or Chrome profiles as it has X account slots: 2 for everyone, and one more for every extra slot. Signing in on one device too many signs out only the device used least recently. In the extension, Settings, Accounts & sync lists every device your account is signed in on, and you can sign any of them out. Sign-ins on this website follow the same limit, counted separately.",
       },
       {
         q: "How do I change the X username linked to my account?",
@@ -190,8 +195,13 @@ export const faqGroups: FaqGroup[] = [
         a: "GrowX AI needs a recent desktop Chrome with enough memory and disk space, and Chrome downloads its built-in model once. Until the model is available, the AI buttons fall back to templates and the plain thread splitter.",
       },
       {
+        q: "What is the AI Reply Assistant?",
+        a: "The Engage page of GrowX: fresh posts from the accounts you watch, ranked by how fast they take off, with GrowX AI drafting a reply to each one in the tone, length and approach you pick. Premium also adds AI reply buttons beside X's own reply box. The list of fresh posts and replying by hand are free; the AI drafts are Premium.",
+        more: { href: "/features/twitter-reply-targets", label: "AI Reply Assistant" },
+      },
+      {
         q: "Does GrowX post, reply or send messages by itself?",
-        a: "Only what you schedule goes out at the time you chose. Replies and likes from the Engage page are only sent when you press the button, and GrowX never sends direct messages.",
+        a: "No. Only what you schedule goes out at the time you chose. You read and approve every reply: you send it yourself, or approve several and press Send approved, and GrowX sends them one at a time, 45 to 90 seconds apart. With the reply buttons on X, you press X's own Reply button. Likes are only sent when you press the button, and GrowX never sends direct messages.",
       },
     ],
   },

@@ -46,7 +46,7 @@ import { getTier, TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
 import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
-import { CURRENT_VERSION } from "@/content/releases";
+import { CURRENT_VERSION, releases } from "@/content/releases";
 
 const metadataTitle = "GrowX: The Ultimate X (Twitter) Growth Tool";
 const metadataDescription =
@@ -111,6 +111,8 @@ const moreInGrowX = [
   "Weekly report (Premium)",
   "VIP alerts (Premium)",
   "21 languages",
+  "AI reply buttons on X (Premium)",
+  "One device per X account slot",
   "List follow (CSV or TXT)",
   "List import (Premium)",
   "Emergency stop · Alt+Shift+S",
@@ -118,8 +120,8 @@ const moreInGrowX = [
 ] as const;
 
 const faqs = [
-  { q: "What is GrowX?", a: "GrowX is a Chrome extension that brings the main X (Twitter) growth jobs into one place: smart auto follow, a post and thread scheduler, the GrowX AI writer, post analytics, an unfollower tracker, reply targets and cleanup tools." },
-  { q: "Is GrowX free?", a: `Yes. The free plan includes the Safe and Balanced auto follow paces, core filters, scheduling (up to 10 posts waiting), analytics for your latest 30 posts, 7 days of follower history, reply targets and the cleanup scan. You can try every Premium feature free for ${TRIAL_DAYS} days, with no credit card.` },
+  { q: "What is GrowX?", a: "GrowX is a Chrome extension that brings the main X (Twitter) growth jobs into one place: smart auto follow, a post and thread scheduler, the GrowX AI writer, post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools." },
+  { q: "Is GrowX free?", a: `Yes. The free plan includes the Safe and Balanced auto follow paces, core filters, scheduling (up to 10 posts waiting), analytics for your latest 30 posts, 7 days of follower history, fresh posts to reply to and the cleanup scan. You can try every Premium feature free for ${TRIAL_DAYS} days, with no credit card.` },
   { q: "Do I need to give GrowX my X password?", a: "No. GrowX works through the x.com session that is already signed in to your Chrome browser. It never asks for or stores your X password and does not use X OAuth." },
   { q: "Is it safe for my X account?", a: "No tool can promise zero risk; X makes its own decisions. GrowX is built to behave like a careful person: random delays, breaks, hourly and daily caps, optional active hours and warm-up, a posting cap, and an automatic slow-down or stop whenever X shows a warning." },
   { q: "How does the post scheduler work?", a: "Write a post or thread, add images, then post now, pick a time or add it to your queue slots. GrowX posts through your signed-in x.com tab in Chrome, so Chrome needs to be running at the scheduled time." },
@@ -176,7 +178,7 @@ export default function HomePage() {
                 New
                 <span aria-hidden="true" data-decor="" className="stage-sweep" />
               </span>
-              <span className="min-w-0 text-left sm:whitespace-nowrap">New in {CURRENT_VERSION}: GrowX now speaks 21 languages</span>
+              <span className="min-w-0 text-left sm:whitespace-nowrap">New in {CURRENT_VERSION}: {releases[0].title}</span>
               <IconArrowRight size={15} className="nudge shrink-0 text-accent-ink" />
             </Link>
           </div>
@@ -404,7 +406,7 @@ export default function HomePage() {
                 <span className="font-display text-5xl font-extrabold tabular-nums">$0</span> <span className="text-muted">forever</span>
               </p>
               <ul className="mt-6 space-y-3 text-sm text-text-2">
-                {["Safe & Balanced auto follow", "Schedule up to 10 posts at a time", "Analytics for your latest 30 posts", "Who unfollowed you (7 days)", "Reply targets and cleanup scan"].map((t, i) => (
+                {["Safe & Balanced auto follow", "Schedule up to 10 posts at a time", "Analytics for your latest 30 posts", "Who unfollowed you (7 days)", "Fresh posts to reply to, cleanup scan"].map((t, i) => (
                   <li key={t} className="reveal flex gap-2" style={stagger(i)}>
                     <IconCheck size={18} className="shrink-0 text-ok" /> {t}
                   </li>
@@ -429,7 +431,7 @@ export default function HomePage() {
                 </p>
                 <p className="mt-1 text-sm text-muted tabular-nums">or $1.99 / 30 days · lifetime $59.99 ($29.99 early bird)</p>
                 <ul className="mt-6 space-y-3 text-sm text-text-2">
-                  {["Everything in Free", "GrowX AI writer and unlimited scheduling", "Turbo & X Premium paces, smart score", "Full analytics, weekly report, follower quality", "Bulk unfollow and automatic cleanup"].map((t, i) => (
+                  {["Everything in Free", "GrowX AI writer, AI replies, unlimited scheduling", "Turbo & X Premium paces, smart score", "Full analytics, weekly report, follower quality", "Bulk unfollow and automatic cleanup"].map((t, i) => (
                     <li key={t} className="reveal flex gap-2" style={stagger(i)}>
                       <IconCheck size={18} className="shrink-0 text-accent-ink" /> {t}
                     </li>

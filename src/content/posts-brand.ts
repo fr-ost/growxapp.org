@@ -629,7 +629,7 @@ export const brandPosts: Post[] = [
             "Answer every genuine reply on your own posts.",
             "Support peers at your level: repost their best work and introduce them to each other.",
           ),
-          p("GrowX's reply targets collect fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, and nothing is sent until you press the button. The People area lets you keep tags and notes on the accounts you talk with and mark the ones that matter most as VIPs."),
+          p("GrowX's AI Reply Assistant collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, and nothing is sent until you press the button. The People area lets you keep tags and notes on the accounts you talk with and mark the ones that matter most as VIPs."),
         ],
       },
       {

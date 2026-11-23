@@ -140,7 +140,7 @@ export const strategyPosts: Post[] = [
           p("GrowX does not change how X ranks posts, and no tool can. What it does is make the habits above easier to keep:"),
           ul(
             "**Scheduler and best time to post.** The [post scheduler](/features/twitter-post-scheduler) has queue slots and a week by 24-hour heat map built from your own posts' engagement and from when your followers are active.",
-            "**Reply targets.** The [reply targets](/features/twitter-reply-targets) view collects fresh posts (younger than 120 minutes by default) from your sources, VIPs and anyone you add, ranked by freshness and how fast they are taking off. GrowX never replies or likes by itself; you write the reply and press the button.",
+            "**AI Reply Assistant.** The [AI Reply Assistant](/features/twitter-reply-targets) collects fresh posts (younger than 120 minutes by default) from your sources, VIPs and anyone you add, ranked by freshness and how fast they are taking off. GrowX never replies or likes by itself; you write the reply and press the button.",
             "**Analytics.** Post analytics show views, likes, reposts, replies, bookmarks and engagement rate for your recent posts (your latest 30 on the free plan), and **What works** compares topics and formats.",
             "**Safe pacing.** Auto follow uses random delays, breaks and hourly and daily caps, and posting has a daily cap (20 by default) and a 5-minute minimum gap. Both slow down or pause when X shows a warning.",
           ),
@@ -266,7 +266,7 @@ export const strategyPosts: Post[] = [
         heading: "Replies: the overlooked route to going viral",
         blocks: [
           p("Your own posts are not the only way to get seen. A sharp, useful reply on a fresh post from a bigger account in your niche can reach more people than anything on your profile, because it appears in front of that account's audience while the post is still climbing."),
-          p("The key word is fresh. A reply posted in the first minutes sits near the top of the conversation; one posted hours later is easily buried. GrowX's [reply targets](/features/twitter-reply-targets) collect fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they are taking off, so you can spot them early. You still write every reply yourself, and nothing is sent until you press the button."),
+          p("The key word is fresh. A reply posted in the first minutes sits near the top of the conversation; one posted hours later is easily buried. GrowX's [AI Reply Assistant](/features/twitter-reply-targets) collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they are taking off, so you can spot them early. You still write every reply yourself, and nothing is sent until you press the button."),
         ],
       },
       {

@@ -47,7 +47,7 @@ const differences: { title: string; text: string }[] = [
 const faqs = [
   {
     q: "Which X tools does GrowX replace?",
-    a: "GrowX covers scheduling posts and threads, AI writing, post analytics, an unfollower tracker, reply targets, cleanup and smart auto follow in one Chrome extension. Many people still keep a separate writing app and use GrowX for growth.",
+    a: "GrowX covers scheduling posts and threads, AI writing, post analytics, an unfollower tracker, an AI Reply Assistant, cleanup and smart auto follow in one Chrome extension. Many people still keep a separate writing app and use GrowX for growth.",
   },
   {
     q: "What does GrowX not do that web apps do?",

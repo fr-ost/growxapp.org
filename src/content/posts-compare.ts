@@ -84,7 +84,7 @@ export const comparePosts: Post[] = [
             "**Post scheduler**: posts and threads with up to 4 images, queue slots, a calendar, drafts, 52 templates and a best-time-to-post heat map. See the [post scheduler](/features/twitter-post-scheduler).",
             "**GrowX AI**: writes, improves and threads posts on your own computer with the AI built into Chrome, with no API key (Premium).",
             "**Analytics and follower tracker**: views, likes and engagement for your recent posts, what works, and [who unfollowed you](/blog/who-unfollowed-me-on-twitter) each day.",
-            "**Reply targets**: fresh posts from big accounts in your niche, ranked so you can reply early.",
+            "**AI Reply Assistant**: fresh posts from big accounts in your niche, ranked so you can reply early, with AI-drafted replies you approve (Premium).",
           ),
           p("GrowX works inside the x.com tab you are already signed in to. It never asks for your X password and does not use an X app connection, and your queue, history and analytics stay in your browser."),
           p("**Price**: there is a free plan forever, and Premium costs $1.99 for 30 days, $14.99 for 365 days or $59.99 for lifetime access. Premium is prepaid and does not renew automatically. The [cost comparison](/blog/growx-vs-circleboom-cost) works through what that means over a year."),
@@ -195,7 +195,7 @@ export const comparePosts: Post[] = [
         heading: "GrowX pricing in plain numbers",
         blocks: [
           ul(
-            "**Free plan, forever**: Safe and Balanced auto follow, the post scheduler with up to 10 posts waiting, analytics for your latest 30 posts, 7 days of unfollower history, reply targets and cleanup runs of up to 200 accounts.",
+            "**Free plan, forever**: Safe and Balanced auto follow, the post scheduler with up to 10 posts waiting, analytics for your latest 30 posts, 7 days of unfollower history, fresh posts to reply to and cleanup runs of up to 200 accounts.",
             "**30-day Premium trial**: every Premium feature free for 30 days, no credit card, once per account.",
             "**Premium, 30 days**: $1.99.",
             "**Premium, 365 days**: $14.99, about $1.25 a month.",
@@ -227,7 +227,7 @@ export const comparePosts: Post[] = [
         blocks: [
           p("The cost benefits of GrowX are not only the lower sticker price. They come from how the product is built:"),
           ul(
-            "**One product instead of several.** Auto follow, cleanup, scheduler, AI writer, analytics, unfollower tracker and reply targets are all in the same plan, so there is nothing to add on.",
+            "**One product instead of several.** Auto follow, cleanup, scheduler, AI writer, analytics, unfollower tracker and AI Reply Assistant are all in the same plan, so there is nothing to add on.",
             "**No X API costs to pass on.** GrowX works inside your own signed-in x.com tab instead of through an X developer app, so it does not carry API fees that tools built on the X API have to cover.",
             "**AI that costs nothing to run.** GrowX AI uses the model built into Chrome on your own computer: no API key and no per-word fees.",
             "**No servers holding your data.** Your queue, history and analytics stay in your browser, which keeps running costs low.",
@@ -304,7 +304,7 @@ export const comparePosts: Post[] = [
         id: "summary",
         heading: "The short answer",
         blocks: [
-          p("**Circleboom** and **GrowX** overlap, but they are built for different jobs. Circleboom is a web-based account manager: it connects to your X account and helps you analyse, search and clean up your audience, with scheduling sold separately in Circleboom Publish. **GrowX** is a Chrome extension built around **growing** an X account, with smart auto follow, a scheduler, an on-device AI writer, analytics, an unfollower tracker, reply targets and cleanup in one dashboard."),
+          p("**Circleboom** and **GrowX** overlap, but they are built for different jobs. Circleboom is a web-based account manager: it connects to your X account and helps you analyse, search and clean up your audience, with scheduling sold separately in Circleboom Publish. **GrowX** is a Chrome extension built around **growing** an X account, with smart auto follow, a scheduler, an on-device AI writer, analytics, an unfollower tracker, an AI Reply Assistant and cleanup in one dashboard."),
           p("Choose GrowX if you want growth and daily X work in one inexpensive tool on your desktop. Choose Circleboom if you need to work from any device, publish to several networks or manage client accounts as a team. The details are below."),
         ],
       },

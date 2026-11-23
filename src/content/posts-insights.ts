@@ -404,16 +404,16 @@ export const insightPosts: Post[] = [
       },
       {
         id: "reply-targets",
-        heading: "How GrowX Reply targets finds fresh posts",
+        heading: "How the GrowX AI Reply Assistant finds fresh posts",
         blocks: [
-          p("The hard part of a reply strategy is finding the right posts at the right moment. GrowX, a Chrome extension for X (Twitter), has a **Reply targets** list in its Engage area for exactly this."),
+          p("The hard part of a reply strategy is finding the right posts at the right moment. GrowX, a Chrome extension for X (Twitter), has an **AI Reply Assistant** in its Engage area for exactly this."),
           ul(
             "It collects **fresh posts**, by default younger than 120 minutes, from your source profiles, your VIPs and any accounts you add.",
             "It ranks them by **freshness and how fast they are taking off**, so posts picking up speed rise to the top while there is still time to reply early.",
-            "You can **reply and like from GrowX**, but only when you press the button. Nothing is sent from Reply targets by itself, and GrowX does not send DMs.",
-            "**AI reply ideas (Premium)** suggest angles using the AI model built into Chrome, on your own computer. Treat them as a starting point and write the final reply in your own words.",
+            "You can **reply and like from GrowX**, but only when you press the button. GrowX never replies by itself: you approve every reply, and GrowX does not send DMs.",
+            "**AI reply drafts (Premium)** come from GrowX AI in the tone, length and approach you pick, using the AI model built into Chrome on your own computer. Treat them as a starting point and make the final reply your own.",
           ),
-          p("Read more on the [Reply targets feature page](/features/twitter-reply-targets) and the [AI tweet writer page](/features/ai-tweet-writer)."),
+          p("Read more on the [AI Reply Assistant page](/features/twitter-reply-targets) and the [AI tweet writer page](/features/ai-tweet-writer)."),
         ],
       },
       {
@@ -429,7 +429,7 @@ export const insightPosts: Post[] = [
         heading: "A 20-minute daily reply routine",
         blocks: [
           ol(
-            "Open Reply targets and pick 5 to 10 posts where you have something real to add.",
+            "Open the AI Reply Assistant and pick 5 to 10 posts where you have something real to add.",
             "Write each reply fresh. Lead with the point and keep it short.",
             "Like the posts you replied to only if you actually liked them.",
             "Go back to the replies on your own posts and answer them.",
@@ -440,8 +440,8 @@ export const insightPosts: Post[] = [
       },
       {
         id: "try",
-        heading: "Find reply targets with GrowX",
-        blocks: [p(`${TRY} Reply targets and the People list are part of the free plan.`)],
+        heading: "Find posts to reply to with GrowX",
+        blocks: [p(`${TRY} The list of fresh posts to reply to and the People list are part of the free plan; AI reply drafts are Premium.`)],
       },
     ],
     faq: [
@@ -459,10 +459,10 @@ export const insightPosts: Post[] = [
       },
       {
         q: "Does GrowX reply or like posts automatically?",
-        a: "No. Reply targets lets you reply and like from the GrowX dashboard, but only when you press the button. Nothing is sent from it by itself.",
+        a: "No. The AI Reply Assistant lets you reply and like from the GrowX dashboard, but only when you press the button or approve a reply. Nothing is sent from it by itself.",
       },
       {
-        q: "How fresh are the posts in GrowX Reply targets?",
+        q: "How fresh are the posts in the GrowX AI Reply Assistant?",
         a: "By default they are younger than 120 minutes, ranked by freshness and by how fast they are taking off.",
       },
     ],
@@ -548,7 +548,7 @@ export const insightPosts: Post[] = [
         heading: "Reply to others every day",
         blocks: [
           p("Engagement runs both ways. Accounts that reply thoughtfully to others in their niche get noticed by those people and their readers, and many of them return the favour. A short daily block of replies on fresh posts from accounts a bit bigger than yours is one of the best uses of your time on X."),
-          p("GrowX's **Reply targets** list helps by surfacing fresh posts from accounts you care about, ranked by how new they are and how fast they are taking off. You still write and send every reply yourself, with a button press. The full approach is in our [Twitter reply strategy guide](/blog/twitter-reply-strategy)."),
+          p("GrowX's **AI Reply Assistant** helps by surfacing fresh posts from accounts you care about, ranked by how new they are and how fast they are taking off. You still write and send every reply yourself, with a button press. The full approach is in our [Twitter reply strategy guide](/blog/twitter-reply-strategy)."),
         ],
       },
       {
@@ -611,7 +611,7 @@ export const insightPosts: Post[] = [
       },
       {
         q: "Can GrowX like or reply to posts for me?",
-        a: "Not on other people's posts: replies and likes from Reply targets are sent only when you press the button. The one automatic reply is Premium auto-plug, which you switch on and which replies to your own post with your call to action.",
+        a: "Not on other people's posts: replies and likes from the AI Reply Assistant are sent only when you press the button or approve them. The one automatic reply is Premium auto-plug, which you switch on and which replies to your own post with your call to action.",
       },
     ],
   },

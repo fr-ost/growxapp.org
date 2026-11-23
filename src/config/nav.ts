@@ -9,7 +9,7 @@ export const featureNav: { slug: PillarSlug; label: string; blurb: string; icon:
   { slug: "twitter-analytics", label: "Analytics", blurb: "Every post's numbers and your best time to post", icon: "chart" },
   { slug: "twitter-unfollower-tracker", label: "Unfollower tracker", blurb: "See who followed and who unfollowed you", icon: "users" },
   { slug: "twitter-unfollow-tool", label: "Unfollow tool", blurb: "Clean up non-followers and inactive accounts", icon: "userX" },
-  { slug: "twitter-reply-targets", label: "Reply targets", blurb: "Fresh posts in your niche, ranked to reply early", icon: "message" },
+  { slug: "twitter-reply-targets", label: "AI Reply Assistant", blurb: "Fresh posts in your niche, with AI replies you approve", icon: "message" },
 ];
 
 export const toolNav = [

@@ -153,7 +153,7 @@ export const round5Posts: Post[] = [
           ul(
             "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of your source accounts and ranks everyone else by a follow-back score from 1 to 99, with random delays, breaks and daily caps.",
             "**Create**: a [post scheduler](/features/twitter-post-scheduler) with queue slots, a best-time-to-post heat map built from your own posts, and 52 templates.",
-            "**Engage**: [reply targets](/features/twitter-reply-targets) list fresh posts from your sources and VIPs so you can reply early. Nothing is sent until you press the button.",
+            "**Engage**: the [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs so you can reply early. Nothing is sent until you press the button.",
             "**Insights**: post analytics, a daily follower tracker and, on Premium, which posts brought followers.",
             "**Cleanup**: find accounts that don't follow back or have gone inactive, and unfollow them at a safe pace.",
           ),
@@ -569,8 +569,8 @@ export const round5Posts: Post[] = [
           ul(
             "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche and ranks everyone else by a follow-back score from 1 to 99, with the Safe and Balanced paces on the free plan. [List follow](/features/twitter-list-follow) follows exactly the accounts on your own list.",
             "**Create**: a [post scheduler](/features/twitter-post-scheduler) for posts and threads with queue slots, a best-time-to-post heat map, a calendar, drafts and 52 templates.",
-            "**GrowX AI (Premium)**: Write, Improve, Hooks, Thread it and reply ideas, on your own computer with Chrome's built-in AI model.",
-            "**Engage**: [reply targets](/features/twitter-reply-targets) surface fresh posts so you can reply early. Likes and replies are only sent when you press the button, and GrowX never sends DMs.",
+            "**GrowX AI (Premium)**: Write, Improve, Hooks, Thread it and AI replies, on your own computer with Chrome's built-in AI model.",
+            "**Engage**: the [AI Reply Assistant](/features/twitter-reply-targets) surfaces fresh posts so you can reply early. Likes and replies are only sent when you press the button, and GrowX never sends DMs.",
             "**Insights**: post analytics, what works, top fans and a daily [unfollower tracker](/features/twitter-unfollower-tracker).",
             "**Cleanup**: find accounts that don't follow back or are inactive and unfollow them at a safe pace.",
           ),
@@ -820,7 +820,7 @@ export const round5Posts: Post[] = [
           ul(
             "**Goals**: the monthly goal planner, daily goals for posts, replies and new followers, and streaks and milestones in Insights keep the daily checklist honest.",
             "**Create**: queue slots, a best-time-to-post heat map from your own posts and followers, a calendar, drafts and 52 templates. See the [post scheduler](/features/twitter-post-scheduler).",
-            "**Engage**: [reply targets](/features/twitter-reply-targets) list fresh posts from your sources and VIPs, ranked by freshness and how fast they take off.",
+            "**Engage**: the [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs, ranked by freshness and how fast they take off.",
             "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche. Balanced is the default pace; a quiet or young account can start on Safe with warm-up turned on.",
             "**Insights**: post analytics, what works and a daily follower tracker. Premium adds which posts brought followers and a weekly report every Monday, handy for the weekly review.",
             "**Cleanup and evergreen**: unfollow non-followers and inactive accounts at a safe pace, and with Premium let evergreen recycling bring your best posts back with variants.",

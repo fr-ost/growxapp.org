@@ -57,7 +57,7 @@ const GROWX = {
   connect: "Works in the x.com tab you are already signed in to. Never asks for your X password; no X OAuth",
   offline: "No. Chrome must be running at the scheduled time; a post more than 6 hours late waits as missed",
   schedule: "Posts and threads (up to 25 parts, 4 images per post), queue slots, calendar, best time to post",
-  ai: "GrowX AI (Premium) runs on your computer with Chrome's built-in model; no API key, drafts not sent to GrowX",
+  ai: "GrowX AI (Premium) writes posts, threads and replies on your computer with Chrome's built-in model; no API key, drafts not sent to GrowX",
   follow: "Smart auto follow: newest followers of niche accounts, a 1-99 follow-back score, human pace with caps",
   analytics: "Views, likes, reposts, replies, bookmarks and engagement rate; latest 30 posts free, full analytics Premium",
   unfollowers: "Daily follower tracker: 7 days free, full history and one-click unfollow back on Premium",
@@ -69,7 +69,7 @@ const GROWX = {
 const sharedDiffers = [
   "**No X password, no X OAuth.** GrowX works inside the x.com tab you are already signed in to, and your queue, history and analytics stay in your browser.",
   "**AI on your computer.** GrowX AI (Premium) uses the AI model built into Chrome, so drafts are not sent to GrowX and there is no API key or per-use fee.",
-  "**Growth, not only publishing.** [Smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche, scored 1-99 for follow-back, at a human pace with breaks and caps. Reply targets, an unfollower tracker and cleanup sit next to the scheduler.",
+  "**Growth, not only publishing.** [Smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche, scored 1-99 for follow-back, at a human pace with breaks and caps. The AI Reply Assistant, an unfollower tracker and cleanup sit next to the scheduler.",
   "**Prepaid pricing.** A free plan forever, then Premium for 30 days, 365 days or lifetime, prepaid in crypto. Nothing renews by itself.",
 ];
 
@@ -88,7 +88,7 @@ export const alternativePages: AlternativePage[] = [
     keywords: ["Tweet Hunter alternative", "Tweet Hunter alternatives", "Tweet Hunter vs GrowX", "Twitter growth tool", "X scheduler", "GrowX"],
     summary: [
       "**Tweet Hunter** is an X content suite. It is known for a large library of popular posts to borrow structures from, AI writing, scheduling and automation, all in a web app that connects to your X account and posts from its servers.",
-      "**GrowX** is a Chrome extension for growing on X. It schedules posts and threads, writes with AI on your own computer, and adds what a content suite is not built for: smart auto follow, reply targets, an unfollower tracker and cleanup.",
+      "**GrowX** is a Chrome extension for growing on X. It schedules posts and threads, writes with AI on your own computer, and adds what a content suite is not built for: smart auto follow, an AI Reply Assistant, an unfollower tracker and cleanup.",
       "If your main problem is what to write, Tweet Hunter's library is a real strength. If you write fine but too few people see it, GrowX covers more of the daily work that brings new followers.",
     ],
     theyDoWell: [
@@ -133,7 +133,7 @@ export const alternativePages: AlternativePage[] = [
         heading: "Growth: the part a content suite leaves out",
         paragraphs: [
           "Good posts still need people to see them. On a small or medium account, most new followers come from the people you follow, the replies you write and the times you post. That daily work is GrowX's core.",
-          "Smart auto follow reads the newest followers of accounts in your niche every hour, follows the most recent ones first and ranks everyone else by a follow-back score from 1 to 99. Safe and Balanced paces (about 150 and 280 follows a day) are free; random delays, breaks, hourly and daily caps and an automatic slow-down after any X warning are always on, and active hours and warm-up are there when you want them. [Reply targets](/features/twitter-reply-targets) list fresh posts from your sources and VIPs so you can reply while it still counts, and [Cleanup](/features/twitter-unfollow-tool) finds accounts that don't follow back.",
+          "Smart auto follow reads the newest followers of accounts in your niche every hour, follows the most recent ones first and ranks everyone else by a follow-back score from 1 to 99. Safe and Balanced paces (about 150 and 280 follows a day) are free; random delays, breaks, hourly and daily caps and an automatic slow-down after any X warning are always on, and active hours and warm-up are there when you want them. The [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs so you can reply while it still counts (with Premium, GrowX AI drafts replies you approve), and [Cleanup](/features/twitter-unfollow-tool) finds accounts that don't follow back.",
         ],
         bullets: ["No tool can promise zero risk on X. Start with the Safe or Balanced pace and let GrowX slow down by itself when X shows a warning."],
       },
@@ -165,7 +165,7 @@ export const alternativePages: AlternativePage[] = [
     faq: [
       {
         q: "Is GrowX a full Tweet Hunter replacement?",
-        a: "For scheduling, AI writing and analytics on X, yes. GrowX does not have a library of other people's popular posts; it has 52 templates and an AI writer that works from your own niche instead. It adds smart auto follow, reply targets, an unfollower tracker and cleanup.",
+        a: "For scheduling, AI writing and analytics on X, yes. GrowX does not have a library of other people's popular posts; it has 52 templates and an AI writer that works from your own niche instead. It adds smart auto follow, an AI Reply Assistant, an unfollower tracker and cleanup.",
       },
       {
         q: "Is there a free alternative to Tweet Hunter?",
@@ -303,7 +303,7 @@ export const alternativePages: AlternativePage[] = [
     keywords: ["Typefully alternative", "Typefully alternatives", "Typefully vs GrowX", "thread writer", "X scheduler", "GrowX"],
     summary: [
       "**Typefully** is a writing and scheduling app. Its strength is a calm editor built around threads and long posts, with drafts, scheduling and support for several networks besides X. It is a web app that posts from its servers.",
-      "**GrowX** is a Chrome extension built only for X. It has a composer with threads, queue slots and a best time to post, an AI writer that runs on your computer, and growth tools a writing app is not built for: smart auto follow, reply targets, an unfollower tracker and cleanup.",
+      "**GrowX** is a Chrome extension built only for X. It has a composer with threads, queue slots and a best time to post, an AI writer that runs on your computer, and growth tools a writing app is not built for: smart auto follow, an AI Reply Assistant, an unfollower tracker and cleanup.",
       "If drafting is the job you want to enjoy, Typefully is a good home for it. If your posts are fine but your audience isn't growing, GrowX covers the work around them.",
     ],
     theyDoWell: [
@@ -348,7 +348,7 @@ export const alternativePages: AlternativePage[] = [
         heading: "Growth: what happens after you post",
         paragraphs: [
           "A well-written thread still needs readers. GrowX's [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche, the people most likely to be interested, and scores everyone else 1-99 for follow-back. It runs at a human pace with random delays, breaks and hourly and daily caps, and slows down by itself after any X warning.",
-          "Around that sit [reply targets](/features/twitter-reply-targets) for replying early to fresh posts, an [unfollower tracker](/features/twitter-unfollower-tracker) that shows who followed and unfollowed you each day, and Cleanup for accounts that don't follow back. No tool can promise zero risk on X; start with the Safe or Balanced pace.",
+          "Around that sit the [AI Reply Assistant](/features/twitter-reply-targets) for replying early to fresh posts, an [unfollower tracker](/features/twitter-unfollower-tracker) that shows who followed and unfollowed you each day, and Cleanup for accounts that don't follow back. No tool can promise zero risk on X; start with the Safe or Balanced pace.",
         ],
       },
       {
@@ -364,7 +364,7 @@ export const alternativePages: AlternativePage[] = [
         steps: [
           "Install GrowX from the Chrome Web Store and finish the setup wizard in the Chrome profile you use for x.com.",
           "Add three to five source accounts in your niche, or press **Find sources for me**, and start the Safe or Balanced pace.",
-          "Check reply targets once or twice a day and reply early to fresh posts in your niche.",
+          "Open the AI Reply Assistant once or twice a day and reply early to fresh posts in your niche.",
           "After two weeks, read your analytics and the follower tracker to see what brought people in.",
         ],
       },
@@ -372,7 +372,7 @@ export const alternativePages: AlternativePage[] = [
     faq: [
       {
         q: "Is GrowX a good Typefully alternative?",
-        a: "If you post only to X and want to grow, yes: it schedules posts and threads, writes with on-device AI and adds smart auto follow, reply targets, analytics and an unfollower tracker. If you publish to several networks or mainly want a writing editor, Typefully may suit you better.",
+        a: "If you post only to X and want to grow, yes: it schedules posts and threads, writes with on-device AI and adds smart auto follow, an AI Reply Assistant, analytics and an unfollower tracker. If you publish to several networks or mainly want a writing editor, Typefully may suit you better.",
       },
       {
         q: "Can I use GrowX together with Typefully?",

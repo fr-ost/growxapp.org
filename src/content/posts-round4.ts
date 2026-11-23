@@ -74,7 +74,7 @@ export const round4Posts: Post[] = [
             "**Auto-plug (Premium)**: once a post takes off (50 likes by default), GrowX replies to it with your call to action.",
             "**Best time to post** from your own posts, plus a calendar, drafts and 52 templates.",
             "**GrowX AI (Premium)** writes, improves and threads posts on your own computer, with no API key.",
-            "**Growth tools**: [smart auto follow](/features/twitter-auto-follow), an [unfollower tracker](/features/twitter-unfollower-tracker), reply targets and cleanup.",
+            "**Growth tools**: [smart auto follow](/features/twitter-auto-follow), an [unfollower tracker](/features/twitter-unfollower-tracker), an [AI Reply Assistant](/features/twitter-reply-targets) and cleanup.",
           ),
           p("Posting has its own safety rules: a daily cap (20 by default), a minimum gap of 5 minutes and a pause on any warning from X. The free plan keeps up to 10 posts waiting at once; Premium removes the limit."),
           note("One honest difference: GrowX posts from your own Chrome, so the computer has to be on with Chrome open at the scheduled time. A post that would go out more than 6 hours late is never posted by itself; it waits as missed."),
@@ -161,7 +161,7 @@ export const round4Posts: Post[] = [
           ul(
             "**Typefully** is a writing and scheduling app. Its strength is a calm editor for posts and threads, drafts and scheduling, with support for several networks besides X.",
             "**Tweet Hunter** is an X content suite. It is known for a large library of popular posts for inspiration, AI writing, scheduling and automation.",
-            "**GrowX** is a Chrome extension for growing on X. It combines smart auto follow, a scheduler, an on-device AI writer, analytics, an unfollower tracker, reply targets and cleanup.",
+            "**GrowX** is a Chrome extension for growing on X. It combines smart auto follow, a scheduler, an on-device AI writer, analytics, an unfollower tracker, an AI Reply Assistant and cleanup.",
           ),
           p("Pick Typefully if writing is the job. Pick Tweet Hunter if you want an inspiration library and an all-in-one content suite. Pick GrowX if you want to grow your audience and handle daily X work in one inexpensive tool on your desktop."),
           p("For side-by-side tables, see GrowX as a [Typefully alternative](/alternatives/typefully) and as a [Tweet Hunter alternative](/alternatives/tweet-hunter)."),
@@ -188,7 +188,7 @@ export const round4Posts: Post[] = [
         heading: "Growth: the biggest difference",
         blocks: [
           p("Typefully and Tweet Hunter help you publish better content. Neither is built to find and follow new people for you."),
-          p("That is GrowX's core. [Smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche, ranks everyone else by a follow-back score from 1 to 99, and works at a human pace with random delays, breaks and caps. [List follow](/features/twitter-list-follow) follows exactly the accounts on your own list. Reply targets surface fresh posts from big accounts so you can reply early, and Cleanup finds accounts that don't follow back."),
+          p("That is GrowX's core. [Smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche, ranks everyone else by a follow-back score from 1 to 99, and works at a human pace with random delays, breaks and caps. [List follow](/features/twitter-list-follow) follows exactly the accounts on your own list. The AI Reply Assistant surfaces fresh posts from big accounts so you can reply early, and Cleanup finds accounts that don't follow back."),
           note("No tool can promise zero risk on X. GrowX slows down by itself after any warning from X and stops completely if your account needs attention."),
         ],
       },
@@ -227,7 +227,7 @@ export const round4Posts: Post[] = [
     ],
     faq: [
       { q: "Is Typefully or Tweet Hunter better?", a: "They suit different people. Typefully is focused on writing and scheduling across several networks; Tweet Hunter is an X content suite with an inspiration library and automation. Try both with your own drafts." },
-      { q: "What is a good Typefully alternative for growth?", a: "If you want to grow your audience, not only publish, GrowX adds smart auto follow, List follow, reply targets, an unfollower tracker and cleanup on top of a scheduler and an on-device AI writer." },
+      { q: "What is a good Typefully alternative for growth?", a: "If you want to grow your audience, not only publish, GrowX adds smart auto follow, List follow, an AI Reply Assistant, an unfollower tracker and cleanup on top of a scheduler and an on-device AI writer." },
       { q: "Is there a free alternative to Tweet Hunter?", a: "GrowX has a free plan forever with Safe and Balanced auto follow, the scheduler with up to 10 posts waiting, analytics for your latest 30 posts and 52 templates. Every Premium feature can be tried free for 30 days." },
       { q: "Can I use GrowX together with Typefully?", a: "Yes. Just let only one tool post a given post, so nothing goes out twice." },
     ],
@@ -417,12 +417,12 @@ export const round4Posts: Post[] = [
         heading: "How GrowX helps you earn real engagement",
         blocks: [
           ul(
-            "**Reply targets** list fresh posts (younger than 120 minutes by default) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. Nothing is sent unless you press the button.",
+            "The **AI Reply Assistant** lists fresh posts (younger than 120 minutes by default) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. Nothing is sent unless you press the button.",
             "**Best time to post** builds a heat map from your own posts and when your followers are active.",
             "**Analytics** show which topics and formats get real engagement, so you write more of what works.",
             "**Top fans** shows who likes and replies to you most: the real peer circle worth looking after.",
           ),
-          p("See [reply targets](/features/twitter-reply-targets) and [analytics](/features/twitter-analytics). " + TRY),
+          p("See the [AI Reply Assistant](/features/twitter-reply-targets) and [analytics](/features/twitter-analytics). " + TRY),
         ],
       },
     ],
@@ -542,7 +542,7 @@ export const round4Posts: Post[] = [
         id: "growx",
         heading: "Grow your niche with GrowX",
         blocks: [
-          p("Once you know your niche, GrowX turns it into a routine. Add a few accounts in your niche as **sources**, or press **Find sources for me**, and [smart auto follow](/features/twitter-auto-follow) follows their newest followers, people already interested in your topic. **Reply targets** list fresh posts from big niche accounts to reply early, and **analytics** show which topics within your niche work best. " + TRY),
+          p("Once you know your niche, GrowX turns it into a routine. Add a few accounts in your niche as **sources**, or press **Find sources for me**, and [smart auto follow](/features/twitter-auto-follow) follows their newest followers, people already interested in your topic. The **AI Reply Assistant** lists fresh posts from big niche accounts to reply early, and **analytics** show which topics within your niche work best. " + TRY),
         ],
       },
     ],
@@ -550,7 +550,7 @@ export const round4Posts: Post[] = [
       { q: "Do I need a niche to grow on Twitter?", a: "It is not required, but a clear niche makes it much easier for strangers to decide to follow you and for you to find the right people to reply to and follow." },
       { q: "Can I have more than one niche?", a: "Yes, but keep one main topic and one or two neighbouring ones. Too many unrelated topics make it hard for people to know what they get by following." },
       { q: "How long should I test a niche?", a: "Two weeks of daily posting and replying is usually enough to see whether engagement and new followers trend up." },
-      { q: "How does GrowX use my niche?", a: "Source accounts in your niche decide who smart auto follow targets, reply targets show posts from big accounts in your niche, and GrowX AI uses your niche and voice settings when writing." },
+      { q: "How does GrowX use my niche?", a: "Source accounts in your niche decide who smart auto follow targets, the AI Reply Assistant shows posts from big accounts in your niche, and GrowX AI uses your niche and voice settings when writing." },
     ],
   },
   {

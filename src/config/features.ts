@@ -1,5 +1,5 @@
 /**
- * Features of GrowX extension v2.4.7 and the Free / Premium split (from the extension's shared/plan.js and
+ * Features of GrowX extension v2.5.0 and the Free / Premium split (from the extension's shared/plan.js and
  * docs/PRODUCT_FACTS.md). Used by /features and the pricing comparison.
  */
 import type { FeatureSlug } from "@/content/feature-slugs";
@@ -73,7 +73,7 @@ export const featureGroups: readonly FeatureGroup[] = [
   {
     id: "ai",
     title: "GrowX AI writer",
-    summary: "Ideas, rewrites, hooks, threads and reply ideas, written by AI that runs on your computer.",
+    summary: "Ideas, rewrites, hooks, threads and replies, written by AI that runs on your computer.",
     detail: [
       "GrowX AI uses the AI model built into Chrome. It is private, free to run and needs no API key: your drafts are never sent to GrowX. It writes in your voice and niche from Settings, and uses {placeholders} instead of inventing facts.",
       "When the model isn't available on a computer, the AI buttons fall back to templates and the plain thread splitter, so GrowX never depends on it.",
@@ -81,20 +81,23 @@ export const featureGroups: readonly FeatureGroup[] = [
     page: "ai-tweet-writer",
     features: [
       { id: "ai-write", title: "Write, Improve, Hooks and Thread it", description: "Turn an idea or notes into posts and threads, sharpen a draft or get stronger openings.", tier: "premium" },
-      { id: "ai-replies", title: "Reply ideas and weekly summary", description: "Suggested replies on the Engage page and a written summary of your week.", tier: "premium" },
+      { id: "ai-summary", title: "Weekly summary", description: "A written summary of your week from GrowX AI.", tier: "premium" },
     ],
   },
   {
     id: "engage",
-    title: "Engage: reply targets and people",
-    summary: "Fresh posts from the accounts you care about, ranked so you can reply early when replies are seen most.",
+    title: "Engage: AI Reply Assistant and people",
+    summary: "Fresh posts from the accounts you care about, ranked so you can reply early, with GrowX AI drafting replies you approve.",
     detail: [
-      "Reply targets collects new posts from your sources, VIPs and anyone you add, ranked by how fresh they are and how fast they take off. Reply and like from GrowX: nothing is ever sent unless you press the button.",
+      "The AI Reply Assistant collects new posts from your sources, VIPs and anyone you add, ranked by how fresh they are and how fast they take off. Reply and like by hand for free; with Premium, GrowX AI drafts a reply to each post in your tone, on your computer.",
+      "New in 2.5.0: AI reply buttons right beside X's own reply box. You read and approve every reply; GrowX never replies by itself.",
     ],
     page: "twitter-reply-targets",
     features: [
-      { id: "targets", title: "Reply targets", description: "Fresh posts to reply to, with reply and like buttons.", tier: "free" },
+      { id: "targets", title: "Fresh posts to reply to", description: "Ranked by freshness and momentum, with reply and like buttons you press yourself.", tier: "free" },
       { id: "people", title: "People list", description: "Tags, notes, VIPs, mutuals and fans you don't follow back yet.", tier: "free" },
+      { id: "ai-reply", title: "AI Reply Assistant", description: "GrowX AI drafts a reply to each fresh post in your tone; approve several and they go out one at a time (up to 80 a day).", tier: "premium" },
+      { id: "ai-reply-x", title: "AI reply buttons on X", description: "Tone buttons beside X's own reply box write a reply into it; you press X's Reply.", tier: "premium" },
       { id: "vip-alerts", title: "VIP alerts", description: "A notification the moment someone on your VIP list posts.", tier: "premium" },
     ],
   },
@@ -137,11 +140,13 @@ export const featureGroups: readonly FeatureGroup[] = [
     summary: "The little things that make GrowX pleasant to use every day.",
     detail: [
       "GrowX speaks 21 languages and picks your browser's language by itself. A setup wizard, 8 colour themes and dark mode, a command palette (Ctrl+K), phone and tablet layouts, a quick post box in the popup, backup and restore, and optional sync of your settings through Chrome.",
+      "Your GrowX account stays signed in on one device or Chrome profile per X account slot (2 for everyone, one more for every extra slot), and Settings, Accounts & sync lists them so you can sign any of them out.",
     ],
     features: [
       { id: "languages", title: "21 languages", description: "English, Español, Português, Français, Deutsch, 日本語, 한국어, 中文, हिन्दी, العربية, Türkçe and more; Arabic reads right to left.", tier: "free" },
       { id: "ux", title: "Themes, dark mode and Ctrl+K", description: "8 colour themes, dark mode, density and font options and a command palette.", tier: "free" },
       { id: "sync", title: "Backup, restore and Chrome sync", description: "Export a backup file, or sync settings, sources and templates through Chrome.", tier: "free" },
+      { id: "devices", title: "Your devices", description: "Signed in on one device per X account slot (2 for everyone); see them all and sign any of them out.", tier: "free" },
       { id: "workspaces", title: "Multiple X accounts", description: "A separate workspace (sources, queue and posts) for every X account you use.", tier: "premium" },
     ],
   },

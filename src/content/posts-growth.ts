@@ -37,7 +37,7 @@ export const growthPosts: Post[] = [
         heading: "What actually makes a Twitter (X) account grow",
         blocks: [
           p("If you search **how to grow on Twitter**, you will find two kinds of advice: posting advice and automation tricks. Both matter, but neither works alone. Growth on X comes from three things working together: a profile that gives a stranger a reason to follow, content that gives them a reason to stay, and a steady flow of the right people discovering you, through your replies and through the people you follow."),
-          p("**GrowX** is an X (Twitter) growth tool for Chrome built around that routine. Its smart auto follow finds and follows relevant people at a human pace, the post scheduler publishes at your best times, Reply targets surface fresh posts worth replying to, and Insights show what is working and who unfollowed you. This guide gives you a realistic plan and shows where each part fits."),
+          p("**GrowX** is an X (Twitter) growth tool for Chrome built around that routine. Its smart auto follow finds and follows relevant people at a human pace, the post scheduler publishes at your best times, the AI Reply Assistant surfaces fresh posts worth replying to, and Insights show what is working and who unfollowed you. This guide gives you a realistic plan and shows where each part fits."),
           p("Nothing here is a guarantee: results depend on your niche, your content and how consistent you are. If a tool or a guide promises a fixed number of followers, treat that as a warning sign."),
         ],
       },
@@ -70,7 +70,7 @@ export const growthPosts: Post[] = [
         heading: "Step 3: Reply early where your audience already is",
         blocks: [
           p("Reply thoughtfully to accounts in your niche, especially ones slightly larger than you. A good reply is often seen by far more people than a post from a small account, and timing matters: a reply in the first hour of a post's life has a much better chance of being seen than one posted the next day."),
-          p("GrowX **Reply targets**, in the Engage area, collects fresh posts (younger than 120 minutes by default) from your sources, your VIPs and anyone you add, ranked by freshness and by how fast they are taking off, so you can reply early instead of scrolling to find them. You can reply and like from GrowX, but nothing is sent until you press the button. Premium adds AI reply ideas. See [Reply targets](/features/twitter-reply-targets)."),
+          p("The GrowX **AI Reply Assistant**, in the Engage area, collects fresh posts (younger than 120 minutes by default) from your sources, your VIPs and anyone you add, ranked by freshness and by how fast they are taking off, so you can reply early instead of scrolling to find them. You can reply and like from GrowX, but nothing is sent until you press the button. Premium adds AI reply ideas. See the [AI Reply Assistant](/features/twitter-reply-targets)."),
           p("Spend ten to fifteen minutes a day here. Add something useful, such as a number, an example or a disagreement with reasons, rather than \"great post\". Over a few weeks the same names start recognising yours, which is how replies turn into follows."),
         ],
       },
@@ -117,7 +117,7 @@ export const growthPosts: Post[] = [
         blocks: [
           ul(
             "**Monday (30 minutes):** write the week's posts and add them to your queue slots, using the best-time heat map.",
-            "**Every day (15 minutes):** open Reply targets, reply early to three to five fresh posts, and answer everyone who replied to you.",
+            "**Every day (15 minutes):** open the AI Reply Assistant, reply early to three to five fresh posts, and answer everyone who replied to you.",
             "**Every day (background):** let smart auto follow run at the Safe or Balanced pace while Chrome is open.",
             "**Friday (15 minutes):** check post analytics, the source leaderboard and the follower tracker, and change one thing for next week.",
             "**Every two weeks:** run a cleanup scan and unfollow, at a safe pace, the accounts that never followed back.",
@@ -183,7 +183,7 @@ export const growthPosts: Post[] = [
           p("Open the queue and look at who GrowX is lining up. If many candidates look irrelevant, raise the **minimum follow-back score** (55 by default) or tighten the filters. If the queue is thin, lower it a little or add a source. Then check the **source leaderboard** in Grow: it shows the follow-back rate, retention and cost of every source, so you can drop the ones that do not deliver."),
           ul(
             "Keep posting daily. Try one thread or one \"how I did it\" post this week; the free [thread maker](/tools/twitter-thread-maker) helps you split a long draft into posts.",
-            "Use **Reply targets** to find fresh posts from your sources and reply within their first hour, when replies are most visible. See [Reply targets](/features/twitter-reply-targets).",
+            "Use the **AI Reply Assistant** to find fresh posts from your sources and reply within their first hour, when replies are most visible. See the [AI Reply Assistant](/features/twitter-reply-targets).",
             "Reply to the accounts your new followers engage with, since their audience overlaps with yours.",
           ),
         ],
@@ -212,7 +212,7 @@ export const growthPosts: Post[] = [
           ol(
             "Five minutes: check the GrowX popup. Is the autopilot running, is the queue full, any warnings?",
             "Ten minutes: write one post and add it to the queue, or check that tomorrow's slots are filled. More on the [post scheduler](/features/twitter-post-scheduler).",
-            "Ten minutes: open Reply targets and reply to five to ten fresh posts from accounts in your niche, adding something useful rather than \"great post\".",
+            "Ten minutes: open the AI Reply Assistant and reply to five to ten fresh posts from accounts in your niche, adding something useful rather than \"great post\".",
             "Five minutes: thank and reply to people who engaged with you, since early supporters are the most valuable followers you will get.",
           ),
           p("On Sundays, spend twenty extra minutes in Insights and on the source leaderboard: which sources produced follow-backs, which posts earned the most engagement, who unfollowed you, and what you will change next week. Small weekly adjustments compound much better than a big overhaul once a month."),
@@ -460,7 +460,7 @@ export const growthPosts: Post[] = [
         id: "balance",
         heading: "Following is one lever, not the whole strategy",
         blocks: [
-          p("Even when it is paced well, following is only one lever. People who notice your follow look at your profile and your last few posts before deciding, so a following campaign works best when the profile is finished and the posts keep coming. GrowX's scheduler can keep a queue of posts going while the autopilot runs, and Reply targets help you join conversations in your niche while they are still fresh."),
+          p("Even when it is paced well, following is only one lever. People who notice your follow look at your profile and your last few posts before deciding, so a following campaign works best when the profile is finished and the posts keep coming. GrowX's scheduler can keep a queue of posts going while the autopilot runs, and the AI Reply Assistant helps you join conversations in your niche while they are still fresh."),
           p("A useful rule of thumb: if you spend more time tuning follow settings than writing posts and replies, the balance is off. Let the tool handle the repetitive following at a conservative pace, and put your own time into the things that make people stay."),
         ],
       },
@@ -748,7 +748,7 @@ export const growthPosts: Post[] = [
         heading: "How to judge a Twitter growth tool",
         blocks: [
           p("Search for the **best Twitter growth tool** and you will meet dozens of options with similar promises. Some only follow people, some only schedule posts, and a few try to do everything. Instead of trusting a ranking, judge any tool, GrowX included, against the same checklist."),
-          p("GrowX is an X (Twitter) growth tool for Chrome that combines smart auto follow, a post scheduler, an on-device AI writer, analytics, an unfollower tracker, Reply targets and cleanup tools. We built it to do well on these points, and we will say plainly where it has limits. The [features overview](/features) lists everything in one place."),
+          p("GrowX is an X (Twitter) growth tool for Chrome that combines smart auto follow, a post scheduler, an on-device AI writer, analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools. We built it to do well on these points, and we will say plainly where it has limits. The [features overview](/features) lists everything in one place."),
         ],
       },
       {
@@ -792,7 +792,7 @@ export const growthPosts: Post[] = [
         id: "engage",
         heading: "5. Does it help you engage, without replying for you?",
         blocks: [
-          p("Replies are one of the best ways for a small account to be seen, but automated replies are spammy and risky. A good tool helps you find the right posts and leaves the replying to you. GrowX **Reply targets** collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, and nothing is sent until you press the button."),
+          p("Replies are one of the best ways for a small account to be seen, but automated replies are spammy and risky. A good tool helps you find the right posts and leaves the replying to you. The GrowX **AI Reply Assistant** collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, and nothing is sent until you approve it."),
         ],
       },
       {
@@ -850,7 +850,7 @@ export const growthPosts: Post[] = [
             "A Chrome extension that works in your own signed-in X session, organised into Home, Grow, Create, Engage, Insights, Cleanup and Settings.",
             "**Grow**: smart auto follow with source profiles, recent followers first, filters, a follow-back score from 1 to 99 and four pacing presets (Safe, Balanced, Turbo, X Premium pace).",
             "**Create**: posts and threads, a scheduler with queue slots, a best-time heat map, 52 templates and, on Premium, GrowX AI.",
-            "**Engage**: Reply targets and a People list with tags, notes and VIPs.",
+            "**Engage**: the AI Reply Assistant and a People list with tags, notes and VIPs.",
             "**Insights**: post analytics, a follower and unfollower tracker, top fans, goals, streaks and milestones.",
             "**Cleanup**: a scan for inactive and not-following-back accounts, with paced unfollowing.",
             "A free plan, a 30-day Premium trial without a credit card and prepaid Premium plans.",
@@ -868,7 +868,7 @@ export const growthPosts: Post[] = [
       qa("Is GrowX free?", "Yes. The free plan includes the Safe and Balanced paces, core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 per run. You can try every Premium feature free for 30 days without a credit card."),
       qa("Does GrowX need my X password?", "No. It works in your own signed-in x.com session and does not use X OAuth or store your X login."),
       qa("Does GrowX work on mobile?", "No. It is an extension for desktop Chrome (version 116 or later) on Windows, macOS, Linux and ChromeOS."),
-      qa("How is GrowX different from a simple auto follow script?", "A script only follows. GrowX is a full X growth tool: its smart auto follow chooses who to follow with sources, filters and a follow-back score and follows at a human pace with caps and stops, and it also includes a post scheduler, an on-device AI writer (Premium), post analytics, an unfollower tracker, Reply targets and cleanup tools."),
+      qa("How is GrowX different from a simple auto follow script?", "A script only follows. GrowX is a full X growth tool: its smart auto follow chooses who to follow with sources, filters and a follow-back score and follows at a human pace with caps and stops, and it also includes a post scheduler, an on-device AI writer (Premium), post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools."),
       qa("Does the AI writer send my drafts to a server?", "No. GrowX AI (Premium) runs on your computer using the AI model built into Chrome, with no API key and nothing sent to GrowX. If your Chrome cannot run the model, the AI buttons fall back to templates and the plain thread splitter."),
     ],
   },

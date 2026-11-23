@@ -444,7 +444,7 @@ const corePosts: Post[] = [
           {
             type: "ul",
             items: [
-              "**Free forever**: the Safe and Balanced paces, source profiles, recent followers first, the follow-back score, core filters, the never-follow list, the post scheduler with up to 10 posts or threads waiting, analytics for your latest 30 posts, 7 days of follower history, Reply targets and cleanup of up to 200 per run. Safety features such as the emergency stop, adaptive slow-down, active hours and warm-up are on every plan.",
+              "**Free forever**: the Safe and Balanced paces, source profiles, recent followers first, the follow-back score, core filters, the never-follow list, the post scheduler with up to 10 posts or threads waiting, analytics for your latest 30 posts, 7 days of follower history, fresh posts to reply to and cleanup of up to 200 per run. Safety features such as the emergency stop, adaptive slow-down, active hours and warm-up are on every plan.",
               "**Premium**: the Turbo and X Premium paces, custom pacing above Balanced, advanced filters, list import, the smart score, more source types, auto-replace for weak sources, unlimited scheduling, evergreen recycling, auto-plug, GrowX AI, full analytics, full follower history, VIP alerts, a workspace per X account, bulk unfollow of up to 5,000, the Balanced unfollow pace and automatic cleanup.",
             ],
           },

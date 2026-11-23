@@ -1,7 +1,8 @@
 // End-to-end browser checks against a production build wired to tests/e2e/mock-supabase.mjs.
 // Run with: npm run test:e2e
 import { chromium } from "playwright-core";
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+const CURRENT_VERSION = readFileSync(new URL("../../src/content/releases.ts", import.meta.url), "utf8").match(/CURRENT_VERSION = "([^"]+)"/)[1];
 const BASE = process.env.E2E_BASE_URL || "http://localhost:3113";
 const OUT = new URL("./.output/", import.meta.url).pathname;
 mkdirSync(OUT, { recursive: true });
@@ -222,7 +223,7 @@ for (const l of links) {
   ok("tweet templates: fill-in shows the finished post", (await p.locator('[data-testid="template-list"]').innerText()).includes("What's the best advice you've ever gotten about cold email?"));
 
   await p.goto(BASE + "/whats-new", { waitUntil: "networkidle" });
-  ok("whats-new: latest release first and 21 languages listed", (await p.locator("article").first().innerText()).includes("v2.4.7") && (await p.locator('[data-testid="language-list"] > li').count()) === 21 && (await p.locator('[data-testid="language-list"] [lang="ar"][dir="rtl"]').count()) === 1);
+  ok("whats-new: latest release first and 21 languages listed", (await p.locator("article").first().innerText()).includes(`v${CURRENT_VERSION}`) && (await p.locator('[data-testid="language-list"] > li').count()) === 21 && (await p.locator('[data-testid="language-list"] [lang="ar"][dir="rtl"]').count()) === 1);
   // the SoftwareApplication is defined once, on the home page; other pages refer to it by @id
   await p.goto(BASE + "/", { waitUntil: "networkidle" });
   const swLangs = await p.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => JSON.parse(s.textContent)["@graph"] ?? []).find((d) => d["@type"] === "SoftwareApplication")?.inLanguage?.length ?? 0);

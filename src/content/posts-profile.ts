@@ -745,22 +745,22 @@ export const profilePosts: Post[] = [
       },
       {
         id: "growx-people",
-        heading: "Reply targets and VIPs: a complement to Lists",
+        heading: "The AI Reply Assistant and VIPs: a complement to Lists",
         blocks: [
           p("Lists live on X. GrowX's **Engage** area adds tools that work alongside them:"),
           ul(
-            "**Reply targets** collects fresh posts, by default younger than 120 minutes, from your sources, your VIPs and anyone you add, and ranks them by freshness and how fast they are taking off. You can reply and like from GrowX, but only when you press the button. Nothing is sent by itself.",
+            "The **AI Reply Assistant** collects fresh posts, by default younger than 120 minutes, from your sources, your VIPs and anyone you add, and ranks them by freshness and how fast they are taking off. You can reply and like from GrowX, but only when you press the button. Nothing is sent by itself.",
             "**People** keeps tags, notes, VIP and watch flags, your mutuals and the fans you don't follow back yet, so you remember who you talked to and why.",
             "**VIP alerts (Premium)** send a notification when a VIP posts, so you can be among the first to reply.",
           ),
-          p("Use them together: a List for reading your niche on X, VIPs for the handful of accounts you never want to miss, and Reply targets to see which fresh posts are worth answering first. The [Reply targets](/features/twitter-reply-targets) page has the details."),
+          p("Use them together: a List for reading your niche on X, VIPs for the handful of accounts you never want to miss, and the AI Reply Assistant to see which fresh posts are worth answering first. The [AI Reply Assistant](/features/twitter-reply-targets) page has the details."),
         ],
       },
       {
         id: "try",
         heading: "Find your niche on X with GrowX",
         blocks: [
-          p(`${TRY} Reply targets and the People list are part of the free plan, and X Lists as auto follow sources come with Premium.`),
+          p(`${TRY} The list of fresh posts to reply to and the People list are part of the free plan, and X Lists as auto follow sources come with Premium.`),
         ],
       },
     ],
