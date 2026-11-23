@@ -48,7 +48,7 @@ import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
 import { CURRENT_VERSION, releases } from "@/content/releases";
 
-const metadataTitle = "GrowX: The Ultimate X (Twitter) Growth Tool";
+const metadataTitle = "GrowX: Chrome Extension for X (Twitter) Growth";
 const metadataDescription =
   "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, post scheduler, AI writer, analytics and unfollower tracker. Free to start.";
 
@@ -183,9 +183,9 @@ export default function HomePage() {
             </Link>
           </div>
           <h1 className="mx-auto mt-7 max-w-5xl text-display font-extrabold [text-wrap:balance]" style={stagger(1)}>
-            <SettleWords text="The ultimate" />{" "}
-            <span className="settle-word" style={cssVars({ "--w": 2 })}>
-              <span className="text-gradient text-sheen">X (Twitter) growth tool</span>
+            <SettleWords text="GrowX, the Chrome extension for" />{" "}
+            <span className="settle-word" style={cssVars({ "--w": 5 })}>
+              <span className="text-gradient text-sheen">X (Twitter) growth</span>
             </span>
           </h1>
           <p className="hero-settle mt-5 font-display text-[clamp(1.125rem,0.95rem+1vw,1.6rem)] font-semibold text-text" style={stagger(2)}>

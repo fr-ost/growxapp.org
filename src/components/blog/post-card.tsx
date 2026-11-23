@@ -24,7 +24,7 @@ export function PostCardView({ post, headingLevel = "h2" }: { post: PostSummary;
       data-spotlight=""
       className="reveal lift group relative flex h-full flex-col overflow-clip rounded-3xl border border-hairline bg-white p-6 shadow-hair"
     >
-      <PostCover slug={post.slug} category={post.category} className="-mx-6 -mt-6 mb-5 aspect-[16/7] border-b border-hairline" />
+      <PostCover slug={post.slug} title={post.title} category={post.category} className="-mx-6 -mt-6 mb-5 aspect-[16/7] border-b border-hairline" />
       <div className="flex items-center gap-3">
         <Badge tone="accent">{post.category}</Badge>
         <span className="flex items-center gap-1 text-xs tabular-nums text-muted">

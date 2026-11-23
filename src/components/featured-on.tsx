@@ -6,13 +6,18 @@ import { liveBadges, type DirectoryBadge } from "@/data/badges";
  * alt text and rel by exact match or with a crawler, so the markup is never rebuilt, never routed through next/image,
  * and never given nofollow. It is server-rendered, so it is in the HTML a crawler fetches.
  */
-export function OfficialBadge({ badge, className = "" }: { badge: DirectoryBadge; className?: string }) {
-  return <span className={`featured-badge inline-flex ${className}`} dangerouslySetInnerHTML={{ __html: badge.html ?? "" }} />;
+export function OfficialBadge({ badge, className = "", lazy = false }: { badge: DirectoryBadge; className?: string; lazy?: boolean }) {
+  const html = lazy ? lazyImages(badge.html ?? "") : (badge.html ?? "");
+  return <span className={`featured-badge inline-flex ${className}`} dangerouslySetInnerHTML={{ __html: html }} />;
 }
+
+/** Adds loading="lazy" to badge images that don't set loading themselves (footer only; /featured keeps the exact HTML). */
+export const lazyImages = (html: string) => html.replace(/<img\b(?![^>]*\sloading=)/g, '<img loading="lazy"');
 
 /**
  * The compact "Featured on" strip in the footer: only badges that are verified, have a real slug and official HTML
- * (`liveBadges`). Muted and small; the image's own width and height attributes keep its aspect ratio, so no layout shift.
+ * (`liveBadges`). Muted and small (28 px high, forced over inline heights), lazy-loaded; the image's own width and
+ * height attributes keep its aspect ratio, so no layout shift.
  */
 export function FeaturedOn() {
   if (!liveBadges.length) return null;
@@ -28,7 +33,8 @@ export function FeaturedOn() {
           <li key={b.name}>
             <OfficialBadge
               badge={b}
-              className="opacity-70 hover:opacity-100 focus-within:opacity-100 motion-ok:transition-opacity motion-ok:duration-200 [&_img]:h-7 [&_img]:w-auto"
+              lazy
+              className="opacity-70 hover:opacity-100 focus-within:opacity-100 motion-ok:transition-opacity motion-ok:duration-200 text-xs font-semibold text-white/70 [&_img]:!h-7 [&_img]:!w-auto [&>a]:max-h-10"
             />
           </li>
         ))}

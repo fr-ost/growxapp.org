@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Scan only the app source for class names (not docs, tests or the extension reference). */
+@import "tailwindcss" source("..");
 
 /* ============================================================ variants
    motion-ok: OS allows motion AND the site toggle (html[data-motion="reduce"]) is off.

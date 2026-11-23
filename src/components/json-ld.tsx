@@ -135,8 +135,8 @@ export const softwareOffers = pricingTiers.map((t) => ({
 export const softwareLd = {
   "@type": "SoftwareApplication",
   "@id": SOFTWARE_ID,
-  name: "GrowX: The Ultimate X (Twitter) Growth Tool",
-  alternateName: "GrowX",
+  name: "GrowX - X (Twitter) Growth Chrome Extension",
+  alternateName: ["GrowX", "GrowX: The Ultimate X (Twitter) Growth Tool"],
   description: site.description,
   applicationCategory: "BrowserApplication",
   applicationSubCategory: "Social media growth tool",

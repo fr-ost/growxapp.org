@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "GrowX: The Ultimate X (Twitter) Growth Tool";
+export const alt = "GrowX: the Chrome extension for X (Twitter) growth";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

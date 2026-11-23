@@ -1,3 +1,9 @@
+"use client";
+
+/*
+ * A client component with no props on purpose: its HTML is still rendered on the server (every link and directory
+ * badge is in the page source), but the page's RSC payload carries a reference instead of a second copy of the footer.
+ */
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { IconChrome, IconMail } from "@/components/icons";
@@ -113,7 +119,7 @@ export function SiteFooter() {
       </div>
       <div className="relative border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-white/60 lg:flex-row lg:text-left">
-          <p>&copy; {new Date().getFullYear()} GrowX · {site.author}</p>
+          <p suppressHydrationWarning>&copy; {new Date().getFullYear()} GrowX · {site.author}</p>
           <p>Free plan forever · 30-day Premium trial, no credit card · Premium paid in crypto via NOWPayments</p>
           <div className="flex items-center gap-2">
             <span className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[11px] text-white/70">v{CURRENT_VERSION} · Chrome 116+</span>

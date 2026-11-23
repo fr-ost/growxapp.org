@@ -15,6 +15,7 @@ export const baseKeywords = [
 ];
 
 export const DEFAULT_OG_IMAGE = "/opengraph-image";
+export const DEFAULT_OG_ALT = "GrowX: the Chrome extension for X (Twitter) growth";
 
 export interface PageSeo {
   /**
@@ -52,7 +53,7 @@ export const RSS_ALTERNATE = { "application/rss+xml": [{ url: "/blog/feed.xml", 
 export function pageMetadata(opts: PageSeo): Metadata {
   const title = fullTitle(opts.title, opts.absoluteTitle);
   // A page-level openGraph replaces the root one, so the default image must be repeated here.
-  const images = opts.defaultImage === false ? undefined : [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "GrowX: The Ultimate X (Twitter) Growth Tool" }];
+  const images = opts.defaultImage === false ? undefined : [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: DEFAULT_OG_ALT }];
   return {
     title: { absolute: title },
     description: opts.description,
@@ -71,7 +72,7 @@ export function pageMetadata(opts: PageSeo): Metadata {
         ? { publishedTime: opts.publishedTime, modifiedTime: opts.modifiedTime ?? opts.publishedTime, authors: [site.author] }
         : {}),
     },
-    twitter: { card: "summary_large_image", title, description: opts.description, ...(images ? { images: [DEFAULT_OG_IMAGE] } : {}) },
+    twitter: { card: "summary_large_image", title, description: opts.description, ...(images ? { images: [{ url: DEFAULT_OG_IMAGE, alt: DEFAULT_OG_ALT }] } : {}) },
     robots: opts.noindex
       ? { index: false, follow: false }
       : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },

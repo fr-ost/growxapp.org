@@ -49,7 +49,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
     // Post social cards moved to /opengraph-image/card (per-post alt text); keep links that X and others cached working.
-    return [{ source: "/blog/:slug/opengraph-image", destination: "/blog/:slug/opengraph-image/card", permanent: true }];
+    return [
+      { source: "/blog/:slug/opengraph-image", destination: "/blog/:slug/opengraph-image/card", permanent: true },
+      // One hop from the bare domain to the canonical host (http or https, any path). Vercel also turns http into https
+      // at its edge; with growxapp.org pointed at this project, this rule sends it straight to https://www.growxapp.org.
+      { source: "/:path*", has: [{ type: "host", value: "growxapp.org" }], destination: "https://www.growxapp.org/:path*", permanent: true },
+    ];
   },
   images: {
     formats: ["image/avif", "image/webp"],

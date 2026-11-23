@@ -5,6 +5,7 @@ import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
 import { ExternalButton, LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
+import { TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
 import { liveBadges } from "@/data/badges";
 import { pageMetadata } from "@/lib/seo";
@@ -29,14 +30,14 @@ export default function FeaturedPage() {
             { name: "Home", path: "/" },
             { name: "Featured on", path: "/featured" },
           ]),
-          webPageLd({ path: "/featured", name: "GrowX featured on", description }),
+          webPageLd({ path: "/featured", name: "GrowX Featured On: Directories, Launch Platforms & Reviews", description }),
         ]}
       />
       <PageHero
         eyebrow="Featured on"
         title={
           <>
-            Where you can find <span className="text-gradient">GrowX.</span>
+            GrowX Featured On: <span className="text-gradient">Directories, Launch Platforms &amp; Reviews</span>
           </>
         }
         actions={
@@ -52,11 +53,39 @@ export default function FeaturedPage() {
           </>
         }
       >
-        <p>
-          Product directories and launch sites that list GrowX. These are listings, not reviews or endorsements. Each badge links to the directory, as the
-          directory asks.
-        </p>
+        <p>Product directories, launch platforms and review sites that list GrowX, each with its official badge.</p>
       </PageHero>
+
+      <Section className="pb-0 pt-10 sm:pt-12">
+        <Container className="max-w-[68ch] space-y-4 text-[1.05rem] leading-8 text-text-2 [text-wrap:pretty]">
+          <p>
+            GrowX is a Chrome extension for growing on X (Twitter). Besides its page on the{" "}
+            <a href={site.chromeStoreUrl} className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+              Chrome Web Store
+            </a>
+            , it is listed on the {liveBadges.length} product directories and launch platforms below. Each entry shows the site&apos;s own badge, exactly
+            as that site provides it, with a link to the listing or to the site itself.
+          </p>
+          <p>
+            Some are directories of software and browser extensions, such as ExtensionFinder, ToolDirs and Direct2App, where you can find GrowX by
+            category. Others are launch platforms that present new products, such as LaunchBuck, Nick Launches, Launchit, LaunchBoosts, LaunchKiwi and
+            Next Big Product. launched.tools marks its listing of GrowX as reviewed. A listing is not an endorsement or a rating, and none of these sites
+            is connected to X Corp.
+          </p>
+          <p>
+            Wherever you found GrowX, the facts are the same: it works inside the x.com tab you are already signed in to in desktop Chrome, never asks
+            for your X password, has a free plan forever and a {TRIAL_DAYS}-day Premium trial with no credit card. See every{" "}
+            <Link href="/features" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+              feature
+            </Link>{" "}
+            or compare the{" "}
+            <Link href="/pricing" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+              plans
+            </Link>
+            .
+          </p>
+        </Container>
+      </Section>
 
       <Section className="pt-10 sm:pt-14">
         <Container className="max-w-5xl">

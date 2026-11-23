@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </p>
             </div>
             <div className="hidden lg:block">
-              <PostCover slug={post.slug} category={post.category} className="aspect-square rounded-3xl shadow-float ring-1 ring-hairline" />
+              <PostCover slug={post.slug} title={post.title} category={post.category} className="aspect-square rounded-3xl shadow-float ring-1 ring-hairline" />
             </div>
           </Container>
         </header>

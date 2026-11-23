@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { FeaturedOn } from "@/components/featured-on";
+import { FeaturedOn, lazyImages } from "@/components/featured-on";
 import { badges, liveBadges } from "@/data/badges";
 import sitemap from "@/app/sitemap";
 import { site } from "@/config/site";
@@ -20,8 +20,12 @@ describe("Featured on badges", () => {
     expect(html).not.toContain("your-slug");
   });
 
-  it("renders each badge's official HTML byte for byte, server-side", () => {
-    for (const b of liveBadges) expect(html, b.name).toContain(b.html!);
+  it("renders each badge's official link and image server-side; only loading=lazy is added in the footer", () => {
+    for (const b of liveBadges) {
+      expect(html, b.name).toContain(lazyImages(b.html!));
+      expect(html, b.name).toContain(`href="${b.href}"`);
+      expect(lazyImages(b.html!).replace(/<img loading="lazy"/g, "<img"), b.name).toBe(b.html);
+    }
   });
 
   it("never adds nofollow, sponsored or ugc, and never proxies images", () => {

@@ -34,7 +34,7 @@ function FeaturedPost({ post }: { post: Post }) {
       data-spotlight=""
       className="reveal lift group relative grid overflow-clip rounded-3xl border border-hairline bg-white shadow-hair lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]"
     >
-      <PostCover slug={post.slug} category={post.category} className="aspect-[16/7] border-b border-hairline lg:aspect-auto lg:min-h-80 lg:border-b-0 lg:border-r" />
+      <PostCover slug={post.slug} title={post.title} category={post.category} className="aspect-[16/7] border-b border-hairline lg:aspect-auto lg:min-h-80 lg:border-b-0 lg:border-r" />
       <div className="flex flex-col p-6 sm:p-8 lg:p-10">
         <div className="flex items-center gap-3">
           <Badge tone="accent">{post.category}</Badge>

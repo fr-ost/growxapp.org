@@ -18,18 +18,18 @@ const LAYER =
  * frame (object-fit: fill) so the file's own preserveAspectRatio centres the art and, like inline SVG, still draws the
  * parts that reach past the 320x140 viewBox on taller frames.
  */
-export function PostCover({ slug, className = "aspect-[16/7]" }: { slug: string; category: Post["category"]; className?: string }) {
+export function PostCover({ slug, title, className = "aspect-[16/7]" }: { slug: string; title: string; category: Post["category"]; className?: string }) {
   const seed = hash(slug);
   const r = rand(seed);
   const [x1, y1, x2, y2] = [Math.round(6 + r() * 34), Math.round(r() * 40), Math.round(60 + r() * 34), Math.round(60 + r() * 40)];
   // The mesh itself is .post-cover-bg in globals.css; only the two gradient centres vary per post.
   const centres = { "--c1": `${x1}% ${y1}%`, "--c2": `${x2}% ${y2}%` } as CSSProperties;
   return (
-    <div aria-hidden="true" data-decor="" className={`post-cover-bg relative overflow-clip ${className}`} style={centres}>
+    <div data-decor="" className={`post-cover-bg relative overflow-clip ${className}`} style={centres}>
       {/* eslint-disable-next-line @next/next/no-img-element -- static decorative SVG; next/image adds nothing here */}
-      <img src={coverUrl(slug, "back")} alt="" width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:-translate-x-1.5`} />
+      <img src={coverUrl(slug, "back")} alt="" aria-hidden="true" width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:-translate-x-1.5`} />
       {/* eslint-disable-next-line @next/next/no-img-element -- static decorative SVG; next/image adds nothing here */}
-      <img src={coverUrl(slug, "front")} alt="" width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:translate-x-1.5`} />
+      <img src={coverUrl(slug, "front")} alt={`${title} – GrowX blog cover`} width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:translate-x-1.5`} />
     </div>
   );
 }
