@@ -9,12 +9,17 @@ const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
 ];
 
-// Hosts the Google tag (gtag.js, Google Ads) loads from and reports to, per Google's CSP guide.
+// Hosts the Google tag (gtag.js, Google Ads) and Tag Manager (gtm.js) load from and report to, per Google's CSP guides.
 const google = {
   script: "https://www.googletagmanager.com https://*.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com",
   img: "https://*.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.google.com.bd https://td.doubleclick.net",
   connect: "https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.google.com.bd https://td.doubleclick.net",
   frame: "https://td.doubleclick.net https://www.googletagmanager.com",
+  // Tag Manager's Preview and debug mode (Google's CSP guide for Tag Manager).
+  previewScript: "https://tagmanager.google.com",
+  previewStyle: "https://tagmanager.google.com https://fonts.googleapis.com",
+  previewImg: "https://ssl.gstatic.com https://www.gstatic.com",
+  previewFont: "https://fonts.gstatic.com",
 };
 
 // Image hosts of the directory badges shown in the footer and on /featured (their official <img> URLs, never proxied).
@@ -24,10 +29,10 @@ const badgeHosts = [...new Set(liveBadges.flatMap((b) => [...(b.html ?? "").matc
 // Next.js hydration unless nonces are used, which would make every page dynamic.
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' ${google.script}`,
-  "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: ${google.img} ${badgeHosts}`,
-  "font-src 'self' data:",
+  `script-src 'self' 'unsafe-inline' ${google.script} ${google.previewScript}`,
+  `style-src 'self' 'unsafe-inline' ${google.previewStyle}`,
+  `img-src 'self' data: blob: ${google.img} ${google.previewImg} ${badgeHosts}`,
+  `font-src 'self' data: ${google.previewFont}`,
   `connect-src 'self' ${google.connect}`,
   `frame-src ${google.frame}`,
   "object-src 'none'",
