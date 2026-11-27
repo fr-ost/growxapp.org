@@ -9,7 +9,9 @@ export type Block =
   | { type: "p"; text: string }
   | { type: "ul"; items: string[] }
   | { type: "ol"; items: string[] }
-  | { type: "note"; text: string };
+  | { type: "note"; text: string }
+  /** A small data table (real HTML, so search and AI engines can read it). Cells support **bold** and [label](/path). */
+  | { type: "table"; caption: string; head: string[]; rows: string[][] };
 
 export interface PostSection {
   id: string;

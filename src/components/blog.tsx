@@ -36,6 +36,34 @@ function BlockView({ block }: { block: Block }) {
           <p><RichText text={block.text} /></p>
         </aside>
       );
+    case "table":
+      return (
+        <div className="overflow-x-auto rounded-2xl border border-hairline bg-white shadow-hair">
+          <table className="w-full min-w-[34rem] border-separate border-spacing-0 text-left text-sm leading-relaxed">
+            <caption className="sr-only">{block.caption}</caption>
+            <thead>
+              <tr className="[&>th]:shadow-[inset_0_-1px_0_var(--hairline-strong)]">
+                {block.head.map((h) => (
+                  <th key={h} scope="col" className="px-4 py-3 font-bold text-text">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row) => (
+                <tr key={row[0]} className="align-top [&>*]:border-t [&>*]:border-hairline first:[&>*]:border-t-0">
+                  {row.map((cell, i) =>
+                    i === 0 ? (
+                      <th key={i} scope="row" className="px-4 py-3 font-semibold text-text"><RichText text={cell} /></th>
+                    ) : (
+                      <td key={i} className="px-4 py-3 text-text-2"><RichText text={cell} /></td>
+                    ),
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
   }
 }
 

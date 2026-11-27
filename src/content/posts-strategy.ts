@@ -40,8 +40,8 @@ export const strategyPosts: Post[] = [
         id: "intro",
         heading: "What people mean by \"the Twitter algorithm\"",
         blocks: [
-          p("When people talk about **the Twitter algorithm**, they usually mean the system that decides which posts appear in the **For you** feed on X, and in what order. It is not one formula. It is a set of systems that collect candidate posts, predict how likely you are to engage with each one, filter out what you should not see, and blend the result into a feed. The details change often, and X does not publish all of them."),
-          p("This guide sticks to what is publicly known, avoids made-up numbers and turns it into habits you can act on this week, with notes on where **GrowX**, a Chrome extension for X (Twitter), can help. If someone quotes you an exact multiplier for a like or a reply, be sceptical: X has not published its current weights, and any precise figure you see online is at best a snapshot of an older version."),
+          p("When people talk about **the Twitter algorithm**, they usually mean the system that decides which posts appear in the **For you** feed on X, and in what order. It is not one formula. It is a set of systems that collect candidate posts, predict how likely you are to engage with each one, filter out what you should not see, and blend the result into a feed."),
+          p("The details change often, and X does not publish all of them. This guide sticks to what is publicly known, avoids made-up numbers and turns it into habits you can act on this week, with notes on where **GrowX**, a Chrome extension for X (Twitter), can help. If someone quotes you an exact multiplier for a like or a reply, be sceptical: X has not published its current weights, and any precise figure you see online is at best a snapshot of an older version."),
         ],
       },
       {
@@ -71,7 +71,7 @@ export const strategyPosts: Post[] = [
       },
       {
         id: "signals",
-        heading: "What ranking generally rewards",
+        heading: "What does ranking generally reward?",
         blocks: [
           p("Putting the public material together with how recommendation systems usually work, a few principles hold up well. None of them comes with a published weight, and X can change any of them:"),
           ul(
@@ -677,7 +677,7 @@ export const strategyPosts: Post[] = [
       },
       {
         id: "week",
-        heading: "How to turn this list into a week of posts",
+        heading: "How do you turn this list into a week of posts?",
         blocks: [
           ol(
             "Pick one idea from five different groups. Variety shows you which formats your audience likes.",
@@ -762,13 +762,13 @@ export const strategyPosts: Post[] = [
         id: "intro",
         heading: "What hashtags actually do on X",
         blocks: [
-          p("Hashtags were born on Twitter, and they still work the same basic way on X: a word or phrase after a # becomes a link to search results for that tag. Anyone who taps it or searches for it can find posts that use it. That is the whole mechanism. A hashtag does not push your post into more feeds by itself; it makes the post findable by people who are looking for that topic."),
-          p("That small role is why the right approach to **Twitter hashtags** is restraint. This guide covers how many to use, when they help, when they hurt, how to find the best hashtags for your niche, and how **GrowX**, a Chrome extension for X (Twitter), can use hashtags to find people to follow."),
+          p("Hashtags were born on Twitter, and they still work the same basic way on X: a word or phrase after a # becomes a link to search results for that tag. Anyone who taps it or searches for it can find posts that use it. That is the whole mechanism."),
+          p("A hashtag does not push your post into more feeds by itself; it makes the post findable by people who are looking for that topic. That small role is why the right approach to **Twitter hashtags** is restraint. This guide covers how many to use, when they help, when they hurt, how to find the best hashtags for your niche, and how **GrowX**, a Chrome extension for X (Twitter), can use hashtags to find people to follow."),
         ],
       },
       {
         id: "how-many",
-        heading: "How many hashtags to use on X",
+        heading: "How many hashtags should you use on X?",
         blocks: [
           p("For most posts, **zero to two relevant hashtags** is the right range, and many good posts use none at all. X's own help pages have long advised against over-tagging a single post, and there are practical reasons too:"),
           ul(

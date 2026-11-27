@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Twitter engagement rate calculator"
       title={<>Twitter engagement rate <span className="text-gradient">calculator</span></>}
-      lead="Find out how well a post landed with the people who saw it. Enter the numbers from X and get the engagement rate per view and per follower."
+      lead="This free Twitter engagement rate calculator shows how well a post landed with the people who saw it. Enter the views, likes, reposts, replies and bookmarks from X, and you get the engagement rate per view and per follower. Nothing is stored or sent anywhere."
       tool={<EngagementCalculator />}
       faqs={faqs}
     >

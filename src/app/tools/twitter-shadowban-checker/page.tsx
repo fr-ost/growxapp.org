@@ -49,7 +49,7 @@ export default function Page() {
       path={PATH}
       name="Twitter shadowban checker"
       title={<>Free Twitter <span className="text-gradient">shadowban checker</span></>}
-      lead="Find out if X is hiding your account. Test for a search ban, a search suggestion ban and hidden replies in a few minutes: no login required, no sign-up and completely free."
+      lead="This free Twitter shadowban checker tests whether X is hiding your account. Enter your username below to check for a search ban, a search suggestion ban and hidden replies in a few minutes. No login is required, there is no sign-up and nothing to install."
       tool={<ShadowbanChecker />}
       faqs={faqs}
       cta={{

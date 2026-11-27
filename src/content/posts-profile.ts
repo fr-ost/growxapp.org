@@ -42,13 +42,13 @@ export const profilePosts: Post[] = [
         id: "why-bio",
         heading: "Why your X bio decides who follows you",
         blocks: [
-          p("When someone sees your reply, a repost or a new follow from you, they either tap your name or keep scrolling. If they tap, your profile becomes a landing page: in a few seconds they scan your name, photo, header, **bio**, pinned post and latest posts, then decide whether to follow. On X (Twitter), the bio carries most of that decision, because it is the only place where you explain yourself in words."),
-          p("That is why searches for **Twitter bio ideas** are so common, and why copying a clever line rarely works. A bio does not need to be witty. It needs to tell a stranger, in 160 characters, what they get if they follow you. Below: a formula, X bio examples for many niches, and the rest of a profile that turns visits into follows."),
+          p("When someone sees your reply, a repost or a new follow from you, they either tap your name or keep scrolling. If they tap, your profile becomes a landing page: in a few seconds they scan your name, photo, header, **bio**, pinned post and latest posts, then decide whether to follow."),
+          p("On X (Twitter), the bio carries most of that decision, because it is the only place where you explain yourself in words. That is why searches for **Twitter bio ideas** are so common, and why copying a clever line rarely works. A bio does not need to be witty. It needs to tell a stranger, in 160 characters, what they get if they follow you. Below: a formula, X bio examples for many niches, and the rest of a profile that turns visits into follows."),
         ],
       },
       {
         id: "formula",
-        heading: "How to write a Twitter bio: a four-part formula",
+        heading: "How do you write a Twitter bio? A four-part formula",
         blocks: [
           p("Most bios that work answer four questions. Checking your draft against them shows what is missing."),
           ol(
@@ -250,7 +250,7 @@ export const profilePosts: Post[] = [
       },
       {
         id: "check",
-        heading: "How to check for a shadowban yourself",
+        heading: "How can you check for a shadowban yourself?",
         blocks: [
           p("No website can see how X treats your account internally, and X only shows search and search suggestions to people who are signed in. So the most reliable test is to look at X the way a stranger does. Our free [Twitter shadowban checker](/tools/twitter-shadowban-checker) builds these checks for your username and turns your answers into a result, with no login and no sign-up. You can also run them by hand:"),
           ol(
@@ -383,7 +383,7 @@ export const profilePosts: Post[] = [
     sections: [
       {
         id: "what-is-f4f",
-        heading: "What follow for follow means on Twitter",
+        heading: "What does follow for follow mean on Twitter?",
         blocks: [
           p("**Follow for follow**, or **F4F**, is a simple deal: I follow you, you follow me back. On Twitter it shows up in bios as \"F4F\", \"IFB\" (I follow back), \"follow back\" or \"mutuals\", and in posts that invite people to drop their handle in the replies and follow everyone else who does. The goal is a bigger follower count, fast."),
           p("Following back someone who follows you is completely normal on X. Problems start when the whole strategy becomes a trade of follows, often in bulk. X's rules on platform manipulation and spam cover attempts to artificially inflate follower counts, and aggressive follow and unfollow churn is one of the patterns that gets accounts limited. So the real question is not only whether F4F works, but what kind of audience it builds."),
@@ -662,7 +662,7 @@ export const profilePosts: Post[] = [
     sections: [
       {
         id: "what-are-lists",
-        heading: "What Twitter Lists are",
+        heading: "What are Twitter Lists?",
         blocks: [
           p("A **List** on X is a group of accounts you choose, with its own timeline that shows only posts from those accounts. You can add anyone with a public account, whether or not you follow them, and you can follow Lists that other people have made public. Pin the Lists you use most and they sit one tap away from your Home timeline."),
           p("**Twitter Lists** have been around for years, and they matter more now that the main timeline is shaped by recommendations. For You decides what you see, and your Following feed gets crowded as you follow more people. A List is the one feed you fully control: the accounts you picked, and nothing else."),

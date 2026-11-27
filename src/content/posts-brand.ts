@@ -40,10 +40,10 @@ export const brandPosts: Post[] = [
     sections: [
       {
         id: "why",
-        heading: "Why a content calendar helps on X",
+        heading: "Why does a content calendar help on X?",
         blocks: [
-          p("A **Twitter content calendar** is a simple plan of what you will post on X, on which days and in which format. It sounds like something only brands with a social media team need, but it helps solo creators even more. Without one, most accounts fall into the same pattern: a burst of posts during a good week, silence when work gets busy, then a scramble to think of something to say. A calendar replaces that with a rhythm you can keep."),
-          p("It also makes your writing better. When you know that Tuesday is for a how-to and Thursday is for a story, you collect ideas for those slots all week instead of staring at an empty composer. Below: a copyable weekly template, a batching routine, queue slots and evergreen recycling."),
+          p("A **Twitter content calendar** is a simple plan of what you will post on X, on which days and in which format. It sounds like something only brands with a social media team need, but it helps solo creators even more."),
+          p("Without one, most accounts fall into the same pattern: a burst of posts during a good week, silence when work gets busy, then a scramble to think of something to say. A calendar replaces that with a rhythm you can keep. It also makes your writing better. When you know that Tuesday is for a how-to and Thursday is for a story, you collect ideas for those slots all week instead of staring at an empty composer. Below: a copyable weekly template, a batching routine, queue slots and evergreen recycling."),
         ],
       },
       {
@@ -229,7 +229,7 @@ export const brandPosts: Post[] = [
       },
       {
         id: "blog-to-thread",
-        heading: "How to turn a blog post into a Twitter thread, step by step",
+        heading: "How do you turn a blog post into a Twitter thread, step by step?",
         blocks: [
           p("Threads are the most natural way to repurpose an article, because both have a beginning, a middle and an end. This process works for most blog posts:"),
           ol(
@@ -394,7 +394,7 @@ export const brandPosts: Post[] = [
       },
       {
         id: "principles",
-        heading: "What makes a good pinned tweet",
+        heading: "What makes a good pinned tweet?",
         blocks: [
           ul(
             "**Written for strangers.** Assume the reader has never heard of you. Skip in-jokes and references to earlier posts.",
@@ -533,7 +533,7 @@ export const brandPosts: Post[] = [
     sections: [
       {
         id: "what",
-        heading: "What a personal brand on X actually is",
+        heading: "What is a personal brand on X?",
         blocks: [
           p("A personal brand is what people think of when they see your name: the topic they associate with you, the kind of posts they expect and whether they trust what you say. On X (Twitter) it forms quickly, because people judge an account from a few posts and a profile. **Personal branding on Twitter** is simply shaping that impression on purpose instead of leaving it to chance."),
           p("It is not about a logo, a slogan or pretending to be someone you are not. Strong personal brands on X tend to be narrow and consistent: a person known for one thing, who posts about it reliably and is helpful in the replies. This guide walks through how to build a personal brand on X in eight steps: positioning, niche, voice, profile, content pillars, consistency, relationships and measurement."),
@@ -710,7 +710,7 @@ export const brandPosts: Post[] = [
       },
       {
         id: "share",
-        heading: "What to share when you build in public",
+        heading: "What should you share when you build in public?",
         blocks: [
           ul(
             "**Progress**: what you shipped, built, wrote or fixed this week. Concrete beats vague: \"added CSV export\" says more than \"worked on features\".",

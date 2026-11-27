@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Twitter bio generator"
       title={<>Twitter bio <span className="text-gradient">generator</span></>}
-      lead="Tell it what you do, who you help and what you post about. Get several X bio ideas that fit 160 characters, then copy your favourite."
+      lead="This free Twitter bio generator writes X bios from three things: what you do, who you help and what you post about. You get several bios that fit X's 160-character limit, ready to edit and copy into your profile. It runs in your browser, with no sign-up."
       tool={<BioGenerator />}
       faqs={faqs}
     >

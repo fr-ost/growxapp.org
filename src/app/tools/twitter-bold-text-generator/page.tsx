@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Twitter bold text generator"
       title={<>Twitter bold text <span className="text-gradient">generator</span></>}
-      lead="Type your text and copy it in bold, italic, script, monospace and more. Works for X posts, replies and your bio."
+      lead="This free Twitter bold text generator turns your text into bold, italic, script, monospace and more, using Unicode letters that X shows in posts, replies and your bio. Type your text below and copy the style you want. Styled letters count as two characters each, so use them for a few words."
       tool={<BoldTextGenerator />}
       faqs={faqs}
     >

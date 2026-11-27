@@ -42,7 +42,7 @@ export const marketingPosts: Post[] = [
     sections: [
       {
         id: "intro",
-        heading: "What a Twitter marketing strategy is (and is not)",
+        heading: "What is a Twitter marketing strategy, and what is it not?",
         blocks: [
           p("A **Twitter marketing strategy** is a short, written plan for how your business uses X to reach a specific goal: who you want to reach, what you will post, how often, how you will join conversations and how you will know it is working. It is not a pile of scheduled promos, and it is not a follower count target on its own."),
           p("X tends to reward businesses that behave like people: they share what they know, answer questions and show up in the conversations their customers already have. This guide walks through each part of a practical plan for **X marketing for business**, ends with a simple 30/60/90-day plan, and shows where **GrowX**, a Chrome extension for X (Twitter), can take some of the routine work off your hands."),
@@ -317,7 +317,7 @@ export const marketingPosts: Post[] = [
       },
       {
         id: "backfire",
-        heading: "Why bought likes and engagement pods backfire",
+        heading: "Why do bought likes and engagement pods backfire?",
         blocks: [
           p("Buying likes, or joining a group where members agree to like each other's posts, can look like a shortcut. In practice it works against you:"),
           ul(
@@ -414,7 +414,7 @@ export const marketingPosts: Post[] = [
       },
       {
         id: "what-views-are",
-        heading: "What views and impressions are",
+        heading: "What are views and impressions on X?",
         blocks: [
           p("X added a view count to posts in late 2022 and, at the time of writing, shows it under most posts. X describes it as the number of times a post has been seen. Older Twitter analytics called the same idea **impressions**, and you will still see both words, often used interchangeably. Exactly how a view is counted is X's decision, and it may change."),
           p("Two things are worth keeping in mind:"),
@@ -592,7 +592,7 @@ export const marketingPosts: Post[] = [
       },
       {
         id: "why-people-repost",
-        heading: "Why people repost",
+        heading: "Why do people repost?",
         blocks: [
           p("A repost puts the reposter's name next to your work in front of their followers. People do it when sharing makes them look good or helps their audience:"),
           ul(

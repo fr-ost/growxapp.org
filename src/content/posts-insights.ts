@@ -234,7 +234,7 @@ export const insightPosts: Post[] = [
       },
       {
         id: "followers",
-        heading: "Which posts actually brought followers",
+        heading: "Which posts actually brought followers?",
         blocks: [
           p("Engagement and follower growth are related but not the same. A joke can collect likes from your existing followers and bring in nobody new. A plain, useful thread might get fewer likes and still attract followers for days. If growth is your goal, you need to know which posts did that."),
           p("The manual way: note your follower count before a post and again a day later, and compare the gain with a normal day. It is rough, because posts and replies overlap, but over a few weeks the standouts show. GrowX Premium does this for you: for each post it looks at new followers in the 24 hours afterwards and highlights the posts that brought followers above your usual pace."),
@@ -492,7 +492,7 @@ export const insightPosts: Post[] = [
     sections: [
       {
         id: "intro",
-        heading: "What Twitter engagement is and how to measure it",
+        heading: "What is Twitter engagement, and how do you measure it?",
         blocks: [
           p("Engagement on X is what people do with your posts after they see them: like, reply, repost or bookmark. If you want to know **how to increase Twitter engagement**, start by measuring it the same way every time. The simplest measure is **engagement rate**: interactions divided by views. It lets you compare a post that reached 300 people with one that reached 30,000."),
           p("Below are practical X engagement tips you can apply this week. None of them is a trick. They come down to writing posts people want to respond to, putting them in front of the right people at the right time, and taking part in conversations instead of only broadcasting."),

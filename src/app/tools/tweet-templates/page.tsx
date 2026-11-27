@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Tweet templates"
       title={<>52 free <span className="text-gradient">tweet templates</span></>}
-      lead="Proven formats for hooks, threads, lists, stories, questions, build in public and replies. Pick one, fill in the blanks and copy."
+      lead="These 52 free tweet templates give you proven formats for hooks, threads, lists, stories, questions, build in public and replies. Pick a template, fill in the blanks with your own details and copy the post into X. Every template is free, with no sign-up."
       tool={<TemplateLibrary />}
       faqs={faqs}
     >

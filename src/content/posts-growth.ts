@@ -12,6 +12,7 @@ const p = (text: string): Block => ({ type: "p", text });
 const ul = (...items: string[]): Block => ({ type: "ul", items });
 const ol = (...items: string[]): Block => ({ type: "ol", items });
 const note = (text: string): Block => ({ type: "note", text });
+const table = (caption: string, head: string[], ...rows: string[][]): Block => ({ type: "table", caption, head, rows });
 const qa = (q: string, a: string) => ({ q, a });
 
 const DATE = "2026-10-25";
@@ -204,11 +205,13 @@ export const growthPosts: Post[] = [
         heading: "How many follows a day GrowX makes",
         blocks: [
           p("Each GrowX pace has its own rolling hourly and daily caps. The free pace stays far below X's daily limit, and the faster ones are for accounts that already have a clean history:"),
-          ul(
-            "**Slow** (free forever, the default): 50 to 120 seconds between follows, a 20-minute rest every 10 follows, up to 14 an hour and about 100 a day. Gentle on new accounts.",
-            "**Balanced** (Premium): 30 to 75 seconds, a 14-minute rest every 18 follows, up to 28 an hour and about 280 a day. Recommended for most accounts.",
-            "**Turbo** (Premium): 18 to 45 seconds, a 10-minute rest every 25 follows, up to 40 an hour and about 390 a day. For aged accounts with a clean record.",
-            "**X Premium pace** (Premium): 12 to 32 seconds, an 8-minute rest every 35 follows, up to 60 an hour and about 800 a day. Only for accounts with X's own Premium subscription, which have higher limits on X.",
+          table(
+            "GrowX pace presets: delay between follows, rests and caps",
+            ["Pace", "Plan", "Between follows", "Rest", "Per hour", "Per day", "Best for"],
+            ["**Slow** (the default)", "Free forever", "50 to 120 seconds", "20 minutes every 10 follows", "Up to 14", "About 100", "New accounts"],
+            ["**Balanced**", "Premium", "30 to 75 seconds", "14 minutes every 18 follows", "Up to 28", "About 280", "Most accounts"],
+            ["**Turbo**", "Premium", "18 to 45 seconds", "10 minutes every 25 follows", "Up to 40", "About 390", "Aged accounts with a clean record"],
+            ["**X Premium pace**", "Premium", "12 to 32 seconds", "8 minutes every 35 follows", "Up to 60", "About 800", "Only accounts with X's own Premium subscription, which have higher limits on X"],
           ),
           p("These are the extension's own caps; X also enforces limits that it can change at any time. Balanced, Turbo and the X Premium pace are included in the free 30-day Premium trial."),
         ],
@@ -318,7 +321,7 @@ export const growthPosts: Post[] = [
     sections: [
       {
         id: "why",
-        heading: "Why clean up who you follow",
+        heading: "Why clean up who you follow?",
         blocks: [
           p("After a growth push, your following list is full of people who never followed back and accounts that have gone quiet. Tidying it keeps your ratio healthy, makes your profile look more credible and leaves room under X's following cap. The trick is doing it **gradually and with review**, not by unfollowing everyone in one go."),
           p("GrowX, an X (Twitter) growth tool for Chrome, has a dedicated **Cleanup** area for this, next to its smart auto follow, scheduler and Analytics. This guide shows how to find who to unfollow, how to do it at a safe pace, and how to keep an eye on who unfollows you."),

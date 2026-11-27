@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Twitter thread maker"
       title={<>Twitter thread maker: <span className="text-gradient">long text to thread</span></>}
-      lead="Paste a draft, an article or your notes. The thread maker splits it into numbered X posts that each fit 280 characters, at natural breaks."
+      lead="This free Twitter thread maker turns a draft, an article or your notes into a numbered X thread. It splits the text at natural breaks so each post fits 280 characters, counted the way X counts them. Paste your text below, check each part and copy it."
       tool={<ThreadMaker />}
       faqs={faqs}
     >

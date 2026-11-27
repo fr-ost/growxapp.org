@@ -199,8 +199,8 @@ export const createPosts: Post[] = [
         id: "intro",
         heading: "Is there a best time to post on Twitter?",
         blocks: [
-          p("Search for the **best time to post on Twitter** and you will find confident charts naming a precise hour and day. The trouble is that each chart disagrees with the next, and none of them was built from your audience. The honest answer is that there is no universal best time to post on X. There is a best time for **your** account, and you can find it with a few weeks of deliberate testing."),
-          p("This guide explains why generic advice misleads, which timing patterns are worth testing, how to run a simple experiment on your own posts, and how **GrowX** helps by turning your own data into a heat map and your best times into queue slots."),
+          p("The honest answer is that there is no universal best time to post on X. There is a best time for **your** account, and you can find it with a few weeks of deliberate testing. Search for the **best time to post on Twitter** and you will find confident charts naming a precise hour and day."),
+          p("The trouble is that each chart disagrees with the next, and none of them was built from your audience. This guide explains why generic advice misleads, which timing patterns are worth testing, how to run a simple experiment on your own posts, and how **GrowX** helps by turning your own data into a heat map and your best times into queue slots."),
         ],
       },
       {
@@ -345,7 +345,8 @@ export const createPosts: Post[] = [
         id: "intro",
         heading: "What makes a Twitter thread worth reading",
         blocks: [
-          p("A thread is a series of posts on X (Twitter) linked as replies to each other, so they read top to bottom like a short article. Threads suit anything that needs more room than one post: a step-by-step process, a story, a breakdown of something you learned or a list of resources. Done well, they show expertise in a way single posts rarely can. Done badly, people stop reading after the first post."),
+          p("A thread is a series of posts on X (Twitter) linked as replies to each other, so they read top to bottom like a short article. Threads suit anything that needs more room than one post: a step-by-step process, a story, a breakdown of something you learned or a list of resources."),
+          p("Done well, they show expertise in a way single posts rarely can. Done badly, people stop reading after the first post."),
           p("This guide covers **how to write a Twitter thread** people finish: the hook, a structure you can reuse, numbering, splitting text the way X counts characters, and scheduling. Along the way we show where **GrowX**, a Chrome extension for X, saves time, and which free tools you can use without installing anything."),
         ],
       },

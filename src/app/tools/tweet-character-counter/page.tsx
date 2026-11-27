@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Tweet character counter"
       title={<>Tweet character counter that <span className="text-gradient">counts like X</span></>}
-      lead="Paste your post to see exactly how many of X's 280 characters it uses. Links count as 23 and most emoji as 2, just like on X."
+      lead="This free tweet character counter shows how many of X's 280 characters your post uses, counted the way X counts them: every link as 23 and most emoji as 2. Paste your post below to see what is left, or check a long post against the 25,000 limit."
       tool={<CharacterCounter />}
       faqs={faqs}
     >

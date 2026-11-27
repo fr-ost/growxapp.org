@@ -26,7 +26,7 @@ export default function Page() {
       path={PATH}
       name="Twitter follower ratio calculator"
       title={<>Twitter follower ratio <span className="text-gradient">calculator</span></>}
-      lead="Enter your followers and following to see your ratio, your estimated following cap and how many more accounts you can follow on X."
+      lead="This free Twitter follower ratio calculator shows your followers-to-following ratio and how close you are to X's following limit. Enter your followers and following to see your ratio, your estimated following cap and how many more accounts you can follow on X."
       tool={<RatioCalculator />}
       faqs={faqs}
     >

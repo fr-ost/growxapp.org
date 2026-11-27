@@ -44,7 +44,7 @@ export const round5Posts: Post[] = [
     sections: [
       {
         id: "levers",
-        heading: "Where new followers actually come from",
+        heading: "Where do new followers actually come from?",
         blocks: [
           p("To **get more followers on Twitter (X)**, make your profile say clearly what you post and who it is for, post useful things on one topic at a pace you can keep, reply early to bigger accounts in your niche, follow relevant people at a human pace, and keep the followers you win. Measure every week and do more of what works."),
           p("Every new follower on X makes the same small decision. They see one of your posts or replies, tap through to your profile, and decide in a few seconds whether more of the same is worth a place in their feed. So **getting more followers** comes down to three levers: more of the right people seeing you, more of those visitors deciding to follow, and fewer of them leaving later."),
@@ -222,10 +222,10 @@ export const round5Posts: Post[] = [
     sections: [
       {
         id: "what",
-        heading: "What a hook is on X, and why it matters",
+        heading: "What is a hook on X, and why does it matter?",
         blocks: [
-          p("A **hook** is the opening line of a post: the words someone reads before deciding to stop scrolling or move on. On X it does most of the work. In the feed, people often take in only your first line or two before they decide; long posts are cut off with a Show more link; and in a thread, the first post is usually the only part that appears in the timeline. If the hook doesn't land, the rest is never read."),
-          p("A good hook is not clickbait. It is a **promise** that the post then keeps: a specific result, a clear opinion, a useful list or a story worth finishing. Write it for the reader you want, not for everyone, because a hook that pulls in the wrong people brings views without followers."),
+          p("A **hook** is the opening line of a post: the words someone reads before deciding to stop scrolling or move on. In the feed, people often take in only your first line or two before they decide; long posts are cut off with a Show more link; and in a thread, the first post is usually the only part that appears in the timeline."),
+          p("On X it does most of the work. If the hook doesn't land, the rest is never read. A good hook is not clickbait. It is a **promise** that the post then keeps: a specific result, a clear opinion, a useful list or a story worth finishing. Write it for the reader you want, not for everyone, because a hook that pulls in the wrong people brings views without followers."),
           p("Every formula below uses {placeholders}. Fill them with details from your own work and experience; that is what turns a template into something only you could have written."),
         ],
       },
@@ -892,7 +892,7 @@ export const round5Posts: Post[] = [
       "GrowX",
     ],
     datePublished: DATE,
-    dateModified: DATE,
+    dateModified: "2026-11-27",
     readMinutes: 9,
     related: ["twitter-analytics-guide", "who-unfollowed-me-on-twitter", "best-chrome-extensions-for-twitter"],
     sections: [
@@ -900,6 +900,7 @@ export const round5Posts: Post[] = [
         id: "questions",
         heading: "Start with the questions, not the tool",
         blocks: [
+          p("The best Twitter analytics tool is the one that answers your own questions: what to post, when to post, what grows the account and who is leaving. X's own numbers are the official record, so start there, then add a tool for what X does not show, such as a list of who unfollowed you."),
           p("Analytics tools are easy to collect and hard to use. Before you pick one, write down the questions you want answered. For most X accounts they are the same four:"),
           ol(
             "**What should I post?** Which topics and formats get a response from my audience.",
@@ -926,7 +927,7 @@ export const round5Posts: Post[] = [
       },
       {
         id: "native",
-        heading: "What X's own analytics give you",
+        heading: "What do X's own analytics give you?",
         blocks: [
           p("X shows a view count under each post, along with its likes, reposts, replies and bookmarks. X also has analytics screens for your account, but what they include, and which accounts can see them, has changed several times and can depend on your account type and subscription. Check what your own account shows today rather than relying on any guide, this one included."),
           p("X's numbers are the **official record**, so use them as the reference when tools disagree. Where they are thinner is in the comparisons that turn numbers into decisions: grouping posts by topic or format, linking a post to the followers who arrived after it, and keeping a list of who unfollowed you. X doesn't notify you when someone unfollows, which is why [unfollower trackers](/blog/who-unfollowed-me-on-twitter) exist."),

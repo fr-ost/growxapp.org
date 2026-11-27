@@ -45,13 +45,13 @@ export const round4Posts: Post[] = [
         id: "short",
         heading: "The short answer",
         blocks: [
+          p("Pick Typefully if writing is the job. Pick Tweet Hunter if you want an inspiration library and an all-in-one content suite. Pick GrowX if you want to grow your audience and handle daily X work in one inexpensive tool on your desktop."),
           p("These three tools are often compared, but they are built for different jobs:"),
           ul(
             "**Typefully** is a writing and scheduling app. Its strength is a calm editor for posts and threads, drafts and scheduling, with support for several networks besides X.",
             "**Tweet Hunter** is an X content suite. It is known for a large library of popular posts for inspiration, AI writing, scheduling and automation.",
             "**GrowX** is a Chrome extension for growing on X. It combines smart auto follow, a scheduler, an on-device AI writer, analytics, an unfollower tracker, an AI Reply Assistant and cleanup.",
           ),
-          p("Pick Typefully if writing is the job. Pick Tweet Hunter if you want an inspiration library and an all-in-one content suite. Pick GrowX if you want to grow your audience and handle daily X work in one inexpensive tool on your desktop."),
           p("For side-by-side tables, see GrowX as a [Typefully alternative](/alternatives/typefully) and as a [Tweet Hunter alternative](/alternatives/tweet-hunter)."),
         ],
       },
@@ -242,7 +242,7 @@ export const round4Posts: Post[] = [
     sections: [
       {
         id: "what",
-        heading: "What an engagement group is",
+        heading: "What is an engagement group?",
         blocks: [
           p("An **engagement group** (or engagement pod) is a group of accounts, usually organised in a Telegram or Discord chat or a group DM, that agree to like, reply to and repost each other's posts. Members drop a link when they post, and everyone is expected to engage within minutes, so the post looks popular early and, the idea goes, gets pushed to more people."),
           p("It is the posting version of [follow for follow](/blog/follow-for-follow-twitter): attention traded between accounts, not earned from an audience."),
@@ -461,14 +461,15 @@ export const round4Posts: Post[] = [
       "GrowX",
     ],
     datePublished: DATE,
-    dateModified: DATE,
+    dateModified: "2026-11-27",
     readMinutes: 7,
     related: ["follow-for-follow-twitter", "twitter-lists-guide", "mass-follow-twitter-limits"],
     sections: [
       {
         id: "when",
-        heading: "When a follow list beats auto follow",
+        heading: "When does a follow list beat auto follow?",
         blocks: [
+          p("To build a Twitter follow list, collect handles from a real connection, such as an event, a community or your customers, and keep the list relevant. Save them one per line or in a CSV file, then follow them at a human pace with breaks and daily limits, and stop if X shows a warning."),
           p("Auto follow tools find people for you. A **follow list** is the opposite: you already know who you want to follow, and you want to follow exactly those accounts. Good reasons:"),
           ul(
             "Speakers, sponsors and attendees of an event you went to.",
