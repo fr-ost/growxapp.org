@@ -1,8 +1,9 @@
 import type { Block, Post } from "./posts";
 
 /**
- * Round 4 guides: tool alternatives after Hypefury left X, a feature comparison with Typefully and Tweet Hunter,
- * verification, engagement groups, finding a niche, building a follow list and growing in your own language.
+ * Round 4 guides: a feature comparison with Typefully and Tweet Hunter, verification, engagement groups, finding a
+ * niche, building a follow list and growing in your own language. The Hypefury guide (hypefury-alternatives) was merged
+ * into /alternatives/hypefury (src/content/alternatives.ts) on 27 Nov 2026; its old URL redirects there.
  * Rules as in posts.ts: GrowX claims match docs/PRODUCT_FACTS.md (extension v2.4.7). Other products are described only by
  * what they are publicly known for, with no invented prices, limits or ratings. X's own rules and plans change, so claims
  * about X stick to what its Help Center says and send readers there to check.
@@ -17,119 +18,6 @@ const TRY =
   "GrowX is free to install from the Chrome Web Store, and you can [create a free account](/signup) to try every Premium feature free for 30 days, no credit card needed.";
 
 export const round4Posts: Post[] = [
-  {
-    slug: "hypefury-alternatives",
-    seoTitle: "Hypefury Alternatives for X (Twitter) in 2026",
-    title: "Hypefury Alternatives for X (Twitter) in 2026: Where to Move Your Evergreen Posts and Auto-Plugs",
-    description:
-      "Hypefury no longer supports X. Compare Hypefury alternatives for scheduling, evergreen posts and auto-plugs on X, and see how GrowX covers the same jobs.",
-    excerpt:
-      "Hypefury now focuses on other networks, so X creators need a new home for their queue, evergreen posts and auto-plugs. Here is what to look for and where GrowX fits.",
-    category: "Guides",
-    keywords: [
-      "Hypefury alternative",
-      "Hypefury alternatives",
-      "Hypefury for X",
-      "Hypefury replacement",
-      "evergreen tweets tool",
-      "auto plug Twitter",
-      "GrowX",
-    ],
-    datePublished: DATE,
-    dateModified: DATE,
-    readMinutes: 7,
-    related: ["circleboom-alternatives", "how-to-schedule-tweets", "typefully-vs-tweet-hunter"],
-    sections: [
-      {
-        id: "what-happened",
-        heading: "What happened to Hypefury on X",
-        blocks: [
-          p("For years **Hypefury** was a favourite of X creators. It scheduled posts and threads, re-shared your best posts on an evergreen loop and added an auto-plug, a reply with your offer, under posts that took off."),
-          p("In 2026 that changed. Hypefury's pricing page now says it no longer supports X, and the networks it lists are Bluesky, Threads, LinkedIn, Instagram and TikTok. Reviews noticed the change in mid-2026. Hypefury has not published a single cutoff date, so check hypefury.com for its current position."),
-          p("If your X routine was built on Hypefury, you need a new home for three jobs: your **posting queue**, your **evergreen posts** and your **auto-plugs**. This guide covers what to look for and where [GrowX](/) fits."),
-        ],
-      },
-      {
-        id: "checklist",
-        heading: "What a good Hypefury alternative for X needs",
-        blocks: [
-          ol(
-            "**A queue with time slots**, so new posts drop into the next free slot instead of needing a date each time.",
-            "**Threads and images**, with character counting that matches X, including links counted as 23 characters.",
-            "**Evergreen recycling**: your best posts go out again after a gap, ideally with variants so followers don't see the exact same text.",
-            "**Auto-plug**: a reply with your call to action once a post passes a number of likes.",
-            "**Analytics** that show which posts worked, so you know what deserves an evergreen slot.",
-            "**Safety**: a daily posting cap, a minimum gap between posts and a pause when X shows a warning.",
-          ),
-        ],
-      },
-      {
-        id: "growx",
-        heading: "GrowX: evergreen posts and auto-plug, plus growth",
-        blocks: [
-          p("GrowX is a Chrome extension for X that covers Hypefury's main X jobs and adds the growth side Hypefury never had:"),
-          ul(
-            "**Post scheduler**: posts and threads up to 25 parts with up to 4 images, X's own character counting, post now, schedule, or add to queue slots (09:00, 13:00 and 18:30 by default). See the [post scheduler](/features/twitter-post-scheduler).",
-            "**Evergreen recycling (Premium)**: your best posts go out again every N days (30 by default) with rotating variants, or are reposted.",
-            "**Auto-plug (Premium)**: once a post takes off (50 likes by default), GrowX replies to it with your call to action.",
-            "**Best time to post** from your own posts, plus a calendar, drafts and 52 templates.",
-            "**GrowX AI (Premium)** writes, improves and threads posts on your own computer, with no API key.",
-            "**Growth tools**: [smart auto follow](/features/twitter-auto-follow), an [unfollower tracker](/features/twitter-unfollower-tracker), an [AI Reply Assistant](/features/twitter-reply-targets) and cleanup.",
-          ),
-          p("Posting has its own safety rules: a daily cap (20 by default), a minimum gap of 5 minutes and a pause on any warning from X. The free plan keeps up to 10 posts waiting at once; Premium removes the limit."),
-          note("One honest difference: GrowX posts from your own Chrome, so the computer has to be on with Chrome open at the scheduled time. A post that would go out more than 6 hours late is never posted by itself; it waits as missed."),
-          p("For a side-by-side table, see [GrowX as a Hypefury alternative](/alternatives/hypefury)."),
-        ],
-      },
-      {
-        id: "others",
-        heading: "Other options, by job",
-        blocks: [
-          ul(
-            "**Typefully**: a writing and scheduling app built around threads, good if drafting is the part you care most about. We compare it in [Typefully vs Tweet Hunter vs GrowX](/blog/typefully-vs-tweet-hunter).",
-            "**Tweet Hunter**: an X writing and scheduling suite known for its library of popular posts and automation features.",
-            "**Buffer**: a calendar for many networks with a free plan, fine if X is one channel among several.",
-            "**X's own composer**: it can schedule single posts, enough for occasional use.",
-          ),
-          p("Check each vendor's site for current features and prices; they change often."),
-        ],
-      },
-      {
-        id: "evergreen",
-        heading: "How to choose posts for an evergreen queue",
-        blocks: [
-          p("Evergreen recycling only works if the posts deserve a second life. Before you move a big evergreen library across, prune it:"),
-          ul(
-            "**Pick posts that aged well**: how-tos, frameworks, lists and lessons, not news, dates or replies to a moment.",
-            "**Use your numbers.** Keep posts that beat your usual engagement rate; drop the rest. The free [engagement rate calculator](/tools/twitter-engagement-rate-calculator) helps you compare fairly.",
-            "**Write variants.** Two or three openings for the same idea keep regular followers from seeing the exact same text again.",
-            "**Leave a long gap.** A month or more between repeats is a sensible starting point, so new followers see it and older ones have forgotten it.",
-            "**Retire tired posts.** If a recycled post performs much worse than the first time, take it out of the loop.",
-          ),
-        ],
-      },
-      {
-        id: "move",
-        heading: "How to move your Hypefury routine to GrowX",
-        blocks: [
-          ol(
-            "Install GrowX, open x.com in the same Chrome profile and finish the setup wizard.",
-            "Set your queue slots in **AI Creator Studio** to the times you used in Hypefury.",
-            "Copy your best evergreen posts into GrowX. Use [analytics](/features/twitter-analytics) after a few weeks to pick which ones deserve evergreen slots.",
-            "Turn on evergreen recycling and auto-plug in the 30-day Premium trial and set the like threshold that suits your account.",
-            "Queue a week of posts, then add growth: a few source accounts in your niche on the free Slow pace.",
-          ),
-          p(TRY),
-        ],
-      },
-    ],
-    faq: [
-      { q: "Does Hypefury still work with X?", a: "Hypefury's pricing page says it no longer supports X and lists Bluesky, Threads, LinkedIn, Instagram and TikTok instead. Check hypefury.com for its current position." },
-      { q: "What is the best Hypefury alternative for X?", a: "If you used Hypefury for a queue, evergreen posts and auto-plugs on X, GrowX covers all three (evergreen and auto-plug are Premium) and adds auto follow, analytics, an unfollower tracker and an on-device AI writer." },
-      { q: "Is there a free Hypefury alternative?", a: "GrowX has a free plan forever with the scheduler (up to 10 posts waiting), best time to post, 52 templates and analytics for your latest 30 posts. Evergreen recycling and auto-plug are part of Premium, which you can try free for 30 days." },
-      { q: "Does GrowX post when my computer is off?", a: "No. GrowX posts through your signed-in x.com tab in Chrome, so Chrome must be running. A post more than 6 hours late is never posted by itself and waits for you as missed." },
-    ],
-  },
   {
     slug: "typefully-vs-tweet-hunter",
     seoTitle: "Typefully vs Tweet Hunter vs GrowX: X Tools Compared",
@@ -151,7 +39,7 @@ export const round4Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 8,
-    related: ["circleboom-alternatives", "hypefury-alternatives", "best-twitter-growth-tools"],
+    related: ["best-twitter-growth-tools", "how-to-write-a-twitter-thread", "how-to-schedule-tweets"],
     sections: [
       {
         id: "short",
@@ -206,8 +94,8 @@ export const round4Posts: Post[] = [
           p("Answer these four questions honestly and the choice usually makes itself:"),
           ol(
             "**Is your main problem writing or reach?** If you struggle to write, a writing-first app helps. If you write fine but nobody sees it, you need growth tools: following the right people, replying early and posting at your best times.",
-            "**Do you post to several networks?** Typefully supports networks besides X. GrowX is built only for X.",
-            "**Do you want an inspiration library?** Tweet Hunter is known for one. GrowX offers 52 templates and an AI writer that works from your own niche and voice instead.",
+            "**Do you post to several networks?** Typefully supports networks besides X. GrowX is built only for X. The [Typefully vs GrowX table](/alternatives/typefully) shows the other differences.",
+            "**Do you want an inspiration library?** Tweet Hunter is known for one. GrowX offers 52 templates and an AI writer that works from your own niche and voice instead. See the [Tweet Hunter vs GrowX table](/alternatives/tweet-hunter) for the rest.",
             "**How much do you want to spend?** Compare a full year, not one month. GrowX's free plan covers a lot, and yearly Premium is $14.99. For the others, check their current pricing pages.",
           ),
         ],
@@ -221,6 +109,7 @@ export const round4Posts: Post[] = [
             "**GrowX** works inside the x.com tab you are already signed in to, never asks for your X password and keeps your data in your browser. Scheduled posts need Chrome running at the time.",
           ),
           p("GrowX has a free plan forever, and Premium costs $1.99 for 30 days, $14.99 for 365 days or $59.99 lifetime, prepaid with no automatic renewal. Typefully and Tweet Hunter sell subscription plans; check their pricing pages for current prices."),
+          p("Coming from another tool? We also compare GrowX with [Hypefury](/alternatives/hypefury), which no longer supports X, and with [Circleboom](/alternatives/circleboom), an X account manager. Every side-by-side table is on the [comparisons page](/alternatives)."),
           p("Many creators combine tools: a writing app for drafting and GrowX for growth and daily X work. " + TRY),
         ],
       },
@@ -253,7 +142,7 @@ export const round4Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["twitter-bio-ideas", "personal-branding-on-twitter", "how-to-grow-on-twitter-x"],
+    related: ["twitter-bio-ideas", "personal-branding-on-twitter", "how-to-get-more-followers-on-twitter"],
     sections: [
       {
         id: "how-it-works",
@@ -454,7 +343,7 @@ export const round4Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["how-to-grow-on-twitter-x", "tweet-ideas", "personal-branding-on-twitter"],
+    related: ["how-to-get-more-followers-on-twitter", "tweet-ideas", "personal-branding-on-twitter"],
     sections: [
       {
         id: "why",
@@ -574,7 +463,7 @@ export const round4Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["bulk-follow-twitter-safely", "twitter-lists-guide", "mass-follow-twitter-limits"],
+    related: ["follow-for-follow-twitter", "twitter-lists-guide", "mass-follow-twitter-limits"],
     sections: [
       {
         id: "when",
@@ -629,7 +518,7 @@ export const round4Posts: Post[] = [
             "Stop if X shows any warning, and give it a day.",
             "Engage with the people you follow: reply to a post or two, so the follow means something.",
           ),
-          p("More on safe pacing in [how to bulk follow on X safely](/blog/bulk-follow-twitter-safely)."),
+          p("More on safe pacing in [how to bulk follow on X safely](/blog/mass-follow-twitter-limits)."),
         ],
       },
       {
@@ -695,14 +584,14 @@ export const round4Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["how-to-grow-on-twitter-x", "best-time-to-post-on-twitter", "how-to-find-your-niche-on-twitter"],
+    related: ["how-to-get-more-followers-on-twitter", "best-time-to-post-on-twitter", "how-to-find-your-niche-on-twitter"],
     sections: [
       {
         id: "advantage",
         heading: "Your language is an advantage",
         blocks: [
           p("Most growth advice is written for English-speaking accounts, so it is easy to assume you have to post in English to grow. Often the opposite is true. In your own language there are fewer accounts competing for attention in your niche, readers feel more connected to someone who writes like them, and you sound like yourself."),
-          p("The basics of [growing on X](/blog/how-to-grow-on-twitter-x) stay the same in any language. What changes is who you reply to, when you post and how you mix languages."),
+          p("The basics of [growing on X](/blog/how-to-get-more-followers-on-twitter) stay the same in any language. What changes is who you reply to, when you post and how you mix languages."),
         ],
       },
       {

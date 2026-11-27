@@ -524,7 +524,7 @@ export const strategyPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["how-to-write-a-twitter-thread", "ai-tweet-writer-growx-ai", "how-often-to-post-on-twitter"],
+    related: ["how-to-write-a-twitter-thread", "twitter-hooks", "how-often-to-post-on-twitter"],
     sections: [
       {
         id: "intro",
@@ -687,6 +687,7 @@ export const strategyPosts: Post[] = [
             "Schedule them across the week and note which ideas earned replies, so you know which groups to use more.",
           ),
           p("If an idea needs more room, turn it into a thread. Our guide on [how to write a Twitter thread](/blog/how-to-write-a-twitter-thread) covers hooks, structure and numbering."),
+          p("For fill-in-the-blank versions of these ideas, open the free [tweet templates](/tools/tweet-templates) tool: 52 templates to copy and edit."),
         ],
       },
       {
@@ -700,7 +701,7 @@ export const strategyPosts: Post[] = [
             "**Drafts** for half-finished ideas, and a **calendar** to see the week at a glance.",
             "**Queue slots** in the [post scheduler](/features/twitter-post-scheduler): add a post and it goes out in the next free slot. The free plan keeps up to 10 posts waiting at once; Premium is unlimited.",
           ),
-          p("If Chrome's built-in model is not available on your computer, the AI buttons fall back to templates. For more on writing with AI, read the [AI tweet writer guide](/blog/ai-tweet-writer-growx-ai)."),
+          p("If Chrome's built-in model is not available on your computer, the AI buttons fall back to templates. For more on writing with AI, read about the [AI tweet writer](/features/ai-tweet-writer)."),
         ],
       },
       {
@@ -755,7 +756,7 @@ export const strategyPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["twitter-follow-back-score-growx", "how-to-increase-twitter-engagement", "twitter-algorithm-explained"],
+    related: ["how-to-get-more-views-on-twitter", "how-to-increase-twitter-engagement", "twitter-algorithm-explained"],
     sections: [
       {
         id: "intro",
@@ -862,7 +863,7 @@ export const strategyPosts: Post[] = [
             "**Exclude keywords.** Adult-content terms are excluded by default, so accounts whose bios match them are skipped. Add your own words to keep other topics out.",
             "**Safe pacing.** Follows run one at a time with random delays, breaks and hourly and daily caps, and GrowX slows down after any warning from X.",
           ),
-          p("Read [how the follow-back score works](/blog/twitter-follow-back-score-growx) for the full list of signals."),
+          p("Read [how the follow-back score works](/features/twitter-auto-follow) for the full list of signals."),
           note("No tool can promise zero risk on X. GrowX is designed to respect the limits X signals, but you remain responsible for following X's rules."),
         ],
       },

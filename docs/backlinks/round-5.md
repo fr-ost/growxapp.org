@@ -50,7 +50,7 @@ unless you have checked it on the day you write.
    - A list of analytics tools: https://www.growxapp.org/blog/twitter-analytics-tools (the neutral guide) or
      https://www.growxapp.org/features/twitter-analytics
    - Follower or unfollower tracking: https://www.growxapp.org/features/twitter-unfollower-tracker
-   - Scheduling, evergreen posts or auto-plugs (the Hypefury side): https://www.growxapp.org/blog/hypefury-alternatives
+   - Scheduling, evergreen posts or auto-plugs (the Hypefury side): https://www.growxapp.org/alternatives/hypefury
 5. **Find the right contact**: the author's page, the site's contact form or the address the site publishes for corrections. Don't
    guess addresses and don't store them in this repo.
 6. **Send the email below.** One polite follow-up after about a week, then stop.
@@ -88,7 +88,7 @@ unless you have checked it on the day you write.
 > won't be able to use it for X.
 >
 > If it helps, I wrote up what to look for in a replacement for its queue, evergreen posts and auto-plugs on X:
-> https://www.growxapp.org/blog/hypefury-alternatives. I build GrowX, one of the options in it, so I'm not neutral, but the
+> https://www.growxapp.org/alternatives/hypefury. I build GrowX, one of the options in it, so I'm not neutral, but the
 > checklist works for any tool.
 >
 > Shahriar

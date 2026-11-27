@@ -36,7 +36,7 @@ export const insightPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["twitter-analytics-guide", "unfollow-non-followers-twitter", "how-to-grow-on-twitter-x"],
+    related: ["twitter-analytics-guide", "unfollow-non-followers-twitter", "how-to-get-more-followers-on-twitter"],
     sections: [
       {
         id: "no-notification",
@@ -185,7 +185,7 @@ export const insightPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["how-to-increase-twitter-engagement", "who-unfollowed-me-on-twitter", "how-to-grow-on-twitter-x"],
+    related: ["how-to-increase-twitter-engagement", "who-unfollowed-me-on-twitter", "how-to-get-more-followers-on-twitter"],
     sections: [
       {
         id: "intro",
@@ -334,7 +334,7 @@ export const insightPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["how-to-increase-twitter-engagement", "first-1000-followers-on-x", "how-to-grow-on-twitter-x"],
+    related: ["how-to-increase-twitter-engagement", "first-1000-followers-on-x", "how-to-get-more-followers-on-twitter"],
     sections: [
       {
         id: "why-replies",
@@ -488,7 +488,7 @@ export const insightPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["twitter-reply-strategy", "twitter-analytics-guide", "how-to-grow-on-twitter-x"],
+    related: ["twitter-reply-strategy", "twitter-analytics-guide", "how-to-get-more-followers-on-twitter"],
     sections: [
       {
         id: "intro",

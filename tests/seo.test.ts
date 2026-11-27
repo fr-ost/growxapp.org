@@ -205,8 +205,8 @@ describe("alternatives pages", () => {
     for (const p of a.relatedPosts) expect(getPost(p), p).toBeTruthy();
     for (const l of linksIn(JSON.stringify(a))) expect(routeExists(l), l).toBe(true);
   });
-  it("the guides they build on link back to them", () => {
-    const text = JSON.stringify([getPost("hypefury-alternatives"), getPost("typefully-vs-tweet-hunter")]);
+  it("the guide they build on links back to every one of them", () => {
+    const text = JSON.stringify(getPost("typefully-vs-tweet-hunter"));
     for (const a of alternativePages) expect(text).toContain(`/alternatives/${a.slug}`);
   });
 });

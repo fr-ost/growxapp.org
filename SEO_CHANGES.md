@@ -55,3 +55,28 @@ decorative ones with `alt=""` (checked in A8).
   either host reaches the final page in one hop. No rule points at a URL that redirects again.
 - Merged posts leave `src/content/posts*.ts`, so the sitemap, RSS feed, llms.txt and blog index drop them automatically.
   Every internal link to them is rewritten to the winner.
+
+## A4 decisions: keyword cannibalization (27 Nov 2026)
+
+Every page in each cluster was read before deciding. The default decision was applied unless the content clearly served
+a different search intent. A merge moved the unique, still-true content into the winner, removed the loser from the
+posts data (so it leaves the sitemap, RSS feed, blog index and llms.txt), added a one-hop permanent redirect
+(`src/content/redirects.ts`, used by `next.config.ts`) and rewrote every internal link to the winner.
+
+| Cluster | Decision | Why |
+|---|---|---|
+| A. Circleboom | /blog/circleboom-alternatives, /blog/circleboom-vs-growx and /blog/growx-vs-circleboom-cost merged into the new /alternatives/circleboom (same template as /alternatives/hypefury), listed on /alternatives | Three posts answered one question ("Circleboom alternative / vs GrowX"). The page keeps their sections, table, pick lists and FAQs. The "$20 a month" example and "Is GrowX cheaper? Yes" were dropped: our copy never verified Circleboom's price. |
+| B. Hypefury | /blog/hypefury-alternatives merged into /alternatives/hypefury | Same intent. Its unique sections (growth, other alternatives by job, evergreen tips, move steps) moved over. |
+| C. Typefully vs Tweet Hunter | Kept; cross-linked with /alternatives/typefully and /alternatives/tweet-hunter (and the two other comparison pages) | A head-to-head between two competitors is a different query from "<tool> alternative". |
+| D. Growth pillar | /blog/how-to-grow-on-twitter-x merged into /blog/how-to-get-more-followers-on-twitter. /blog/first-1000-followers-on-x retitled "First 1,000 Followers on Twitter (X): New Account Guide"; /blog/twitter-growth-plan retitled "Twitter Growth Plan: 30 Days on X, Week by Week". Both link to the pillar | The two "how to grow" posts competed for the same head term. The child posts now own narrower intents (a new account's first milestone; a dated 30-day plan). |
+| E. Follow limits | /blog/bulk-follow-twitter-safely merged into /blog/mass-follow-twitter-limits, retitled "Twitter (X) Follow Limit Per Day: How Many Is Safe?". /blog/follow-for-follow-twitter kept | Same intent (how many follows a day is safe). Follow for follow is a different question. |
+| F. Product docs | /blog/how-growx-auto-follow-works, /blog/twitter-follow-back-score-growx and the scoring part of /blog/growx-features-guide-scoring-filters-cleanup moved into /features/twitter-auto-follow; /blog/ai-tweet-writer-growx-ai into /features/ai-tweet-writer; the rest of the features guide into /features and the feature pages; /blog/growx-potential-best-practices-roadmap into /how-it-works ("Nine habits for growing safely") | Product documentation belongs on the feature pages, which own the commercial keywords. The roadmap's old 2.4.4 tour, its future promises ("What comes next") and an unbacked claim were dropped rather than moved. |
+| G. Blog and tool pairs | Kept both, linked both ways: twitter-shadowban and the shadowban checker, twitter-follower-ratio and the ratio calculator, how-to-write-a-twitter-thread and the thread maker, twitter-bio-ideas and the bio generator, tweet-ideas and tweet templates. The bio generator's title no longer says "bio ideas" ("Twitter Bio Generator: Free X Bio Maker") | Tools own "checker / calculator / generator / maker", posts own "what is / ideas / how to". The two missing post-to-tool links were added as one sentence each. |
+| H. Unfollow and analytics | Kept /blog/unfollow-non-followers-twitter, /blog/unfollow-inactive-accounts-twitter, /blog/twitter-analytics-guide and /blog/twitter-analytics-tools; each already links to its feature page | The feature pages own the commercial keywords ("twitter unfollow tool", "twitter analytics chrome extension"); the posts answer how-to and tool-choice questions. |
+
+Use-case pages (A6) were checked against the same rule: the new-account page targets growing a new account safely (the
+first-1,000 post owns that milestone), and the founders page targets growing on X as a founder or creator (the
+build-in-public post owns "build in public").
+
+Outreach templates in `docs/BACKLINKS.md` and `docs/backlinks/` now point at the final URLs, so new backlinks skip the
+redirect.

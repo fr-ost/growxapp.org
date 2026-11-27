@@ -38,7 +38,7 @@ export const marketingPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["how-to-grow-on-twitter-x", "twitter-analytics-guide", "how-often-to-post-on-twitter"],
+    related: ["how-to-get-more-followers-on-twitter", "twitter-analytics-guide", "how-often-to-post-on-twitter"],
     sections: [
       {
         id: "intro",

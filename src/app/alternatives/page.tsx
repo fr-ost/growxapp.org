@@ -16,14 +16,22 @@ import { getPost } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
 
 const description =
-  "Compare GrowX with Tweet Hunter, Hypefury and Typefully: what each does well, where GrowX differs and who should pick which. Free to start, no password.";
+  "Compare GrowX with Tweet Hunter, Hypefury, Typefully and Circleboom: what each does well, where GrowX differs and who should pick which. Free to start.";
 
 export const metadata = pageMetadata({
   title: "X (Twitter) Tool Alternatives: GrowX Compared",
   description,
   path: "/alternatives",
   defaultImage: false,
-  keywords: ["Tweet Hunter alternative", "Hypefury alternative", "Typefully alternative", "Twitter tool alternatives", "X growth tool comparison", "GrowX"],
+  keywords: [
+    "Tweet Hunter alternative",
+    "Hypefury alternative",
+    "Typefully alternative",
+    "Circleboom alternative",
+    "Twitter tool alternatives",
+    "X growth tool comparison",
+    "GrowX",
+  ],
 });
 
 const differences: { title: string; text: string }[] = [
@@ -56,14 +64,14 @@ const faqs = [
   },
   {
     q: "Are these comparisons fair?",
-    a: "We say what each tool does well and only state facts our guides have checked. Where we are not sure, the table says Check their site. Products change, so confirm details on each tool's own website.",
+    a: "We say what each tool does well and only state facts our guides have checked. Where we are not sure, the table says Check, and each page links to the tool's own pricing page. Products change, so confirm details on each tool's own website.",
   },
 ];
 
 /** Hub for the "[tool] alternative" pages. */
 export default function AlternativesPage() {
   const yearly = getTier("PRO_YEARLY");
-  const guides = ["circleboom-alternatives", "hypefury-alternatives", "typefully-vs-tweet-hunter", "best-twitter-growth-tools"]
+  const guides = ["typefully-vs-tweet-hunter", "best-twitter-growth-tools", "best-chrome-extensions-for-twitter", "twitter-analytics-tools"]
     .map((s) => getPost(s))
     .filter((p): p is NonNullable<typeof p> => !!p);
 
@@ -120,7 +128,7 @@ export default function AlternativesPage() {
           <SectionHeading eyebrow="Comparisons" title="Pick the tool you are comparing" center>
             Details about other tools last checked {formatPostDate(CHECKED)}. Products change, so confirm on their own sites.
           </SectionHeading>
-          <ul data-spotlight-group="" className="mt-12 grid gap-5 md:grid-cols-3">
+          <ul data-spotlight-group="" className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {alternativePages.map((a, i) => (
               <li key={a.slug} className="reveal" style={stagger(i)}>
                 <IntentLink

@@ -8,7 +8,7 @@ no link exchanges at scale, no fake reviews, always disclose that you build Grow
 
 | Asset | URL | Who links to it |
 |---|---|---|
-| Hypefury alternatives for X | https://www.growxapp.org/blog/hypefury-alternatives | Former Hypefury users, "X scheduler" roundups, creator newsletters |
+| Hypefury alternatives for X | https://www.growxapp.org/alternatives/hypefury | Former Hypefury users, "X scheduler" roundups, creator newsletters |
 | Typefully vs Tweet Hunter vs GrowX | https://www.growxapp.org/blog/typefully-vs-tweet-hunter | "Best Twitter tools" lists, comparison threads |
 | Free shadowban checker | https://www.growxapp.org/tools/twitter-shadowban-checker | "Am I shadowbanned" threads, free tool lists, social media courses |
 | List follow (CSV / TXT) | https://www.growxapp.org/features/twitter-list-follow | Event organisers, community managers, "bulk follow" questions |
@@ -36,7 +36,7 @@ written and updated right now.
 >
 > I read your "{title}". Since Hypefury no longer supports X, you might want an option that covers its evergreen and auto-plug jobs on X.
 > I build GrowX, a Chrome extension with a queue, evergreen recycling and auto-plug, plus auto follow and analytics. It has a free plan,
-> and the write-up is here: https://www.growxapp.org/blog/hypefury-alternatives. Screenshots and copy: https://www.growxapp.org/press
+> and the write-up is here: https://www.growxapp.org/alternatives/hypefury. Screenshots and copy: https://www.growxapp.org/press
 >
 > One honest limit worth mentioning: it posts from the user's own Chrome, so the computer has to be on at post time.
 >

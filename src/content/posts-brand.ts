@@ -203,7 +203,7 @@ export const brandPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["how-to-write-a-twitter-thread", "ai-tweet-writer-growx-ai", "twitter-content-calendar"],
+    related: ["how-to-write-a-twitter-thread", "tweet-ideas", "twitter-content-calendar"],
     sections: [
       {
         id: "why",
@@ -300,7 +300,7 @@ export const brandPosts: Post[] = [
             "**Thread it in GrowX.** The GrowX composer has a **Thread it** button that splits a long draft into parts that fit X's character counting, right where you schedule the thread.",
             "**GrowX AI (Premium).** With the [AI writer](/features/ai-tweet-writer), Thread it can also help shape a long draft into a thread, and Write, Improve and Hooks help you rework a paragraph into a post. It runs on your own computer using the AI model built into Chrome, so nothing is sent to GrowX and no API key is needed. It uses your niche and voice settings, and leaves {placeholders} instead of inventing facts.",
           ),
-          note("Whatever tool you use, read every part before it goes out. A splitter cuts text to fit the limit, but only you can tell whether each part reads well on its own. If Chrome's built-in model is not available on your computer, GrowX's AI buttons fall back to templates and the plain thread splitter; the [GrowX AI guide](/blog/ai-tweet-writer-growx-ai) explains the requirements."),
+          note("Whatever tool you use, read every part before it goes out. A splitter cuts text to fit the limit, but only you can tell whether each part reads well on its own. If Chrome's built-in model is not available on your computer, GrowX's AI buttons fall back to templates and the plain thread splitter; the [AI tweet writer page](/features/ai-tweet-writer) explains the requirements."),
         ],
       },
       {
@@ -529,7 +529,7 @@ export const brandPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["how-to-grow-on-twitter-x", "twitter-bio-ideas", "twitter-reply-strategy"],
+    related: ["how-to-get-more-followers-on-twitter", "twitter-bio-ideas", "twitter-reply-strategy"],
     sections: [
       {
         id: "what",
@@ -643,7 +643,7 @@ export const brandPosts: Post[] = [
             "**Followers**: which posts bring new followers, and do they match the audience in your positioning?",
             "**Replies and mentions**: what do people ask you about? That is your brand in their words.",
           ),
-          p("GrowX's [analytics](/features/twitter-analytics) help here. **What works** breaks your engagement down by topic and format, post analytics cover your latest 30 posts on the free plan, and on Premium **Which posts brought followers** shows new followers in the 24 hours after each post above your usual pace. Review once a month and move more of your calendar towards what works. For the wider growth plan, see [how to grow on Twitter](/blog/how-to-grow-on-twitter-x)."),
+          p("GrowX's [analytics](/features/twitter-analytics) help here. **What works** breaks your engagement down by topic and format, post analytics cover your latest 30 posts on the free plan, and on Premium **Which posts brought followers** shows new followers in the 24 hours after each post above your usual pace. Review once a month and move more of your calendar towards what works. For the wider growth plan, see [how to grow on Twitter](/blog/how-to-get-more-followers-on-twitter)."),
         ],
       },
       {

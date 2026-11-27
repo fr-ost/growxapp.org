@@ -161,7 +161,7 @@ He writes about practical, rule-friendly ways to build an audience when you are 
 # Draft B: What I learned building a Chrome extension for X (Twitter) growth
 
 **Word count:** about 970 (article only)
-**Contextual link:** https://www.growxapp.org/blog/twitter-follow-back-score-growx (in lesson 6)
+**Contextual link:** https://www.growxapp.org/features/twitter-auto-follow (in lesson 6)
 **Note:** first person as Shahriar. Edit any line about your own thinking that does not match your experience. Do not add user counts,
 revenue or results.
 
@@ -239,7 +239,7 @@ Fluency is not accuracy.
 The extension scores follow candidates from 1 to 99 with plain, explainable signals such as follow ratio, recent activity, account age and
 whether there is a photo and bio. On Premium, a small model (a logistic regression) learns from the user's own follow-backs. It waits for
 enough settled follows, is checked against a holdout set and is blended in only when it clearly beats chance. Otherwise the simple score
-stays in charge. Here is [how the follow-back score works](https://www.growxapp.org/blog/twitter-follow-back-score-growx) in detail.
+stays in charge. Here is [how the follow-back score works](https://www.growxapp.org/features/twitter-auto-follow) in detail.
 
 A model that is confidently wrong is worse than a heuristic that is honestly simple.
 

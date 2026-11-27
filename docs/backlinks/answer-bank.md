@@ -429,7 +429,7 @@ Longer explainer: https://www.growxapp.org/blog/twitter-algorithm-explained
 ## 16. What's a good Hypefury alternative for X now?
 
 **How people ask it:** "Hypefury stopped supporting Twitter, what are you using?" / "Alternative to Hypefury for X evergreen tweets?"
-**Link:** https://www.growxapp.org/blog/hypefury-alternatives
+**Link:** https://www.growxapp.org/alternatives/hypefury
 
 **Answer (150 words):**
 
@@ -443,7 +443,7 @@ auto-plugs. Before you pick a tool, list which of those you actually used.
 
 If you also want growth tools, I build GrowX, a Chrome extension with a queue, evergreen recycling and auto-plug (those two are
 Premium) plus auto follow and analytics. It posts from your own Chrome, so the computer has to be on at post time. Write-up:
-https://www.growxapp.org/blog/hypefury-alternatives
+https://www.growxapp.org/alternatives/hypefury
 
 (Disclosure: I build GrowX.)
 

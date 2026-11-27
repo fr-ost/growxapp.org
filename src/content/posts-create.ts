@@ -34,7 +34,7 @@ export const createPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["best-time-to-post-on-twitter", "how-to-write-a-twitter-thread", "how-to-grow-on-twitter-x"],
+    related: ["best-time-to-post-on-twitter", "how-to-write-a-twitter-thread", "how-often-to-post-on-twitter"],
     sections: [
       {
         id: "intro",
@@ -122,7 +122,7 @@ export const createPosts: Post[] = [
             "**Unlimited scheduling**, so you can plan weeks ahead instead of a few days.",
             "**Evergreen recycling**: your best posts go out again every so many days (30 by default) with rotating variants, or are reposted, so good content keeps working.",
             "**Auto-plug**: once a post takes off (50 likes by default), GrowX replies to it with your call to action, such as your newsletter or product.",
-            "**GrowX AI** for drafting, improving and threading posts on your own computer, covered in [our AI tweet writer guide](/blog/ai-tweet-writer-growx-ai).",
+            "**GrowX AI** for drafting, improving and threading posts on your own computer, covered on [the AI tweet writer page](/features/ai-tweet-writer).",
           ),
         ],
       },
@@ -193,7 +193,7 @@ export const createPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["how-to-schedule-tweets", "how-to-grow-on-twitter-x", "first-1000-followers-on-x"],
+    related: ["how-to-schedule-tweets", "how-often-to-post-on-twitter", "first-1000-followers-on-x"],
     sections: [
       {
         id: "intro",
@@ -339,7 +339,7 @@ export const createPosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["ai-tweet-writer-growx-ai", "how-to-schedule-tweets", "best-time-to-post-on-twitter"],
+    related: ["twitter-hooks", "how-to-schedule-tweets", "best-time-to-post-on-twitter"],
     sections: [
       {
         id: "intro",
@@ -476,165 +476,6 @@ export const createPosts: Post[] = [
       {
         q: "Is there a free Twitter thread maker?",
         a: "Yes. The GrowX website has a free thread maker that splits long text into numbered posts in your browser, and a free tweet character counter that follows X's counting rules.",
-      },
-    ],
-  },
-  {
-    slug: "ai-tweet-writer-growx-ai",
-    seoTitle: "AI Tweet Generator: Write Tweets With On-Device AI",
-    title: "AI Tweet Writer: How to Write Better Tweets With AI, Privately, Using GrowX AI",
-    description:
-      "An AI tweet generator that runs on your computer: how GrowX AI writes, improves and threads X (Twitter) posts privately in Chrome, and its honest limits.",
-    excerpt:
-      "How to write tweets with AI without losing your voice or your facts, and how GrowX AI does it on your own computer with the AI model built into Chrome.",
-    category: "Create",
-    keywords: [
-      "AI tweet generator",
-      "AI tweet writer",
-      "write tweets with AI",
-      "AI Twitter post generator",
-      "on-device AI writer",
-      "AI thread writer",
-      "GrowX",
-    ],
-    datePublished: DATE,
-    dateModified: DATE,
-    readMinutes: 6,
-    related: ["how-to-write-a-twitter-thread", "how-to-schedule-tweets", "best-twitter-growth-tools"],
-    sections: [
-      {
-        id: "intro",
-        heading: "What an AI tweet writer is good for",
-        blocks: [
-          p("An **AI tweet generator** can take a rough idea and give you a first draft, a handful of alternative hooks or a tighter version of a post you already wrote. Used well, it removes the blank-page problem and speeds up editing. Used badly, it fills your feed with generic posts that sound like everyone else's, or with confident claims nobody checked."),
-          p("This guide explains how to write tweets with AI in a way that keeps your voice and your facts intact, and how **GrowX AI**, the writing assistant inside the GrowX Chrome extension for X (Twitter), works: what it does, why it runs on your own computer, and where its limits are."),
-        ],
-      },
-      {
-        id: "on-device",
-        heading: "GrowX AI runs on your computer, not in the cloud",
-        blocks: [
-          p("Many AI tweet writers send your drafts to a cloud service, and some ask you to paste in an API key and pay for what you use. GrowX AI works differently. It uses **the AI model built into Chrome** and runs on your own computer."),
-          ul(
-            "**Private:** your drafts are processed on your machine, and nothing is sent to GrowX.",
-            "**No API key:** there is nothing extra to sign up for or paste in, and no pay-per-use bill.",
-            "**Your voice:** it uses the niche and voice settings you give GrowX, so suggestions start closer to how you actually write.",
-            "**One download:** the first time, Chrome downloads the model once; after that it is ready when you open the composer.",
-          ),
-        ],
-      },
-      {
-        id: "features",
-        heading: "What GrowX AI can do",
-        blocks: [
-          p("GrowX AI shows up where you already work: in the composer and the AI Reply Assistant in **AI Creator Studio**, in the AI Growth Coach, and right beside X's own reply box."),
-          ul(
-            "**Write:** turn a topic or a few notes into a draft post.",
-            "**Improve:** tighten a draft you wrote so it is clearer and shorter without changing the point.",
-            "**Hooks:** suggest alternative opening lines, which is especially useful for the first post of a thread.",
-            "**Thread it:** shape a long draft into a thread whose parts fit X's character counting.",
-            "**AI replies:** drafts for fresh posts in the [AI Reply Assistant](/features/twitter-reply-targets), or a reply written straight into X's reply box with one tone button. Nothing is sent by itself: you read, edit and approve every reply.",
-            "**Weekly summary:** a short recap to help you review your week on X.",
-          ),
-          p("For a feature overview, see the [AI tweet writer](/features/ai-tweet-writer) page."),
-        ],
-      },
-      {
-        id: "placeholders",
-        heading: "It never invents facts: how {placeholders} work",
-        blocks: [
-          p("The biggest risk with any AI writer is made-up detail: a statistic, a client name or a result that never happened. Posting that on X under your name damages trust quickly. GrowX AI is built not to invent facts. Where a post needs a specific number, name or result, it leaves a placeholder in curly braces for you to fill in."),
-          p("For example, a draft might read: \"I cut our support backlog from {number} to {number} tickets a week by changing one thing: {what you changed}.\" You replace each placeholder with the real detail, or rewrite the sentence if you do not have one. That keeps the post true, and true specifics are what make posts worth reading anyway."),
-          note("If you post a draft with a {placeholder} still in it, everyone will notice. Search your draft for curly braces before you schedule it."),
-        ],
-      },
-      {
-        id: "limits",
-        heading: "Requirements and honest limits",
-        blocks: [
-          p("Running AI on your own computer has trade-offs, and it is better to know them up front:"),
-          ul(
-            "**It needs a recent desktop version of Chrome** on a computer with enough memory and free disk space for the model. GrowX is a desktop extension, so there is no mobile version.",
-            "**If the built-in model is not available** on your computer, the AI buttons fall back to GrowX's templates and the plain thread splitter. You can still write and split threads, just without AI suggestions.",
-            "**It is a writing aid, not an autopilot.** Read and edit every draft before you post. You know your audience, your facts and your tone; the model only suggests.",
-            "**Suggestions can be generic.** If a draft sounds like anyone could have written it, add a detail only you know, or ask for another version.",
-            "**It is part of GrowX Premium.** You can use it free during the 30-day Premium trial and then decide; see [pricing](/pricing).",
-          ),
-        ],
-      },
-      {
-        id: "workflow",
-        heading: "A workflow: from idea to scheduled post",
-        blocks: [
-          ol(
-            "Collect raw ideas during the week: things you learned, questions people asked you, mistakes you made and fixed.",
-            "In the GrowX composer, use **Write** on one idea to get a first draft, or type your own rough version.",
-            "Use **Hooks** to see a few different openings and pick the most specific one.",
-            "Fill every {placeholder} with a real detail, then use **Improve** to tighten the wording.",
-            "For bigger ideas, use **Thread it**, then check that each part reads well on its own.",
-            "Edit the final version by hand, read it aloud, and post it, schedule it or add it to your queue.",
-          ),
-          p("A good post usually needs two or three passes. The AI saves time on the first draft and on the variations; the final edit is yours. If you write threads often, our guide on [how to write a Twitter thread](/blog/how-to-write-a-twitter-thread) covers structure and numbering in detail."),
-        ],
-      },
-      {
-        id: "editing",
-        heading: "How to edit an AI draft before you post",
-        blocks: [
-          p("Whatever tool wrote the first version, run every draft through the same short checklist before it goes anywhere near your feed:"),
-          ol(
-            "**Is it true?** Every number, name and claim should be something you can stand behind. Delete anything you cannot.",
-            "**Is it specific?** Swap general words for concrete ones: the tool you used, the step you took, the mistake you made.",
-            "**Does it sound like you?** Read it aloud. If you would never say a phrase out loud, rewrite it in your own words.",
-            "**Is the first line doing its job?** Readers decide from the opening line whether to keep reading, so put the most interesting part there.",
-            "**Can anything go?** Cut filler openers, stacked adjectives and hashtags that add nothing. Shorter is usually clearer.",
-            "**Does it fit?** Check the length against X's counting, where links count as 23 characters and most emoji as 2. The free [tweet character counter](/tools/tweet-character-counter) does this for you.",
-          ),
-          p("This takes a minute or two per post, and it is the step that turns a generic AI draft into something your followers will actually want to read."),
-        ],
-      },
-      {
-        id: "habits",
-        heading: "Habits that get better AI-written tweets",
-        blocks: [
-          ul(
-            "**Feed it specifics.** \"Three things I learned shipping a Chrome extension\" gets a better draft than \"productivity tips\".",
-            "**Set your niche and voice once** in GrowX so every suggestion starts in the right place.",
-            "**One idea per post.** If a draft tries to say three things, split it or cut two of them.",
-            "**Keep your own stories.** AI can help structure a story; it cannot live it for you. Personal experience is a big part of why people follow an account.",
-            "**Do not automate conversations.** AI reply drafts are a starting point. Generic replies sent at volume look like spam and build no relationships, which is why GrowX never posts a reply by itself.",
-            "**Read it as your audience would.** Before it goes out, read the final text once more from a follower's point of view, and make sure it is something you are happy to have your name on.",
-          ),
-        ],
-      },
-      {
-        id: "try",
-        heading: "Try GrowX AI free",
-        blocks: [
-          p("GrowX is free to install from the Chrome Web Store, and you can [create a free account](/signup) to try every Premium feature, including GrowX AI, free for 30 days, no credit card needed."),
-        ],
-      },
-    ],
-    faq: [
-      {
-        q: "Is GrowX AI free?",
-        a: "GrowX AI is a Premium feature, and you can use it free during the 30-day Premium trial with no credit card. It needs no API key and has no per-use charges, because it runs on the AI model built into Chrome.",
-      },
-      {
-        q: "Does GrowX AI send my drafts to a server?",
-        a: "No. It runs on your own computer using the AI model built into Chrome, and nothing is sent to GrowX.",
-      },
-      {
-        q: "Why do the AI buttons show templates instead of AI suggestions?",
-        a: "That happens when Chrome's built-in model is not available on your computer, for example on an older Chrome version or a machine without enough memory or disk space. GrowX then falls back to templates and the plain thread splitter.",
-      },
-      {
-        q: "Can AI write a whole Twitter thread for me?",
-        a: "GrowX AI can draft a thread and shape it with Thread it, but you should edit every part and fill in the real details. It leaves {placeholders} instead of inventing facts.",
-      },
-      {
-        q: "Will GrowX AI post or reply for me automatically?",
-        a: "No. It only suggests text. You decide what to post, and replies are sent only when you press the button.",
       },
     ],
   },

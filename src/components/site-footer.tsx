@@ -37,7 +37,7 @@ const cols = [
   {
     title: "Guides",
     links: [
-      { href: "/blog/how-to-grow-on-twitter-x", label: "How to grow on Twitter" },
+      { href: "/blog/how-to-get-more-followers-on-twitter", label: "How to grow on Twitter" },
       { href: "/blog/first-1000-followers-on-x", label: "Your first 1,000 followers" },
       { href: "/blog/how-to-schedule-tweets", label: "How to schedule tweets" },
       { href: "/blog/best-time-to-post-on-twitter", label: "Best time to post on X" },

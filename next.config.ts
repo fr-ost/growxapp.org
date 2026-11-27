@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 import { liveBadges } from "./src/data/badges";
+import { MERGED_URLS } from "./src/content/redirects";
+import { PRODUCTION_URL } from "./src/config/site";
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -50,6 +52,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     // Post social cards moved to /opengraph-image/card (per-post alt text); keep links that X and others cached working.
     return [
+      // Merged pages (src/content/redirects.ts): one permanent hop to the absolute canonical URL, so a request on either
+      // host lands on the final page directly (no host hop after the path hop).
+      ...MERGED_URLS.map((r) => ({ source: r.from, destination: `${PRODUCTION_URL}${r.to}`, permanent: true })),
       { source: "/blog/:slug/opengraph-image", destination: "/blog/:slug/opengraph-image/card", permanent: true },
       // One hop from the bare domain to the canonical host (http or https, any path). Vercel also turns http into https
       // at its edge; with growxapp.org pointed at this project, this rule sends it straight to https://www.growxapp.org.

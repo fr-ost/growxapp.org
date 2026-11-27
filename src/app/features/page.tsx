@@ -29,6 +29,7 @@ export const metadata = pageMetadata({
 });
 
 const faqs = [
+  { q: "How do the GrowX features work together?", a: "They cover three jobs: choosing who to follow, tracking what works and cleaning up afterwards. Smart auto follow and List follow bring people to your profile, and AI Creator Studio keeps it active with scheduled posts, GrowX AI and fresh posts to reply to. Analytics shows who followed you back and which sources work, and Cleanup unfollows the accounts that never followed back, at a safe pace. In the extension they sit in Home, Grow, List follow, AI Creator Studio, Analytics, Cleanup and Settings." },
   { q: "Which GrowX features are free?", a: "The free plan includes auto follow at the Slow pace (about 100 a day, free forever), sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, fresh posts to reply to, analytics for your latest 30 posts, who followed back, your Growth Score and the AI Growth Coach, 7 days of follower history, goals, List follow (50 at a time) and the cleanup scan with up to 200 unfollows per run." },
   { q: "What does Premium add?", a: "The Balanced, Turbo and X Premium paces, GrowX AI, unlimited scheduling, evergreen recycling and auto-plug, the smart score, more source types, advanced filters and list import, lists of up to 5,000 for List follow, full analytics with the weekly report, full follower history and quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account." },
   { q: `Can I try Premium before paying?`, a: `Yes. Every new GrowX account gets a free ${TRIAL_DAYS}-day trial of all Premium features as soon as it is created. No credit card is needed and nothing renews.` },
@@ -114,8 +115,8 @@ export default function FeaturesPage() {
           <Container>
             <FeatureGroups demos={groupDemos} />
             <p className="mt-20 text-center text-text-2">
-              New here? See <Link href="/how-it-works" className="link-draw font-semibold text-accent-ink">how it works</Link>, read the{" "}
-              <Link href="/blog/growx-features-guide-scoring-filters-cleanup" className="link-draw font-semibold text-accent-ink">features guide</Link>, or compare{" "}
+              New here? See <Link href="/how-it-works" className="link-draw font-semibold text-accent-ink">how it works</Link>, read our{" "}
+              <Link href="/blog" className="link-draw font-semibold text-accent-ink">growth guides</Link>, or compare{" "}
               <Link href="/pricing" className="link-draw font-semibold text-accent-ink">Free vs Premium</Link>.
             </p>
           </Container>

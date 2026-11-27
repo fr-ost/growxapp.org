@@ -1,7 +1,7 @@
 import { alternativePages } from "@/content/alternatives";
 import { OG_SIZE, OG_TYPE, ogImage } from "@/lib/og";
 
-export const alt = "GrowX compared with Tweet Hunter, Hypefury and Typefully";
+export const alt = "GrowX compared with Tweet Hunter, Hypefury, Typefully and Circleboom";
 export const size = OG_SIZE;
 export const contentType = OG_TYPE;
 

@@ -14,7 +14,7 @@ import { CwsButton } from "@/components/cws-link";
 import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { TRIAL_DAYS } from "@/config/pricing";
-import { CHECKED, alternativePages, getAlternative } from "@/content/alternatives";
+import { CHECKED, CHECK_THEIR_SITE, GROWX_PRICES_CHECKED, alternativePages, getAlternative } from "@/content/alternatives";
 import { getFeaturePage } from "@/content/feature-pages";
 import { getPost } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -119,13 +119,33 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
       <Section className="border-y border-hairline bg-surface-2">
         <Container className="max-w-5xl">
           <SectionHeading eyebrow="Side by side" title={`${page.name} vs GrowX`} center>
-            Where our guides don&apos;t say, the table says &ldquo;Check their site&rdquo; rather than guess.
+            Where our guides could not confirm a detail, the table says &ldquo;{CHECK_THEIR_SITE}&rdquo; rather than guess. Their own site has
+            the current answer.
           </SectionHeading>
           <div className="reveal mt-10">
             <ComparisonTable name={page.name} rows={page.table} caption={`${page.name} and GrowX compared`} />
           </div>
-          <p className="mt-4 text-center text-xs text-muted">
-            {page.name} details last checked {formatPostDate(CHECKED)} · GrowX details from our{" "}
+          <p className="mt-4 text-center text-sm text-muted">
+            {page.theirPricesChecked ? (
+              <>
+                Prices checked on <time dateTime={page.theirPricesChecked}>{formatPostDate(page.theirPricesChecked)}</time> ·{" "}
+              </>
+            ) : (
+              <>
+                GrowX prices checked on <time dateTime={GROWX_PRICES_CHECKED}>{formatPostDate(GROWX_PRICES_CHECKED)}</time>. For{" "}
+                {page.name}&apos;s current prices, see{" "}
+              </>
+            )}
+            <a
+              href={page.pricingUrl}
+              target="_blank"
+              rel="nofollow noopener"
+              className="font-semibold text-accent-ink underline-offset-4 hover:underline"
+            >
+              {page.name} pricing<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            {page.theirPricesChecked ? " · " : ". "}
+            GrowX details from our{" "}
             <Link href="/whats-new" className="underline-offset-2 hover:underline">
               release notes
             </Link>{" "}
@@ -144,7 +164,7 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
           <SectionHeading eyebrow="Choose" title="Who should pick which" center />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             <div className="h-full rounded-3xl border border-hairline bg-white p-7 shadow-[var(--shadow-hair)]">
-              <h3 className="text-lg font-bold">Pick {page.name} if</h3>
+              <h3 className="text-lg font-bold">When to choose {page.name} instead</h3>
               <ul className="reveal mt-5 space-y-3 text-sm text-text-2" style={stagger(0)}>
                 {page.pickThem.map((t) => (
                   <li key={t} className="flex gap-2">
@@ -154,7 +174,7 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
               </ul>
             </div>
             <div className="h-full rounded-3xl border border-accent/25 bg-white p-7 shadow-[var(--shadow-float)]">
-              <h3 className="text-lg font-bold">Pick GrowX if</h3>
+              <h3 className="text-lg font-bold">When to choose GrowX</h3>
               <ul className="reveal mt-5 space-y-3 text-sm text-text-2" style={stagger(1)}>
                 {page.pickGrowx.map((t) => (
                   <li key={t} className="flex gap-2">

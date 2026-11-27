@@ -36,7 +36,7 @@ export const profilePosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["first-1000-followers-on-x", "twitter-follow-back-score-growx", "follow-for-follow-twitter"],
+    related: ["first-1000-followers-on-x", "personal-branding-on-twitter", "follow-for-follow-twitter"],
     sections: [
       {
         id: "why-bio",
@@ -82,6 +82,7 @@ export const profilePosts: Post[] = [
             "**Teacher**: \"{Subject} teacher, {number} years in the classroom. Lesson ideas, free resources and what actually works with {age group}.\"",
           ),
           p("Placeholders change the length once you fill them in, so paste your final version into the free [tweet character counter](/tools/tweet-character-counter) to check it against the 160-character limit. X's profile editor has the last word when you press save."),
+          p("Want a first draft to edit? The free [Twitter bio generator](/tools/twitter-bio-generator) turns what you do, who you help and your topics into bios that fit 160 characters."),
         ],
       },
       {
@@ -136,7 +137,7 @@ export const profilePosts: Post[] = [
         heading: "Why a complete profile matters for follow-backs",
         blocks: [
           p("When you follow or reply to someone, many people check your profile before deciding whether to follow back. A default avatar, an empty bio and no posts look like a bot or a throwaway account, and plenty of people skip those. Growth tools that score accounts often make the same judgement."),
-          p("GrowX, a Chrome extension for growing on X, is one example. Its filters skip accounts without a profile photo, and its follow-back score counts a photo and a bio among its signals, so an account without a bio scores lower. That is how one tool rates accounts, not a statement about how X itself ranks anyone, but it reflects a common instinct: a complete profile looks like a real person who might follow back. The [follow-back score guide](/blog/twitter-follow-back-score-growx) explains every signal."),
+          p("GrowX, a Chrome extension for growing on X, is one example. Its filters skip accounts without a profile photo, and its follow-back score counts a photo and a bio among its signals, so an account without a bio scores lower. That is how one tool rates accounts, not a statement about how X itself ranks anyone, but it reflects a common instinct: a complete profile looks like a real person who might follow back. The [Twitter auto follow page](/features/twitter-auto-follow) explains every signal."),
           p("The practical lesson: finish your profile before you follow people at any scale, whether by hand or with [Twitter auto follow](/features/twitter-auto-follow). Every follow you send is an invitation to look at your profile."),
         ],
       },
@@ -206,7 +207,7 @@ export const profilePosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 7,
-    related: ["mass-follow-twitter-limits", "bulk-follow-twitter-safely", "how-growx-auto-follow-works"],
+    related: ["mass-follow-twitter-limits", "twitter-algorithm-explained", "follow-for-follow-twitter"],
     sections: [
       {
         id: "what-is",
@@ -307,7 +308,7 @@ export const profilePosts: Post[] = [
             "**Posting safety**: a daily post cap (20 by default), a minimum gap of 5 minutes between posts and a pause on any X warning.",
             "**Emergency stop**: press **Alt+Shift+S** to stop everything at once.",
           ),
-          p("GrowX never sends DMs, and it never replies to or likes other people's posts by itself. The [Twitter auto follow](/features/twitter-auto-follow) page lists every safety setting, and the guides to [X follow limits](/blog/mass-follow-twitter-limits) and [bulk following safely](/blog/bulk-follow-twitter-safely) explain the paces in detail."),
+          p("GrowX never sends DMs, and it never replies to or likes other people's posts by itself. The [Twitter auto follow](/features/twitter-auto-follow) page lists every safety setting, and the guides to [X follow limits](/blog/mass-follow-twitter-limits) and [bulk following safely](/blog/mass-follow-twitter-limits) explain the paces in detail."),
           note("No tool can promise zero risk on X. GrowX lowers the chance of tripping limits, but you remain responsible for following X's rules."),
         ],
       },
@@ -378,7 +379,7 @@ export const profilePosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 5,
-    related: ["twitter-follow-back-score-growx", "unfollow-non-followers-twitter", "twitter-follower-ratio"],
+    related: ["mass-follow-twitter-limits", "unfollow-non-followers-twitter", "twitter-follower-ratio"],
     sections: [
       {
         id: "what-is-f4f",
@@ -442,7 +443,7 @@ export const profilePosts: Post[] = [
             "**Use include keywords (Premium)** to require niche words in a bio, such as your industry or the tools you write about.",
             "**Choose sources carefully.** Niche sources matter more than any word list, and the source leaderboard shows the follow-back rate, retention and cost of each one.",
           ),
-          p("The [follow-back score guide](/blog/twitter-follow-back-score-growx) explains every signal, and the [Twitter auto follow](/features/twitter-auto-follow) page covers sources, filters and paces."),
+          p("The [Twitter auto follow](/features/twitter-auto-follow) page explains every signal of the follow-back score and covers sources, filters and paces."),
         ],
       },
       {
@@ -657,7 +658,7 @@ export const profilePosts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 6,
-    related: ["twitter-reply-strategy", "how-to-increase-twitter-engagement", "how-growx-auto-follow-works"],
+    related: ["twitter-reply-strategy", "how-to-increase-twitter-engagement", "how-to-build-a-twitter-follow-list"],
     sections: [
       {
         id: "what-are-lists",

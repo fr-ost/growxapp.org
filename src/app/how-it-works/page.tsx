@@ -31,6 +31,18 @@ const steps = [
   { icon: IconBroom, name: "Clean up when you are ready", text: "Scan your following list for accounts that don't follow back or went quiet, review the results and unfollow the ones you pick at a safe pace." },
 ];
 
+const practices = [
+  { name: "Start with a few close sources", text: "Three to five accounts that closely match your audience are a good start. Not sure which ones? Press Find sources for me." },
+  { name: "Start slow", text: "Use the free Slow pace, and turn on warm-up for a new or quiet account. Move up to Balanced (Premium) only once the account has a clean history." },
+  { name: "Keep the defaults for a few days", text: "Leave the default filters and minimum score on at first. If the queue looks too noisy, raise the minimum score in small steps." },
+  { name: "Give the autopilot a rhythm", text: "Active hours are off by default. Turn them on (08:00 to 23:30 by default) to keep following to the hours a real person is awake." },
+  { name: "Stay well under X's limits", text: "X sets and changes its own limits and automation rules, and you are responsible for following them. The faster presets are for aged accounts, and the X Premium pace is only for accounts with X Premium." },
+  { name: "Respect warnings", text: "If GrowX rests after a warning from X, let it rest. Do not restart at full speed." },
+  { name: "Post and reply", text: "Keep a steady queue of posts and reply early to fresh posts in your niche. Following brings people to your profile, and what they find there decides whether they follow back." },
+  { name: "Check your numbers weekly", text: "Once a week, look at Who followed back, the source leaderboard and your Growth Score. Keep the best sources and replace the weakest." },
+  { name: "Unfollow slowly", text: "Run Cleanup after 7 to 14 days, and not on the same day as heavy following." },
+];
+
 const presets = [
   { name: "Slow", delay: "50-120 s", rest: "every 10 follows, 20 min", hourly: "14", daily: "~100", who: "Free forever; gentle on new or warming-up accounts" },
   { name: "Balanced", delay: "30-75 s", rest: "every 18 follows, 14 min", hourly: "28", daily: "~280", who: "Premium; recommended for most accounts" },
@@ -92,11 +104,28 @@ export default function HowItWorksPage() {
             />
             <p className="mt-10 text-text-2">
               Want the details? Read{" "}
-              <Link href="/blog/how-growx-auto-follow-works" className="link-draw font-semibold text-accent-ink">how GrowX auto follow works</Link>,{" "}
+              <Link href="/features/twitter-auto-follow" className="link-draw font-semibold text-accent-ink">how GrowX auto follow works</Link>,{" "}
               <Link href="/blog/how-to-schedule-tweets" className="link-draw font-semibold text-accent-ink">how to schedule tweets</Link> or see every{" "}
               <Link href="/features" className="link-draw font-semibold text-accent-ink">feature</Link>.
             </p>
           </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <SectionHeading eyebrow="Best practices" title="Nine habits for growing safely" center>
+            Practical tips for your first weeks with GrowX. They lower the risk, but no tool can promise zero risk on X.
+          </SectionHeading>
+          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {practices.map((p, i) => (
+              <li key={p.name} className="reveal rounded-3xl border border-hairline bg-white p-6 shadow-hair" style={stagger(i % 3)}>
+                <span className="font-mono text-xs font-semibold tabular-nums text-accent-ink">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-1.5 text-lg font-bold">{p.name}</h3>
+                <p className="mt-2 leading-relaxed text-text-2">{p.text}</p>
+              </li>
+            ))}
+          </ol>
         </Container>
       </Section>
 

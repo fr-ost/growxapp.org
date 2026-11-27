@@ -1,7 +1,9 @@
 import type { Block, Post } from "./posts";
 
 /**
- * Search-intent guides: how to grow on X (Twitter), bulk/mass follow, follow-back score, unfollowing, tool choice.
+ * Search-intent guides: the first 1,000 followers, the X follow limit per day (bulk/mass follow), unfollowing, tool
+ * choice. The growth pillar is how-to-get-more-followers-on-twitter in posts-round5.ts. The follow-back score guide
+ * (twitter-follow-back-score-growx) was merged into /features/twitter-auto-follow on 27 Nov 2026 (src/content/redirects.ts).
  * Same rules as posts.ts: facts come from docs/PRODUCT_FACTS.md (extension v2.4.4) and the site's own pages; no
  * invented statistics, testimonials or result promises; X's own limits are described without hard numbers that X
  * may change. Questions live in each post's `faq` field (rendered once by the page, with FAQPage structured data).
@@ -18,148 +20,28 @@ const TRY = "GrowX is free to install from the Chrome Web Store, and you can [cr
 
 export const growthPosts: Post[] = [
   {
-    slug: "how-to-grow-on-twitter-x",
-    seoTitle: "How to Grow on Twitter (X): A Practical Plan",
-    title: "How to Grow on Twitter (X): A Practical Follower Growth Plan That Uses GrowX",
-    description:
-      "How to grow on Twitter (X) step by step: profile, scheduled posts, early replies and smart following, and where the GrowX growth tool fits in your routine.",
-    excerpt:
-      "A realistic plan for growing a Twitter (X) account: the profile, a posting schedule, early replies, targeted following and a weekly review, with GrowX doing the repetitive parts.",
-    category: "Guides",
-    keywords: ["how to grow on Twitter", "how to grow on X", "grow Twitter followers", "Twitter growth tool", "X growth tool", "increase X followers", "GrowX"],
-    datePublished: DATE,
-    dateModified: UPDATED,
-    readMinutes: 9,
-    related: ["first-1000-followers-on-x", "best-twitter-growth-tools", "bulk-follow-twitter-safely"],
-    sections: [
-      {
-        id: "intro",
-        heading: "What actually makes a Twitter (X) account grow",
-        blocks: [
-          p("If you search **how to grow on Twitter**, you will find two kinds of advice: posting advice and automation tricks. Both matter, but neither works alone. Growth on X comes from three things working together: a profile that gives a stranger a reason to follow, content that gives them a reason to stay, and a steady flow of the right people discovering you, through your replies and through the people you follow."),
-          p("**GrowX** is an X (Twitter) growth tool for Chrome built around that routine. Its smart auto follow finds and follows relevant people at a human pace, the post scheduler publishes at your best times, the AI Reply Assistant surfaces fresh posts worth replying to, and Analytics shows who followed you back, what is working and who unfollowed you. This guide gives you a realistic plan and shows where each part fits."),
-          p("Nothing here is a guarantee: results depend on your niche, your content and how consistent you are. If a tool or a guide promises a fixed number of followers, treat that as a warning sign."),
-        ],
-      },
-      {
-        id: "profile",
-        heading: "Step 1: Make your profile worth following",
-        blocks: [
-          p("People decide in a few seconds whether to follow. Before you follow anyone or schedule anything, fix the basics:"),
-          ul(
-            "**A clear photo and header.** Accounts without a profile photo look like bots, and GrowX itself skips them when it picks candidates. Do not look like one.",
-            "**A bio that says who you help or what you post about.** \"Founder building X for Y\" beats a list of emojis.",
-            "**A pinned post** that shows your best work or explains what a new follower will get.",
-            "**A link** to your site, newsletter or product so interest has somewhere to go.",
-          ),
-          p("Ask a friend to look at your profile for five seconds and tell you what you post about. If they cannot answer, rewrite the bio before you do anything else. Every other step in this plan sends people to this page."),
-        ],
-      },
-      {
-        id: "content",
-        heading: "Step 2: Post on a schedule you can keep",
-        blocks: [
-          p("Consistency beats intensity. Pick a rhythm you can hold for months, for example one useful post a day plus a few replies, and stick to it. Mix formats: short opinions, step-by-step threads, screenshots of real work and questions that invite replies. Write about one niche for the first few months so the people you attract all want the same thing."),
-          p("Scheduling is what makes the habit survive busy weeks. In GrowX's **AI Creator Studio** you write posts and threads (up to 25 parts and up to 4 images per post), then post now, pick a time or add them to a queue that fills preset time slots (09:00, 13:00 and 18:30 by default). A **best time to post** heat map, built from your own posts' engagement and when your followers are active, shows which slots deserve your best ideas. The free plan keeps up to 10 posts or threads waiting in the queue; Premium removes that limit. Read more about the [Twitter post scheduler](/features/twitter-post-scheduler)."),
-          p("If you struggle to start, the 52 built-in templates (hooks, threads, lists, stories and more) give you a structure to fill in, and the free [thread maker](/tools/twitter-thread-maker) splits a long draft into numbered posts. With Premium, GrowX AI can draft, improve or suggest hooks on your own computer using the AI model built into Chrome. Keep your own voice: a template or an AI draft is a starting point, not a finished post."),
-          note("Following people only pays off if your profile and recent posts reward the visit. Automation sends people to your profile; your content decides whether they follow back."),
-        ],
-      },
-      {
-        id: "engage",
-        heading: "Step 3: Reply early where your audience already is",
-        blocks: [
-          p("Reply thoughtfully to accounts in your niche, especially ones slightly larger than you. A good reply is often seen by far more people than a post from a small account, and timing matters: a reply in the first hour of a post's life has a much better chance of being seen than one posted the next day."),
-          p("The GrowX **AI Reply Assistant**, in AI Creator Studio, collects fresh posts (younger than 120 minutes by default) from your sources, your VIPs and anyone you add, ranked by freshness and by how fast they are taking off, so you can reply early instead of scrolling to find them. You can reply and like from GrowX, but nothing is sent until you press the button. Premium adds AI reply ideas. See the [AI Reply Assistant](/features/twitter-reply-targets)."),
-          p("Spend ten to fifteen minutes a day here. Add something useful, such as a number, an example or a disagreement with reasons, rather than \"great post\". Over a few weeks the same names start recognising yours, which is how replies turn into follows."),
-        ],
-      },
-      {
-        id: "follow",
-        heading: "Step 4: Follow the right people, at a human pace",
-        blocks: [
-          p("Following relevant accounts is the oldest growth tactic on X and it still works when it is targeted. The mistake is volume without selection. GrowX's smart auto follow is built around selection:"),
-          ul(
-            "You add **source profiles**, accounts your ideal audience already follows, or let **Find sources for me** suggest them from the accounts you follow. GrowX reads their newest followers, who are active right now, and re-reads every source every hour.",
-            "Each source's most recent followers are followed first. Everyone else gets a **follow-back score from 1 to 99** and must pass your filters (audience size, activity, profile photo and more) before it is queued. [How the score works](/blog/twitter-follow-back-score-growx).",
-            "The autopilot follows **one account at a time** with random delays, breaks and hourly and daily caps, plus optional active hours and warm-up. [Pacing explained](/blog/how-growx-auto-follow-works).",
-            "It slows down or stops when X shows a warning, and you can stop it instantly with Alt + Shift + S.",
-          ),
-          p("Start with the free **Slow** pace for a new account; with Premium, move to **Balanced**, recommended for most accounts, after a few clean days. No tool can promise zero risk on X, so keep an eye on your account and respect any warning."),
-        ],
-      },
-      {
-        id: "measure",
-        heading: "Step 5: Measure and adjust weekly",
-        blocks: [
-          p("Once a week, look at what worked. In **Analytics**, Who followed back shows which follows turned into followers and how fast, post analytics show views, likes, reposts, replies, bookmarks and engagement rate for your recent posts (your latest 30 on the free plan), and **What works** compares topics and formats by engagement. In Grow, the **source leaderboard** shows the follow-back rate, retention and cost of each source, so you can keep the sources that bring real followers and replace the rest."),
-          p("The **follower tracker** checks once a day who followed you and who unfollowed you, with 7 days of history on the free plan and the full history on Premium. A wave of unfollows after a certain kind of post is worth knowing about. More in the [unfollower tracker](/features/twitter-unfollower-tracker) overview."),
-          ol(
-            "Keep 3 to 5 sources that match your niche closely and replace the weakest one each week.",
-            "Run the free Slow pace (or Balanced with Premium), and turn on active hours if you want the autopilot to keep a daily rhythm.",
-            "Review the queue and raise the minimum score if it feels noisy.",
-            "Compare your best posts with your best sources and do more of what they have in common.",
-            "After a couple of weeks, run the cleanup scan and unfollow accounts that never followed back. See [how to unfollow non-followers safely](/blog/unfollow-non-followers-twitter).",
-          ),
-        ],
-      },
-      {
-        id: "goals",
-        heading: "Step 6: Turn it into a habit with goals and streaks",
-        blocks: [
-          p("Growth is mostly a habit problem. GrowX lets you set daily goals for posts, replies and new followers, and tracks streaks and milestones so you can see whether you kept the routine, not just whether the number moved. A monthly goal planner shows the daily pace a target would need and where your current pace is heading."),
-          p("Favour goals you control. \"Two posts and ten replies a day\" is a goal you can hit every day; \"100 followers a day\" is not, because it depends on other people. Hit the controllable goals for a month and the follower number tends to move with them, though no one can promise by how much."),
-        ],
-      },
-      {
-        id: "routine",
-        heading: "A realistic weekly routine",
-        blocks: [
-          ul(
-            "**Monday (30 minutes):** write the week's posts and add them to your queue slots, using the best-time heat map.",
-            "**Every day (15 minutes):** open the AI Reply Assistant, reply early to three to five fresh posts, and answer everyone who replied to you.",
-            "**Every day (background):** let smart auto follow run at the free Slow pace (or Balanced with Premium) while Chrome is open.",
-            "**Friday (15 minutes):** check post analytics, the source leaderboard and the follower tracker, and change one thing for next week.",
-            "**Every two weeks:** run a cleanup scan and unfollow, at a safe pace, the accounts that never followed back.",
-          ),
-          p("That is roughly two to three hours a week. The point of a growth tool is to keep the repetitive work small enough that you can keep doing the creative part for months."),
-        ],
-      },
-      {
-        id: "try",
-        heading: "Start growing with GrowX",
-        blocks: [p(TRY)],
-      },
-    ],
-    faq: [
-      qa("How long does it take to grow on Twitter (X)?", "There is no fixed timeline. Accounts that post consistently in one niche, reply to others and follow relevant people usually see steady movement over weeks and months rather than days. Track your own numbers weekly and judge the trend, not a single day."),
-      qa("Is it better to follow people or to post?", "Both. Posting gives people a reason to follow you; following relevant people and replying early tell them you exist. GrowX schedules your posts and automates the following part, so your own time goes into writing and conversations."),
-      qa("Do I need a paid X subscription to grow?", "No. GrowX works with free X accounts. It also has an X Premium pace (part of GrowX Premium) for accounts that have X's own Premium subscription, because those accounts have higher platform limits, and its composer supports long posts for X Premium accounts."),
-      qa("Can GrowX post for me?", "Only what you schedule. Scheduled posts go out at the time or queue slot you chose, with a daily cap and a minimum gap between posts. A post that is more than 6 hours late, for example because your computer was off, is never posted by itself; it waits as \"missed\" for you to decide."),
-      qa("Is auto following against X's rules?", "X restricts spam-like and aggressive automation, and its rules can change, so read them yourself. GrowX is built to be conservative: human-like pacing, caps and hard stops. You stay responsible for how you use it."),
-    ],
-  },
-  {
     slug: "first-1000-followers-on-x",
-    seoTitle: "How to Get Your First 1,000 Followers on X (Twitter)",
-    title: "How to Get Your First 1,000 Followers on X (Twitter): A 30-Day Plan With GrowX",
+    seoTitle: "First 1,000 Followers on Twitter (X): New Account Guide",
+    title: "How a New Account Gets Its First 1,000 Followers on X (Twitter)",
     description:
-      "A 30-day plan for your first 1,000 followers on X (Twitter): profile, scheduled posts, early replies and safe, targeted following with GrowX.",
+      "How a new X (Twitter) account gets its first 1,000 followers: finish the profile, post daily, reply early and follow the right people safely with GrowX.",
     excerpt:
-      "A week-by-week plan for your first 1,000 X followers, combining profile work, scheduled posts, early replies and targeted following with GrowX.",
+      "A starter guide for new X accounts: set up the profile, post on a schedule, reply early and follow the right people safely on the way to your first 1,000 followers.",
     category: "Guides",
-    keywords: ["first 1000 followers on Twitter", "get 1000 followers on X", "gain Twitter followers", "grow a new Twitter account", "Twitter growth tool", "Twitter follow back", "GrowX"],
+    keywords: ["first 1000 followers on Twitter", "first 1,000 followers on X", "get 1000 followers on X", "grow a new Twitter account", "new X account followers", "Twitter follow back", "GrowX"],
     datePublished: DATE,
-    dateModified: UPDATED,
-    readMinutes: 7,
-    related: ["how-to-grow-on-twitter-x", "mass-follow-twitter-limits", "twitter-follow-back-score-growx"],
+    dateModified: "2026-11-27",
+    readMinutes: 8,
+    related: ["how-to-get-more-followers-on-twitter", "twitter-growth-plan", "mass-follow-twitter-limits"],
     sections: [
       {
         id: "intro",
-        heading: "Is 1,000 followers in 30 days realistic?",
+        heading: "How do you get your first 1,000 followers on X?",
         blocks: [
-          p("It depends on your niche, your content and how much time you give it, so no honest guide can promise it. What a plan can do is remove wasted effort. This one is a 30-day routine for a **new or small X account**. Treat the number as a target to work towards, not a promise, and adjust the plan using your own results."),
+          p("To get your first 1,000 followers on X (Twitter), finish your profile before anything else, post about one topic every day, reply early to bigger accounts in your niche and follow people who recently followed similar accounts. Start slowly, because a new account needs a gentler pace than an old one. Each week, check which posts and sources brought followers and do more of that."),
+          p("**Is 1,000 followers in 30 days realistic?** It depends on your niche, your content and how much time you give it, so no honest guide can promise it. What a plan can do is remove wasted effort. This one is a 30-day routine for a **new or small X account**. Treat the number as a target to work towards, not a promise, and adjust the plan using your own results."),
           p("The routine combines manual work (profile, posts, replies) with **GrowX**, an X (Twitter) growth tool for Chrome, for the repetitive parts: finding people likely to follow back and following them at a safe pace, keeping a queue of scheduled posts, surfacing fresh posts to reply to and tracking what works. Everything in the plan works on the free plan; Premium extras are pointed out where they help."),
+          p("This guide is for accounts starting from zero or close to it. For every tactic in one place, read [how to get more followers on Twitter](/blog/how-to-get-more-followers-on-twitter). If your account already has an audience and growth has stalled, the [week-by-week Twitter growth plan](/blog/twitter-growth-plan) fits better."),
         ],
       },
       {
@@ -232,7 +114,7 @@ export const growthPosts: Post[] = [
         blocks: [
           ul(
             "Following thousands of random accounts with no filters.",
-            "Pushing to the fastest pace before the account has history. Read [X follow limits and mass-follow risks](/blog/mass-follow-twitter-limits).",
+            "Pushing to the fastest pace before the account has history. Read about the [Twitter follow limit per day](/blog/mass-follow-twitter-limits).",
             "Posting about five different topics, so nobody knows why to follow you.",
             "Posting in bursts and then going silent for a week. A queue with a few posts waiting smooths this out.",
             "Ignoring replies and DMs from the people who do follow.",
@@ -254,131 +136,28 @@ export const growthPosts: Post[] = [
     ],
   },
   {
-    slug: "bulk-follow-twitter-safely",
-    seoTitle: "Bulk Follow on Twitter (X) Safely: GrowX Guide",
-    title: "Bulk Follow on Twitter (X) Safely: How to Follow in Bulk Without Looking Like a Bot",
-    description:
-      "How to bulk follow on Twitter (X) safely: pick sources, follow recent followers first, filter by score and pace it with GrowX smart auto follow.",
-    excerpt: "Bulk following does not have to mean reckless following. Here is how to follow many relevant people on X at a safe pace with GrowX smart auto follow.",
-    category: "Guides",
-    keywords: ["bulk follow Twitter", "bulk follow on X", "Twitter bulk follow tool", "follow multiple accounts Twitter", "smart auto follow", "X (Twitter) growth tool", "GrowX"],
-    datePublished: DATE,
-    dateModified: UPDATED,
-    readMinutes: 7,
-    related: ["mass-follow-twitter-limits", "twitter-follow-back-score-growx", "how-growx-auto-follow-works"],
-    sections: [
-      {
-        id: "intro",
-        heading: "What \"bulk follow\" should mean",
-        blocks: [
-          p("People who search **bulk follow Twitter** usually want one thing: follow many relevant accounts without clicking the follow button hundreds of times. That is a fair goal. The risk is how it is done. Tools that blast follows as fast as possible get accounts rate-limited, locked or suspended, and they follow people who will never follow back."),
-          p("**GrowX**, an X (Twitter) growth tool for Chrome, treats bulk following as a pipeline in its smart auto follow: choose where candidates come from, filter and score them, then follow the best ones slowly, over hours and days. You still end up following hundreds of relevant accounts, but they arrive at a pace that looks human. The [Twitter auto follow](/features/twitter-auto-follow) page has the short version; this guide goes step by step."),
-        ],
-      },
-      {
-        id: "sources",
-        heading: "Step 1: Choose sources your audience already follows",
-        blocks: [
-          p("Add accounts in your niche as **source profiles**: creators, brands or communities. GrowX reads each source's newest followers, who are recently active and already interested in your topic, and re-reads every source every hour so the queue stays fresh. Three to five close matches beat twenty loose ones."),
-          p("Not sure where to start? **Find sources for me** looks at the accounts you already follow and ranks them by how active, mid-sized and follow-back-prone their audience is. **Find people now** harvests candidates immediately instead of waiting for the next hourly pass. On Premium you can go beyond profiles and use a post's reposts, replies or likes, a search or #hashtag, or an X List as a source, which helps when your audience gathers around a topic rather than a person."),
-        ],
-      },
-      {
-        id: "recent",
-        heading: "Step 2: Follow the freshest followers first",
-        blocks: [
-          p("Each source's newest followers (the top 50 of its list by default) are followed first. Someone who followed a niche account in the last few hours is active right now and has just shown interest in your topic, so these accounts skip the follow-back score. They do not skip the safety checks: GrowX still leaves out private accounts, accounts without a photo, accounts with zero posts, giant accounts and anyone matching your exclude keywords."),
-        ],
-      },
-      {
-        id: "filters",
-        heading: "Step 3: Filter and score everyone else",
-        blocks: [
-          p("Bulk following only works if the list is good. For everyone beyond the freshest followers, GrowX removes accounts you already follow, private accounts, accounts without a profile photo and accounts that are too new, inactive, small or large (limits you can change). Survivors get a **follow-back score from 1 to 99**, and only those above your minimum (55 by default) join the queue, which holds around 250 candidates and drops any that are older than 72 hours. [See how the score is built](/blog/twitter-follow-back-score-growx)."),
-          p("On Premium you can also **import your own list** of usernames to follow first, which is handy for event attendees, a newsletter community or a list you researched yourself, and the **smart score** learns from your own follow-backs once you have enough history. Anyone on your never-follow list is always skipped."),
-        ],
-      },
-      {
-        id: "pace",
-        heading: "Step 4: Follow in bulk at a safe pace",
-        blocks: [
-          ul(
-            "**Slow** (free forever): 50 to 120 seconds between follows, a 20-minute rest every 10 follows, up to 14 an hour and about 100 a day. Gentle on new accounts.",
-            "**Balanced** (Premium): 30 to 75 seconds, a rest every 18 follows, up to 28 an hour and about 280 a day. Recommended for most accounts.",
-            "**Turbo** (about 390 a day) and **X Premium pace** (about 800 a day, only for accounts with X's own Premium subscription) are faster presets for aged accounts, available on GrowX Premium.",
-          ),
-          p("These are the extension's own rolling caps; X also enforces limits that it can change at any time. If you want the autopilot to keep a daily rhythm, turn on **active hours** (off by default; 08:00 to 23:30 when enabled, on the days you choose). The **adaptive slow-down** reduces the pace automatically if X shows a warning, and occasional longer pauses keep the follows from being evenly spaced."),
-        ],
-      },
-      {
-        id: "safety",
-        heading: "Step 5: Keep an eye on safety signals",
-        blocks: [
-          ul(
-            "Follow verification checks that follows actually stuck, which helps detect silent (shadow) limits.",
-            "A following-cap guard (5,000, or about 10% above your follower count) pauses instead of hammering X's following limit.",
-            "GrowX stops when you are signed out, when the account is locked, when X shows a challenge, or after repeated automation warnings, and it never clicks through a challenge.",
-            "Alt + Shift + S stops everything immediately.",
-          ),
-          note("No tool can promise zero risk on X. You remain responsible for following X's rules and for the accounts you follow."),
-        ],
-      },
-      {
-        id: "mistakes",
-        heading: "Common bulk-follow mistakes and how GrowX avoids them",
-        blocks: [
-          p("Most bulk-follow problems come from the same few habits. Knowing them helps you choose settings that keep your account healthy."),
-          ul(
-            "**One giant source.** Following the followers of one huge celebrity gives you a crowd that does not care about your niche. Use several smaller, closely related sources.",
-            "**Ignoring the score.** A queue with no minimum score is just a random list. Keep the minimum at a level where the follow-back rate on the source leaderboard is worth the effort.",
-            "**Running at the fastest pace on a young account.** Speed is the main trigger for warnings. Faster presets are for aged accounts with a clean record.",
-            "**Never checking results.** The point of bulk following is follow-backs. If a source does not deliver after a few days, remove it, or let Premium's auto-replace retire weak sources after a fair trial and swap in the best auto-found one (retired sources can be restored).",
-            "**Forgetting the exit.** A large following list needs maintenance. Plan a gradual cleanup after a couple of weeks.",
-          ),
-          p("GrowX keeps old candidates out of the queue (anything older than 72 hours is dropped), re-reads sources every hour and tracks follow-back rate, retention and cost per source, so you can fix these mistakes with data instead of guesses."),
-        ],
-      },
-      {
-        id: "after",
-        heading: "After the bulk follow: measure and tidy",
-        blocks: [
-          p("Bulk following is only half the job. Give new follows a week or two, then look at the results. The source leaderboard tells you which sources to keep, and [Twitter analytics](/features/twitter-analytics), including Who followed back, show whether your follows and posts are giving new visitors a reason to stay. A stream of follows that lands on an empty or stale profile wastes the effort, so keep a few posts in the scheduler queue while you grow."),
-          p("Then tidy up. The cleanup scan lists the accounts that did not follow back so you can review and unfollow them at a safe pace (up to 200 per run on the free plan). On Premium, **automatic cleanup** can unfollow GrowX's own follows that did not follow back after 2, 5 or 7 days, only during autopilot breaks and within the same safe caps; it never touches accounts you followed yourself or imported. More in the [Twitter unfollow tool](/features/twitter-unfollow-tool) overview."),
-        ],
-      },
-      {
-        id: "try",
-        heading: "Bulk follow with GrowX",
-        blocks: [p(TRY)],
-      },
-    ],
-    faq: [
-      qa("How many people can I bulk follow per day with GrowX?", "On the free Slow pace GrowX follows up to about 100 a day, with hourly caps as well. Faster presets (Balanced at about 280, Turbo and the X Premium pace) are part of GrowX Premium; Turbo and X Premium are meant for aged accounts. X applies its own limits too."),
-      qa("Can I bulk follow a list of usernames I already have?", "Yes. You can import your own list of usernames and GrowX follows them first, still at the paced rate. List import is a Premium feature."),
-      qa("Will everyone I follow follow back?", "No. Only some will. Recent followers first, the filters and the follow-back score raise the odds by putting likelier accounts first, but no tool can promise a follow-back rate."),
-      qa("Does bulk following work while my computer is asleep?", "No. GrowX needs Chrome running and you signed in to X. While the autopilot runs it keeps the computer awake, keeps working when you close the popup or switch tabs, and resumes after Chrome restarts."),
-    ],
-  },
-  {
     slug: "mass-follow-twitter-limits",
-    seoTitle: "Mass Follow on Twitter: X Follow Limits & Risks",
-    title: "Mass Follow on Twitter (X): Follow Limits, Risks and a Safer Way to Do It",
+    seoTitle: "Twitter (X) Follow Limit Per Day: How Many Is Safe?",
+    title: "The Twitter (X) Follow Limit Per Day, Explained: Limits, Risks and Safe Bulk Following",
     description:
-      "Thinking about mass following on Twitter (X)? Learn how follow limits work, what gets accounts restricted and how to keep your follow pace safer.",
-    excerpt: "What really happens when you mass follow on X, why limits exist and how to stay inside them.",
+      "What is the Twitter (X) follow limit per day? How the daily and 5,000 following limits work, what gets accounts restricted and how to bulk follow safely.",
+    excerpt:
+      "The daily follow limit, the 5,000 following cap, the behaviour that gets accounts restricted, and how to follow in bulk at a pace that stays inside the limits.",
     category: "Guides",
-    keywords: ["mass follow Twitter", "Twitter follow limit", "X follow limit per day", "Twitter follow limit reached", "safe Twitter auto follow", "X (Twitter) growth tool", "GrowX"],
+    keywords: ["Twitter follow limit per day", "X follow limit per day", "Twitter follow limit", "Twitter follow limit reached", "mass follow Twitter", "bulk follow Twitter", "safe Twitter auto follow", "GrowX"],
     datePublished: DATE,
-    dateModified: UPDATED,
-    readMinutes: 7,
-    related: ["bulk-follow-twitter-safely", "first-1000-followers-on-x", "how-growx-auto-follow-works"],
+    dateModified: "2026-11-27",
+    readMinutes: 11,
+    related: ["twitter-follower-ratio", "first-1000-followers-on-x", "how-to-build-a-twitter-follow-list"],
     sections: [
       {
         id: "intro",
-        heading: "Why mass following gets accounts in trouble",
+        heading: "What is the Twitter (X) follow limit per day?",
         blocks: [
-          p("**Mass follow** means following a very large number of accounts quickly, hoping some follow back. X treats sudden, repetitive following as spam-like behaviour. Possible consequences range from a temporary \"you are unable to follow more accounts\" message to locked or suspended accounts. The exact thresholds are not fixed and X can change them, so check X's Help Center for the current rules."),
-          p("This guide explains how the limits work, which behaviours look automated, and how GrowX, an X (Twitter) growth tool whose smart auto follow is built around pacing, keeps following within safer bounds. It cannot make mass following risk-free, and neither can any other tool."),
+          p("The **Twitter (X) follow limit per day** is roughly 400 follows on a normal account. New accounts and fast bursts can be limited sooner, because X also watches short-term pace. Separately, everyone can follow up to 5,000 accounts in total, and past that the cap grows with your follower count. X can change these limits, so check its Help Center."),
+          p("Staying under the number is not the whole story. **Mass follow** means following a very large number of accounts quickly, hoping some follow back. X treats sudden, repetitive following as spam-like behaviour. Possible consequences range from a temporary \"you are unable to follow more accounts\" message to locked or suspended accounts."),
+          p("**Bulk following** can be the same goal done carefully: following many relevant accounts without clicking the follow button hundreds of times. That is a fair goal. The risk is how it is done. Following as fast as possible gets accounts rate-limited, locked or suspended, and it fills your list with people who will never follow back."),
+          p("This guide explains how the limits work, which behaviours look automated, and how to follow in bulk with GrowX, an X (Twitter) growth tool whose smart auto follow is built around pacing. It cannot make mass following risk-free, and neither can any other tool."),
         ],
       },
       {
@@ -387,8 +166,8 @@ export const growthPosts: Post[] = [
         blocks: [
           p("Two kinds of limits matter:"),
           ul(
-            "**Rate limits**: a cap on how many accounts you can follow per day, with shorter bursts also watched. Newer and lower-trust accounts tend to be treated more strictly.",
-            "**The following cap**: everyone can follow up to 5,000 accounts; beyond that, how many people you can follow depends on how many follow you. This is why a healthy ratio matters.",
+            "**The daily follow limit**: roughly 400 follows a day on a normal account, with shorter bursts also watched. Newer and lower-trust accounts tend to be treated more strictly, and accounts with X Premium have higher limits.",
+            "**The following cap**: everyone can follow up to 5,000 accounts; beyond that, how many people you can follow depends on how many follow you. GrowX estimates it at about 10% above your follower count. The [follower ratio guide](/blog/twitter-follower-ratio) and the free [follower ratio calculator](/tools/twitter-follower-ratio-calculator) show where you stand.",
           ),
           p("Hitting a limit once is a sign to slow down, not to try again harder. Repeatedly pushing against limits is what leads to restrictions."),
         ],
@@ -408,19 +187,45 @@ export const growthPosts: Post[] = [
         ],
       },
       {
+        id: "bulk",
+        heading: "How to follow in bulk without looking like a bot",
+        blocks: [
+          p("Bulk following only works if the list is good. GrowX's [smart auto follow](/features/twitter-auto-follow) treats it as a pipeline: choose where candidates come from, filter and score them, then follow the best ones slowly, over hours and days. You still end up following hundreds of relevant accounts, but at a pace that looks human."),
+          ol(
+            "**Choose sources your audience already follows.** Add creators, brands or communities in your niche as **source profiles**. GrowX reads each source's newest followers and re-reads every source every hour. Three to five close matches beat twenty loose ones. **Find sources for me** suggests sources from the accounts you already follow, and **Find people now** harvests candidates at once. On Premium, a post's reposts, replies or likes, a search or #hashtag, or an X List can be a source too.",
+            "**Follow the freshest followers first.** Each source's newest followers (the top 50 of its list by default) are followed first, because someone who followed a niche account in the last few hours is active right now. They skip the follow-back score but not the safety checks: GrowX still leaves out private accounts, accounts without a photo, accounts with zero posts, giant accounts and anyone matching your exclude keywords.",
+            "**Filter and score everyone else.** GrowX removes accounts you already follow, private accounts, accounts without a profile photo and accounts that are too new, inactive, small or large (limits you can change). The rest get a **follow-back score from 1 to 99**, and only those above your minimum (55 by default) join the queue, which holds around 250 candidates and drops any older than 72 hours.",
+            "**Bring your own list if you have one.** [List follow](/features/twitter-list-follow) follows exactly the accounts on a list you paste or upload: 50 at a time on the free plan, up to 5,000 on Premium. On Premium you can also import usernames into the autopilot queue to be followed first, and the **smart score** learns from your own follow-backs once you have enough history. Anyone on your never-follow list is always skipped.",
+          ),
+        ],
+      },
+      {
+        id: "pace",
+        heading: "How many follows a day GrowX makes",
+        blocks: [
+          p("Each GrowX pace has its own rolling hourly and daily caps. The free pace stays far below X's daily limit, and the faster ones are for accounts that already have a clean history:"),
+          ul(
+            "**Slow** (free forever, the default): 50 to 120 seconds between follows, a 20-minute rest every 10 follows, up to 14 an hour and about 100 a day. Gentle on new accounts.",
+            "**Balanced** (Premium): 30 to 75 seconds, a 14-minute rest every 18 follows, up to 28 an hour and about 280 a day. Recommended for most accounts.",
+            "**Turbo** (Premium): 18 to 45 seconds, a 10-minute rest every 25 follows, up to 40 an hour and about 390 a day. For aged accounts with a clean record.",
+            "**X Premium pace** (Premium): 12 to 32 seconds, an 8-minute rest every 35 follows, up to 60 an hour and about 800 a day. Only for accounts with X's own Premium subscription, which have higher limits on X.",
+          ),
+          p("These are the extension's own caps; X also enforces limits that it can change at any time. Balanced, Turbo and the X Premium pace are included in the free 30-day Premium trial."),
+        ],
+      },
+      {
         id: "safer",
         heading: "A safer way to mass follow with GrowX",
         blocks: [
-          p("GrowX is designed around avoiding those patterns:"),
+          p("GrowX is designed around avoiding the patterns that look automated:"),
           ul(
             "**Random delays and regular breaks**, plus occasional longer pauses (on about 8% of follows), so follows are not evenly spaced.",
             "**Optional active hours and warm-up**: active hours are off by default, but turning them on (08:00 to 23:30, on days you choose) stops the autopilot running around the clock, and warm-up starts a new account at a daily cap of 60 and raises it by 20 a day.",
-            "**Rolling hourly and daily caps** (Slow about 100 a day on the free plan, Balanced about 280 a day with Premium).",
-            "**Targeted candidates only**: each source's newest followers go first, and everyone else must pass filters and a follow-back score before entering the queue.",
-            "**Adaptive slow-down and hard stops** after any warning, rate limit, challenge, lock or sign-out.",
+            "**Rolling hourly and daily caps** on every pace, as listed above.",
+            "**Adaptive slow-down and hard stops** after any warning, rate limit, challenge, lock or sign-out. GrowX never clicks through a challenge, and Alt + Shift + S stops everything at once.",
             "**Follow verification** to detect silent limits, and a **following-cap guard** (5,000, or about 10% above your follower count) that pauses instead of hammering X's cap.",
           ),
-          p("The full pipeline is in [how GrowX auto follow works](/blog/how-growx-auto-follow-works), and the [Twitter auto follow](/features/twitter-auto-follow) page summarises the settings."),
+          p("The [Twitter auto follow](/features/twitter-auto-follow) page summarises every setting."),
           note("These measures reduce risk; they cannot remove it. No tool can promise zero risk on X. Start on the free Slow pace, and only move up once your account has a clean history."),
         ],
       },
@@ -440,10 +245,26 @@ export const growthPosts: Post[] = [
         ],
       },
       {
+        id: "mistakes",
+        heading: "Common bulk-follow mistakes and how to avoid them",
+        blocks: [
+          p("Most bulk-follow problems come from the same few habits. Knowing them helps you choose settings that keep your account healthy."),
+          ul(
+            "**One giant source.** Following the followers of one huge celebrity gives you a crowd that does not care about your niche. Use several smaller, closely related sources.",
+            "**Ignoring the score.** A queue with no minimum score is just a random list. Keep the minimum at a level where the follow-back rate on the source leaderboard is worth the effort.",
+            "**Running at the fastest pace on a young account.** Speed is a common trigger for warnings. Faster presets are for aged accounts with a clean record.",
+            "**Never checking results.** The point of bulk following is follow-backs. If a source does not deliver after a few days, remove it, or let Premium's auto-replace retire weak sources after a fair trial and swap in the best auto-found one (retired sources can be restored).",
+            "**Forgetting the exit.** A large following list needs maintenance. Plan a gradual cleanup after a couple of weeks.",
+          ),
+          p("GrowX keeps old candidates out of the queue (anything older than 72 hours is dropped), re-reads sources every hour and tracks follow-back rate, retention and cost per source, so you can fix these mistakes with data instead of guesses."),
+        ],
+      },
+      {
         id: "hit-limit",
         heading: "What to do if you hit a limit",
         blocks: [
           p("If X tells you that you cannot follow more accounts right now, the right response is patience. Stop following for the rest of the day, avoid clicking follow buttons by hand as well, and let the restriction clear. Then resume at a lower pace than before."),
+          p("GrowX does part of this by itself. When X refuses follows after a certain number in 24 hours, GrowX holds at five fewer than that number for the next 24 hours, then returns to your full pace. Your pace setting does not change, and Start or \"Try again now\" asks X again at once."),
           p("If the message keeps coming back, or you see a lock, a verification challenge or a suspension notice, stop all automation and follow X's own instructions to resolve it. GrowX will not click through challenges for you and will halt after repeated automation warnings, because pushing through is how small problems turn into permanent ones."),
           p("Finally, review what triggered it. Was the pace too high for the age of the account? Were sources too broad, so the queue was full of weak candidates you had to churn through? Fixing the cause matters more than waiting out the limit."),
         ],
@@ -452,7 +273,7 @@ export const growthPosts: Post[] = [
         id: "unfollow",
         heading: "Mass following needs careful tidying",
         blocks: [
-          p("After a campaign, review who did not follow back. Do it gradually rather than in one burst: GrowX's cleanup unfollows one account at a time at a safe pace of up to 30 an hour and 200 a day, and re-checks each account right before unfollowing it. See our guide to [unfollowing non-followers safely](/blog/unfollow-non-followers-twitter) and the [Twitter unfollow tool](/features/twitter-unfollow-tool) overview."),
+          p("Give new follows a week or two, then review who did not follow back. Do it gradually rather than in one burst: GrowX's cleanup unfollows one account at a time at a safe pace of up to 30 an hour and 200 a day, and re-checks each account right before unfollowing it. On Premium, **automatic cleanup** can unfollow GrowX's own follows that did not follow back after 2, 5 or 7 days, only during autopilot breaks and within the same caps; it never touches accounts you followed yourself or imported. See our guide to [unfollowing non-followers safely](/blog/unfollow-non-followers-twitter) and the [Twitter unfollow tool](/features/twitter-unfollow-tool) overview."),
           p("It also helps to watch the other direction. The [unfollower tracker](/features/twitter-unfollower-tracker) records once a day who followed and who unfollowed you, so you can see whether a following campaign brings people who stay or people who leave after a few days."),
         ],
       },
@@ -472,129 +293,13 @@ export const growthPosts: Post[] = [
     ],
     faq: [
       qa("What does \"you are unable to follow more accounts at this time\" mean?", "It means X has temporarily limited your following, usually because of volume or pace. Stop following for a while. GrowX treats such warnings as a signal to throttle and rest."),
-      qa("How many follows per day is safe?", "There is no number that is safe for every account. New and low-trust accounts need to be slower. That is why GrowX starts every new install on the Slow pace, recommends warm-up for new accounts and slows down by itself after warnings."),
+      qa("How many follows per day is safe?", "There is no number that is safe for every account. X's daily limit is roughly 400 follows on a normal account, but new and low-trust accounts need to stay well below it. That is why GrowX starts every new install on the Slow pace (about 100 a day), recommends warm-up for new accounts and slows down by itself after warnings."),
+      qa("How many people can I bulk follow per day with GrowX?", "On the free Slow pace GrowX follows up to about 100 a day, with hourly caps as well. The faster presets are part of GrowX Premium: Balanced at about 280, Turbo at about 390 and the X Premium pace at about 800. Turbo is meant for aged accounts and the X Premium pace only for accounts with X Premium. X applies its own limits too."),
+      qa("Can I bulk follow a list of usernames I already have?", "Yes. List follow follows exactly the accounts on your own list, pasted or uploaded as a CSV or TXT file, at the same pace and with the same safety as the autopilot. The free plan takes 50 accounts at a time; Premium takes lists of up to 5,000."),
+      qa("Will everyone I follow follow back?", "No. Only some will. Recent followers first, the filters and the follow-back score raise the odds by putting likelier accounts first, but no tool can promise a follow-back rate."),
       qa("Is following and then unfollowing risky?", "Rapid follow and unfollow cycles look manipulative. Give follows time to be returned and unfollow gradually. GrowX's Premium automatic cleanup waits 2, 5 or 7 days and only runs during autopilot breaks within the safe unfollow caps."),
+      qa("Does bulk following work while my computer is asleep?", "No. GrowX needs Chrome running and you signed in to X. While the autopilot runs it keeps the computer awake, keeps working when you close the popup or switch tabs, and resumes after Chrome restarts."),
       qa("Can GrowX get my account suspended?", "No tool can promise zero risk on X. GrowX reduces the risk with paced, targeted following and hard stops, but you remain responsible for staying within X's rules."),
-    ],
-  },
-  {
-    slug: "twitter-follow-back-score-growx",
-    seoTitle: "Twitter Follow-Back Score: How GrowX Scores Accounts",
-    title: "Twitter Follow-Back Score Explained: How GrowX Finds Accounts That Follow Back",
-    description:
-      "What is a Twitter (X) follow-back score? The signals GrowX uses to rate accounts 1-99, the Premium smart score that learns from you, and how to tune it.",
-    excerpt:
-      "The follow-back score (sometimes searched as a Twitter growth score) is how GrowX decides who is worth following. Here is what goes into it, and how the smart score learns from your own results.",
-    category: "Features",
-    keywords: ["Twitter follow back score", "Twitter growth score", "who will follow back on Twitter", "X follow back rate", "find accounts that follow back", "X (Twitter) growth tool", "GrowX"],
-    datePublished: DATE,
-    dateModified: UPDATED,
-    readMinutes: 7,
-    related: ["bulk-follow-twitter-safely", "growx-features-guide-scoring-filters-cleanup", "best-twitter-growth-tools"],
-    sections: [
-      {
-        id: "intro",
-        heading: "What is a follow-back score?",
-        blocks: [
-          p("When you follow someone hoping they follow back, you are betting on a person you know little about. The **GrowX follow-back score** replaces the guess with an estimate. Each candidate gets a number from **1 to 99**, the estimated chance that they follow back, based on public profile data. It is part of the smart auto follow in GrowX, the X (Twitter) growth tool for Chrome, and it decides who enters your follow queue."),
-          note("The score is an estimate, not a promise about any one account. Its job is to put likelier accounts first, so your follows are spent where they are most likely to pay off."),
-        ],
-      },
-      {
-        id: "signals",
-        heading: "The signals behind the score",
-        blocks: [
-          ul(
-            "**Follow ratio**: accounts that follow many more people than follow them score higher; accounts followed by far more people than they follow score lower.",
-            "**Audience size**: small and mid-sized accounts score better than very large ones.",
-            "**How many accounts they follow**: people who follow hundreds or thousands are likelier to follow back than people who follow almost nobody.",
-            "**Follow-back words** in the bio, such as \"follow back\" or \"mutuals\" (the boost-word list is editable).",
-            "**Recent activity**: a recent post raises the score, long silence lowers it.",
-            "**Account age, photo and bio**: very new accounts and profiles without a photo or bio score lower.",
-            "**Verified status** is taken into account.",
-            "**Recency**: being one of a source's newest followers adds a little.",
-          ),
-          p("None of these signals is decisive on its own. A small account with a photo, a bio and a post from yesterday that follows about as many people as follow it is the typical profile that scores well, because it looks like an active person who notices new followers."),
-        ],
-      },
-      {
-        id: "recent",
-        heading: "When the score is skipped: recent followers first",
-        blocks: [
-          p("There is one group the score does not judge. Each source's **newest followers** (the top 50 of its list by default) are followed first, before the scored queue. Someone who followed a niche account minutes or hours ago is active right now and has just shown interest in the topic, which is a stronger signal than anything in their profile."),
-          p("They still pass the safety checks: GrowX skips private accounts, accounts without a photo, accounts with zero posts, giant accounts and anyone matching your exclude keywords. Everyone else from the source goes through the full score."),
-        ],
-      },
-      {
-        id: "tuning",
-        heading: "Choosing your minimum score",
-        blocks: [
-          p("The minimum score (55 by default) decides who enters the queue. Around 40 favours volume; around 70 favours quality and a smaller, cleaner queue. The queue keeps around 250 candidates and drops any that are older than 72 hours, and sources are re-read every hour, so a stricter minimum mostly means fewer follows, not stale ones."),
-          p("Change it in small steps and give each change a few days. Review the queue before and after, and compare follow-back rates on the source leaderboard rather than judging by a single day."),
-        ],
-      },
-      {
-        id: "smart",
-        heading: "The smart score: learning from your own follow-backs (Premium)",
-        blocks: [
-          p("The standard score uses the same signals for everyone. But audiences differ: what predicts a follow-back among designers may not hold among founders or fitness creators. The **smart score**, part of GrowX Premium, adds a small model (a logistic regression) trained on **your own** results, meaning which of the accounts GrowX followed for you actually followed back."),
-          ul(
-            "It needs enough data first: about 80 settled follows, with at least 12 follow-backs and 12 non-follow-backs.",
-            "It is checked on a holdout set, follows it was not trained on, before it is used.",
-            "It is blended into the standard score at up to 60% weight, and only when it clearly beats chance. Otherwise GrowX keeps using the standard score.",
-          ),
-          p("In practice the smart score switches on by itself once your history supports it and stays out of the way when it does not. You do not need to configure it."),
-        ],
-      },
-      {
-        id: "filters",
-        heading: "Score plus filters",
-        blocks: [
-          p("Hard filters run before scoring: skip accounts you follow or that already follow you, private accounts, no profile photo, too new, too inactive, too small or too large, too few posts and anyone matching your exclude keywords. The score then ranks whoever remains. Advanced include-keyword, location and verified filters are available on Premium. Full list in the [features guide](/blog/growx-features-guide-scoring-filters-cleanup), and the settings are summarised on the [Twitter auto follow](/features/twitter-auto-follow) page."),
-        ],
-      },
-      {
-        id: "example",
-        heading: "Reading a score in practice",
-        blocks: [
-          p("Imagine two candidates from the same source. The first has a few hundred followers, follows about as many people, has a photo and bio and posted two days ago. The second has a hundred thousand followers, follows almost nobody and last posted months ago. Using the signals above, the first will score noticeably higher: its ratio and size suggest a typical person who follows back, and it is active. The second is unlikely to notice a follow, so it falls below the minimum and never enters your queue."),
-          p("That is the whole idea. You do not need to inspect every profile; you set the quality dial once and review the queue from time to time. If most candidates from a source score low, the source is probably too broad or too large, and replacing it with a smaller, more specific community is usually a better fix than lowering the minimum."),
-          p("Remember that the score only ranks candidates. Whether someone follows back still depends on your profile and your recent posts, which is why the [growth plan](/blog/how-to-grow-on-twitter-x) starts with the basics."),
-        ],
-      },
-      {
-        id: "blind-spots",
-        heading: "What the score cannot see",
-        blocks: [
-          p("The score only knows what a public profile shows. It cannot tell whether someone is busy, already overwhelmed by notifications, or simply not interested in your topic. It also cannot see your profile through their eyes. That is why two accounts with the same settings can get very different follow-back rates: the one with a clear bio, a pinned post and recent useful posts converts more of the same visitors."),
-          p("Treat the score as a way to spend your daily follow budget sensibly, not as a forecast. If your follow-back rate stays low even with a high minimum score, the fix is usually on the profile and content side, or in choosing sources whose audience genuinely overlaps with yours."),
-        ],
-      },
-      {
-        id: "improve",
-        heading: "Using the score to improve results",
-        blocks: [
-          ol(
-            "Start at the default and let GrowX follow for a few days.",
-            "Open the source leaderboard and compare the follow-back rate, retention and cost of each source.",
-            "Raise the minimum score if the rate is low; lower it if the queue runs dry.",
-            "Replace weak sources with ones that match your best-performing followers, or let Premium's auto-replace do it after a fair trial.",
-            "Check [Twitter analytics](/features/twitter-analytics), starting with Who followed back, to see whether your posts give new visitors a reason to follow back.",
-          ),
-        ],
-      },
-      {
-        id: "try",
-        heading: "See the score in action",
-        blocks: [p(TRY)],
-      },
-    ],
-    faq: [
-      qa("Is the follow-back score a guarantee?", "No. It is an estimate from public profile signals. It helps order candidates; it does not predict any one person."),
-      qa("What is a good minimum score?", "The default is 55. Try around 70 for quality and a smaller queue, or around 40 for more volume. Check the source leaderboard to see what your numbers produce."),
-      qa("What is the smart score?", "A Premium feature that learns from your own follow-backs. After about 80 settled follows (with at least 12 follow-backs and 12 non-follow-backs) it trains a small model, checks it on a holdout set and blends it into the score at up to 60% weight, only when it clearly beats chance."),
-      qa("Is the score the same as a Twitter growth score?", "People search both. GrowX's number rates how likely an account is to follow back; it is not a rating of your own account."),
-      qa("Can I change what the score looks for?", "You can edit the follow-back boost words and the filters that run before scoring. The scoring signals themselves are built into the extension, and on Premium the smart score adapts them to your own results."),
     ],
   },
   {
@@ -609,7 +314,7 @@ export const growthPosts: Post[] = [
     datePublished: DATE,
     dateModified: UPDATED,
     readMinutes: 7,
-    related: ["mass-follow-twitter-limits", "circleboom-vs-growx", "how-to-grow-on-twitter-x"],
+    related: ["mass-follow-twitter-limits", "unfollow-inactive-accounts-twitter", "how-to-get-more-followers-on-twitter"],
     sections: [
       {
         id: "why",
@@ -712,7 +417,7 @@ export const growthPosts: Post[] = [
             "Check the follower tracker and growth chart to see the effect on your ratio.",
           ),
           p("How often? For most accounts every two to four weeks is enough. If the autopilot follows a lot for you, a weekly scan keeps the list manageable, or Premium automatic cleanup can handle GrowX's own follows in the background so the manual scan only has to cover accounts you followed yourself."),
-          p("New to GrowX? Start with [how auto follow works](/blog/how-growx-auto-follow-works)."),
+          p("New to GrowX? Start with [how auto follow works](/features/twitter-auto-follow)."),
         ],
       },
       {
@@ -739,15 +444,16 @@ export const growthPosts: Post[] = [
     category: "Guides",
     keywords: ["best Twitter growth tools", "Twitter growth tool", "X growth tool", "best Twitter auto follow", "Twitter post scheduler", "Twitter analytics tool", "GrowX"],
     datePublished: DATE,
-    dateModified: UPDATED,
-    readMinutes: 8,
-    related: ["how-to-grow-on-twitter-x", "circleboom-alternatives", "bulk-follow-twitter-safely"],
+    dateModified: "2026-11-27",
+    readMinutes: 9,
+    related: ["how-to-get-more-followers-on-twitter", "best-chrome-extensions-for-twitter", "typefully-vs-tweet-hunter"],
     sections: [
       {
         id: "intro",
         heading: "How to judge a Twitter growth tool",
         blocks: [
-          p("Search for the **best Twitter growth tool** and you will meet dozens of options with similar promises. Some only follow people, some only schedule posts, and a few try to do everything. Instead of trusting a ranking, judge any tool, GrowX included, against the same checklist."),
+          p("We make GrowX. This list includes it, and we explain the trade-offs. The **best Twitter (X) growth tool** is the one that protects your account with a human pace, chooses who to follow, helps you post consistently, shows what is working, is clear about your login and data, and lets you try it free. Judge every tool, ours included, by that checklist."),
+          p("Search for the best Twitter growth tool and you will meet many options with similar promises. Some only follow people, some only schedule posts, and a few try to do everything. Instead of trusting a ranking, run each one through the eight questions below."),
           p("GrowX is an X (Twitter) growth tool for Chrome that combines smart auto follow, a post scheduler, an on-device AI writer, analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools. We built it to do well on these points, and we will say plainly where it has limits. The [features overview](/features) lists everything in one place."),
         ],
       },
@@ -761,14 +467,14 @@ export const growthPosts: Post[] = [
             "An emergency stop you can reach in one keystroke.",
             "Safety limits on posting too, not only on following: a daily cap and a minimum gap between scheduled posts.",
           ),
-          p("GrowX does all of these (see [how it works](/blog/how-growx-auto-follow-works)), and its safety features are on every plan, not reserved for paying users. No tool, ours included, can promise zero risk on X."),
+          p("GrowX does all of these (see [how it works](/how-it-works)), and its safety features are on every plan, not reserved for paying users. No tool, ours included, can promise zero risk on X."),
         ],
       },
       {
         id: "targeting",
         heading: "2. Does it choose who to follow?",
         blocks: [
-          p("A tool that follows anyone wastes your follows. Look for filters (audience size, activity, profile quality, keywords) and some way to rank candidates. GrowX uses source profiles (or finds them for you), follows each source's newest followers first and ranks everyone else with hard filters and a [follow-back score from 1 to 99](/blog/twitter-follow-back-score-growx). A source leaderboard shows the follow-back rate, retention and cost of each source, and on Premium a smart score learns from your own follow-backs."),
+          p("A tool that follows anyone wastes your follows. Look for filters (audience size, activity, profile quality, keywords) and some way to rank candidates. GrowX uses source profiles (or finds them for you), follows each source's newest followers first and ranks everyone else with hard filters and a [follow-back score from 1 to 99](/features/twitter-auto-follow). A source leaderboard shows the follow-back rate, retention and cost of each source, and on Premium a smart score learns from your own follow-backs."),
         ],
       },
       {
@@ -792,7 +498,7 @@ export const growthPosts: Post[] = [
         id: "engage",
         heading: "5. Does it help you engage, without replying for you?",
         blocks: [
-          p("Replies are one of the best ways for a small account to be seen, but automated replies are spammy and risky. A good tool helps you find the right posts and leaves the replying to you. The GrowX **AI Reply Assistant** collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, and nothing is sent until you approve it."),
+          p("Replies are one of the best ways for a small account to be seen, but replies a tool sends by itself tend to sound generic and can run against X's automation rules. A good tool helps you find the right posts and leaves the replying to you. The GrowX **AI Reply Assistant** collects fresh posts from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, and nothing is sent until you approve it."),
         ],
       },
       {
@@ -811,7 +517,7 @@ export const growthPosts: Post[] = [
         id: "price",
         heading: "7. Can you try it without paying?",
         blocks: [
-          p("GrowX has a free plan for daily use: the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 accounts per run. Every new account gets a 30-day Premium trial with no credit card, starting as soon as the account is created."),
+          p("GrowX has a free plan for daily use: the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 accounts per run. Every new account gets a 30-day Premium trial with no credit card. It starts by itself once you confirm your email or continue with Google."),
           p("Premium adds the Balanced, Turbo and X Premium paces, advanced filters, list import, the smart score, more source types, auto-replace for weak sources, unlimited scheduling, evergreen recycling, auto-plug, GrowX AI, full analytics and follower history, VIP alerts, a workspace per X account, bulk unfollow of up to 5,000, a Balanced unfollow pace and automatic cleanup. Plans are prepaid with no automatic renewal. See [pricing](/pricing)."),
         ],
       },
@@ -826,6 +532,13 @@ export const growthPosts: Post[] = [
             "It helps you write, but it does not replace having something worth saying.",
             "Results vary by niche and account, and X's rules can change.",
           ),
+          p("So another tool can be the better pick:"),
+          ul(
+            "**Posts that go out while your computer is off.** A web app that posts from its own servers, such as Tweet Hunter or Typefully, fits better.",
+            "**Several networks.** GrowX only covers X. Typefully supports X and several other networks.",
+            "**A library of popular posts.** Tweet Hunter is known for one. GrowX has 52 templates and, on Premium, an AI writer that works from your own niche instead.",
+          ),
+          p("Our [comparison pages](/alternatives) say what each of these tools does well and when to choose it instead of GrowX."),
         ],
       },
       {
@@ -867,7 +580,7 @@ export const growthPosts: Post[] = [
       qa("Is GrowX free?", "Yes. The free plan includes the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 per run. You can try every Premium feature free for 30 days without a credit card."),
       qa("Does GrowX need my X password?", "No. It works in your own signed-in x.com session and does not use X OAuth or store your X login."),
       qa("Does GrowX work on mobile?", "No. It is an extension for desktop Chrome (version 116 or later) on Windows, macOS, Linux and ChromeOS."),
-      qa("How is GrowX different from a simple auto follow script?", "A script only follows. GrowX is a full X growth tool: its smart auto follow chooses who to follow with sources, filters and a follow-back score and follows at a human pace with caps and stops, and it also includes a post scheduler, an on-device AI writer (Premium), post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools."),
+      qa("How is GrowX different from a simple auto follow script?", "A simple script usually only follows. GrowX is a full X growth tool: its smart auto follow chooses who to follow with sources, filters and a follow-back score and follows at a human pace with caps and stops, and it also includes a post scheduler, an on-device AI writer (Premium), post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools."),
       qa("Does the AI writer send my drafts to a server?", "No. GrowX AI (Premium) runs on your computer using the AI model built into Chrome, with no API key and nothing sent to GrowX. If your Chrome cannot run the model, the AI buttons fall back to templates and the plain thread splitter."),
     ],
   },

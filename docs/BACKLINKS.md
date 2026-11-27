@@ -108,7 +108,7 @@ Search for these questions and answer them properly first, then add one relevant
 - "what is a good engagement rate on twitter" -> /tools/twitter-engagement-rate-calculator
 - "how to write a twitter thread" -> /tools/twitter-thread-maker
 - "am I shadowbanned on twitter" / "how to check shadowban" / "twitter shadowban checker" -> /tools/twitter-shadowban-checker
-- "circleboom alternative" / "apps like circleboom" / "is circleboom worth it" -> /blog/circleboom-alternatives or /blog/growx-vs-circleboom-cost (say you built GrowX, and be fair about where Circleboom fits better)
+- "circleboom alternative" / "apps like circleboom" / "is circleboom worth it" -> /alternatives/circleboom (say you built GrowX, and be fair about where Circleboom fits better)
 
 ## 5. Republish guides with a canonical link
 

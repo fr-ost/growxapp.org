@@ -146,7 +146,7 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "Is GrowX safe for my X account?",
         a: "No tool can promise zero risk; X makes its own decisions. GrowX is built to behave like a careful person: random delays, breaks, hourly and daily caps, optional active hours and warm-up, a following-cap guard, an automatic slow-down after any X warning, and an emergency stop with Alt+Shift+S. Start new accounts on the free Slow pace.",
-        more: { href: "/blog/bulk-follow-twitter-safely", label: "How to follow safely" },
+        more: { href: "/blog/mass-follow-twitter-limits", label: "How to follow safely" },
       },
       {
         q: "How can I check if my X account is shadowbanned?",

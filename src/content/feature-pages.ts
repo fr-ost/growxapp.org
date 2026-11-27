@@ -60,7 +60,7 @@ export const featurePages: FeaturePage[] = [
     steps: [
       {
         title: "Add sources",
-        text: "Paste a few accounts in your niche, or press **Find sources for me**. Good sources are mid-sized accounts whose followers are active and follow back.",
+        text: "Paste a few accounts in your niche, or press **Find sources for me**. Good sources are mid-sized accounts whose followers are active and follow back. Three to five close matches are a good start. **Find people now** collects candidates right away.",
       },
       {
         title: "Set filters and pace",
@@ -83,16 +83,32 @@ export const featurePages: FeaturePage[] = [
       {
         heading: "The follow-back score and filters",
         paragraphs: [
-          "Each candidate gets a **follow-back score from 1 to 99**. It weighs the follow ratio, audience size, how many accounts they follow, follow-back words in the bio, recent activity, account age, photo and bio, verified status and how recently they followed the source. Queued candidates below your minimum (55 by default) are not followed; only the recent followers described above skip the score. Read [how the follow-back score works](/blog/twitter-follow-back-score-growx) for the details.",
+          "Each candidate gets a **follow-back score from 1 to 99**. It weighs the follow ratio, audience size, how many accounts they follow, follow-back words in the bio, recent activity, account age, photo and bio, verified status and how recently they followed the source. Queued candidates below your minimum (55 by default) are not followed; only the recent followers described above skip the score. The next section explains how to read and tune it.",
           "Before scoring, hard filters remove accounts you do not want: people you already follow or who already follow you, private accounts, accounts without a photo, and accounts outside your limits for followers (15 to 8,000 by default), following (at least 40), follow ratio (0.4), posts (5), account age (30 days) and last activity (45 days). Exclude keywords skip bios you want to avoid, boost words lift bios that talk about following back, and a never-follow list blocks specific accounts for good.",
           "The **smart score (Premium)** goes a step further. After roughly 80 settled follows with at least 12 follow-backs and 12 non-follow-backs, GrowX trains a small model on your own results, tests it on a holdout set and blends it in at up to 60% weight, but only when it clearly beats chance. Premium also adds include and location keywords, verified filters and importing a list of usernames to follow first.",
+        ],
+      },
+      {
+        heading: "How to read and tune the follow-back score",
+        paragraphs: [
+          "The score is an estimate, not a promise about any one account. Its job is to put likelier accounts first, so your follows go where they are most likely to pay off. An account scores higher when it follows many more people than follow it, or follows hundreds or thousands of accounts. A small or mid-sized audience, follow-back words in the bio and a recent post raise the score too. Very new accounts, long silence and a missing photo or bio lower it, and having followed the source recently adds a little.",
+          "Picture two candidates from the same source. The first has a few hundred followers, follows about as many people, has a photo and a bio and posted two days ago. The second has a hundred thousand followers, follows almost nobody and last posted months ago. The first scores noticeably higher, because it looks like an active person who notices new followers. The second is unlikely to notice a follow, so it falls below the minimum and never enters your queue.",
+          "The **minimum score** (55 by default) is your quality dial. Around 40 favours volume; around 70 favours quality and a smaller, cleaner queue. Because sources are re-read every hour, a stricter minimum mostly means fewer follows, not stale ones. Change it in small steps and give each change a few days. Then compare follow-back rates on the source leaderboard and in [Who followed back](/features/twitter-analytics) instead of judging by a single day. If most candidates from one source score low, the source is probably too broad or too large. Replacing it with a smaller, more specific community is usually a better fix than lowering the minimum.",
+          "You can edit the boost words and the filters that run before scoring, such as an optional rule that requires a bio, or the exclude keywords, which skip adult terms by default. The scoring signals themselves are built in. With Premium, the smart score adapts them to your own results and switches on by itself once your history supports it. One note on names: the follow-back score rates other accounts, while the **Growth Score** in Analytics rates your own account from 0 to 100.",
+        ],
+      },
+      {
+        heading: "What the follow-back score cannot see",
+        paragraphs: [
+          "The score only knows what a public profile shows. It cannot tell whether someone is busy, buried in notifications or simply not interested in your topic, and it cannot see your profile through their eyes. That is why two accounts with the same settings can get very different follow-back rates. The one with a [clear bio](/blog/twitter-bio-ideas), a pinned post and recent useful posts turns more of the same visitors into followers.",
+          "Following brings people to your profile; what they find there decides whether they follow back. So treat the score as a way to spend your daily follows sensibly, not as a forecast. If your follow-back rate stays low even with a high minimum score, look at your profile and posts first, or pick sources whose audience really overlaps with yours. Keep a few posts in the [post scheduler](/features/twitter-post-scheduler) queue and reply early to fresh posts with the [AI Reply Assistant](/features/twitter-reply-targets). The autopilot plus your own posts and replies tends to do more than any follow setting on its own.",
         ],
       },
       {
         heading: "Pace presets and safety controls",
         paragraphs: [
           "GrowX follows one account at a time from the extension's background, so it keeps working when the popup is closed and resumes after Chrome restarts. The pace preset sets the delay between follows, how often it rests and the rolling caps. **Slow** (about 100 a day, 50 to 120 seconds apart) is free forever and gentle on new accounts. **Balanced** (about 280 a day) is recommended for most accounts, **Turbo** (about 390) is for aged accounts and the **X Premium** pace (about 800) is only for accounts with X Premium; these three come with GrowX Premium and the 30-day trial.",
-          "These controls lower risk; they cannot remove it. **No tool can promise zero risk on X**, and X can change its limits at any time. Start on Slow with warm-up turned on for a new or quiet account, watch for warnings, and move up only after a few days without any. See [how GrowX auto follow works](/blog/how-growx-auto-follow-works) for the full pacing logic.",
+          "These controls lower risk; they cannot remove it. **No tool can promise zero risk on X**, and X can change its limits at any time. Start on Slow with warm-up turned on for a new or quiet account, watch for warnings, and move up only after a few days without any. See [how GrowX auto follow works](/how-it-works) for the full pacing logic.",
         ],
         bullets: [
           "Random delays, a break every few follows and occasional longer pauses",
@@ -101,6 +117,14 @@ export const featurePages: FeaturePage[] = [
           "Adaptive slow-down after any X warning, and a full stop on sign-out, an account lock, a challenge or repeated automation warnings",
           "Follow verification that checks follows actually stuck, to spot shadow limits",
           "Emergency stop with **Alt+Shift+S**",
+        ],
+      },
+      {
+        heading: "Rolling caps, active hours and X's own limits",
+        paragraphs: [
+          "The hourly and daily caps are **rolling**: the hourly cap counts the last 60 minutes and the daily cap the last 24 hours, not calendar days. Per hour, that means at most 14 follows on Slow, 28 on Balanced, 40 on Turbo and 60 on the X Premium pace. On top of every preset, about 8% of follows get a longer pause.",
+          "**Active hours are off by default.** Turn them on if you want a daily rhythm. GrowX then follows only between 08:00 and 23:30 (the default window) on the days you choose, the hours a real person is awake.",
+          "GrowX also respects X's own limits. X lets every account follow up to 5,000 accounts and then ties the limit to your follower count. That is why the following-cap guard pauses at 5,000 or about 10% above your follower count. If X refuses follows for the day, GrowX holds just under the number X allowed for the next 24 hours, then returns to your full pace by itself. Your pace setting never changes, and Start or **Try again now** asks X again at once. When X shows a challenge, GrowX never clicks through it; it stops and leaves it to you.",
         ],
       },
       {
@@ -148,6 +172,10 @@ export const featurePages: FeaturePage[] = [
         q: "Will GrowX unfollow people automatically?",
         a: "Only if you turn on automatic cleanup (Premium), which unfollows GrowX's own follows that did not follow back after 2, 5 or 7 days. Accounts you followed yourself or imported are never touched.",
       },
+      {
+        q: "Is there a free Twitter auto follow tool?",
+        a: "Yes. GrowX's smart auto follow is free forever on the Slow pace (about 100 follows a day), with source profiles, Find sources for me, recent followers first, the follow-back score, core filters, a never-follow list, the source leaderboard and every safety control. Premium adds the Balanced, Turbo and X Premium paces, the smart score, more source types, advanced filters, list import and auto-replace for weak sources, all included in the free 30-day trial.",
+      },
     ],
     xHeading: "Auto follow on X that picks the right people",
     limits: [
@@ -158,7 +186,7 @@ export const featurePages: FeaturePage[] = [
       { label: "Safety controls", free: "All: warm-up, active hours, slow-down, follow verification, Alt+Shift+S", premium: "All" },
     ],
     tools: ["/tools/twitter-follower-ratio-calculator", "/tools/twitter-shadowban-checker"],
-    relatedPosts: ["how-growx-auto-follow-works", "twitter-follow-back-score-growx", "bulk-follow-twitter-safely", "follow-for-follow-twitter", "twitter-follower-ratio", "mass-follow-twitter-limits"],
+    relatedPosts: ["mass-follow-twitter-limits", "follow-for-follow-twitter", "twitter-follower-ratio", "how-to-get-more-followers-on-twitter", "first-1000-followers-on-x", "how-to-find-your-niche-on-twitter"],
     related: ["twitter-list-follow", "twitter-unfollow-tool", "twitter-unfollower-tracker"],
   },
   {
@@ -399,13 +427,54 @@ export const featurePages: FeaturePage[] = [
           "**Thread it**: a long draft or notes turned into a numbered thread",
           "**AI replies**: drafts under fresh posts in the [AI Reply Assistant](/features/twitter-reply-targets), and tone buttons right beside X's reply box (new in 2.5.0)",
           "**Weekly summary**: a short read on how your week went",
+          "**This week's plan**: ask the AI Growth Coach in [Analytics](/features/twitter-analytics) for a short plan from your own numbers",
+        ],
+      },
+      {
+        heading: "From idea to scheduled post: a simple workflow",
+        paragraphs: [
+          "A good post usually needs two or three passes. GrowX AI saves time on the first draft and on the variations; the final edit is yours. Here is a simple routine in AI Creator Studio:",
+        ],
+        bullets: [
+          "Collect raw ideas during the week: things you learned, questions people asked you, mistakes you made and fixed.",
+          "Use **Write** on one idea to get a first draft, or type your own rough version.",
+          "Use **Hooks** to see a few different openings, and pick the most specific one.",
+          "Fill every {placeholder} with a real detail, then use **Improve** to tighten the wording.",
+          "For a bigger idea, use **Thread it**, then check that each part reads well on its own.",
+          "Edit the final version by hand and read it aloud. Then post it, schedule it or add it to your [queue](/features/twitter-post-scheduler).",
         ],
       },
       {
         heading: "Why it does not invent facts",
         paragraphs: [
           "The biggest problem with AI-written posts is confident nonsense: invented numbers, fake results and quotes nobody said. GrowX AI is designed not to make up facts. When a post needs something only you know, such as a revenue figure, a client name or how long a project took, it leaves a `{placeholder}` instead, so the gap is obvious before anything is posted.",
+          "For example, a draft might read: \"I cut our support backlog from {number} to {number} tickets a week by changing one thing: {what you changed}.\" Replace each placeholder with the real detail, or rewrite the sentence if you do not have one. Before you post or schedule, search the draft for curly braces: a placeholder left in a post is easy for everyone to spot.",
           "That makes the output a draft, not a finished post. Read it, fill the placeholders with real details and cut anything that does not sound like you. Posts built on specific, true experience are more interesting to read than generic advice, and they protect your credibility. For structure ideas, see [how to write a Twitter thread](/blog/how-to-write-a-twitter-thread).",
+        ],
+      },
+      {
+        heading: "How to edit an AI draft before you post",
+        paragraphs: [
+          "Whatever wrote the first version, run every draft through the same short checklist before it goes anywhere near your feed. It takes a minute or two per post, and it is the step that turns a generic AI draft into something your followers want to read.",
+        ],
+        bullets: [
+          "**Is it true?** Every number, name and claim should be something you can stand behind. Delete anything you cannot.",
+          "**Is it specific?** Swap general words for concrete ones: the tool you used, the step you took, the mistake you made.",
+          "**Does it sound like you?** Read it aloud. If you would never say a phrase out loud, rewrite it in your own words.",
+          "**Does the first line do its job?** Readers decide from the opening line whether to keep reading, so put the most interesting part there.",
+          "**Can anything go?** Cut filler openers, stacked adjectives and hashtags that add nothing. Shorter is usually clearer.",
+          "**Does it fit?** X counts links as 23 characters and most emoji as 2. The GrowX composer counts the same way, and so does the free [tweet character counter](/tools/tweet-character-counter).",
+        ],
+      },
+      {
+        heading: "Habits that get better AI-written posts",
+        paragraphs: ["What you give the AI shapes what you get back. A few habits help:"],
+        bullets: [
+          "**Feed it specifics.** \"Three things I learned shipping a Chrome extension\" gets a better draft than \"productivity tips\".",
+          "**One idea per post.** If a draft tries to say three things, split it or cut two of them.",
+          "**Keep your own stories.** AI can help structure a story, but it cannot live it for you. Personal experience is a big part of why people follow an account.",
+          "**Ask again when it sounds generic.** If anyone could have written the draft, add a detail only you know, or ask for another version.",
+          "**Do not automate conversations.** AI reply drafts are a starting point. Generic replies sent at volume look like spam and build no relationships, which is why GrowX never posts a reply by itself.",
         ],
       },
       {
@@ -452,6 +521,10 @@ export const featurePages: FeaturePage[] = [
         q: "Will GrowX AI post or reply on X automatically?",
         a: "No. It fills the composer or drafts replies. You decide what to post, and a reply goes out only after you approve it: you send it, or press Send approved, or press X's own Reply button.",
       },
+      {
+        q: "Can I use GrowX AI on my phone?",
+        a: "No. GrowX is a Chrome extension for desktop computers, not a mobile app. GrowX AI runs on the AI model built into desktop Chrome, so it needs a recent version of Chrome on a computer with enough free memory and disk space.",
+      },
     ],
     xHeading: "An AI writer for X posts, hooks and threads",
     limits: [
@@ -462,7 +535,7 @@ export const featurePages: FeaturePage[] = [
       { label: "Thread splitter", free: "Thread it without AI", premium: "Thread it with AI" },
     ],
     tools: ["/tools/tweet-templates", "/tools/twitter-thread-maker", "/tools/twitter-bio-generator"],
-    relatedPosts: ["ai-tweet-writer-growx-ai", "tweet-ideas", "how-to-write-a-twitter-thread", "twitter-bio-ideas", "how-to-go-viral-on-twitter", "how-to-increase-twitter-engagement"],
+    relatedPosts: ["twitter-hooks", "tweet-ideas", "how-to-write-a-twitter-thread", "twitter-bio-ideas", "how-to-go-viral-on-twitter", "how-to-increase-twitter-engagement"],
     related: ["twitter-post-scheduler", "twitter-reply-targets"],
   },
   {
@@ -908,6 +981,10 @@ export const featurePages: FeaturePage[] = [
         q: "Will automatic cleanup unfollow people I followed myself?",
         a: "No. Automatic cleanup (Premium) only unfollows accounts GrowX followed for you that did not follow back, never accounts you followed yourself or imported.",
       },
+      {
+        q: "When should I unfollow people who don't follow me back on X?",
+        a: "Give new follows a week or two to follow back, then run a scan and unfollow the accounts that did not. Do it on a different day from heavy following, and start on the free Safe pace.",
+      },
     ],
     xHeading: "An X unfollow tool for non-followers and inactive accounts",
     limits: [
@@ -918,7 +995,7 @@ export const featurePages: FeaturePage[] = [
       { label: "Re-check before each unfollow", free: "Included", premium: "Included" },
     ],
     tools: ["/tools/twitter-follower-ratio-calculator", "/tools/twitter-shadowban-checker"],
-    relatedPosts: ["unfollow-non-followers-twitter", "twitter-follower-ratio", "follow-for-follow-twitter", "growx-features-guide-scoring-filters-cleanup", "mass-follow-twitter-limits", "twitter-shadowban"],
+    relatedPosts: ["unfollow-non-followers-twitter", "twitter-follower-ratio", "follow-for-follow-twitter", "unfollow-inactive-accounts-twitter", "mass-follow-twitter-limits", "twitter-shadowban"],
     related: ["twitter-unfollower-tracker", "twitter-auto-follow"],
   },
   {
@@ -1080,7 +1157,7 @@ export const featurePages: FeaturePage[] = [
       { label: "VIP alerts when a VIP posts", free: "-", premium: "Included" },
     ],
     tools: ["/tools/tweet-character-counter", "/tools/twitter-engagement-rate-calculator"],
-    relatedPosts: ["twitter-reply-strategy", "ai-tweet-writer-growx-ai", "how-to-increase-twitter-engagement", "twitter-lists-guide", "twitter-algorithm-explained", "how-to-go-viral-on-twitter"],
+    relatedPosts: ["twitter-reply-strategy", "twitter-engagement-groups", "how-to-increase-twitter-engagement", "twitter-lists-guide", "twitter-algorithm-explained", "how-to-go-viral-on-twitter"],
     related: ["ai-tweet-writer", "twitter-auto-follow", "twitter-analytics"],
   },
   {
@@ -1184,7 +1261,7 @@ export const featurePages: FeaturePage[] = [
       { label: "Retry, export, stop without losing progress", free: "Included", premium: "Included" },
     ],
     tools: ["/tools/twitter-follower-ratio-calculator", "/tools/twitter-shadowban-checker"],
-    relatedPosts: ["how-to-build-a-twitter-follow-list", "bulk-follow-twitter-safely", "mass-follow-twitter-limits"],
+    relatedPosts: ["how-to-build-a-twitter-follow-list", "mass-follow-twitter-limits", "twitter-follower-ratio"],
     related: ["twitter-auto-follow", "twitter-unfollow-tool", "twitter-unfollower-tracker"],
   },
 ];

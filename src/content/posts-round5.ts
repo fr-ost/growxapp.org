@@ -22,13 +22,15 @@ export const round5Posts: Post[] = [
     seoTitle: "How to Get More Followers on Twitter (X): 30 Tactics",
     title: "How to Get More Followers on Twitter (X): 30 Practical Tactics for 2026",
     description:
-      "How to get more followers on Twitter (X): 30 practical tactics for your profile, posts, replies and network, plus the shortcuts that cost you followers.",
+      "How to get more followers and grow on Twitter (X): 30 practical tactics for your profile, posts, replies and network, a weekly routine and what to avoid.",
     excerpt:
-      "More followers come from three things: more of the right people seeing you, more of them following and fewer leaving. Here are 30 practical tactics for each.",
+      "More followers come from three things: more of the right people seeing you, more of them following and fewer leaving. Here are 30 practical tactics for each, and a weekly routine to keep them going.",
     category: "Guides",
     keywords: [
       "how to get more followers on Twitter",
       "get more followers on X",
+      "how to grow on Twitter",
+      "how to grow on X",
       "gain Twitter followers",
       "increase Twitter followers",
       "Twitter follower growth tips",
@@ -36,16 +38,17 @@ export const round5Posts: Post[] = [
       "GrowX",
     ],
     datePublished: DATE,
-    dateModified: DATE,
-    readMinutes: 9,
-    related: ["how-to-grow-on-twitter-x", "first-1000-followers-on-x", "twitter-reply-strategy"],
+    dateModified: "2026-11-27",
+    readMinutes: 12,
+    related: ["first-1000-followers-on-x", "twitter-growth-plan", "twitter-reply-strategy"],
     sections: [
       {
         id: "levers",
         heading: "Where new followers actually come from",
         blocks: [
+          p("To **get more followers on Twitter (X)**, make your profile say clearly what you post and who it is for, post useful things on one topic at a pace you can keep, reply early to bigger accounts in your niche, follow relevant people at a human pace, and keep the followers you win. Measure every week and do more of what works."),
           p("Every new follower on X makes the same small decision. They see one of your posts or replies, tap through to your profile, and decide in a few seconds whether more of the same is worth a place in their feed. So **getting more followers** comes down to three levers: more of the right people seeing you, more of those visitors deciding to follow, and fewer of them leaving later."),
-          p("The 30 tactics below are grouped by those levers. None of them is a trick, and no honest guide can promise a number, because results depend on your niche, your posts and the time you put in. Pick three or four that fit you, do them for a month and measure what changes. Where we already have a full guide on a topic, we link to it instead of repeating it here."),
+          p("The 30 tactics below are grouped by those levers. None of them is a trick, and no honest guide can promise a number, because results depend on your niche, your posts and the time you put in. If a tool or a guide promises a fixed number of followers, treat that as a warning sign. Pick three or four tactics that fit you, do them for a month and measure what changes. Where we already have a full guide on a topic, we link to it instead of repeating it here."),
         ],
       },
       {
@@ -60,6 +63,7 @@ export const round5Posts: Post[] = [
             "**4. Put your topic in your display name, if it fits naturally.** A few words such as \"Sam | SaaS marketing\" tell readers what you do before they open your profile and can help people find you in X's search.",
             "**5. Make the header and the link do a job.** Use the header to repeat your promise or show your work, and link to the one place you want new readers to go next, such as a newsletter or a portfolio.",
           ),
+          p("Then test it. Ask a friend to look at your profile for five seconds and say what you post about. If they can't answer, rewrite the bio before you try anything else, because every other tactic here sends people to this page."),
         ],
       },
       {
@@ -77,6 +81,7 @@ export const round5Posts: Post[] = [
             "**12. Show your work with images when they add information.** A screenshot, a before-and-after or a simple chart can say more than a paragraph. Check your own numbers to see whether images help with your audience.",
             "**13. Repurpose what already worked.** A post that did well months ago can return as a thread, a list or a new angle for the people who followed since. See [repurposing content for X](/blog/repurpose-content-for-twitter).",
           ),
+          p("A queue keeps the habit alive in busy weeks: write several posts in one sitting and schedule them for the hours your followers are online. Templates and AI drafts can help you start, but keep your own voice. They are a starting point, not a finished post."),
         ],
       },
       {
@@ -91,6 +96,7 @@ export const round5Posts: Post[] = [
             "**17. Quote-post with your own angle, not a dunk.** Adding your experience to someone else's post puts you in their conversation. Picking fights brings attention, but rarely the followers you want.",
             "**18. Ask real questions now and then.** A question your audience can answer from experience, such as \"What was the first tool you paid for?\", invites replies from people who may never have noticed you before.",
           ),
+          p("Ten to fifteen minutes of replies a day is enough. Over a few weeks the same names start to recognise yours, which is how replies turn into follows."),
         ],
       },
       {
@@ -99,12 +105,13 @@ export const round5Posts: Post[] = [
         blocks: [
           p("Followers also come from the people you follow and the groups you join, as long as you choose them well."),
           ul(
-            "**19. Follow active people in your niche.** When you follow someone, they may look at your profile, and if it matches their interests some will follow back. Keep it to a human pace; [bulk following safely](/blog/bulk-follow-twitter-safely) covers delays and daily limits.",
-            "**20. Follow the newest followers of accounts in your niche.** Someone who followed a niche account a few hours ago is active and interested in the topic right now. This is how GrowX [smart auto follow](/features/twitter-auto-follow) picks people, explained in [how GrowX auto follow works](/blog/how-growx-auto-follow-works).",
+            "**19. Follow active people in your niche.** When you follow someone, they may look at your profile, and if it matches their interests some will follow back. Keep it to a human pace; the guide to the [Twitter follow limit per day](/blog/mass-follow-twitter-limits) covers delays and daily limits.",
+            "**20. Follow the newest followers of accounts in your niche.** Someone who followed a niche account a few hours ago is active and interested in the topic right now. This is how GrowX [smart auto follow](/features/twitter-auto-follow) picks people.",
             "**21. Join X Communities for your topic.** Posts inside a community reach people who chose that topic. The [X Communities guide](/blog/x-communities-guide) explains how to contribute without spamming.",
             "**22. Build a small peer circle.** A few people at your level who genuinely read and reply to each other help everyone get started. Keep it voluntary; coordinated like-trading is a different thing, explained in [engagement groups](/blog/twitter-engagement-groups).",
             "**23. Keep your key accounts in an X List.** A private list of the 30 or 50 accounts you most want to build relationships with makes it easy to see their posts first and reply early. See the [X Lists guide](/blog/twitter-lists-guide).",
           ),
+          note("Following only pays off if your profile and recent posts reward the visit: following sends people to your profile, and your posts decide whether they follow back. Start a new account slowly, raise the pace only after a few clean days, and stop for the day if X says you can't follow more accounts."),
         ],
       },
       {
@@ -146,16 +153,34 @@ export const round5Posts: Post[] = [
         ],
       },
       {
+        id: "routine",
+        heading: "Put it together: a weekly routine",
+        blocks: [
+          p("Tactics only work if you keep doing them. A routine like this one takes roughly two to three hours a week:"),
+          ul(
+            "**Monday (30 minutes):** write the week's posts and queue them for your best hours.",
+            "**Every day (15 minutes):** reply early to three to five fresh posts in your niche, and answer everyone who replied to you.",
+            "**Every day (in the background):** follow relevant people at a slow, human pace. GrowX smart auto follow can do this while Chrome is open.",
+            "**Friday (15 minutes):** check which posts and which follows brought followers and who unfollowed you, then change one thing for next week.",
+            "**Every two weeks:** review the accounts that never followed back and unfollow them at a safe pace.",
+          ),
+          p("Set goals you control. \"Two posts and ten replies a day\" is a goal you can hit every day; \"100 followers a day\" is not, because it depends on other people. Hit the controllable goals for a month and the follower number tends to move with them, though no one can promise by how much."),
+          p("Want it laid out day by day? The [week-by-week Twitter growth plan](/blog/twitter-growth-plan) turns these tactics into 30 days of tasks. If your account is brand new, start with [your first 1,000 followers on X](/blog/first-1000-followers-on-x) instead."),
+        ],
+      },
+      {
         id: "growx",
         heading: "Where GrowX helps",
         blocks: [
           p("Most of these tactics are habits only you can build: your profile, your posts, your replies. GrowX, a Chrome extension for X, takes over the repetitive parts so you have more time for them."),
           ul(
-            "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of your source accounts and ranks everyone else by a follow-back score from 1 to 99, with random delays, breaks and daily caps.",
-            "**AI Creator Studio**: a [post scheduler](/features/twitter-post-scheduler) with queue slots, a best-time-to-post heat map built from your own posts and 52 templates, plus the [AI Reply Assistant](/features/twitter-reply-targets), which lists fresh posts from your sources and VIPs so you can reply early. Nothing is sent until you press the button.",
-            "**Analytics**: who followed you back, a Growth Score, post analytics, a daily follower tracker and, on Premium, which posts brought followers.",
+            "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of your source accounts and ranks everyone else by a follow-back score from 1 to 99, with random delays, breaks and daily caps. The **source leaderboard** shows the follow-back rate, retention and cost of each source.",
+            "**AI Creator Studio**: a [post scheduler](/features/twitter-post-scheduler) for posts and threads (up to 25 parts and 4 images per post) with queue slots (09:00, 13:00 and 18:30 by default), a best-time-to-post heat map built from your own posts and 52 templates. The free plan keeps up to 10 posts waiting; Premium removes the limit and adds GrowX AI, which drafts on your own computer. The [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs so you can reply early. Nothing is sent until you press the button.",
+            "**Analytics**: who followed you back, a Growth Score, post analytics, **What works** for topics and formats, a daily follower tracker and, on Premium, which posts brought followers.",
+            "**Goals**: daily goals for posts, replies and new followers, streaks and milestones, and a monthly goal planner that shows the daily pace a target would need.",
             "**Cleanup**: find accounts that don't follow back or have gone inactive, and unfollow them at a safe pace.",
           ),
+          p("On a new account, start with 3 to 5 sources in your niche (or let **Find sources for me** suggest them) and the free **Slow** pace with warm-up turned on. With Premium, move to **Balanced** after a few clean days. GrowX slows down or stops by itself when X shows a warning, and Alt + Shift + S stops it at once. No tool can promise zero risk on X."),
           p(TRY),
         ],
       },
@@ -163,8 +188,13 @@ export const round5Posts: Post[] = [
     faq: [
       { q: "What is the fastest way to get more followers on Twitter?", a: "For most small accounts: a clear profile, regular posts on one topic, and early, thoughtful replies to bigger accounts in the same niche. Results vary, so measure which of these brings followers for you." },
       { q: "How many followers can I expect in a month?", a: "No honest number fits every account. It depends on your niche, how often you post and reply, and how well your profile turns visits into follows. Set a target from your own pace after two weeks." },
+      { q: "How long does it take to grow on Twitter (X)?", a: "There is no fixed timeline. Accounts that post consistently in one niche, reply to others and follow relevant people usually see steady movement over weeks and months rather than days. Track your own numbers weekly and judge the trend, not a single day." },
+      { q: "Is it better to follow people or to post?", a: "Both. Posting gives people a reason to follow you; following relevant people and replying early tell them you exist. GrowX schedules your posts and automates the following part, so your own time goes into writing and conversations." },
+      { q: "Do I need a paid X subscription to grow?", a: "No. Free X accounts grow the same way: a clear profile, regular posts, early replies and relevant follows. GrowX works with free X accounts. It also has an X Premium pace (part of GrowX Premium) for accounts with X's own Premium subscription, because those accounts have higher platform limits." },
       { q: "Should I buy Twitter followers?", a: "No. Bought followers don't read or engage, X can remove them, and they make your account look less credible to the real people who visit your profile." },
+      { q: "Is auto following against X's rules?", a: "X restricts spam-like and aggressive automation, and its rules can change, so read them yourself. GrowX is built to be conservative: human-like pacing, caps and hard stops. You stay responsible for how you use it." },
       { q: "Does GrowX get me followers automatically?", a: "GrowX follows relevant people at a paced rhythm, schedules your posts and shows what works, but whether people follow you still depends on your profile and posts. No tool can promise zero risk on X." },
+      { q: "Can GrowX post for me?", a: "Only what you schedule. Scheduled posts go out at the time or queue slot you chose, with a daily cap and a minimum gap between posts. A post that is more than 6 hours late, for example because your computer was off, is never posted by itself; it waits as \"missed\" for you to decide." },
     ],
   },
   {
@@ -188,7 +218,7 @@ export const round5Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 9,
-    related: ["how-to-write-a-twitter-thread", "tweet-ideas", "ai-tweet-writer-growx-ai"],
+    related: ["how-to-write-a-twitter-thread", "tweet-ideas", "how-to-go-viral-on-twitter"],
     sections: [
       {
         id: "what",
@@ -548,16 +578,17 @@ export const round5Posts: Post[] = [
       "GrowX",
     ],
     datePublished: DATE,
-    dateModified: DATE,
+    dateModified: "2026-11-27",
     readMinutes: 8,
-    related: ["best-twitter-growth-tools", "circleboom-alternatives", "typefully-vs-tweet-hunter"],
+    related: ["best-twitter-growth-tools", "twitter-analytics-tools", "typefully-vs-tweet-hunter"],
     sections: [
       {
         id: "how",
         heading: "How this list works",
         blocks: [
-          p("Most \"best extensions\" lists are a set of names that go out of date within months: tools change owners, change features or stop supporting X. So this guide is organised by **job** instead. For each job it explains what a good extension does, what to watch out for and what X already does on its own."),
-          p("One disclosure: we build **GrowX**, so it comes first and is the only product we describe in detail. For the other jobs we describe the kind of tool to look for rather than naming products, because we can't keep other companies' features and prices accurate. Check each extension's Chrome Web Store page for what it does today."),
+          p("We make GrowX. This list includes it, and we explain the trade-offs. The **best Chrome extensions for Twitter (X)** are one per job: a growth tool for following, scheduling and analytics (GrowX is ours) and, only if you need them, a writing helper or a feed-control tool. Before you install any of them, check its permissions, its developer and where it stores your data."),
+          p("Many \"best extensions\" lists are a set of names that go out of date quickly: tools change owners, change features or stop supporting X. So this guide is organised by **job** instead. For each job it explains what a good extension does, what to watch out for and what X already does on its own."),
+          p("Because we build **GrowX**, it comes first and is the only product we describe in detail. For the other jobs we describe the kind of tool to look for rather than naming products, because we can't keep other companies' features and prices accurate. Check each extension's Chrome Web Store page for what it does today."),
         ],
       },
       {
@@ -574,7 +605,7 @@ export const round5Posts: Post[] = [
             "**Cleanup**: find accounts that don't follow back or are inactive and unfollow them at a safe pace.",
           ),
           p("GrowX has a free plan forever. Premium costs $1.99 for 30 days, $14.99 for 365 days or $59.99 lifetime, prepaid with no automatic renewal, and every Premium feature can be tried free for 30 days without a card. See [pricing](/pricing)."),
-          note("An honest limit: because GrowX works in your browser, scheduled posts and auto follow need the computer on with Chrome open. And no tool can promise zero risk on X; GrowX slows down by itself after any warning and stops if your account needs attention."),
+          note("Honest limits: because GrowX works in your browser, scheduled posts and auto follow need the computer on with Chrome open. GrowX is built only for X, so it won't post to other networks. And no tool can promise zero risk on X; GrowX slows down by itself after any warning and stops if your account needs attention."),
         ],
       },
       {
@@ -597,9 +628,9 @@ export const round5Posts: Post[] = [
         blocks: [
           p("AI extensions suggest posts, rewrite drafts or offer replies as you browse. Before you install one, find out:"),
           ul(
-            "**Where your text goes.** Many send drafts to a cloud AI service. That can be fine, but you should know.",
+            "**Where your text goes.** Some send your drafts to a cloud AI service. That can be fine, but you should know.",
             "**What it costs to run.** Some need your own API key or charge per use.",
-            "**Whether it posts for you.** Tools that write and send replies by themselves produce the generic replies readers tune out, and automated replies can run against X's automation rules.",
+            "**Whether it posts for you.** Replies that a tool writes and sends without your review tend to sound generic, and automated replies can run against X's automation rules.",
           ),
           p("GrowX AI takes a different approach: it runs on your computer using the AI model built into Chrome, needs no API key and sends nothing to GrowX. It never posts by itself; you edit and send. See the [GrowX AI writer](/features/ai-tweet-writer)."),
         ],
@@ -666,7 +697,7 @@ export const round5Posts: Post[] = [
       },
     ],
     faq: [
-      { q: "What is the best Chrome extension for growing on Twitter?", a: "It depends on the job. For growth, look for paced following with good targeting, scheduling, analytics and cleanup in one place, which is what GrowX does. For writing help or focus, pick a tool built for that job." },
+      { q: "What is the best Chrome extension for growing on Twitter?", a: "It depends on the job. For growth, look for paced following with good targeting, scheduling, analytics and cleanup in one place. That is what GrowX does, and since we make it, judge it with the same checks as any other tool. For writing help or focus, pick a tool built for that job." },
       { q: "Are Twitter Chrome extensions safe?", a: "Many are, but check the permissions, the developer, the update history and where data is stored, and never type your X password into an extension. No tool can promise zero risk on X." },
       { q: "Does GrowX work on the X mobile app?", a: "No. GrowX is a Chrome extension for desktop Chrome 116 or later on Windows, macOS, Linux and ChromeOS." },
       { q: "Can I use GrowX with other X extensions?", a: "Yes, but don't run two tools that follow or unfollow automatically at the same time, and let only one tool publish a given post." },
@@ -674,8 +705,8 @@ export const round5Posts: Post[] = [
   },
   {
     slug: "twitter-growth-plan",
-    seoTitle: "30-Day Twitter Growth Plan: A Week-by-Week Plan for X",
-    title: "A 30-Day Twitter Growth Plan: What to Do Each Week (and Each Day) to Grow on X",
+    seoTitle: "Twitter Growth Plan: 30 Days on X, Week by Week",
+    title: "A Week-by-Week Twitter (X) Growth Plan: 30 Days of Daily Tasks and Weekly Reviews",
     description:
       "A 30-day Twitter growth plan for X: set a baseline, fix your profile, post and reply daily, read your data and build a system for month two, week by week.",
     excerpt:
@@ -691,15 +722,23 @@ export const round5Posts: Post[] = [
       "GrowX",
     ],
     datePublished: DATE,
-    dateModified: DATE,
-    readMinutes: 9,
-    related: ["first-1000-followers-on-x", "how-to-grow-on-twitter-x", "twitter-content-calendar"],
+    dateModified: "2026-11-27",
+    readMinutes: 10,
+    related: ["how-to-get-more-followers-on-twitter", "first-1000-followers-on-x", "twitter-content-calendar"],
     sections: [
+      {
+        id: "at-a-glance",
+        heading: "What does a week-by-week Twitter growth plan look like?",
+        blocks: [
+          p("A good Twitter (X) growth plan gives each week one job. Week 1 fixes your profile and content pillars, week 2 puts you in front of new people, week 3 reads your data and doubles down on what works, and week 4 builds the system for month two. Each day takes 30 to 45 minutes, with a short review every weekend."),
+          p("The plan turns the tactics in [how to get more followers on Twitter](/blog/how-to-get-more-followers-on-twitter) into a calendar. Read that guide for the reasons behind each step, and use this one when you want to know what to do today."),
+        ],
+      },
       {
         id: "who",
         heading: "Who this plan is for",
         blocks: [
-          p("This plan is for accounts that already exist and want to grow on purpose: you post now and then, you have some followers, and the numbers have stopped moving. It turns a vague goal into one month of specific actions, with a check-in at the end of every week. If you are starting from zero, our plan for [your first 1,000 followers](/blog/first-1000-followers-on-x) is written for new accounts."),
+          p("This plan is for accounts that already exist and want to grow on purpose: you post now and then, you have some followers, and the numbers have stopped moving. It turns a vague goal into one month of specific actions, with a check-in at the end of every week. If you are starting from zero, our guide to [your first 1,000 followers](/blog/first-1000-followers-on-x) is written for new accounts."),
           p("Budget **30 to 45 minutes a day** and one longer session each weekend. No plan can promise a follower count, because results depend on your niche, your posts and your consistency. What a plan does is make sure the month's effort goes into things you can measure and repeat."),
         ],
       },
@@ -855,7 +894,7 @@ export const round5Posts: Post[] = [
     datePublished: DATE,
     dateModified: DATE,
     readMinutes: 9,
-    related: ["twitter-analytics-guide", "who-unfollowed-me-on-twitter", "hypefury-alternatives"],
+    related: ["twitter-analytics-guide", "who-unfollowed-me-on-twitter", "best-chrome-extensions-for-twitter"],
     sections: [
       {
         id: "questions",
@@ -930,7 +969,7 @@ export const round5Posts: Post[] = [
             "**List the jobs the old tool did**, such as post stats, follower tracking or best times, and check that the replacement covers each one.",
             "**Check that the replacement is maintained** and supports X today, not only in an old review.",
           ),
-          p("If scheduling and evergreen posts were part of the same routine, our [Hypefury alternatives](/blog/hypefury-alternatives) guide covers that side."),
+          p("If scheduling and evergreen posts were part of the same routine, our [Hypefury alternative](/alternatives/hypefury) page covers that side."),
         ],
       },
       {

@@ -6,8 +6,8 @@ import { pageMetadata } from "@/lib/seo";
 const PATH = "/tools/twitter-bio-generator";
 
 export const metadata = pageMetadata({
-  title: "Twitter Bio Generator: Free X Bio Ideas",
-  description: "Free Twitter bio generator: enter what you do, who you help and your topics to get X bio ideas that fit 160 characters. By GrowX, no sign-up needed.",
+  title: "Twitter Bio Generator: Free X Bio Maker",
+  description: "Free Twitter bio generator: enter what you do, who you help and your topics to get ready-to-edit X bios that fit 160 characters. By GrowX, no sign-up.",
   path: PATH, defaultImage: false,
   keywords: ["Twitter bio generator", "X bio generator", "Twitter bio ideas", "bio for Twitter", "Twitter bio examples", "free bio generator"],
 });
