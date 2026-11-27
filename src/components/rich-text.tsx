@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { Fragment, type ReactNode } from "react";
 
 const TOKEN = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g;
@@ -16,7 +16,7 @@ export function RichText({ text }: { text: string }) {
           const [, label, href] = m;
           const cls = "font-semibold text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent";
           return href.startsWith("/") ? (
-            <Link key={i} href={href} className={cls}>{label}</Link>
+            <IntentLink key={i} href={href} className={cls}>{label}</IntentLink>
           ) : (
             <a key={i} href={href} className={cls} target="_blank" rel="noopener noreferrer">{label}</a>
           );

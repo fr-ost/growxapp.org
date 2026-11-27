@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { PostCard, formatPostDate } from "@/components/blog";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
@@ -124,7 +125,7 @@ export default function AlternativesPage() {
           <ul data-spotlight-group="" className="mt-12 grid gap-5 md:grid-cols-3">
             {alternativePages.map((a, i) => (
               <li key={a.slug} className="reveal" style={stagger(i)}>
-                <Link
+                <IntentLink
                   href={`/alternatives/${a.slug}`}
                   data-spotlight=""
                   className="group lift flex h-full flex-col rounded-3xl border border-hairline bg-white p-6 shadow-[var(--shadow-hair)]"
@@ -134,7 +135,7 @@ export default function AlternativesPage() {
                   <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
                     {a.name} vs GrowX <IconArrowRight size={15} className="nudge" />
                   </span>
-                </Link>
+                </IntentLink>
               </li>
             ))}
           </ul>

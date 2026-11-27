@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { IconArrowRight, IconChevronDown } from "@/components/icons";
 
 /**
@@ -23,9 +23,9 @@ export function Faq({ items }: { items: readonly { q: string; a: string; more?: 
           <div className="faq-body px-5 pb-5 text-text-2 sm:px-6">
             <p className="max-w-[66ch] leading-relaxed [text-wrap:pretty]">{f.a}</p>
             {f.more ? (
-              <Link href={f.more.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink hover:underline">
+              <IntentLink href={f.more.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink hover:underline">
                 {f.more.label} <IconArrowRight size={15} className="nudge" />
-              </Link>
+              </IntentLink>
             ) : null}
           </div>
         </details>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { notFound } from "next/navigation";
 import { PostBody, PostCard, TableOfContents, formatPostDate } from "@/components/blog";
 import { PostCover } from "@/components/blog/post-cover";
@@ -84,9 +84,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="mx-auto w-full max-w-3xl">
               <nav aria-label="Breadcrumb" className="hero-settle mb-6 text-sm text-muted" style={stagger(0)}>
                 <ol className="flex flex-wrap items-center gap-2">
-                  <li><Link href="/" className="hover:text-accent-ink">Home</Link></li>
+                  <li><IntentLink href="/" className="hover:text-accent-ink">Home</IntentLink></li>
                   <li aria-hidden="true">/</li>
-                  <li><Link href="/blog" className="hover:text-accent-ink">Blog</Link></li>
+                  <li><IntentLink href="/blog" className="hover:text-accent-ink">Blog</IntentLink></li>
                 </ol>
               </nav>
               <div className="hero-settle flex flex-wrap items-center gap-3" style={stagger(1)}>
@@ -96,7 +96,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <h1 className="hero-settle mt-5 text-balance text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl" style={stagger(2)}>{post.title}</h1>
               <p className="hero-settle mt-5 text-pretty text-lg leading-relaxed text-text-2" style={stagger(3)}>{post.excerpt}</p>
               <p className="hero-settle mt-6 text-sm text-muted" style={stagger(4)}>
-                By <Link href="/about" className="font-semibold text-text hover:text-accent-ink">{site.author}</Link> ·{" "}
+                By <IntentLink href="/about" className="font-semibold text-text hover:text-accent-ink">{site.author}</IntentLink> ·{" "}
                 <time dateTime={post.datePublished}>{formatPostDate(post.datePublished)}</time>
                 {post.dateModified !== post.datePublished ? <> · Updated <time dateTime={post.dateModified}>{formatPostDate(post.dateModified)}</time></> : null}
               </p>
@@ -143,7 +143,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   <ul className="mt-3 space-y-2 text-sm">
                     {toolNav.map((t) => (
                       <li key={t.href}>
-                        <Link href={t.href} className="link-draw text-text-2 hover:text-accent-ink">{t.label}</Link>
+                        <IntentLink href={t.href} className="link-draw text-text-2 hover:text-accent-ink">{t.label}</IntentLink>
                       </li>
                     ))}
                   </ul>
@@ -159,9 +159,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="reveal-heading h-rule text-2xl font-extrabold tracking-tight sm:text-3xl">Related guides</h2>
-              <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
+              <IntentLink href="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
                 All articles <IconArrowRight size={15} className="nudge" />
-              </Link>
+              </IntentLink>
             </div>
             <ul data-spotlight-group="" className="mt-8 grid gap-6 md:grid-cols-3">
               {related.map((p, i) => (

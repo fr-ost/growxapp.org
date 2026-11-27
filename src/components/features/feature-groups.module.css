@@ -19,26 +19,11 @@
   -webkit-text-stroke: 1.5px var(--hairline-strong);
 }
 
-/* the gradient copy stacked on top; fills bottom-up as the numeral scrolls in */
+/* the gradient copy stacked on top; it fills bottom-up once as the numeral scrolls in (the global .fill-up
+   one-shot, played by MotionRuntime; a scroll-linked clip-path repainted on every scroll frame instead) */
 .fill {
   position: absolute;
   inset: 0;
-}
-
-@keyframes fill-up {
-  from {
-    clip-path: inset(100% 0 0 0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    :global(html:not([data-motion="reduce"])) .fill {
-      animation: fill-up linear both;
-      animation-timeline: view();
-      animation-range: entry 25% cover 50%;
-    }
-  }
 }
 
 /* static gradient hairline ring for Premium cards */
@@ -60,7 +45,6 @@
 
 @media print {
   .fill {
-    animation: none !important;
     clip-path: none !important;
   }
 }

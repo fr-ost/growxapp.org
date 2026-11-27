@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { CtaBand } from "@/components/home/cta-band";
 import { IconArrowRight } from "@/components/icons";
 import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
@@ -66,7 +66,7 @@ export default function ToolsPage() {
           <ul data-spotlight-group="" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {toolNav.map((t, i) => (
               <li key={t.href} className="reveal" style={stagger(i % 4)}>
-                <Link
+                <IntentLink
                   href={t.href}
                   data-spotlight=""
                   className="lift group flex h-full flex-col rounded-3xl border border-hairline bg-white p-7 shadow-[var(--shadow-hair)]"
@@ -77,7 +77,7 @@ export default function ToolsPage() {
                   <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-accent-ink">
                     Open tool <IconArrowRight size={16} className="nudge" />
                   </span>
-                </Link>
+                </IntentLink>
               </li>
             ))}
           </ul>
@@ -91,12 +91,12 @@ export default function ToolsPage() {
           <ul className="reveal mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2" style={stagger(3)}>
             {featureNav.map((f) => (
               <li key={f.slug}>
-                <Link
+                <IntentLink
                   href={`/features/${f.slug}`}
                   className="inline-flex rounded-full border border-hairline-strong bg-white px-4 py-2 text-sm font-semibold text-text-2 shadow-[var(--shadow-hair)] hover:border-accent/40 hover:text-accent-ink motion-ok:transition-[scale] motion-ok:duration-200 motion-ok:ease-glide fx:hover:scale-[1.03]"
                 >
                   {f.label}
-                </Link>
+                </IntentLink>
               </li>
             ))}
           </ul>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import type { ReactNode } from "react";
 import { FeatureIcon } from "@/components/feature-icon";
 import { IconArrowRight } from "@/components/icons";
@@ -60,7 +60,7 @@ export function Bento() {
         const demoCls = hero ? "mt-auto pt-8" : wide ? "mt-6 sm:mt-0" : `mt-auto pt-6 ${i >= 4 ? "hidden sm:block" : ""}`;
         return (
           <li key={f.slug} className={`reveal ${l.li}`} style={stagger(i % 4)}>
-            <Link
+            <IntentLink
               href={`/features/${f.slug}`}
               data-spotlight={hero ? "ink" : ""}
               className={`${tile} ${
@@ -82,12 +82,12 @@ export function Bento() {
                 <LearnMore tone={hero ? "ink" : "light"} />
               </div>
               <div className={demoCls}>{l.demo}</div>
-            </Link>
+            </IntentLink>
           </li>
         );
       })}
       <li className="reveal" style={stagger(featureNav.length % 4)}>
-        <Link href="/features" data-spotlight="ink" className={`${tile} on-ink border-white/10 bg-ink text-white`}>
+        <IntentLink href="/features" data-spotlight="ink" className={`${tile} on-ink border-white/10 bg-ink text-white`}>
           <h3 className="font-display text-lg font-bold tracking-tight">And much more</h3>
           <p className="mt-2 text-sm leading-relaxed text-white/75 [text-wrap:pretty]">
             21 languages, daily goals and streaks, a workspace per X account, 8 colour themes, dark mode and a command palette.
@@ -99,7 +99,7 @@ export function Bento() {
             <DemoPalette size="sm" tone="ink" decorative />
           </div>
           <LearnMore label="All features" tone="ink" />
-        </Link>
+        </IntentLink>
       </li>
     </ul>
   );

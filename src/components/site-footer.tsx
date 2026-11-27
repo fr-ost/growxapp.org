@@ -4,7 +4,7 @@
  * A client component with no props on purpose: its HTML is still rendered on the server (every link and directory
  * badge is in the page source), but the page's RSC payload carries a reference instead of a second copy of the footer.
  */
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { Logo } from "@/components/logo";
 import { IconChrome, IconMail } from "@/components/icons";
 import { FeaturedOn } from "@/components/featured-on";
@@ -103,9 +103,9 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5">
               {c.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="link-draw text-sm text-white/60 hover:text-white">
+                  <IntentLink href={l.href} className="link-draw text-sm text-white/60 hover:text-white">
                     {l.label}
-                  </Link>
+                  </IntentLink>
                 </li>
               ))}
             </ul>

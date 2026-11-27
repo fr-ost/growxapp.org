@@ -3,7 +3,9 @@
 
 /* ============================================================ variants
    motion-ok: OS allows motion AND the site toggle (html[data-motion="reduce"]) is off.
-   fx: motion-ok + a fine, hovering pointer (mouse/trackpad). */
+   fx: motion-ok + a fine, hovering pointer (mouse/trackpad), and the page is not scrolling right now
+   (MotionRuntime sets html[data-scrolling] while it scrolls, so cards sliding under a resting pointer don't
+   each start their hover transitions). */
 @custom-variant motion-ok {
   @media (prefers-reduced-motion: no-preference) {
     &:where(html:not([data-motion="reduce"]) *) { @slot; }
@@ -11,7 +13,9 @@
 }
 @custom-variant fx {
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    &:where(html:not([data-motion="reduce"]) *) { @slot; }
+    /* the html condition sits in front of the element (":where(html…) .x"), not inside it (".x:where(html… *)"):
+       written that way, Chrome restyles only the fx elements when data-scrolling flips, not the whole document */
+    :where(html:not([data-motion="reduce"]):not([data-scrolling])) & { @slot; }
   }
 }
 
@@ -158,8 +162,7 @@ html[data-motion="reduce"] .featured-badge * { transition: none !important; }
 .stage { border-radius: 1.5rem; box-shadow: var(--shadow-stage); outline: 1px solid rgba(20, 16, 21, 0.06); background: #fff; }
 .on-ink { --spot-rgb: 255 90 104; }
 .lift { transition: translate var(--dur-3) var(--ease-glide); }
-.lift:hover,
-.card-hover:hover { box-shadow: var(--shadow-float); }
+:where(html:not([data-scrolling])) :is(.lift, .card-hover):hover { box-shadow: var(--shadow-float); }
 .card-hover { transition: translate var(--dur-3) var(--ease-glide); }
 .btn-shine { position: relative; overflow: hidden; isolation: isolate; }
 .btn-shine::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.35) 50%, transparent 75%); transform: translateX(-120%); transition: transform 0.7s ease; }
@@ -209,7 +212,7 @@ html[data-motion="reduce"] .featured-badge * { transition: none !important; }
   p .link-draw:focus-visible { text-decoration-color: transparent; }
   .nudge { transition: translate var(--dur-2) var(--ease-glide); }
   :is(a, button):hover > .nudge,
-  .group:hover .nudge { translate: 3px 0; }
+  :where(html:not([data-scrolling])) .group:hover .nudge { translate: 3px 0; }
 
 
   /* ----------------------------------------------------- decorative layers
@@ -342,16 +345,18 @@ details[open] .faq-chevron { rotate: 180deg; }
     @media (min-width: 1024px) {
       & .beam { animation: beam-fall var(--d, 8s) linear var(--delay, 0s) infinite; }
     }
-    /* infinite loops: only inside [data-ambient], paused off-screen by MotionRuntime */
+    /* infinite loops: only inside [data-ambient], which run only while MotionRuntime marks them data-live */
     & .border-beam[data-mode="loop"] > i { animation: beam-spin 7s linear infinite; }
     & .group:focus-within .border-beam[data-mode="focus"] > i { animation: beam-spin 3.5s linear infinite; }
-    & [data-paused],
-    & [data-paused] * { animation-play-state: paused !important; }
-    /* endless background loops drop their animation (and GPU layer) entirely while off-screen;
-       restarting from the first frame is invisible there */
-    & [data-paused] :is(.aurora > i, .beam, .border-beam > i, .marquee-track),
-    & :is(.aurora, .border-beam)[data-paused] > i,
-    & .marquee[data-paused] .marquee-track { animation: none !important; }
+    /* [data-ambient] starts OFF and runs only while it is on screen (MotionRuntime adds data-live). Endless
+       background loops have no animation (and no GPU layer) until then; finite ones hold their frame. Starting off
+       matters: a loop that began before it could be paused, inside a far-away content-visibility: auto section, went
+       on running there unseen and kept the main thread producing a frame every vsync. */
+    & [data-ambient]:not([data-live]),
+    & [data-ambient]:not([data-live]) * { animation-play-state: paused !important; }
+    & [data-ambient]:not([data-live]) :is(.aurora > i, .beam, .border-beam > i, .marquee-track),
+    & :is(.aurora, .border-beam)[data-ambient]:not([data-live]) > i,
+    & .marquee[data-ambient]:not([data-live]) .marquee-track { animation: none !important; }
     /* scroll-driven: only a few elements (progress bar, hero and side stages). Everything that just
        enters the viewport plays ONCE on a time-based transition (see "in-view reveals" below), so its
        compositor layer is released when it finishes instead of staying active for the whole visit. */
@@ -402,14 +407,17 @@ details[open] .faq-chevron { rotate: 180deg; }
   }
 }
 
-/* pointer effects: fine pointers only, values written by MotionRuntime */
+/* pointer effects: fine pointers only, values written by MotionRuntime. Hover effects are off while the page
+   scrolls (html[data-scrolling]): otherwise every card passing under a resting pointer lights up and lifts. */
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   :where(html:not([data-motion="reduce"])) {
+    & [data-tilt] { transform: perspective(1600px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform 500ms var(--ease-glide); }
+    & [data-magnetic] { transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0); transition: transform 250ms var(--ease-glide); }
+  }
+  :where(html:not([data-motion="reduce"]):not([data-scrolling])) {
     & [data-spotlight]:hover::before,
     & [data-spotlight]:hover::after,
     & [data-spotlight-group]:hover [data-spotlight]::after { opacity: 1; transition: opacity var(--dur-3) var(--ease-glide); }
-    & [data-tilt] { transform: perspective(1600px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform 500ms var(--ease-glide); }
-    & [data-magnetic] { transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0); transition: transform 250ms var(--ease-glide); }
     & .lift:hover,
     & .card-hover:hover { translate: 0 -2px; }
   }
@@ -426,6 +434,8 @@ details[open] .faq-chevron { rotate: 180deg; }
 /* decorative one-shots: .inview-pending holds the start state until .inview is added */
 .inview-pending:not(.inview):is(.rail-fill-x, .fill-x) { scale: 0 1; }
 .inview-pending:not(.inview).draw-x { clip-path: inset(0 100% 0 0); }
+.inview-pending:not(.inview).fill-up { clip-path: inset(100% 0 0 0); }
+.inview-pending:not(.inview).marker-sweep { background-position: 100% 92%; }
 .inview-pending:not(.inview):is(.rail-fill-y, .fill-y) { scale: 1 0; }
 .inview-pending:not(.inview):is(.wordmark, .rise-in) { translate: 0 35%; }
 .inview-pending:not(.inview).rail-node-lit { opacity: 0; scale: 0.96; }
@@ -436,6 +446,7 @@ details[open] .faq-chevron { rotate: 180deg; }
 .inview-pending.h-rule::before { transform-origin: 0 50%; }
 .inview-pending.inview,
 .inview-pending.inview.h-rule::before { transition: opacity var(--dur-5) var(--ease-expo), scale var(--dur-5) var(--ease-expo), translate var(--dur-5) var(--ease-expo), transform var(--dur-5) var(--ease-expo), clip-path var(--dur-5) var(--ease-expo); transition-delay: calc(min(var(--i, 0), 6) * var(--stagger)); }
+.inview-pending.inview.marker-sweep { transition: background-position 1.1s var(--ease-glide) 0.15s; }
 .inview-pending.inview.key-press { animation: key-press 360ms var(--ease-glide) calc(200ms + var(--i, 0) * 120ms) 1 both; }
 .border-beam.inview-pending.inview > i { animation: beam-spin 1.6s var(--ease-expo) 1 both; }
 

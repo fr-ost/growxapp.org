@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { notFound } from "next/navigation";
 import { PostCard } from "@/components/blog";
 import { FeatureIcon } from "@/components/feature-icon";
@@ -66,7 +66,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
         <Container className="relative grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
           <div className="min-w-0">
             <nav aria-label="Breadcrumb" className="hero-settle text-sm text-muted" style={stagger(0)}>
-              <Link href="/features" className="link-draw hover:text-text">Features</Link> <span aria-hidden="true">/</span> {page.nav}
+              <IntentLink href="/features" className="link-draw hover:text-text">Features</IntentLink> <span aria-hidden="true">/</span> {page.nav}
             </nav>
             <div className="hero-settle mt-5 flex items-center gap-3" style={stagger(1)}>
               <span className="bg-brand-deep flex h-11 w-11 items-center justify-center rounded-2xl text-white shadow-[var(--shadow-red)]">
@@ -266,7 +266,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
               <ul className="mt-6 grid gap-4 md:grid-cols-3">
                 {tools.map((t, i) => (
                   <li key={t.href} className="reveal" style={stagger(i % 3)}>
-                    <Link
+                    <IntentLink
                       href={t.href}
                       className="group lift flex h-full flex-col rounded-3xl border border-hairline bg-white p-5 shadow-[var(--shadow-hair)]"
                     >
@@ -275,7 +275,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
                       <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
                         Open tool <IconArrowRight size={15} className="nudge" />
                       </span>
-                    </Link>
+                    </IntentLink>
                   </li>
                 ))}
               </ul>

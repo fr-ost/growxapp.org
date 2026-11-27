@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import type { ComponentType, ReactNode } from "react";
 import { PostCard } from "@/components/blog";
 import { Bento } from "@/components/home/bento";
@@ -456,7 +457,7 @@ export default function HomePage() {
             {/* seven tools + "All free tools" fill two rows of four */}
             {toolNav.slice(0, 7).map((t, i) => (
               <li key={t.href} className="reveal" style={stagger(i % 4)}>
-                <Link
+                <IntentLink
                   href={t.href}
                   data-spotlight=""
                   className="group lift flex h-full flex-col rounded-3xl border border-hairline bg-white p-5 shadow-[var(--shadow-hair)]"
@@ -467,11 +468,11 @@ export default function HomePage() {
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
                     Open tool <IconArrowRight size={15} className="nudge" />
                   </span>
-                </Link>
+                </IntentLink>
               </li>
             ))}
             <li className="reveal" style={stagger(3)}>
-              <Link
+              <IntentLink
                 href="/tools"
                 data-spotlight="ink"
                 className="group lift on-ink flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-ink p-5 text-white"
@@ -480,7 +481,7 @@ export default function HomePage() {
                   <IconArrowRight size={20} className="nudge" />
                 </span>
                 <span className="mt-4 font-bold">All free tools</span>
-              </Link>
+              </IntentLink>
             </li>
           </ul>
         </Container>

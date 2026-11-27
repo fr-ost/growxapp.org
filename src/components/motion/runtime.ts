@@ -1,17 +1,20 @@
 /**
  * The only global motion JS. Pure DOM, delegated over data attributes; no React, no rAF loop.
  * (a) in-view reveals: below-the-fold reveals and decorative one-shots play once when they enter
- * (b) [data-ambient] gets data-paused while off-screen
+ * (b) [data-ambient] gets data-live while on screen (its loops run only then)
  * (c) [data-demo] gets data-demo-play while >= 35% visible (removed when fully out)
  * (d) [data-count] count-ups (real facts only; the true value is already in the HTML)
  * (e) fine-pointer spotlight / tilt / magnetic, one passive listener, <= 1 rAF per frame
+ * (f) html[data-scrolling] while the page scrolls (fine pointers): hover effects wait until it stops
  */
 import { readStoredReduce } from "./motion-prefs";
 
 const REVEALS = ".reveal,.reveal-heading,.reveal-scale,.reveal-clip";
 /** Decorative effects that play once on entry (start state: .inview-pending, played: .inview). */
 const ONE_SHOTS =
-  ".draw-x,.rail-fill-x,.rail-fill-y,.fill-x,.fill-y,.wordmark,.rise-in,.rail-node-lit,.h-rule,.stage-3d--inline,.ink-stage__bg[data-curtain],.key-press,.border-beam[data-mode='scroll']";
+  ".draw-x,.rail-fill-x,.rail-fill-y,.fill-x,.fill-y,.fill-up,.marker-sweep,.wordmark,.rise-in,.rail-node-lit,.h-rule,.stage-3d--inline,.ink-stage__bg[data-curtain],.key-press,.border-beam[data-mode='scroll']";
+/** The spotlight's border glow is a 240px circle: cards farther than this from the pointer show none of it. */
+const GLOW_REACH = 260;
 const POINTER_VARS = ["--mx", "--my", "--tilt-x", "--tilt-y", "--mag-x", "--mag-y"] as const;
 
 /** Apply the stored "Reduce motion" choice. Only writes when the value differs (avoids observer loops). */
@@ -55,22 +58,27 @@ export function initMotion(): () => void {
     // one element can carry both a reveal and a one-shot (e.g. .reveal-heading.h-rule): play every one
     const done = new Map<Element, string[]>();
     for (const it of items) done.set(it.el, [...(done.get(it.el) ?? []), it.done]);
-    const show = (el: Element) => el.classList.add(...(done.get(el) ?? []));
+    const waiting = new Set(done.keys());
+    const show = (el: Element) => {
+      if (!waiting.delete(el)) return;
+      el.classList.add(...(done.get(el) ?? []));
+      io.unobserve(el);
+    };
     const io = new IntersectionObserver(
       (es) => {
-        for (const e of es)
-          if (e.isIntersecting) {
-            show(e.target);
-            io.unobserve(e.target);
-          }
+        for (const e of es) if (e.isIntersecting) show(e.target);
       },
       { rootMargin: "0px 0px -6% 0px" },
     );
     for (const it of items) it.el.classList.add(it.pending);
-    for (const el of done.keys()) io.observe(el);
-    // an element scrolled past too quickly for the observer still reveals once scrolling settles
+    for (const el of waiting) io.observe(el);
+    // An element scrolled past too quickly for the observer still reveals once scrolling settles. Only the ones still
+    // waiting are checked, all positions are read before any class is added: reading a position after a class change
+    // forces the browser to restyle and lay out the page again, once per element.
     settled.push(() => {
-      for (const it of items) if (it.el.getBoundingClientRect().top < innerHeight) show(it.el);
+      if (!waiting.size) return;
+      const passed = [...waiting].filter((el) => el.getBoundingClientRect().top < innerHeight);
+      passed.forEach(show);
     });
     on(window, "beforeprint", () => items.forEach((it) => show(it.el)));
     cleanups.push(() => {
@@ -79,18 +87,16 @@ export function initMotion(): () => void {
     });
   }
 
-  // (b) ambient loops pause off-screen
+  // (b) ambient loops run only while on screen. They start off (CSS), so a loop far down the page never starts at
+  // all; data-live is left in place on cleanup so a visible loop doesn't jump back to its first frame on a re-init.
   const amb = new IntersectionObserver(
     (es) => {
-      for (const e of es) e.target.toggleAttribute("data-paused", !e.isIntersecting);
+      for (const e of es) e.target.toggleAttribute("data-live", e.isIntersecting);
     },
     { rootMargin: "120px" },
   );
   document.querySelectorAll("[data-ambient]").forEach((el) => amb.observe(el));
-  cleanups.push(() => {
-    amb.disconnect();
-    document.querySelectorAll("[data-paused]").forEach((el) => el.removeAttribute("data-paused"));
-  });
+  cleanups.push(() => amb.disconnect());
 
   // (c) demos: play while >= 35% visible; reset to the poster frame when fully out
   if (motionOK) {
@@ -141,9 +147,10 @@ export function initMotion(): () => void {
       el.textContent = el.getAttribute("data-count-from") || "0";
       io.observe(el);
     }
-    // A counter scrolled past too quickly for the observer still runs once scrolling settles.
+    // A counter scrolled past too quickly for the observer still runs once scrolling settles (positions read first).
     settled.push(() => {
-      for (const el of nodes) if (el.getBoundingClientRect().top < innerHeight) run(el);
+      const passed = nodes.filter((el) => !started.has(el) && el.getBoundingClientRect().top < innerHeight);
+      passed.forEach(run);
     });
     const restore = () => nodes.forEach((el) => (el.textContent = final(el)));
     on(window, "beforeprint", restore);
@@ -164,6 +171,8 @@ export function initMotion(): () => void {
     let ev: PointerEvent | null = null;
     let frame = 0;
     let touched = new Set<HTMLElement>();
+    /** Group cards out of the glow's reach, parked with the glow centre far outside them (written once, not per move). */
+    const parked = new WeakSet<HTMLElement>();
     let rects = new WeakMap<Element, DOMRect>();
     const rect = (el: Element) => {
       let r = rects.get(el);
@@ -173,7 +182,10 @@ export function initMotion(): () => void {
       }
       return r;
     };
-    const reset = (el: HTMLElement) => POINTER_VARS.forEach((p) => el.style.removeProperty(p));
+    const reset = (el: HTMLElement) => {
+      POINTER_VARS.forEach((p) => el.style.removeProperty(p));
+      parked.delete(el);
+    };
     const clear = () => {
       touched.forEach(reset);
       touched = new Set();
@@ -188,10 +200,21 @@ export function initMotion(): () => void {
       const group = t?.closest("[data-spotlight-group]");
       const single = t?.closest<HTMLElement>("[data-spotlight]");
       const cards: HTMLElement[] = group ? [...group.querySelectorAll<HTMLElement>("[data-spotlight]")] : single ? [single] : [];
+      // Only the cards near the pointer follow it; the rest of a long grid is parked once instead of being restyled and
+      // repainted on every move.
       for (const c of cards) {
         const r = rect(c);
-        c.style.setProperty("--mx", `${(x - r.left).toFixed(0)}px`);
-        c.style.setProperty("--my", `${(y - r.top).toFixed(0)}px`);
+        const dx = Math.max(r.left - x, 0, x - r.right);
+        const dy = Math.max(r.top - y, 0, y - r.bottom);
+        if (c === single || dx * dx + dy * dy <= GLOW_REACH * GLOW_REACH) {
+          c.style.setProperty("--mx", `${(x - r.left).toFixed(0)}px`);
+          c.style.setProperty("--my", `${(y - r.top).toFixed(0)}px`);
+          parked.delete(c);
+        } else if (!parked.has(c)) {
+          c.style.setProperty("--mx", "-999px");
+          c.style.setProperty("--my", "-999px");
+          parked.add(c);
+        }
         next.add(c);
       }
       const tilt = t?.closest<HTMLElement>("[data-tilt]");
@@ -238,6 +261,29 @@ export function initMotion(): () => void {
     cleanups.push(() => {
       cancelAnimationFrame(frame);
       clear();
+    });
+
+    // (f) While the page scrolls under a resting pointer, every card sliding beneath it would start its hover
+    // transitions (lift, spotlight, cover parallax) and restyle on each frame. html[data-scrolling] turns those hover
+    // effects off (see the fx variant and the pointer effects in globals.css) until scrolling has stopped for 150ms.
+    let idle = 0;
+    const settle = () => {
+      idle = 0;
+      delete root.dataset.scrolling;
+    };
+    on(
+      window,
+      "scroll",
+      () => {
+        if (idle) clearTimeout(idle);
+        else root.dataset.scrolling = "";
+        idle = window.setTimeout(settle, 150);
+      },
+      { passive: true },
+    );
+    cleanups.push(() => {
+      clearTimeout(idle);
+      settle();
     });
   }
 

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { PostCard, formatPostDate } from "@/components/blog";
 import { PostCover } from "@/components/blog/post-cover";
 import { CtaBand } from "@/components/home/cta-band";
@@ -43,9 +43,9 @@ function FeaturedPost({ post }: { post: Post }) {
           </span>
         </div>
         <h3 className="mt-5 text-balance text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">
-          <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 group-hover:text-accent-ink">
+          <IntentLink href={`/blog/${post.slug}`} className="after:absolute after:inset-0 group-hover:text-accent-ink">
             {post.title}
-          </Link>
+          </IntentLink>
         </h3>
         <p className="mt-4 flex-1 text-pretty leading-relaxed text-text-2">{post.excerpt}</p>
         <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-hairline pt-5 text-sm">
@@ -130,9 +130,10 @@ export default function BlogIndexPage() {
                   </p>
                 </div>
                 <ul data-spotlight-group="" className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {g.posts.map((p, i) => (
-                    <li key={p.slug} className="relative" style={stagger(i % 3)}>
-                      <PostCard post={p} headingLevel="h3" />
+                  {/* no per-card scroll reveal here: a long list of cards each animating in made scrolling stutter */}
+                  {g.posts.map((p) => (
+                    <li key={p.slug} className="relative">
+                      <PostCard post={p} headingLevel="h3" reveal={false} />
                     </li>
                   ))}
                 </ul>

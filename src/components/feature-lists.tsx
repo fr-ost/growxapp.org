@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import type { ComponentType, ReactNode } from "react";
 import f from "@/components/features/feature-groups.module.css";
 import { IconArrowRight, IconBroom, IconChart, IconCheck, IconMessage, IconPen, IconSparkles, IconStar, IconTarget, IconWand } from "@/components/icons";
@@ -34,7 +34,7 @@ function GroupNumeral({ n }: { n: number }) {
   return (
     <span aria-hidden="true" className={f.numeral}>
       <span className={f.outline}>{label}</span>
-      <span className={`text-gradient ${f.fill}`}>{label}</span>
+      <span className={`fill-up text-gradient ${f.fill}`}>{label}</span>
     </span>
   );
 }
@@ -71,9 +71,9 @@ export function FeatureGroups({ demos = {} }: { demos?: Partial<Record<FeatureGr
                 </p>
               ))}
               {g.page ? (
-                <Link href={`/features/${g.page}`} className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-accent-ink">
+                <IntentLink href={`/features/${g.page}`} className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-accent-ink">
                   <span className="link-draw">Learn more</span> <IconArrowRight size={16} className="nudge" />
-                </Link>
+                </IntentLink>
               ) : null}
               {demo ? (
                 <div className="reveal-scale mt-8 hidden lg:block" style={stagger(3)}>

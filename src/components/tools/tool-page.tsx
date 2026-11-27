@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import type { ReactNode } from "react";
 import { CtaBand } from "@/components/home/cta-band";
 import { Faq } from "@/components/home/faq";
@@ -66,9 +66,9 @@ export function ToolPage({
         <Backdrop variant="page" beams={0} />
         <Container className="relative py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="hero-settle text-center text-sm text-muted" style={stagger(0)}>
-            <Link href="/tools" className="link-draw hover:text-accent-ink">
+            <IntentLink href="/tools" className="link-draw hover:text-accent-ink">
               Free tools
-            </Link>{" "}
+            </IntentLink>{" "}
             <span aria-hidden="true">/</span> {name}
           </nav>
           <div className="hero-settle mt-4 flex items-center justify-center gap-2.5" style={stagger(1)}>
@@ -107,14 +107,14 @@ export function ToolPage({
                 <ul className="mt-3 space-y-1">
                   {others.map((t) => (
                     <li key={t.href}>
-                      <Link
+                      <IntentLink
                         href={t.href}
                         className="group -mx-2 inline-flex items-center gap-2.5 rounded-xl px-2 py-1.5 font-semibold text-accent-ink hover:bg-white"
                       >
                         <MiniGlyph tool={toolKey(t.href)} px={28} />
                         <span className="link-draw">{t.label}</span>
                         <IconArrowRight size={15} className="nudge" />
-                      </Link>
+                      </IntentLink>
                     </li>
                   ))}
                 </ul>

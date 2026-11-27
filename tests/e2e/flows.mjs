@@ -296,13 +296,14 @@ await p.waitForSelector("text=Check your inbox");
 ok("signup shows check-your-inbox", true);
 
 await p.goto(BASE + "/login");
+// "main [role=alert]": the form's message. Next.js's route announcer is an (empty) role=alert outside <main>.
 await p.fill("#email", "unconfirmed@example.com"); await p.fill("#password", "correct-horse-1");
-await p.click(SUBMIT); await p.waitForSelector("[role=alert]");
-ok("login: unconfirmed email message", (await p.textContent("[role=alert]")).includes("confirm your email"));
+await p.click(SUBMIT); await p.waitForSelector("main [role=alert]");
+ok("login: unconfirmed email message", (await p.textContent("main [role=alert]")).includes("confirm your email"));
 
 await p.fill("#email", "demo@example.com"); await p.fill("#password", "wrong-password-1");
 await p.click(SUBMIT); await p.waitForTimeout(600);
-ok("login: wrong password message", (await p.textContent("[role=alert]")).includes("Invalid email or password"));
+ok("login: wrong password message", (await p.textContent("main [role=alert]")).includes("Invalid email or password"));
 
 await p.goto(BASE + "/login?next=//evil.com");
 await p.fill("#email", "demo@example.com"); await p.fill("#password", "correct-horse-1");
@@ -678,8 +679,8 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   // Google first, then the email form
   const { pg: g4 } = await open();
   await g4.goto(BASE + "/login"); await g4.fill("#email", NEW); await g4.fill("#password", "correct-horse-1");
-  await g4.click(SUBMIT); await g4.waitForSelector("[role=alert]");
-  ok("Google-only account + password -> told to use Continue with Google", (await g4.textContent("[role=alert]")).includes("If you signed up with Google, use Continue with Google"));
+  await g4.click(SUBMIT); await g4.waitForSelector("main [role=alert]");
+  ok("Google-only account + password -> told to use Continue with Google", (await g4.textContent("main [role=alert]")).includes("If you signed up with Google, use Continue with Google"));
   await g4.goto(BASE + "/signup"); await g4.fill("#email", NEW); await g4.fill("#password", "correct-horse-1");
   await g4.click(SUBMIT); await g4.waitForSelector("text=Check your inbox");
   ok("signing up again with a Google account's email creates no second account", (await who(NEW)).count === 1 && (await g4.locator("main").innerText()).includes("use Continue with Google if you signed up with Google"));
@@ -1104,6 +1105,58 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
     const invisible = await invisibleText(p);
     ok("reduced / no text left invisible without scrolling", invisible.length === 0, invisible.slice(0, 4).join(" | "));
     await ctx.close();
+  }
+  // 3b. smoothness: endless loops only run on screen, hover effects wait while the page scrolls, dense link lists
+  // (the footer) prefetch on intent instead of when they scroll into view
+  {
+    const p = await b.newPage({ viewport: { width: 1366, height: 900 } });
+    const prefetches = [];
+    p.on("request", (r) => {
+      const h = r.headers();
+      if (h["next-router-prefetch"] || h["rsc"]) prefetches.push(new URL(r.url()).pathname);
+    });
+    await p.goto(BASE + "/", { waitUntil: "networkidle" });
+    await p.waitForTimeout(1500);
+    const loops = () =>
+      p.evaluate(() => {
+        const out = { onScreen: 0, offScreen: [] };
+        for (const a of document.getAnimations()) {
+          if (a.playState !== "running" || a.effect.getTiming().iterations !== Infinity) continue;
+          const r = a.effect.target.getBoundingClientRect();
+          if (r.bottom > -200 && r.top < innerHeight + 200) out.onScreen++;
+          else out.offScreen.push(`${a.animationName}@${Math.round(r.top)}`);
+        }
+        return out;
+      });
+    let l = await loops();
+    ok("smooth /: the hero's ambient loops run on screen", l.onScreen > 0, JSON.stringify(l));
+    ok("smooth /: no endless loop runs off screen (they start only once visible)", l.offScreen.length === 0, l.offScreen.join(","));
+    await p.evaluate(() => window.scrollTo({ top: 3200, behavior: "instant" }));
+    await p.waitForTimeout(800);
+    l = await loops();
+    ok("smooth /: the hero's loops stop once it is scrolled away", l.offScreen.length === 0, l.offScreen.join(","));
+    await p.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await p.waitForTimeout(600);
+    // html[data-scrolling] while a wheel scroll runs, gone shortly after
+    await p.mouse.move(683, 450);
+    await p.mouse.wheel(0, 400);
+    const during = await p.waitForFunction(() => document.documentElement.hasAttribute("data-scrolling"), null, { timeout: 1500 }).then(() => true, () => false);
+    const cleared = await p.waitForFunction(() => !document.documentElement.hasAttribute("data-scrolling"), null, { timeout: 2000 }).then(() => true, () => false);
+    ok("smooth /: html[data-scrolling] is set while the page scrolls and cleared after", during && cleared, JSON.stringify({ during, cleared }));
+    // the footer's links don't prefetch when they come into view, only on hover; the click still navigates
+    await p.goto(BASE + "/pricing", { waitUntil: "networkidle" });
+    prefetches.length = 0;
+    await p.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+    await p.waitForTimeout(1500);
+    const footerOnly = ["/press", "/refund-policy", "/privacy", "/terms", "/featured"];
+    ok("smooth /pricing: footer links are not prefetched when the footer scrolls into view", !prefetches.some((u) => footerOnly.includes(u)), prefetches.join(" "));
+    await p.hover('footer a[href="/press"]');
+    await p.waitForTimeout(1200);
+    ok("smooth /pricing: hovering a footer link prefetches its page", prefetches.includes("/press"), prefetches.join(" "));
+    await p.click('footer a[href="/press"]');
+    await p.waitForURL(/\/press$/, { timeout: 10000 }).catch(() => {});
+    ok("smooth /pricing: the footer link still navigates", new URL(p.url()).pathname === "/press", p.url());
+    await p.close();
   }
   // 4. keyboard-operable features menu
   {

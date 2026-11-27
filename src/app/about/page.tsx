@@ -47,7 +47,7 @@ export default function AboutPage() {
               posting at the right times, replying early, remembering who followed back and cleaning up later. Most people juggle several
               tools for that, and many auto follow tools simply go as fast as possible, which puts accounts at risk. GrowX takes the
               opposite approach:{" "}
-              <mark className={styles.marker}>one simple extension that acts like a careful person, measures results and stops when X says stop</mark>.
+              <mark className={`marker-sweep ${styles.marker}`}>one simple extension that acts like a careful person, measures results and stops when X says stop</mark>.
             </p>
             <p>
               It started as an auto follow engine with source targeting, a follow-back score and cleanup tools. Version 2.4.4 turned it

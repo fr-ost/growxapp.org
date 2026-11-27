@@ -7,9 +7,9 @@ import type { Block, Post } from "@/content/posts";
 export { formatPostDate } from "@/components/blog/format-date";
 
 /** A post teaser card (see PostCardView). Pass a full Post; only the summary fields reach the browser. */
-export function PostCard({ post, headingLevel = "h2" }: { post: Post; headingLevel?: "h2" | "h3" }) {
+export function PostCard({ post, headingLevel = "h2", reveal = true }: { post: Post; headingLevel?: "h2" | "h3"; reveal?: boolean }) {
   const { slug, title, excerpt, category, readMinutes, datePublished } = post;
-  return <PostCardView post={{ slug, title, excerpt, category, readMinutes, datePublished }} headingLevel={headingLevel} />;
+  return <PostCardView post={{ slug, title, excerpt, category, readMinutes, datePublished }} headingLevel={headingLevel} reveal={reveal} />;
 }
 
 function BlockView({ block }: { block: Block }) {

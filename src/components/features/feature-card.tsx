@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { FeatureIcon } from "@/components/feature-icon";
 import { IconArrowRight } from "@/components/icons";
 import type { FeatureIcon as IconName } from "@/content/feature-types";
@@ -26,7 +26,7 @@ export function FeatureTile({ name, size = 19 }: { name: IconName; size?: number
  */
 export function FeatureLinkCard({ href, icon, label, blurb, badge }: { href: string; icon: IconName; label: string; blurb: string; badge?: string }) {
   return (
-    <Link
+    <IntentLink
       href={href}
       data-spotlight=""
       className="lift group flex h-full items-start gap-3 rounded-3xl border border-hairline bg-white p-5 shadow-[var(--shadow-hair)]"
@@ -43,6 +43,6 @@ export function FeatureLinkCard({ href, icon, label, blurb, badge }: { href: str
         </span>
         <span className="mt-0.5 block text-sm leading-snug text-muted">{blurb}</span>
       </span>
-    </Link>
+    </IntentLink>
   );
 }

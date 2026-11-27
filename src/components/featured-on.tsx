@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import { liveBadges, type DirectoryBadge } from "@/data/badges";
 
 /**
@@ -24,9 +24,9 @@ export function FeaturedOn() {
   return (
     <div className="featured-on flex flex-col items-center gap-3 lg:flex-row lg:items-center lg:gap-5">
       <p className="shrink-0 text-xs font-semibold text-white/60">
-        <Link href="/featured" className="link-draw hover:text-white">
+        <IntentLink href="/featured" className="link-draw hover:text-white">
           Featured on
-        </Link>
+        </IntentLink>
       </p>
       <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 lg:justify-start">
         {liveBadges.map((b) => (

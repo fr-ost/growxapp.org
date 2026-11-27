@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink } from "@/components/ui/intent-link";
 import type { ReactNode } from "react";
 import { IconArrowRight, IconCheck } from "@/components/icons";
 import { Screenshot } from "@/components/marketing/screenshot";
@@ -49,9 +49,9 @@ export function FeatureRow({
         </ul>
         <div className="reveal mt-7 flex flex-wrap gap-x-6 gap-y-2" style={stagger(4)}>
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="group inline-flex items-center gap-1.5 font-semibold text-accent-ink">
+            <IntentLink key={l.href} href={l.href} className="group inline-flex items-center gap-1.5 font-semibold text-accent-ink">
               {l.label} <IconArrowRight size={16} className="nudge" />
-            </Link>
+            </IntentLink>
           ))}
         </div>
       </div>
