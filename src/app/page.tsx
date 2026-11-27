@@ -40,11 +40,11 @@ import { cssVars, stagger } from "@/components/motion/stagger";
 import { StepRail } from "@/components/motion/step-rail";
 import { ToolGlyph, toolKey } from "@/components/motion/tool-glyph";
 import { WordRoll } from "@/components/motion/word-roll";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container, Eyebrow, IconBubble, Section, SectionHeading } from "@/components/ui/primitives";
 import { toolNav } from "@/config/nav";
 import { getTier, TRIAL_DAYS } from "@/config/pricing";
-import { site } from "@/config/site";
 import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
 import { CURRENT_VERSION, releases } from "@/content/releases";
@@ -211,11 +211,9 @@ export default function HomePage() {
             Chrome extension, free to start.
           </p>
           <div className="hero-settle mt-9 flex flex-col justify-center gap-3 sm:flex-row" style={stagger(4)}>
-            {site.chromeStoreUrl ? (
-              <ExternalButton href={site.chromeStoreUrl} size="lg" data-magnetic="6">
-                <IconChrome size={20} /> Add to Chrome, it&apos;s free
-              </ExternalButton>
-            ) : null}
+            <CwsButton campaign="home" content="hero" size="lg" data-magnetic="6">
+              <IconChrome size={20} /> Add to Chrome, it&apos;s free
+            </CwsButton>
             <LinkButton href="/signup" variant="secondary" size="lg">
               Create free account <IconArrowRight size={18} className="nudge" />
             </LinkButton>
@@ -530,7 +528,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      <CtaBand />
+      <CtaBand campaign="home" />
     </>
   );
 }

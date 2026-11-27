@@ -1,6 +1,7 @@
 import { pricingTiers, type PricingTier } from "@/config/pricing";
 import { site } from "@/config/site";
 import { CURRENT_VERSION, LANGUAGES } from "@/content/releases";
+import { CWS_URL } from "@/lib/cws";
 
 /** Serialises structured data safely for an inline <script> (escapes "<" so content can't close the tag). */
 export function serializeJsonLd(data: unknown): string {
@@ -96,7 +97,7 @@ export const organizationLd = {
     { "@type": "ContactPoint", contactType: "customer support", email: site.supportEmail, url: abs("/contact"), availableLanguage: ["English"] },
   ],
   founder: { "@id": PERSON_ID },
-  sameAs: [site.chromeStoreUrl, site.authorUrl].filter(Boolean),
+  sameAs: [CWS_URL, site.authorUrl].filter(Boolean),
 };
 
 export const websiteLd = {
@@ -148,7 +149,8 @@ export const softwareLd = {
   url: site.url,
   image: abs("/opengraph-image"),
   screenshot: abs("/screens/overview-251.webp"),
-  ...(site.chromeStoreUrl ? { downloadUrl: site.chromeStoreUrl, installUrl: site.chromeStoreUrl } : {}),
+  downloadUrl: CWS_URL,
+  installUrl: CWS_URL,
   author: { "@id": PERSON_ID },
   publisher: { "@id": ORG_ID },
   offers: softwareOffers,

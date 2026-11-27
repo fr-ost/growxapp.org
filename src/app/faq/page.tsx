@@ -43,7 +43,7 @@ export default function FaqPage() {
           </div>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="faq" />
     </>
   );
 }

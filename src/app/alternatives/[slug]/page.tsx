@@ -10,10 +10,10 @@ import { IconArrowRight, IconCheck, IconChrome } from "@/components/icons";
 import { JsonLd, breadcrumbLd, faqLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
 import { RichText } from "@/components/rich-text";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { TRIAL_DAYS } from "@/config/pricing";
-import { site } from "@/config/site";
 import { CHECKED, alternativePages, getAlternative } from "@/content/alternatives";
 import { getFeaturePage } from "@/content/feature-pages";
 import { getPost } from "@/content/posts";
@@ -67,11 +67,9 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
         title={page.h1}
         actions={
           <>
-            {site.chromeStoreUrl ? (
-              <ExternalButton href={site.chromeStoreUrl} size="lg">
-                <IconChrome size={20} /> Add to Chrome, free
-              </ExternalButton>
-            ) : null}
+            <CwsButton campaign={`alt-${page.slug}`} content="hero" size="lg">
+              <IconChrome size={20} /> Add to Chrome, free
+            </CwsButton>
             <LinkButton href="/signup" variant="secondary" size="lg">
               Try Premium free for {TRIAL_DAYS} days
             </LinkButton>
@@ -257,7 +255,7 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
         </Container>
       </Section>
 
-      <CtaBand />
+      <CtaBand campaign={`alt-${page.slug}`} />
     </>
   );
 }

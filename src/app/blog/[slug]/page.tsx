@@ -11,7 +11,8 @@ import { JsonLd, ORG_ID, WEBSITE_ID, abs, authorLd, breadcrumbLd, faqLd } from "
 import { Backdrop } from "@/components/motion/backdrop";
 import { BorderBeam } from "@/components/motion/border-beam";
 import { stagger } from "@/components/motion/stagger";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Badge, Container, Eyebrow, Section } from "@/components/ui/primitives";
 import { getFeaturePage } from "@/content/feature-pages";
 import { featuresForPost } from "@/content/post-features";
@@ -130,11 +131,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   <p className="font-display text-lg font-extrabold leading-snug">Grow on X with GrowX</p>
                   <p className="mt-2 text-sm text-white/70">Auto follow, scheduler, AI writer and analytics in one free Chrome extension.</p>
                   <div className="mt-4 grid gap-2">
-                    {site.chromeStoreUrl ? (
-                      <ExternalButton href={site.chromeStoreUrl} size="sm">
-                        <IconChrome size={16} /> Add to Chrome
-                      </ExternalButton>
-                    ) : null}
+                    <CwsButton campaign={`blog-${post.slug}`} content="inline-cta" size="sm">
+                      <IconChrome size={16} /> Add to Chrome
+                    </CwsButton>
                     <LinkButton href="/signup" variant="white" size="sm">Start free</LinkButton>
                   </div>
                 </div>
@@ -185,7 +184,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </Container>
         </Section>
       ) : null}
-      <CtaBand />
+      <CtaBand campaign={`blog-${post.slug}`} />
     </>
   );
 }

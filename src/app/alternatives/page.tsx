@@ -7,10 +7,10 @@ import { IconArrowRight, IconChrome } from "@/components/icons";
 import { JsonLd, abs, breadcrumbLd, faqLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
 import { RichText } from "@/components/rich-text";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { TRIAL_DAYS, getTier } from "@/config/pricing";
-import { site } from "@/config/site";
 import { CHECKED, alternativePages } from "@/content/alternatives";
 import { getPost } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -100,11 +100,9 @@ export default function AlternativesPage() {
         }
         actions={
           <>
-            {site.chromeStoreUrl ? (
-              <ExternalButton href={site.chromeStoreUrl} size="lg">
-                <IconChrome size={20} /> Add to Chrome, free
-              </ExternalButton>
-            ) : null}
+            <CwsButton campaign="alternatives" content="hero" size="lg">
+              <IconChrome size={20} /> Add to Chrome, free
+            </CwsButton>
             <LinkButton href="/pricing" variant="secondary" size="lg">
               See pricing
             </LinkButton>
@@ -230,7 +228,7 @@ export default function AlternativesPage() {
         </Container>
       </Section>
 
-      <CtaBand />
+      <CtaBand campaign="alternatives" />
     </>
   );
 }

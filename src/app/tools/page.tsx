@@ -102,7 +102,7 @@ export default function ToolsPage() {
           </ul>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="tools" />
     </>
   );
 }

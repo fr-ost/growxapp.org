@@ -10,6 +10,7 @@ import { ExternalButton, LinkButton } from "@/components/ui/button";
 import { Container, IconBubble, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
+import { CwsLink } from "@/components/cws-link";
 
 export const metadata = pageMetadata({
   title: "About GrowX: The X (Twitter) Growth Tool",
@@ -143,19 +144,17 @@ export default function AboutPage() {
                   </Link>
                 </li>
               ))}
-              {site.chromeStoreUrl ? (
-                <li>
-                  <a href={site.chromeStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                    <IconChrome size={16} /> <span className="link-draw">Chrome Web Store</span>
-                    <IconArrowRight size={15} className="nudge" />
-                  </a>
-                </li>
-              ) : null}
+              <li>
+                <CwsLink campaign="about" content="inline-cta" className="inline-flex items-center gap-2">
+                  <IconChrome size={16} /> <span className="link-draw">Chrome Web Store</span>
+                  <IconArrowRight size={15} className="nudge" />
+                </CwsLink>
+              </li>
             </ul>
           </div>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="about" />
     </>
   );
 }

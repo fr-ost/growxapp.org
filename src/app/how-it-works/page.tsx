@@ -152,7 +152,7 @@ export default function HowItWorksPage() {
           <LinkButton href="/pricing" variant="secondary">Pricing <IconArrowRight size={16} className="nudge" /></LinkButton>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="how-it-works" />
     </>
   );
 }

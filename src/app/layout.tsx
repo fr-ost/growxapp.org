@@ -8,6 +8,7 @@ import { GoogleTag } from "@/components/google-tag";
 import { NewSignupConversion } from "@/components/new-signup-conversion";
 import { MotionRuntime } from "@/components/motion/motion-runtime";
 import { Analytics } from "@vercel/analytics/next";
+import { SiteAnalytics } from "@/components/site-analytics";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NewSignupConversion />
         {/* Vercel Web Analytics only exists on Vercel deployments (its script is served by Vercel). */}
         {process.env.VERCEL ? <Analytics /> : null}
+        <SiteAnalytics />
       </body>
     </html>
   );

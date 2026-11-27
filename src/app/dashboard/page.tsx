@@ -4,7 +4,8 @@ import { StartTrialForm } from "@/components/dashboard-forms";
 import { DataIssue } from "@/components/data-issue";
 import { IconAt, IconCheck, IconChrome, IconMail, IconStar, IconUser } from "@/components/icons";
 import { PlanSummary, formatDate } from "@/components/plan-summary";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Badge, Notice } from "@/components/ui/primitives";
 import { XAccountsManager } from "@/components/x-accounts-manager";
 import { TRIAL_DAYS, X_ACCOUNT_SLOT_PRICE_LABEL } from "@/config/pricing";
@@ -274,11 +275,9 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
           <LinkButton href="/forgot-password" variant="secondary" size="sm">
             {methods.password ? "Change password" : "Set a password"}
           </LinkButton>
-          {site.chromeStoreUrl ? (
-            <ExternalButton href={site.chromeStoreUrl}>
-              <IconChrome size={18} /> Get the extension
-            </ExternalButton>
-          ) : null}
+          <CwsButton campaign="dashboard" content="inline-cta">
+            <IconChrome size={18} /> Get the extension
+          </CwsButton>
         </div>
         <p className="mt-4 text-sm text-muted">To delete your account, email {site.supportEmail} from the address on your account.</p>
       </Panel>

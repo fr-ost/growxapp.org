@@ -4,6 +4,7 @@ import { latestFirst } from "@/content/posts";
 import { toolNav } from "@/config/nav";
 import { pricingTiers, TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
+import { CWS_URL } from "@/lib/cws";
 
 export const dynamic = "force-static";
 
@@ -29,7 +30,7 @@ export function GET() {
     `- [What's new](${site.url}/whats-new): release notes for the GrowX extension (current version ${CURRENT_VERSION})`,
     `- [FAQ](${site.url}/faq): plans and payments, free trial, auto follow safety, scheduler, GrowX AI, analytics, privacy`,
     `- [Press kit](${site.url}/press)`,
-    `- [Chrome Web Store](${site.chromeStoreUrl})`,
+    `- [Chrome Web Store](${CWS_URL})`,
     "",
     "## Free tools (no sign-up)",
     ...toolNav.map((t) => `- [${t.label}](${site.url}${t.href}): ${t.blurb}`),

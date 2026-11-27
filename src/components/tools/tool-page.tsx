@@ -1,6 +1,7 @@
 import { IntentLink } from "@/components/ui/intent-link";
 import type { ReactNode } from "react";
 import { CtaBand } from "@/components/home/cta-band";
+import { campaignFor } from "@/lib/cws";
 import { Faq } from "@/components/home/faq";
 import { IconArrowRight } from "@/components/icons";
 import { JsonLd, abs, breadcrumbLd, faqLd } from "@/components/json-ld";
@@ -127,6 +128,7 @@ export function ToolPage({
         </Container>
       </Section>
       <CtaBand
+        campaign={campaignFor(path)}
         title={cta?.title ?? "Write it here. Schedule it with GrowX."}
         body={
           cta?.body ??

@@ -8,13 +8,13 @@ import { JsonLd, breadcrumbLd, faqLd, webPageLd } from "@/components/json-ld";
 import { demoForGroup } from "@/components/motion/demos/demo-map";
 import { ScrollSpy } from "@/components/motion/scroll-spy";
 import { stagger } from "@/components/motion/stagger";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section, SectionHeading } from "@/components/ui/primitives";
 import { featureGroups } from "@/config/features";
 import { featureNav } from "@/config/nav";
 import { CURRENT_VERSION } from "@/content/releases";
 import { TRIAL_DAYS } from "@/config/pricing";
-import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 
 /** Illustrative demos for the sticky group column (lg only). */
@@ -51,11 +51,9 @@ export default function FeaturesPage() {
         title={<>Every tool you need to <span className="text-gradient">grow on X.</span></>}
         actions={
           <>
-            {site.chromeStoreUrl ? (
-              <ExternalButton href={site.chromeStoreUrl} size="lg" data-magnetic="6">
-                <IconChrome size={20} /> Add to Chrome, free
-              </ExternalButton>
-            ) : null}
+            <CwsButton campaign="features" content="hero" size="lg" data-magnetic="6">
+              <IconChrome size={20} /> Add to Chrome, free
+            </CwsButton>
             <LinkButton href="/pricing" variant="secondary" size="lg">
               Compare plans
             </LinkButton>
@@ -132,7 +130,7 @@ export default function FeaturesPage() {
           </div>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="features" />
     </>
   );
 }

@@ -3,12 +3,13 @@ import { OfficialBadge } from "@/components/featured-on";
 import { IconArrowRight, IconChrome } from "@/components/icons";
 import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
 import { TRIAL_DAYS } from "@/config/pricing";
-import { site } from "@/config/site";
 import { liveBadges } from "@/data/badges";
 import { pageMetadata } from "@/lib/seo";
+import { CwsLink } from "@/components/cws-link";
 
 const description =
   "Launch sites and directories that list GrowX, the X (Twitter) growth extension for Chrome, with their official badges. Find GrowX there or add it free.";
@@ -42,11 +43,9 @@ export default function FeaturedPage() {
         }
         actions={
           <>
-            {site.chromeStoreUrl ? (
-              <ExternalButton href={site.chromeStoreUrl} size="lg">
-                <IconChrome size={20} /> Add to Chrome, free
-              </ExternalButton>
-            ) : null}
+            <CwsButton campaign="featured" content="hero" size="lg">
+              <IconChrome size={20} /> Add to Chrome, free
+            </CwsButton>
             <LinkButton href="/" variant="secondary" size="lg">
               Back to home
             </LinkButton>
@@ -60,9 +59,9 @@ export default function FeaturedPage() {
         <Container className="max-w-[68ch] space-y-4 text-[1.05rem] leading-8 text-text-2 [text-wrap:pretty]">
           <p>
             GrowX is a Chrome extension for growing on X (Twitter). Besides its page on the{" "}
-            <a href={site.chromeStoreUrl} className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+            <CwsLink campaign="featured" content="inline-cta" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
               Chrome Web Store
-            </a>
+            </CwsLink>
             , it is listed on the {liveBadges.length} product directories and launch platforms below. Each entry shows the site&apos;s own badge, exactly
             as that site provides it, with a link to the listing or to the site itself.
           </p>

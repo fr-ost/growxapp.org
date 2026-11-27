@@ -3,18 +3,21 @@ import { Aurora } from "@/components/motion/aurora";
 import { BorderBeam } from "@/components/motion/border-beam";
 import { GrowthLine } from "@/components/motion/growth-line";
 import { stagger } from "@/components/motion/stagger";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/primitives";
-import { site } from "@/config/site";
 
 /**
  * The closing ink panel (shared site-wide). Layers: a drifting ink aurora (2 loops, paused
  * off-screen), grain, the GrowX growth line drawing with scroll and a scroll-driven white border beam.
  */
 export function CtaBand({
+  campaign,
   title = "Start growing on X today.",
   body = "Install GrowX for free and create your account in under a minute. Try every Premium feature for 30 days: no credit card, no commitment.",
 }: {
+  /** The page, for the store link's UTM tag (see src/lib/cws.ts campaignFor). */
+  campaign: string;
   title?: string;
   body?: string;
 }) {
@@ -37,11 +40,9 @@ export function CtaBand({
               {body}
             </p>
             <div className="reveal mt-9 flex flex-col justify-center gap-3 sm:flex-row" style={stagger(2)}>
-              {site.chromeStoreUrl ? (
-                <ExternalButton href={site.chromeStoreUrl} size="lg" data-magnetic="6">
-                  <IconChrome size={20} /> Add to Chrome, free
-                </ExternalButton>
-              ) : null}
+              <CwsButton campaign={campaign} content="end-cta" size="lg" data-magnetic="6">
+                <IconChrome size={20} /> Add to Chrome, free
+              </CwsButton>
               <LinkButton href="/signup" variant="white" size="lg">
                 Create free account
               </LinkButton>

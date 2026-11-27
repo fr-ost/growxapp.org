@@ -27,10 +27,6 @@ export const site = {
   description:
     "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, a post scheduler, an on-device AI writer, analytics, an unfollower tracker and cleanup.",
   url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL, process.env.VERCEL_ENV ?? process.env.NEXT_PUBLIC_VERCEL_ENV),
-  /** Official Chrome Web Store listing (provided by the owner); override with the env var if it changes. */
-  chromeStoreUrl:
-    trim(process.env.NEXT_PUBLIC_CHROME_STORE_URL) ||
-    "https://chromewebstore.google.com/detail/ofiancichfcakbdgekhcahflpoglfgbh",
   supportEmail: trim(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "support@growxapp.org",
   /** Google tag (Google Ads) ID, provided by the owner. Loaded only on the production deployment. */
   googleTagId: trim(process.env.NEXT_PUBLIC_GOOGLE_TAG_ID) || "AW-18494416712",

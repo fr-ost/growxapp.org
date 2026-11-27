@@ -15,6 +15,7 @@ import { Container } from "@/components/ui/primitives";
 import { featureNav, toolNav } from "@/config/nav";
 import { site } from "@/config/site";
 import { CURRENT_VERSION } from "@/content/releases";
+import { FooterStoreLink } from "@/components/footer-store-link";
 
 const cols = [
   {
@@ -78,16 +79,9 @@ export function SiteFooter() {
             The all-in-one X (Twitter) growth tool for Chrome: smart auto follow, a post scheduler, an AI writer, analytics and cleanup.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {site.chromeStoreUrl ? (
-              <a
-                href={site.chromeStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink transition-[translate] duration-200 ease-glide hover:-translate-y-0.5"
-              >
-                <IconChrome size={16} /> Chrome Web Store
-              </a>
-            ) : null}
+            <FooterStoreLink className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink transition-[translate] duration-200 ease-glide hover:-translate-y-0.5">
+              <IconChrome size={16} /> Chrome Web Store
+            </FooterStoreLink>
             <a
               href={`mailto:${site.supportEmail}`}
               className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white hover:border-white/40"

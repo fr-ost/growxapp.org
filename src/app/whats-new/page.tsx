@@ -2,9 +2,9 @@ import { CtaBand } from "@/components/home/cta-band";
 import { IconArrowRight, IconChrome } from "@/components/icons";
 import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { RichText } from "@/components/rich-text";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
-import { site } from "@/config/site";
 import { CURRENT_VERSION, LANGUAGES, releases } from "@/content/releases";
 import { pageMetadata } from "@/lib/seo";
 
@@ -30,11 +30,9 @@ export default function WhatsNewPage() {
         title={<>What&apos;s new in <span className="text-gradient">GrowX</span></>}
         actions={
           <>
-            {site.chromeStoreUrl ? (
-              <ExternalButton href={site.chromeStoreUrl} size="lg">
-                <IconChrome size={20} /> Get the update
-              </ExternalButton>
-            ) : null}
+            <CwsButton campaign="whats-new" content="hero" size="lg">
+              <IconChrome size={20} /> Get the update
+            </CwsButton>
             <LinkButton href="/features/twitter-analytics" variant="secondary" size="lg">
               See the new analytics <IconArrowRight size={17} className="nudge" />
             </LinkButton>
@@ -77,7 +75,7 @@ export default function WhatsNewPage() {
           ))}
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="whats-new" />
     </>
   );
 }

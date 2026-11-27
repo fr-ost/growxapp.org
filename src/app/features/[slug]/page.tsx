@@ -17,11 +17,11 @@ import { Stage3D } from "@/components/motion/stage";
 import { StepRail } from "@/components/motion/step-rail";
 import { stagger } from "@/components/motion/stagger";
 import { RichText } from "@/components/rich-text";
-import { ExternalButton, LinkButton } from "@/components/ui/button";
+import { CwsButton } from "@/components/cws-link";
+import { LinkButton } from "@/components/ui/button";
 import { Badge, Container, Eyebrow, Section, SectionHeading } from "@/components/ui/primitives";
 import { toolNav } from "@/config/nav";
 import { TRIAL_DAYS } from "@/config/pricing";
-import { site } from "@/config/site";
 import { featurePages, getFeaturePage } from "@/content/feature-pages";
 import { getPost } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -81,11 +81,9 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
               <RichText text={page.lead} />
             </p>
             <div className="hero-settle mt-8 flex flex-col gap-3 sm:flex-row" style={stagger(4)}>
-              {site.chromeStoreUrl ? (
-                <ExternalButton href={site.chromeStoreUrl} size="lg" data-magnetic="6">
-                  <IconChrome size={20} /> Add to Chrome, free
-                </ExternalButton>
-              ) : null}
+              <CwsButton campaign={`feature-${page.slug}`} content="hero" size="lg" data-magnetic="6">
+                <IconChrome size={20} /> Add to Chrome, free
+              </CwsButton>
               <LinkButton href="/signup" variant="secondary" size="lg">
                 Try Premium free for {TRIAL_DAYS} days
               </LinkButton>
@@ -296,7 +294,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
         </Container>
       </Section>
 
-      <CtaBand />
+      <CtaBand campaign={`feature-${page.slug}`} />
     </>
   );
 }

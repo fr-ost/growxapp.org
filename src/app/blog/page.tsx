@@ -145,7 +145,7 @@ export default function BlogIndexPage() {
           </p>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="blog" />
     </>
   );
 }

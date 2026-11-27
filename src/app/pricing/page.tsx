@@ -139,7 +139,7 @@ export default function PricingPage() {
           </p>
         </Container>
       </Section>
-      <CtaBand />
+      <CtaBand campaign="pricing" />
     </>
   );
 }
