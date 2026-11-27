@@ -152,9 +152,8 @@ export const round5Posts: Post[] = [
           p("Most of these tactics are habits only you can build: your profile, your posts, your replies. GrowX, a Chrome extension for X, takes over the repetitive parts so you have more time for them."),
           ul(
             "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of your source accounts and ranks everyone else by a follow-back score from 1 to 99, with random delays, breaks and daily caps.",
-            "**Create**: a [post scheduler](/features/twitter-post-scheduler) with queue slots, a best-time-to-post heat map built from your own posts, and 52 templates.",
-            "**Engage**: the [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs so you can reply early. Nothing is sent until you press the button.",
-            "**Insights**: post analytics, a daily follower tracker and, on Premium, which posts brought followers.",
+            "**AI Creator Studio**: a [post scheduler](/features/twitter-post-scheduler) with queue slots, a best-time-to-post heat map built from your own posts and 52 templates, plus the [AI Reply Assistant](/features/twitter-reply-targets), which lists fresh posts from your sources and VIPs so you can reply early. Nothing is sent until you press the button.",
+            "**Analytics**: who followed you back, a Growth Score, post analytics, a daily follower tracker and, on Premium, which posts brought followers.",
             "**Cleanup**: find accounts that don't follow back or have gone inactive, and unfollow them at a safe pace.",
           ),
           p(TRY),
@@ -506,7 +505,7 @@ export const round5Posts: Post[] = [
         heading: "What about inactive followers?",
         blocks: [
           p("Cleanup works on the accounts **you** follow. Inactive accounts that follow **you** are a different question, and usually a smaller one: they simply never see your posts, so the main cost is a follower count that overstates your real audience a little."),
-          p("If you want to know how many there are, **Follower quality** (Premium) in GrowX Insights sorts your newest followers, on request, into real and active, inactive (90+ days), likely bots and private accounts. GrowX doesn't remove followers for you. X has its own option to remove a follower; check X's Help Center for how it works today. For most accounts, writing for the active followers is a better use of time than removing the quiet ones."),
+          p("If you want to know how many there are, **Follower quality** (Premium) in GrowX Analytics sorts your newest followers, on request, into real and active, inactive (90+ days), likely bots and private accounts. GrowX doesn't remove followers for you. X has its own option to remove a follower; check X's Help Center for how it works today. For most accounts, writing for the active followers is a better use of time than removing the quiet ones."),
         ],
       },
       {
@@ -567,11 +566,11 @@ export const round5Posts: Post[] = [
         blocks: [
           p("GrowX is a Chrome extension for growing on X. It brings the daily jobs of an X account into one dashboard that works inside your own signed-in x.com tab:"),
           ul(
-            "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche and ranks everyone else by a follow-back score from 1 to 99, with the Safe and Balanced paces on the free plan. [List follow](/features/twitter-list-follow) follows exactly the accounts on your own list.",
-            "**Create**: a [post scheduler](/features/twitter-post-scheduler) for posts and threads with queue slots, a best-time-to-post heat map, a calendar, drafts and 52 templates.",
+            "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche and ranks everyone else by a follow-back score from 1 to 99, with the Slow pace (about 100 a day) on the free plan. [List follow](/features/twitter-list-follow) follows exactly the accounts on your own list.",
+            "**AI Creator Studio**: a [post scheduler](/features/twitter-post-scheduler) for posts and threads with queue slots, a best-time-to-post heat map, a calendar, drafts and 52 templates.",
             "**GrowX AI (Premium)**: Write, Improve, Hooks, Thread it and AI replies, on your own computer with Chrome's built-in AI model.",
-            "**Engage**: the [AI Reply Assistant](/features/twitter-reply-targets) surfaces fresh posts so you can reply early. Likes and replies are only sent when you press the button, and GrowX never sends DMs.",
-            "**Insights**: post analytics, what works, top fans and a daily [unfollower tracker](/features/twitter-unfollower-tracker).",
+            "**AI Reply Assistant** (in AI Creator Studio): [fresh posts](/features/twitter-reply-targets) so you can reply early. Likes and replies are only sent when you press the button, and GrowX never sends DMs.",
+            "**Analytics**: who followed back, a Growth Score, post analytics, what works, top fans and a daily [unfollower tracker](/features/twitter-unfollower-tracker).",
             "**Cleanup**: find accounts that don't follow back or are inactive and unfollow them at a safe pace.",
           ),
           p("GrowX has a free plan forever. Premium costs $1.99 for 30 days, $14.99 for 365 days or $59.99 lifetime, prepaid with no automatic renewal, and every Premium feature can be tried free for 30 days without a card. See [pricing](/pricing)."),
@@ -610,7 +609,7 @@ export const round5Posts: Post[] = [
         heading: "4. Analytics and follower tracking",
         blocks: [
           p("Analytics extensions add numbers next to posts or collect them into a dashboard. The useful ones answer questions X's own screens don't answer at a glance: which topics and formats work for you, which posts brought followers and who unfollowed you. Check how much history a tool keeps and whether it stores your data on its servers or in your browser."),
-          p("GrowX Insights reads your numbers through an open x.com tab and keeps them in Chrome's storage. The free plan covers your latest 30 posts and 7 days of follower history; Premium adds full analytics and the full history. Our guide to [Twitter analytics tools](/blog/twitter-analytics-tools) compares the options in more depth."),
+          p("GrowX Analytics reads your numbers through an open x.com tab and keeps them in Chrome's storage. The free plan covers your latest 30 posts and 7 days of follower history; Premium adds full analytics and the full history. Our guide to [Twitter analytics tools](/blog/twitter-analytics-tools) compares the options in more depth."),
         ],
       },
       {
@@ -818,11 +817,10 @@ export const round5Posts: Post[] = [
         blocks: [
           p("GrowX, a Chrome extension for X, has a tool for most steps of this plan:"),
           ul(
-            "**Goals**: the monthly goal planner, daily goals for posts, replies and new followers, and streaks and milestones in Insights keep the daily checklist honest.",
-            "**Create**: queue slots, a best-time-to-post heat map from your own posts and followers, a calendar, drafts and 52 templates. See the [post scheduler](/features/twitter-post-scheduler).",
-            "**Engage**: the [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs, ranked by freshness and how fast they take off.",
-            "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche. Balanced is the default pace; a quiet or young account can start on Safe with warm-up turned on.",
-            "**Insights**: post analytics, what works and a daily follower tracker. Premium adds which posts brought followers and a weekly report every Monday, handy for the weekly review.",
+            "**Goals**: the monthly goal planner, daily goals for posts, replies and new followers, and streaks and milestones keep the daily checklist honest.",
+            "**AI Creator Studio**: queue slots, a best-time-to-post heat map from your own posts and followers, a calendar, drafts and 52 templates (see the [post scheduler](/features/twitter-post-scheduler)), and the [AI Reply Assistant](/features/twitter-reply-targets), which lists fresh posts from your sources and VIPs, ranked by freshness and how fast they take off.",
+            "**Grow**: [smart auto follow](/features/twitter-auto-follow) follows the newest followers of accounts in your niche. Slow is the free pace and a good start for a quiet or young account, with warm-up turned on; Balanced and the faster paces come with Premium.",
+            "**Analytics**: who followed back, your Growth Score and the AI Growth Coach's next steps, post analytics, what works and a daily follower tracker. Premium adds which posts brought followers and a weekly report every Monday, handy for the weekly review.",
             "**Cleanup and evergreen**: unfollow non-followers and inactive accounts at a safe pace, and with Premium let evergreen recycling bring your best posts back with variants.",
           ),
           p("Scheduled posts and auto follow run from your own Chrome, so keep the computer on with Chrome open when they are due. " + TRY),
@@ -951,10 +949,11 @@ export const round5Posts: Post[] = [
       },
       {
         id: "growx",
-        heading: "GrowX Insights: what it measures",
+        heading: "GrowX Analytics: what it measures",
         blocks: [
           p("GrowX is a Chrome extension for X with analytics built in next to its scheduler and growth tools. It reads your numbers through an **x.com tab that is already open**, one small step per minute at most, refreshes your post analytics every 3 hours while x.com is open, and keeps everything in Chrome's storage on your computer."),
           ul(
+            "**Who followed back** and **Growth Score 2.0** (new in 2.5.1): which follows turned into followers and how fast, and one score from 0 to 100 from six parts of your own numbers, with an AI Growth Coach.",
             "**Post analytics**: views, likes, reposts, replies, bookmarks and engagement rate for your recent posts. The free plan covers your latest 30 posts.",
             "**What works**: topics and formats (questions, images, text, threads, links) compared by engagement.",
             "**Best time to post**: a week-by-24-hour heat map from your own posts and when your followers are active.",
@@ -994,7 +993,7 @@ export const round5Posts: Post[] = [
     faq: [
       { q: "What is the best Twitter analytics tool?", a: "The one that answers your questions: what to post, when, which posts bring followers and who left. For many accounts that means X's own numbers plus one tool that groups posts, shows best times and tracks unfollowers." },
       { q: "Do I still need X's own analytics if I use a tool?", a: "Yes. X's numbers are the official record for your account, so use them as the reference when a tool shows something different." },
-      { q: "What can I use instead of BlackMagic?", a: "BlackMagic, an X analytics tool owned by Hypefury, shut down in July 2026. Note your baseline, list the jobs it did for you and pick a maintained tool that covers them, such as GrowX Insights for post stats, best times and unfollower tracking." },
+      { q: "What can I use instead of BlackMagic?", a: "BlackMagic, an X analytics tool owned by Hypefury, shut down in July 2026. Note your baseline, list the jobs it did for you and pick a maintained tool that covers them, such as GrowX Analytics for post stats, best times, follow-backs and unfollower tracking." },
       { q: "Does GrowX need my X password to show analytics?", a: "No. GrowX reads your numbers through an x.com tab you are already signed in to, one small step per minute at most, and keeps them in your browser." },
     ],
   },

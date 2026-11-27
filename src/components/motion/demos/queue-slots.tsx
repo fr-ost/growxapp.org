@@ -30,7 +30,7 @@ function Slot({ time, i, children, className = "" }: { time: string; i: number; 
 /** Drafts dropping into the default queue slots (09:00, 13:00, 18:30). */
 export function DemoQueueSlots(props: DemoProps) {
   return (
-    <DemoFrame title="GrowX · Create" label={LABEL} {...props}>
+    <DemoFrame title="GrowX · AI Creator Studio" label={LABEL} {...props}>
       <div className={f.head}>
         <span className={f.headTitle}>Queue</span>
         <span className={f.chip}>Free: up to 10 waiting</span>

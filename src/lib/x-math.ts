@@ -12,7 +12,7 @@ const n = (v: number | undefined) => (Number.isFinite(v) && (v as number) > 0 ? 
 
 export const totalInteractions = (i: Interactions) => n(i.likes) + n(i.reposts) + n(i.replies) + n(i.bookmarks) + n(i.quotes);
 
-/** Interactions per view, in percent (null when there are no views). Same definition as GrowX Insights. */
+/** Interactions per view, in percent (null when there are no views). Same definition as GrowX Analytics. */
 export function engagementRateByViews(i: Interactions, views: number): number | null {
   return n(views) ? (totalInteractions(i) / n(views)) * 100 : null;
 }

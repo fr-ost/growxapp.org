@@ -79,7 +79,7 @@ export const comparePosts: Post[] = [
         blocks: [
           p("[GrowX](/) is a Chrome extension for X (Twitter) that combines growth and management in one dashboard. Where Circleboom starts from managing an account, GrowX starts from growing it, and adds the management tools around that."),
           ul(
-            "**Smart auto follow**: you add a few accounts in your niche as sources, and GrowX follows their newest followers, the people most likely to follow you back. Everyone else is ranked by a [follow-back score from 1 to 99](/blog/twitter-follow-back-score-growx). It runs at a human pace with presets such as Safe (about 150 a day) and Balanced (about 280 a day), random delays, breaks and caps. See [how it works](/features/twitter-auto-follow).",
+            "**Smart auto follow**: you add a few accounts in your niche as sources, and GrowX follows their newest followers, the people most likely to follow you back. Everyone else is ranked by a [follow-back score from 1 to 99](/blog/twitter-follow-back-score-growx). It runs at a human pace with presets such as Slow (about 100 a day, free) and Balanced (about 280 a day, Premium), random delays, breaks and caps. See [how it works](/features/twitter-auto-follow).",
             "**Cleanup**: scan for accounts that are [not following back](/blog/unfollow-non-followers-twitter) or inactive, review them, and unfollow at a safe pace (up to 30 an hour and 200 a day). Each account is re-checked right before it is unfollowed.",
             "**Post scheduler**: posts and threads with up to 4 images, queue slots, a calendar, drafts, 52 templates and a best-time-to-post heat map. See the [post scheduler](/features/twitter-post-scheduler).",
             "**GrowX AI**: writes, improves and threads posts on your own computer with the AI built into Chrome, with no API key (Premium).",
@@ -144,9 +144,9 @@ export const comparePosts: Post[] = [
           ol(
             "Install GrowX from the Chrome Web Store and open x.com in the same Chrome profile.",
             "Follow the setup wizard: add three to five source accounts in your niche, or press **Find sources for me**.",
-            "Pick the **Safe** pace on a new account or **Balanced** on an established one, and press Start.",
+            "Start on the free **Slow** pace (or **Balanced** with Premium on an established account), and press Start.",
             "Run a **Cleanup** scan to see who is not following back, and unfollow in small batches.",
-            "Queue a week of posts in **Create**, and check **Insights** after a few days.",
+            "Queue a week of posts in **AI Creator Studio**, and check **Analytics** after a few days.",
           ),
           p(TRY),
         ],
@@ -154,7 +154,7 @@ export const comparePosts: Post[] = [
     ],
     faq: [
       { q: "What is the best Circleboom alternative?", a: "It depends on the job. For growing an X account with auto follow, cleanup, scheduling, analytics and AI writing in one place, GrowX is built for that. For scheduling across many networks, a multi-network scheduler such as Buffer may fit better." },
-      { q: "Is there a free Circleboom alternative?", a: "Yes. GrowX has a free plan forever with Safe and Balanced auto follow, up to 10 posts waiting in the queue, analytics for your latest 30 posts, 7 days of unfollower history and cleanup runs of up to 200 accounts. Every Premium feature can also be tried free for 30 days without a card." },
+      { q: "Is there a free Circleboom alternative?", a: "Yes. GrowX has a free plan forever with auto follow at the Slow pace, up to 10 posts waiting in the queue, analytics for your latest 30 posts, 7 days of unfollower history and cleanup runs of up to 200 accounts. Every Premium feature can also be tried free for 30 days without a card." },
       { q: "Does GrowX need my X password?", a: "No. GrowX works inside the x.com tab you are already signed in to in Chrome. It never asks for your X password and does not use an X app connection." },
       { q: "Can I use GrowX and Circleboom together?", a: "Yes. They do not depend on each other. Just avoid running two tools that follow or unfollow at the same time, so your account's daily activity stays at a careful level." },
     ],
@@ -195,14 +195,14 @@ export const comparePosts: Post[] = [
         heading: "GrowX pricing in plain numbers",
         blocks: [
           ul(
-            "**Free plan, forever**: Safe and Balanced auto follow, the post scheduler with up to 10 posts waiting, analytics for your latest 30 posts, 7 days of unfollower history, fresh posts to reply to and cleanup runs of up to 200 accounts.",
+            "**Free plan, forever**: auto follow at the Slow pace (about 100 a day), the post scheduler with up to 10 posts waiting, analytics for your latest 30 posts, 7 days of unfollower history, fresh posts to reply to and cleanup runs of up to 200 accounts.",
             "**30-day Premium trial**: every Premium feature free for 30 days, no credit card, once per account.",
             "**Premium, 30 days**: $1.99.",
             "**Premium, 365 days**: $14.99, about $1.25 a month.",
             "**Premium, lifetime**: $59.99 once (an early-bird price of $29.99 applies to the first 100 lifetime buyers while it lasts).",
           ),
           p("Every Premium plan is **prepaid and does not renew automatically**. When your days run out, you go back to the free plan; nothing is charged unless you choose to buy again. Payment is in crypto through NOWPayments. Full details are on the [pricing page](/pricing)."),
-          p("Premium includes everything: Turbo and X Premium paces, smart score, unlimited scheduling, evergreen recycling, GrowX AI, full analytics with the weekly report, follower quality, bulk unfollow and automatic cleanup."),
+          p("Premium includes everything: the Balanced, Turbo and X Premium paces, smart score, unlimited scheduling, evergreen recycling, GrowX AI, full analytics with the weekly report, follower quality, bulk unfollow and automatic cleanup."),
         ],
       },
       {
@@ -232,7 +232,7 @@ export const comparePosts: Post[] = [
             "**AI that costs nothing to run.** GrowX AI uses the model built into Chrome on your own computer: no API key and no per-word fees.",
             "**No servers holding your data.** Your queue, history and analytics stay in your browser, which keeps running costs low.",
             "**Prepaid, no auto-renew.** You never pay for months you forgot about.",
-            "**A strong free plan.** Many people grow for a long time on the free plan and only buy Premium when they need Turbo pace, unlimited scheduling or AI.",
+            "**A strong free plan.** Many people grow for a long time on the free plan and only buy Premium when they need a faster pace, unlimited scheduling or AI.",
           ),
         ],
       },
@@ -240,7 +240,7 @@ export const comparePosts: Post[] = [
         id: "scenarios",
         heading: "Three common scenarios",
         blocks: [
-          p("**The new creator.** You post a few times a week and want your first 1,000 followers. The free plan covers Safe and Balanced auto follow, up to 10 queued posts and basic analytics, so the cost can be $0. Add the 30-day trial when you want to try the AI writer and full analytics. See [how to get your first 1,000 followers](/blog/first-1000-followers-on-x)."),
+          p("**The new creator.** You post a few times a week and want your first 1,000 followers. The free plan covers auto follow at the Slow pace, up to 10 queued posts and basic analytics, so the cost can be $0. Add the 30-day trial when you want to try the AI writer and full analytics. See [how to get your first 1,000 followers](/blog/first-1000-followers-on-x)."),
           p("**The consistent poster.** You post daily and want unlimited scheduling, evergreen posts and the weekly report. Yearly Premium at $14.99 covers all of it, about $1.25 a month."),
           p("**The long-term user.** You plan to use X seriously for years. Lifetime Premium is $59.99 once, about the same as four years of the yearly plan, with no renewals after that. The early-bird price of $29.99, while it lasts, equals two years."),
           p("Each GrowX account links 2 X usernames for free; extra slots are $0.99 each, one time, and separate workspaces per X account are part of Premium."),
@@ -369,10 +369,10 @@ export const comparePosts: Post[] = [
           ol(
             "**Day 1**: install GrowX, open x.com in the same Chrome profile and finish the setup wizard. Write down your current follower and following counts so you can compare later.",
             "**Day 1**: pause any follow or unfollow automation in other tools, so only one tool acts on your account at a time.",
-            "**Day 2**: add three to five source accounts in your niche, or use **Find sources for me**, and start auto follow on the **Safe** pace (or Balanced for an established account).",
+            "**Day 2**: add three to five source accounts in your niche, or use **Find sources for me**, and start auto follow on the free **Slow** pace (or Balanced with Premium for an established account).",
             "**Day 3**: run a **Cleanup** scan and unfollow non-followers in small batches at the safe pace.",
             "**Day 4**: move your scheduled X posts into GrowX's queue and set your queue slots.",
-            "**Day 5 to 7**: check Insights and the source leaderboard, drop weak sources, and start the free 30-day Premium trial if you want the AI writer, smart score and full analytics.",
+            "**Day 5 to 7**: check Analytics (who followed back) and the source leaderboard, drop weak sources, and start the free 30-day Premium trial if you want the AI writer, smart score and full analytics.",
           ),
           p("If you still need Circleboom Publish for other networks, you can keep it for those and use GrowX for X."),
           p(TRY),
@@ -383,7 +383,7 @@ export const comparePosts: Post[] = [
       { q: "What is the main difference between Circleboom and GrowX?", a: "Circleboom is a web-based account manager focused on audience analysis and cleanup, with scheduling in a separate product. GrowX is a Chrome extension focused on growth, with smart auto follow, scheduling, AI writing, analytics, an unfollower tracker and cleanup in one plan." },
       { q: "Can GrowX unfollow people who don't follow me back?", a: "Yes. GrowX Cleanup finds accounts that don't follow you back and inactive accounts, and unfollows the ones you select at a safe pace, up to 30 an hour and 200 a day, re-checking each account first. Premium adds bulk unfollow of up to 5,000 in one run." },
       { q: "Does GrowX work on my phone?", a: "No. GrowX is an extension for desktop Chrome. If you manage X mainly from a phone, a web-based tool is a better fit." },
-      { q: "Will switching tools affect my account?", a: "Switching itself does nothing to your account. To stay careful, run only one tool that follows or unfollows at a time and start GrowX on the Safe or Balanced pace." },
+      { q: "Will switching tools affect my account?", a: "Switching itself does nothing to your account. To stay careful, run only one tool that follows or unfollows at a time and start GrowX on the free Slow pace." },
     ],
   },
 ];

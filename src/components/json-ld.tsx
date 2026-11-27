@@ -110,7 +110,7 @@ export const websiteLd = {
 };
 
 const OFFER_TEXT: Record<PricingTier["id"], (t: PricingTier) => string> = {
-  FREE: () => "Free forever: Safe and Balanced auto follow, up to 10 scheduled posts, analytics for your latest 30 posts and 7 days of follower history.",
+  FREE: () => "Free forever: auto follow at the Slow pace (about 100 a day), up to 10 scheduled posts, analytics for your latest 30 posts, who followed back and 7 days of follower history.",
   PRO_MONTHLY: () => "Premium for 30 days, prepaid in crypto. Does not renew automatically.",
   PRO_YEARLY: () => "Premium for 365 days, prepaid in crypto. Does not renew automatically.",
   PRO_LIFETIME: (t) =>
@@ -147,7 +147,7 @@ export const softwareLd = {
   browserRequirements: "Requires Google Chrome 116 or newer on a desktop computer",
   url: site.url,
   image: abs("/opengraph-image"),
-  screenshot: abs("/screens/overview.webp"),
+  screenshot: abs("/screens/overview-251.webp"),
   ...(site.chromeStoreUrl ? { downloadUrl: site.chromeStoreUrl, installUrl: site.chromeStoreUrl } : {}),
   author: { "@id": PERSON_ID },
   publisher: { "@id": ORG_ID },
@@ -158,6 +158,7 @@ export const softwareLd = {
     "Post and thread scheduler with queue slots and best time to post",
     "GrowX AI writer that runs on your computer",
     "Post analytics, topics and formats that work",
+    "Who followed back, a Growth Score and an AI Growth Coach from your own numbers",
     "Unfollower tracker: who followed and who unfollowed you",
     "AI Reply Assistant: fresh posts in your niche, ranked to reply early, with AI-drafted replies you approve",
     "AI reply buttons beside X's reply box",

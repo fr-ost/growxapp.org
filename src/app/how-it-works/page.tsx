@@ -22,27 +22,27 @@ export const metadata = pageMetadata({
 const steps = [
   { icon: IconChrome, name: "Install GrowX and sign in to X", text: "Add the free extension from the Chrome Web Store and make sure you are signed in at x.com. GrowX works through your own browser session: it never asks for your X password and does not use X OAuth." },
   { icon: IconSparkles, name: "Run the setup wizard", text: "Tell GrowX what your account is about and set simple daily goals for posts, replies and new followers. The wizard points you to the right pages; it takes a few minutes." },
-  { icon: IconTarget, name: "Add sources and pick a pace", text: "Add accounts in your niche, or press Find sources for me. GrowX follows their newest followers first, then ranks everyone else by a follow-back score from 1 to 99. Choose Safe or Balanced and press Start." },
+  { icon: IconTarget, name: "Add sources and pick a pace", text: "Add accounts in your niche, or press Find sources for me. GrowX follows their newest followers first, then ranks everyone else by a follow-back score from 1 to 99. Pick a pace (Slow is free forever) and press Start." },
   { icon: IconShield, name: "GrowX follows at a careful, human pace", text: "One account at a time with random delays, breaks and rolling hourly and daily caps. It slows down by itself after any X warning, checks that follows stick and stops completely if X needs your attention." },
   { icon: IconPen, name: "Queue posts for your best times", text: "Write posts and threads with images, then post now, schedule or add them to your queue slots. GrowX learns your best time to post from your own posts and when your followers are active." },
   { icon: IconMessage, name: "Reply early to fresh posts", text: "The AI Reply Assistant lists fresh posts from big accounts in your niche, ranked by how fast they take off. Reply and like from GrowX, or let GrowX AI draft replies in your tone (Premium). You approve every reply." },
-  { icon: IconChart, name: "Check your insights every week", text: "See every post's numbers, the topics and formats that work, who followed and who unfollowed you, and which sources bring follow-backs. Keep what works and drop the rest." },
+  { icon: IconChart, name: "Check your analytics every week", text: "See who followed you back and how fast, your Growth Score and the AI Growth Coach's next steps, every post's numbers, who followed and who unfollowed you, and which sources bring follow-backs. Keep what works and drop the rest." },
   { icon: IconBroom, name: "Clean up when you are ready", text: "Scan your following list for accounts that don't follow back or went quiet, review the results and unfollow the ones you pick at a safe pace." },
 ];
 
 const presets = [
-  { name: "Safe", delay: "45-110 s", rest: "every 12 follows, 18 min", hourly: "18", daily: "~150", who: "New or warming-up accounts" },
-  { name: "Balanced", delay: "30-75 s", rest: "every 18 follows, 14 min", hourly: "28", daily: "~280", who: "Recommended for most accounts" },
-  { name: "Turbo", delay: "18-45 s", rest: "every 25 follows, 10 min", hourly: "40", daily: "~390", who: "Aged accounts with a clean record" },
-  { name: "X Premium pace", delay: "12-32 s", rest: "every 35 follows, 8 min", hourly: "60", daily: "~800", who: "Accounts with X's own Premium subscription" },
+  { name: "Slow", delay: "50-120 s", rest: "every 10 follows, 20 min", hourly: "14", daily: "~100", who: "Free forever; gentle on new or warming-up accounts" },
+  { name: "Balanced", delay: "30-75 s", rest: "every 18 follows, 14 min", hourly: "28", daily: "~280", who: "Premium; recommended for most accounts" },
+  { name: "Turbo", delay: "18-45 s", rest: "every 25 follows, 10 min", hourly: "40", daily: "~390", who: "Premium; aged accounts with a clean record" },
+  { name: "X Premium pace", delay: "12-32 s", rest: "every 35 follows, 8 min", hourly: "60", daily: "~800", who: "Premium; accounts with X's own Premium subscription" },
 ];
 
 const faqs = [
-  { q: "How many people can GrowX follow per day?", a: "It depends on the pace: about 150 a day on Safe, 280 on Balanced, 390 on Turbo and 800 on the X Premium pace, always within rolling hourly and daily caps. X allows roughly 400 follows a day on a normal account, so the higher presets are meant for aged accounts or accounts with X Premium." },
+  { q: "How many people can GrowX follow per day?", a: "It depends on the pace: about 100 a day on Slow (free forever), and with Premium 280 on Balanced, 390 on Turbo and 800 on the X Premium pace, always within rolling hourly and daily caps. X allows roughly 400 follows a day on a normal account, so the higher presets are meant for aged accounts or accounts with X Premium." },
   { q: "Does GrowX work if I close the popup or the X tab?", a: "Yes. The engine runs in the extension's background service worker and keeps going until you press Stop. It uses an open x.com tab or a small pinned one, and resumes after Chrome restarts. Chrome itself needs to stay open." },
   { q: "Do scheduled posts go out when my computer is off?", a: "No. GrowX posts through your signed-in x.com tab in Chrome, so Chrome must be running. A post that is more than six hours late is never posted by itself: it waits for you as missed." },
   { q: "What happens if X shows a warning?", a: "GrowX backs off automatically: it lowers its limits and rests before continuing, and posting pauses too. If you are signed out, the account is locked or X issues repeated automation warnings, it stops completely and never clicks through a challenge." },
-  { q: "Is my data uploaded anywhere?", a: "Your settings, sources, queue, posts, history and analytics are stored in your browser. GrowX talks to x.com for your account and does not upload your X data. GrowX AI runs on your computer. Anonymous usage counts are optional, and feature usage is shared only if you say yes; both can be switched off." },
+  { q: "Is my data uploaded anywhere?", a: "Your settings, sources, queue, posts, history and analytics are stored in your browser. GrowX talks to x.com for your account and does not upload your X data; the only exception you can turn off is the optional TwitterScore on Home, which sends just your @username to twitterscore.io. GrowX AI runs on your computer. Anonymous usage counts are optional, and feature usage is shared only if you say yes; both can be switched off." },
   { q: "Does GrowX need my X password or API keys?", a: "No. It works through the X session already signed in to your Chrome browser. It does not ask for, see or store your X password and does not use X OAuth or API keys." },
 ];
 
@@ -131,7 +131,7 @@ export default function HowItWorksPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-4 text-center text-xs text-muted">Higher presets are part of Premium. No tool can promise zero risk on X; you remain responsible for following X&apos;s rules.</p>
+          <p className="mt-4 text-center text-xs text-muted">Slow is free forever; Balanced, Turbo and X Premium are part of Premium and the 30-day trial. No tool can promise zero risk on X; you remain responsible for following X&apos;s rules.</p>
         </Container>
       </Section>
 

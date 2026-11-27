@@ -3,7 +3,7 @@ import { PACE_PRESETS } from "@/components/motion/demos/pace-presets";
 import { stagger } from "@/components/motion/stagger";
 
 /**
- * The four follow paces as cards: a rhythm strip on a shared time scale (Safe sparse, X Premium
+ * The four follow paces as cards: a rhythm strip on a shared time scale (Slow sparse, X Premium
  * dense) plus the preset's real numbers. The pace table below stays the accessible source of
  * truth; these cards are a visual companion. Names are not headings, so the page outline is unchanged.
  */
@@ -11,7 +11,7 @@ export function PaceCards() {
   return (
     <ul data-spotlight-group="" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {PACE_PRESETS.map((p, i) => {
-        const tag = p.id === "balanced" ? "Default" : p.premium ? "Premium" : null;
+        const tag = p.premium ? "Premium" : "Free forever";
         return (
           <li
             key={p.id}
@@ -24,7 +24,7 @@ export function PaceCards() {
               {tag ? (
                 <span
                   className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                    tag === "Default" ? "bg-accent-soft text-accent-ink ring-1 ring-accent/15" : "bg-surface-2 text-text-2 ring-1 ring-hairline-strong"
+                    tag === "Free forever" ? "bg-accent-soft text-accent-ink ring-1 ring-accent/15" : "bg-surface-2 text-text-2 ring-1 ring-hairline-strong"
                   }`}
                 >
                   {tag}

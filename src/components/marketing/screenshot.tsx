@@ -2,12 +2,12 @@ import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 
 const SIZES: Record<string, [number, number]> = {
-  "/screens/overview.webp": [1280, 614],
+  "/screens/overview-251.webp": [1280, 614],
   "/screens/marquee.webp": [1400, 560],
 };
 
 /** Shots whose right-hand callout column (incl. "Always safe") is cropped away. */
-const RIGHT_CROPPED = new Set(["/screens/grow.webp", "/screens/create.webp", "/screens/insights.webp", "/screens/followers.webp"]);
+const RIGHT_CROPPED = new Set(["/screens/grow-251.webp", "/screens/studio-251.webp", "/screens/analytics-251.webp", "/screens/followers-251.webp"]);
 
 type CropMode = "top" | "right" | "none";
 
@@ -22,7 +22,7 @@ const RIGHT_FADE: CSSProperties = {
 
 function cropMode(src: string, crop: "auto" | "none"): CropMode {
   if (crop === "none") return "none";
-  if (src === "/screens/overview.webp") return "top";
+  if (src === "/screens/overview-251.webp") return "top";
   return RIGHT_CROPPED.has(src) ? "right" : "none";
 }
 
@@ -30,7 +30,7 @@ function cropMode(src: string, crop: "auto" | "none"): CropMode {
  * A product screenshot in a soft stage frame. Screenshots use demo data.
  * crop "auto" keeps the baked-in marketing callouts (result badges, "Always safe") out of view:
  * - overview: a 1280/520 frame, top-aligned, with a bottom mask fade;
- * - grow / create / insights / followers: a 960/560 frame, left-aligned, with a right mask fade.
+ * - grow / studio / analytics / followers: a 960/560 frame, left-aligned, with a right mask fade.
  * `children` render in an absolute overlay with container-type: inline-size, so annotations can be
  * placed in percentages of the visible (cropped) frame. The image's opacity is never animated.
  */

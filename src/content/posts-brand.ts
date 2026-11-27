@@ -124,7 +124,7 @@ export const brandPosts: Post[] = [
         id: "growx",
         heading: "Running your Twitter content calendar in GrowX",
         blocks: [
-          p("GrowX is a Chrome extension for X with a [post scheduler](/features/twitter-post-scheduler) in its Create area. Here is how the pieces of a content calendar map onto it:"),
+          p("GrowX is a Chrome extension for X with a [post scheduler](/features/twitter-post-scheduler) in its AI Creator Studio. Here is how the pieces of a content calendar map onto it:"),
           ul(
             "**Calendar**: see what goes out on which day, and edit anything before it is published.",
             "**Drafts**: park ideas that are not ready yet, then finish them during your batching session.",

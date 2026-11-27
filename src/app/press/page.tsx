@@ -19,14 +19,14 @@ export const metadata = pageMetadata({
 
 const oneLine = "GrowX is a free Chrome extension that helps you grow on X (Twitter): smart auto follow, a post scheduler, an on-device AI writer, analytics and an unfollower tracker.";
 const short = `GrowX is the all-in-one X (Twitter) growth tool for Chrome. It follows people likely to follow you back at a safe, human pace, schedules posts and threads for your best times, writes with an AI that runs on your own computer, and shows which posts bring followers and who unfollowed you. Free plan forever, with a ${TRIAL_DAYS}-day Premium trial and no credit card.`;
-const long = `GrowX is an independent Chrome extension, built by ${site.author}, that brings the daily work of growing an X (Twitter) account into one dashboard. Its smart auto follow reads the newest followers of accounts in your niche, scores every candidate for follow-back likelihood and follows one account at a time with random delays, breaks, rolling caps and an automatic slow-down after any warning from X. A post and thread scheduler with queue slots and a best-time heat map keeps you posting consistently; the GrowX AI writer suggests ideas, hooks and threads using the AI model built into Chrome, so drafts never leave your computer. Insights show every post's numbers, the topics and formats that work, and who followed or unfollowed you, while the AI Reply Assistant surfaces fresh posts in your niche to reply to early and, with Premium, drafts replies you approve, also through tone buttons beside X's own reply box. GrowX works inside your own signed-in x.com session and never asks for your X password. The free plan stays free; Premium starts at $1.99 for 30 days, with a ${TRIAL_DAYS}-day free trial.`;
+const long = `GrowX is an independent Chrome extension, built by ${site.author}, that brings the daily work of growing an X (Twitter) account into one dashboard. Its smart auto follow reads the newest followers of accounts in your niche, scores every candidate for follow-back likelihood and follows one account at a time with random delays, breaks, rolling caps and an automatic slow-down after any warning from X. A post and thread scheduler with queue slots and a best-time heat map keeps you posting consistently; the GrowX AI writer suggests ideas, hooks and threads using the AI model built into Chrome, so drafts never leave your computer. Analytics shows who followed you back after GrowX followed them, a Growth Score from your own numbers, every post's numbers, the topics and formats that work, and who followed or unfollowed you, while the AI Reply Assistant surfaces fresh posts in your niche to reply to early and, with Premium, drafts replies you approve, also through tone buttons beside X's own reply box. GrowX works inside your own signed-in x.com session and never asks for your X password. The free plan stays free; Premium starts at $1.99 for 30 days, with a ${TRIAL_DAYS}-day free trial.`;
 
 const shots = [
-  { src: "/screens/overview.webp", name: "Dashboard and popup" },
-  { src: "/screens/grow.webp", name: "Grow: sources and pace" },
-  { src: "/screens/create.webp", name: "Create: composer and GrowX AI" },
-  { src: "/screens/insights.webp", name: "Insights: posts and best time" },
-  { src: "/screens/followers.webp", name: "Followers: new and unfollowers" },
+  { src: "/screens/overview-251.webp", name: "Dashboard and popup" },
+  { src: "/screens/grow-251.webp", name: "Grow: sources and pace" },
+  { src: "/screens/studio-251.webp", name: "AI Creator Studio: composer and GrowX AI" },
+  { src: "/screens/analytics-251.webp", name: "Analytics: posts and best time" },
+  { src: "/screens/followers-251.webp", name: "Analytics: new followers and unfollowers" },
   { src: "/screens/marquee.webp", name: "Promo banner (1400 x 560)" },
 ];
 

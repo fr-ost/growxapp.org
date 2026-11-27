@@ -1,5 +1,5 @@
 /**
- * Features of GrowX extension v2.5.0 and the Free / Premium split (from the extension's shared/plan.js and
+ * Features of GrowX extension v2.5.1 and the Free / Premium split (from the extension's shared/plan.js and
  * docs/PRODUCT_FACTS.md). Used by /features and the pricing comparison.
  */
 import type { FeatureSlug } from "@/content/feature-slugs";
@@ -37,13 +37,13 @@ export const featureGroups: readonly FeatureGroup[] = [
     ],
     page: "twitter-auto-follow",
     features: [
-      { id: "pace-free", title: "Safe and Balanced paces", description: "About 150 and 280 follows a day, with breaks and hourly caps built in.", tier: "free" },
+      { id: "pace-free", title: "Slow pace, free forever", description: "About 100 follows a day, 50 to 120 seconds apart, with a break every 10 follows and an hourly cap built in.", tier: "free" },
       { id: "sources", title: "Sources, Find sources for me, recent followers first", description: "Follow the newest followers of accounts in your niche; GrowX can suggest sources for you.", tier: "free" },
       { id: "score", title: "Follow-back score and core filters", description: "A 1-99 score plus audience size, ratio, photo, activity, age and exclude-keyword filters.", tier: "free" },
       { id: "safety", title: "Safety controls", description: "Active hours, warm-up, adaptive slow-down, follow verification, following-cap guard and Alt+Shift+S stop.", tier: "free" },
       { id: "leaderboard", title: "Source leaderboard", description: "Follow-back rate, retention and cost of every source.", tier: "free" },
       { id: "list-follow", title: "List follow", description: "Follow exactly the accounts on your own list: paste names or links, or bring a CSV or TXT file. Up to 50 at a time.", tier: "free" },
-      { id: "fast-pace", title: "Turbo and X Premium paces", description: "About 390 a day (Turbo) or 800 a day on accounts with X Premium; custom limits above Balanced.", tier: "premium" },
+      { id: "fast-pace", title: "Balanced, Turbo and X Premium paces", description: "About 280 a day (Balanced), 390 (Turbo) or 800 on accounts with X Premium; custom limits faster than Slow.", tier: "premium" },
       { id: "smart-score", title: "Smart score", description: "The follow-back score learns from your own results.", tier: "premium" },
       { id: "more-sources", title: "More source types", description: "A post's reposts, replies and likes, searches and #hashtags, and X Lists.", tier: "premium" },
       { id: "advanced-filters", title: "Advanced filters and list import", description: "Include, location and verified filters, account age and last-active rules; paste a list to follow first.", tier: "premium" },
@@ -53,7 +53,7 @@ export const featureGroups: readonly FeatureGroup[] = [
   },
   {
     id: "create",
-    title: "Create: posts and threads",
+    title: "AI Creator Studio: posts and threads",
     summary: "Write posts and threads with images, then post now, schedule or fill your queue slots.",
     detail: [
       "The composer counts characters the way X does, splits long text into threads and keeps drafts. Add to queue takes the next free slot; GrowX suggests your best time to post from your own posts and when your followers are active.",
@@ -86,11 +86,11 @@ export const featureGroups: readonly FeatureGroup[] = [
   },
   {
     id: "engage",
-    title: "Engage: AI Reply Assistant and people",
+    title: "AI Creator Studio: AI Reply Assistant and people",
     summary: "Fresh posts from the accounts you care about, ranked so you can reply early, with GrowX AI drafting replies you approve.",
     detail: [
       "The AI Reply Assistant collects new posts from your sources, VIPs and anyone you add, ranked by how fresh they are and how fast they take off. Reply and like by hand for free; with Premium, GrowX AI drafts a reply to each post in your tone, on your computer.",
-      "New in 2.5.0: AI reply buttons right beside X's own reply box. You read and approve every reply; GrowX never replies by itself.",
+      "New in 2.5.0: AI reply buttons right beside X's own reply box. You read and approve every reply; GrowX never replies by itself. Since 2.5.1 the AI Reply Assistant and People live in AI Creator Studio, next to the composer and the queue.",
     ],
     page: "twitter-reply-targets",
     features: [
@@ -103,19 +103,24 @@ export const featureGroups: readonly FeatureGroup[] = [
   },
   {
     id: "insights",
-    title: "Insights: analytics and followers",
-    summary: "Every post's numbers, your best time to post, what works, and who followed or unfollowed you.",
+    title: "Analytics: follow-backs, growth and followers",
+    summary: "Who followed you back, your Growth Score and what to do next, every post's numbers, and who followed or unfollowed you.",
     detail: [
+      "New in 2.5.1: Analytics opens on who followed you back after GrowX followed them, with how long it took and the source. Growth Score 2.0 turns six parts of your own numbers into one score from 0 to 100, and the AI Growth Coach lists the most useful next steps.",
       "GrowX reads your recent posts' views, likes, reposts, replies and bookmarks through an x.com tab that is already open, every three hours. Once a day it compares your full follower list to show who followed and who unfollowed you.",
     ],
     page: "twitter-analytics",
     features: [
+      { id: "followed-back", title: "Who followed back", description: "Everyone who followed you back after GrowX followed them: when, how fast and from which source, with CSV export.", tier: "free" },
+      { id: "growth-score", title: "Growth Score, dashboard and coach", description: "A 0-100 score from six parts of your own numbers, weekly trends and the most useful next steps.", tier: "free" },
+      { id: "twitterscore", title: "Your TwitterScore on Home", description: "Your account's TwitterScore next to your Growth Score, once a day; only your @username is sent, and you can turn it off.", tier: "free" },
       { id: "post-analytics", title: "Post analytics", description: "Views, likes, reposts, replies, bookmarks and engagement rate for your latest 30 posts.", tier: "free" },
       { id: "what-works", title: "Topics and formats that work", description: "Questions, images, text, threads and links compared by engagement.", tier: "free" },
       { id: "tracker", title: "Unfollower tracker", description: "Who followed and who unfollowed you, with 7 days of history.", tier: "free" },
       { id: "goals", title: "Goals, streaks and milestones", description: "Daily goals for posts, replies and new followers, plus a growth chart.", tier: "free" },
       { id: "full-analytics", title: "Full analytics and weekly report", description: "Every post's numbers over time, which posts brought followers and a weekly report.", tier: "premium" },
       { id: "full-tracker", title: "Full follower history and quality", description: "Unlimited history, one-click unfollow back, and real / inactive / likely bot analysis.", tier: "premium" },
+      { id: "ai-plan", title: "This week's plan from GrowX AI", description: "The AI Growth Coach asks GrowX AI for a short plan from your numbers, on your computer.", tier: "premium" },
     ],
   },
   {

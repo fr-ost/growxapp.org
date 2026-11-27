@@ -37,7 +37,7 @@ export const growthPosts: Post[] = [
         heading: "What actually makes a Twitter (X) account grow",
         blocks: [
           p("If you search **how to grow on Twitter**, you will find two kinds of advice: posting advice and automation tricks. Both matter, but neither works alone. Growth on X comes from three things working together: a profile that gives a stranger a reason to follow, content that gives them a reason to stay, and a steady flow of the right people discovering you, through your replies and through the people you follow."),
-          p("**GrowX** is an X (Twitter) growth tool for Chrome built around that routine. Its smart auto follow finds and follows relevant people at a human pace, the post scheduler publishes at your best times, the AI Reply Assistant surfaces fresh posts worth replying to, and Insights show what is working and who unfollowed you. This guide gives you a realistic plan and shows where each part fits."),
+          p("**GrowX** is an X (Twitter) growth tool for Chrome built around that routine. Its smart auto follow finds and follows relevant people at a human pace, the post scheduler publishes at your best times, the AI Reply Assistant surfaces fresh posts worth replying to, and Analytics shows who followed you back, what is working and who unfollowed you. This guide gives you a realistic plan and shows where each part fits."),
           p("Nothing here is a guarantee: results depend on your niche, your content and how consistent you are. If a tool or a guide promises a fixed number of followers, treat that as a warning sign."),
         ],
       },
@@ -60,7 +60,7 @@ export const growthPosts: Post[] = [
         heading: "Step 2: Post on a schedule you can keep",
         blocks: [
           p("Consistency beats intensity. Pick a rhythm you can hold for months, for example one useful post a day plus a few replies, and stick to it. Mix formats: short opinions, step-by-step threads, screenshots of real work and questions that invite replies. Write about one niche for the first few months so the people you attract all want the same thing."),
-          p("Scheduling is what makes the habit survive busy weeks. In the **Create** area of GrowX you write posts and threads (up to 25 parts and up to 4 images per post), then post now, pick a time or add them to a queue that fills preset time slots (09:00, 13:00 and 18:30 by default). A **best time to post** heat map, built from your own posts' engagement and when your followers are active, shows which slots deserve your best ideas. The free plan keeps up to 10 posts or threads waiting in the queue; Premium removes that limit. Read more about the [Twitter post scheduler](/features/twitter-post-scheduler)."),
+          p("Scheduling is what makes the habit survive busy weeks. In GrowX's **AI Creator Studio** you write posts and threads (up to 25 parts and up to 4 images per post), then post now, pick a time or add them to a queue that fills preset time slots (09:00, 13:00 and 18:30 by default). A **best time to post** heat map, built from your own posts' engagement and when your followers are active, shows which slots deserve your best ideas. The free plan keeps up to 10 posts or threads waiting in the queue; Premium removes that limit. Read more about the [Twitter post scheduler](/features/twitter-post-scheduler)."),
           p("If you struggle to start, the 52 built-in templates (hooks, threads, lists, stories and more) give you a structure to fill in, and the free [thread maker](/tools/twitter-thread-maker) splits a long draft into numbered posts. With Premium, GrowX AI can draft, improve or suggest hooks on your own computer using the AI model built into Chrome. Keep your own voice: a template or an AI draft is a starting point, not a finished post."),
           note("Following people only pays off if your profile and recent posts reward the visit. Automation sends people to your profile; your content decides whether they follow back."),
         ],
@@ -70,7 +70,7 @@ export const growthPosts: Post[] = [
         heading: "Step 3: Reply early where your audience already is",
         blocks: [
           p("Reply thoughtfully to accounts in your niche, especially ones slightly larger than you. A good reply is often seen by far more people than a post from a small account, and timing matters: a reply in the first hour of a post's life has a much better chance of being seen than one posted the next day."),
-          p("The GrowX **AI Reply Assistant**, in the Engage area, collects fresh posts (younger than 120 minutes by default) from your sources, your VIPs and anyone you add, ranked by freshness and by how fast they are taking off, so you can reply early instead of scrolling to find them. You can reply and like from GrowX, but nothing is sent until you press the button. Premium adds AI reply ideas. See the [AI Reply Assistant](/features/twitter-reply-targets)."),
+          p("The GrowX **AI Reply Assistant**, in AI Creator Studio, collects fresh posts (younger than 120 minutes by default) from your sources, your VIPs and anyone you add, ranked by freshness and by how fast they are taking off, so you can reply early instead of scrolling to find them. You can reply and like from GrowX, but nothing is sent until you press the button. Premium adds AI reply ideas. See the [AI Reply Assistant](/features/twitter-reply-targets)."),
           p("Spend ten to fifteen minutes a day here. Add something useful, such as a number, an example or a disagreement with reasons, rather than \"great post\". Over a few weeks the same names start recognising yours, which is how replies turn into follows."),
         ],
       },
@@ -85,18 +85,18 @@ export const growthPosts: Post[] = [
             "The autopilot follows **one account at a time** with random delays, breaks and hourly and daily caps, plus optional active hours and warm-up. [Pacing explained](/blog/how-growx-auto-follow-works).",
             "It slows down or stops when X shows a warning, and you can stop it instantly with Alt + Shift + S.",
           ),
-          p("Start with the **Safe** pace for a new account and move to **Balanced**, the recommended default, after a few clean days. No tool can promise zero risk on X, so keep an eye on your account and respect any warning."),
+          p("Start with the free **Slow** pace for a new account; with Premium, move to **Balanced**, recommended for most accounts, after a few clean days. No tool can promise zero risk on X, so keep an eye on your account and respect any warning."),
         ],
       },
       {
         id: "measure",
         heading: "Step 5: Measure and adjust weekly",
         blocks: [
-          p("Once a week, look at what worked. In the **Insights** area, post analytics show views, likes, reposts, replies, bookmarks and engagement rate for your recent posts (your latest 30 on the free plan), and **What works** compares topics and formats by engagement. In Grow, the **source leaderboard** shows the follow-back rate, retention and cost of each source, so you can keep the sources that bring real followers and replace the rest."),
+          p("Once a week, look at what worked. In **Analytics**, Who followed back shows which follows turned into followers and how fast, post analytics show views, likes, reposts, replies, bookmarks and engagement rate for your recent posts (your latest 30 on the free plan), and **What works** compares topics and formats by engagement. In Grow, the **source leaderboard** shows the follow-back rate, retention and cost of each source, so you can keep the sources that bring real followers and replace the rest."),
           p("The **follower tracker** checks once a day who followed you and who unfollowed you, with 7 days of history on the free plan and the full history on Premium. A wave of unfollows after a certain kind of post is worth knowing about. More in the [unfollower tracker](/features/twitter-unfollower-tracker) overview."),
           ol(
             "Keep 3 to 5 sources that match your niche closely and replace the weakest one each week.",
-            "Run the Safe or Balanced pace, and turn on active hours if you want the autopilot to keep a daily rhythm.",
+            "Run the free Slow pace (or Balanced with Premium), and turn on active hours if you want the autopilot to keep a daily rhythm.",
             "Review the queue and raise the minimum score if it feels noisy.",
             "Compare your best posts with your best sources and do more of what they have in common.",
             "After a couple of weeks, run the cleanup scan and unfollow accounts that never followed back. See [how to unfollow non-followers safely](/blog/unfollow-non-followers-twitter).",
@@ -107,7 +107,7 @@ export const growthPosts: Post[] = [
         id: "goals",
         heading: "Step 6: Turn it into a habit with goals and streaks",
         blocks: [
-          p("Growth is mostly a habit problem. GrowX Insights lets you set daily goals for posts, replies and new followers, and tracks streaks and milestones so you can see whether you kept the routine, not just whether the number moved. A monthly goal planner shows the daily pace a target would need and where your current pace is heading."),
+          p("Growth is mostly a habit problem. GrowX lets you set daily goals for posts, replies and new followers, and tracks streaks and milestones so you can see whether you kept the routine, not just whether the number moved. A monthly goal planner shows the daily pace a target would need and where your current pace is heading."),
           p("Favour goals you control. \"Two posts and ten replies a day\" is a goal you can hit every day; \"100 followers a day\" is not, because it depends on other people. Hit the controllable goals for a month and the follower number tends to move with them, though no one can promise by how much."),
         ],
       },
@@ -118,7 +118,7 @@ export const growthPosts: Post[] = [
           ul(
             "**Monday (30 minutes):** write the week's posts and add them to your queue slots, using the best-time heat map.",
             "**Every day (15 minutes):** open the AI Reply Assistant, reply early to three to five fresh posts, and answer everyone who replied to you.",
-            "**Every day (background):** let smart auto follow run at the Safe or Balanced pace while Chrome is open.",
+            "**Every day (background):** let smart auto follow run at the free Slow pace (or Balanced with Premium) while Chrome is open.",
             "**Friday (15 minutes):** check post analytics, the source leaderboard and the follower tracker, and change one thing for next week.",
             "**Every two weeks:** run a cleanup scan and unfollow, at a safe pace, the accounts that never followed back.",
           ),
@@ -168,7 +168,7 @@ export const growthPosts: Post[] = [
         blocks: [
           ul(
             "Finish your profile: photo, header, clear bio, pinned post and a link.",
-            "Install GrowX and follow the setup wizard. Add **3 to 5 source profiles** in your niche, or press **Find sources for me** to get suggestions from the accounts you already follow, and keep the **Safe** pace.",
+            "Install GrowX and follow the setup wizard. Add **3 to 5 source profiles** in your niche, or press **Find sources for me** to get suggestions from the accounts you already follow, and keep the free **Slow** pace.",
             "Turn on the **warm-up** so a new account ramps up gradually (the daily cap starts at 60 and rises by 20 a day) instead of jumping to the full cap. Consider turning on **active hours** too; they are off by default.",
             "Write your first week of posts in one sitting and add them to the queue, then reply to 5 to 10 posts a day from accounts in your niche.",
           ),
@@ -192,8 +192,8 @@ export const growthPosts: Post[] = [
         id: "week3",
         heading: "Week 3: Double down on what works",
         blocks: [
-          p("By now you have data. Post analytics in Insights show views, likes, reposts, replies, bookmarks and engagement rate for your latest posts, and **What works** compares topics and formats (questions, images, text, threads, links) by engagement. Write more of what earned a response. With Premium full analytics, **Which posts brought followers** highlights posts that were followed by more new followers than usual in the next 24 hours."),
-          p("Check the **best time to post** heat map and move your queue slots towards the hours when your followers are active. On the Grow side, add sources similar to your best performers. If your account has stayed clean (no warnings), you can move up to the **Balanced** pace."),
+          p("By now you have data. Your **Growth Score** in Analytics shows which of its six parts is weakest, and post analytics show views, likes, reposts, replies, bookmarks and engagement rate for your latest posts, and **What works** compares topics and formats (questions, images, text, threads, links) by engagement. Write more of what earned a response. With Premium full analytics, **Which posts brought followers** highlights posts that were followed by more new followers than usual in the next 24 hours."),
+          p("Check the **best time to post** heat map and move your queue slots towards the hours when your followers are active. On the Grow side, add sources similar to your best performers. If your account has stayed clean (no warnings) and you have Premium or the trial, you can move up to the **Balanced** pace."),
         ],
       },
       {
@@ -215,7 +215,7 @@ export const growthPosts: Post[] = [
             "Ten minutes: open the AI Reply Assistant and reply to five to ten fresh posts from accounts in your niche, adding something useful rather than \"great post\".",
             "Five minutes: thank and reply to people who engaged with you, since early supporters are the most valuable followers you will get.",
           ),
-          p("On Sundays, spend twenty extra minutes in Insights and on the source leaderboard: which sources produced follow-backs, which posts earned the most engagement, who unfollowed you, and what you will change next week. Small weekly adjustments compound much better than a big overhaul once a month."),
+          p("On Sundays, spend twenty extra minutes in Analytics and on the source leaderboard: who followed back, which sources produced follow-backs, which posts earned the most engagement, who unfollowed you, and what you will change next week. Small weekly adjustments compound much better than a big overhaul once a month."),
         ],
       },
       {
@@ -247,10 +247,10 @@ export const growthPosts: Post[] = [
     ],
     faq: [
       qa("Can I really get 1,000 followers in 30 days?", "Some accounts do and many do not. It depends on niche, content quality, consistency and how targeted your following is. Use the plan as a structure and measure your own progress instead of expecting a fixed result."),
-      qa("Which GrowX pace should a new account use?", "Start with Safe and turn on warm-up. Consider turning on active hours as well, since they are off by default. Move to Balanced after several clean days with no warnings from X."),
+      qa("Which GrowX pace should a new account use?", "Start with Slow, the free pace, and turn on warm-up. Consider turning on active hours as well, since they are off by default. With Premium, move to Balanced after several clean days with no warnings from X."),
       qa("How many source profiles do I need?", "Three to five close matches are enough to start, or let Find sources for me suggest some. Add more only when the source leaderboard shows the existing ones are running dry or performing poorly."),
-      qa("Do I need Premium for this plan?", "No. The plan works on the free plan: Safe and Balanced paces, core filters, up to 10 queued posts, analytics for your latest 30 posts and 7 days of follower history. The 30-day Premium trial adds the smart score, unlimited scheduling, GrowX AI and full analytics if you want to try them."),
-      qa("What if people follow but do not engage?", "Followers who never see anything they like will not stay. Keep posting for one clear audience, reply to the people who do engage, and check What works in Insights to see which topics and formats get a response."),
+      qa("Do I need Premium for this plan?", "No. The plan works on the free plan: the Slow pace (about 100 follows a day), core filters, up to 10 queued posts, analytics for your latest 30 posts and 7 days of follower history. The 30-day Premium trial adds the faster paces, the smart score, unlimited scheduling, GrowX AI and full analytics if you want to try them."),
+      qa("What if people follow but do not engage?", "Followers who never see anything they like will not stay. Keep posting for one clear audience, reply to the people who do engage, and check What works in Analytics to see which topics and formats get a response."),
     ],
   },
   {
@@ -303,8 +303,8 @@ export const growthPosts: Post[] = [
         heading: "Step 4: Follow in bulk at a safe pace",
         blocks: [
           ul(
-            "**Safe**: 45 to 110 seconds between follows, a rest every 12 follows, up to 18 an hour and about 150 a day. Meant for new accounts.",
-            "**Balanced**: 30 to 75 seconds, a rest every 18 follows, up to 28 an hour and about 280 a day. The recommended default.",
+            "**Slow** (free forever): 50 to 120 seconds between follows, a 20-minute rest every 10 follows, up to 14 an hour and about 100 a day. Gentle on new accounts.",
+            "**Balanced** (Premium): 30 to 75 seconds, a rest every 18 follows, up to 28 an hour and about 280 a day. Recommended for most accounts.",
             "**Turbo** (about 390 a day) and **X Premium pace** (about 800 a day, only for accounts with X's own Premium subscription) are faster presets for aged accounts, available on GrowX Premium.",
           ),
           p("These are the extension's own rolling caps; X also enforces limits that it can change at any time. If you want the autopilot to keep a daily rhythm, turn on **active hours** (off by default; 08:00 to 23:30 when enabled, on the days you choose). The **adaptive slow-down** reduces the pace automatically if X shows a warning, and occasional longer pauses keep the follows from being evenly spaced."),
@@ -342,7 +342,7 @@ export const growthPosts: Post[] = [
         id: "after",
         heading: "After the bulk follow: measure and tidy",
         blocks: [
-          p("Bulk following is only half the job. Give new follows a week or two, then look at the results. The source leaderboard tells you which sources to keep, and [Twitter analytics](/features/twitter-analytics) in the Insights area show whether your posts are giving new visitors a reason to stay. A stream of follows that lands on an empty or stale profile wastes the effort, so keep a few posts in the scheduler queue while you grow."),
+          p("Bulk following is only half the job. Give new follows a week or two, then look at the results. The source leaderboard tells you which sources to keep, and [Twitter analytics](/features/twitter-analytics), including Who followed back, show whether your follows and posts are giving new visitors a reason to stay. A stream of follows that lands on an empty or stale profile wastes the effort, so keep a few posts in the scheduler queue while you grow."),
           p("Then tidy up. The cleanup scan lists the accounts that did not follow back so you can review and unfollow them at a safe pace (up to 200 per run on the free plan). On Premium, **automatic cleanup** can unfollow GrowX's own follows that did not follow back after 2, 5 or 7 days, only during autopilot breaks and within the same safe caps; it never touches accounts you followed yourself or imported. More in the [Twitter unfollow tool](/features/twitter-unfollow-tool) overview."),
         ],
       },
@@ -353,7 +353,7 @@ export const growthPosts: Post[] = [
       },
     ],
     faq: [
-      qa("How many people can I bulk follow per day with GrowX?", "On the Safe pace GrowX follows up to about 150 a day and on Balanced up to about 280 a day, with hourly caps as well. Faster presets (Turbo and the X Premium pace) are part of GrowX Premium and meant for aged accounts. X applies its own limits too."),
+      qa("How many people can I bulk follow per day with GrowX?", "On the free Slow pace GrowX follows up to about 100 a day, with hourly caps as well. Faster presets (Balanced at about 280, Turbo and the X Premium pace) are part of GrowX Premium; Turbo and X Premium are meant for aged accounts. X applies its own limits too."),
       qa("Can I bulk follow a list of usernames I already have?", "Yes. You can import your own list of usernames and GrowX follows them first, still at the paced rate. List import is a Premium feature."),
       qa("Will everyone I follow follow back?", "No. Only some will. Recent followers first, the filters and the follow-back score raise the odds by putting likelier accounts first, but no tool can promise a follow-back rate."),
       qa("Does bulk following work while my computer is asleep?", "No. GrowX needs Chrome running and you signed in to X. While the autopilot runs it keeps the computer awake, keeps working when you close the popup or switch tabs, and resumes after Chrome restarts."),
@@ -415,13 +415,13 @@ export const growthPosts: Post[] = [
           ul(
             "**Random delays and regular breaks**, plus occasional longer pauses (on about 8% of follows), so follows are not evenly spaced.",
             "**Optional active hours and warm-up**: active hours are off by default, but turning them on (08:00 to 23:30, on days you choose) stops the autopilot running around the clock, and warm-up starts a new account at a daily cap of 60 and raises it by 20 a day.",
-            "**Rolling hourly and daily caps** (Safe about 150 a day, Balanced about 280 a day).",
+            "**Rolling hourly and daily caps** (Slow about 100 a day on the free plan, Balanced about 280 a day with Premium).",
             "**Targeted candidates only**: each source's newest followers go first, and everyone else must pass filters and a follow-back score before entering the queue.",
             "**Adaptive slow-down and hard stops** after any warning, rate limit, challenge, lock or sign-out.",
             "**Follow verification** to detect silent limits, and a **following-cap guard** (5,000, or about 10% above your follower count) that pauses instead of hammering X's cap.",
           ),
           p("The full pipeline is in [how GrowX auto follow works](/blog/how-growx-auto-follow-works), and the [Twitter auto follow](/features/twitter-auto-follow) page summarises the settings."),
-          note("These measures reduce risk; they cannot remove it. No tool can promise zero risk on X. Start on the Safe pace, and only move up once your account has a clean history."),
+          note("These measures reduce risk; they cannot remove it. No tool can promise zero risk on X. Start on the free Slow pace, and only move up once your account has a clean history."),
         ],
       },
       {
@@ -431,9 +431,9 @@ export const growthPosts: Post[] = [
           p("A new account has no history, so any burst of activity stands out. Warming up means increasing activity gradually so the account builds a normal-looking record."),
           ol(
             "Complete the profile and post a few times before following anyone. Filling GrowX's post queue with a week of posts makes this easy.",
-            "Turn on GrowX warm-up so the daily cap starts at 60 and rises by 20 a day instead of starting at the full Safe or Balanced cap.",
-            "Stay on the Safe pace for the first week or two and consider turning on active hours.",
-            "Only after a clean period with no warnings consider moving to Balanced.",
+            "Turn on GrowX warm-up so the daily cap starts at 60 and rises by 20 a day instead of starting at the pace's full cap.",
+            "Stay on the Slow pace for the first week or two and consider turning on active hours.",
+            "Only after a clean period with no warnings consider moving to Balanced (Premium).",
             "Treat any rate-limit or warning message as a reason to pause for the day, not to retry.",
           ),
           p("Warm-up does not make mass following risk-free. It simply avoids the most obvious pattern, a brand-new account doing a lot at once. Keep your own judgement in the loop: if something about your account's behaviour on X feels off, stop the autopilot with Alt + Shift + S and look at it manually."),
@@ -472,7 +472,7 @@ export const growthPosts: Post[] = [
     ],
     faq: [
       qa("What does \"you are unable to follow more accounts at this time\" mean?", "It means X has temporarily limited your following, usually because of volume or pace. Stop following for a while. GrowX treats such warnings as a signal to throttle and rest."),
-      qa("How many follows per day is safe?", "There is no number that is safe for every account. New and low-trust accounts need to be slower. That is why GrowX recommends the Safe pace with warm-up for new accounts and slows down by itself after warnings."),
+      qa("How many follows per day is safe?", "There is no number that is safe for every account. New and low-trust accounts need to be slower. That is why GrowX starts every new install on the Slow pace, recommends warm-up for new accounts and slows down by itself after warnings."),
       qa("Is following and then unfollowing risky?", "Rapid follow and unfollow cycles look manipulative. Give follows time to be returned and unfollow gradually. GrowX's Premium automatic cleanup waits 2, 5 or 7 days and only runs during autopilot breaks within the safe unfollow caps."),
       qa("Can GrowX get my account suspended?", "No tool can promise zero risk on X. GrowX reduces the risk with paced, targeted following and hard stops, but you remain responsible for staying within X's rules."),
     ],
@@ -579,7 +579,7 @@ export const growthPosts: Post[] = [
             "Open the source leaderboard and compare the follow-back rate, retention and cost of each source.",
             "Raise the minimum score if the rate is low; lower it if the queue runs dry.",
             "Replace weak sources with ones that match your best-performing followers, or let Premium's auto-replace do it after a fair trial.",
-            "Check [Twitter analytics](/features/twitter-analytics) in Insights to see whether your posts give new visitors a reason to follow back.",
+            "Check [Twitter analytics](/features/twitter-analytics), starting with Who followed back, to see whether your posts give new visitors a reason to follow back.",
           ),
         ],
       },
@@ -616,7 +616,7 @@ export const growthPosts: Post[] = [
         heading: "Why clean up who you follow",
         blocks: [
           p("After a growth push, your following list is full of people who never followed back and accounts that have gone quiet. Tidying it keeps your ratio healthy, makes your profile look more credible and leaves room under X's following cap. The trick is doing it **gradually and with review**, not by unfollowing everyone in one go."),
-          p("GrowX, an X (Twitter) growth tool for Chrome, has a dedicated **Cleanup** area for this, next to its smart auto follow, scheduler and Insights. This guide shows how to find who to unfollow, how to do it at a safe pace, and how to keep an eye on who unfollows you."),
+          p("GrowX, an X (Twitter) growth tool for Chrome, has a dedicated **Cleanup** area for this, next to its smart auto follow, scheduler and Analytics. This guide shows how to find who to unfollow, how to do it at a safe pace, and how to keep an eye on who unfollows you."),
         ],
       },
       {
@@ -669,7 +669,7 @@ export const growthPosts: Post[] = [
         id: "tracker",
         heading: "See who unfollowed you",
         blocks: [
-          p("Cleanup is about who you follow. The other side is who follows you. The **follower tracker** in GrowX Insights checks once a day who followed you and who unfollowed you. The free plan keeps 7 days of history; Premium keeps the full history and adds a one-click unfollow back for people who left."),
+          p("Cleanup is about who you follow. The other side is who follows you. The **follower tracker** in GrowX Analytics checks once a day who followed you and who unfollowed you. The free plan keeps 7 days of history; Premium keeps the full history and adds a one-click unfollow back for people who left."),
           p("Use it to spot patterns rather than to take things personally. A few unfollows a day is normal; a spike after a particular post or after a heavy following day tells you something about your content or your targeting. Compare it with post performance in [Twitter analytics](/features/twitter-analytics), and read more in the [unfollower tracker](/features/twitter-unfollower-tracker) overview."),
         ],
       },
@@ -723,7 +723,7 @@ export const growthPosts: Post[] = [
     ],
     faq: [
       qa("How do I find who does not follow me back on Twitter?", "Run the GrowX cleanup scan: it compares who you follow with who follows you and lists accounts that do not follow back, flagging results as unverified when the followers list could not be read fully."),
-      qa("Can I see who unfollowed me on Twitter (X)?", "Yes. The follower tracker in GrowX Insights checks once a day who followed and who unfollowed you. The free plan keeps 7 days of history; Premium keeps the full history and adds one-click unfollow back."),
+      qa("Can I see who unfollowed me on Twitter (X)?", "Yes. The follower tracker in GrowX Analytics checks once a day who followed and who unfollowed you. The free plan keeps 7 days of history; Premium keeps the full history and adds one-click unfollow back."),
       qa("Can I unfollow inactive accounts only?", "Yes. Filter the scan by inactivity (30, 90, 180 or 365 days) and select only those. Accounts with an unknown last post time are never labelled inactive."),
       qa("How many accounts can I unfollow at once?", "Up to 200 per run on the free plan. Premium adds select-all bulk unfollow of up to 5,000 in one run. Either way, unfollows go out one at a time within hourly and daily caps."),
       qa("Does GrowX unfollow anyone automatically?", "Only what you select and confirm, unless you turn on Premium automatic cleanup, which unfollows GrowX's own follows that did not follow back after 2, 5 or 7 days. It never touches accounts you followed yourself or imported."),
@@ -776,7 +776,7 @@ export const growthPosts: Post[] = [
         heading: "3. Does it help you post consistently?",
         blocks: [
           p("Following brings people to your profile; posts make them stay. A growth tool that ignores content leaves half the job to you. Look for a composer that counts characters the way X does, threads, a queue and some guidance on when to post."),
-          p("GrowX's **Create** area handles posts and threads of up to 25 parts, schedules them or adds them to a queue of time slots, and shows a best-time-to-post heat map from your own data. The free plan keeps up to 10 posts waiting; Premium adds unlimited scheduling, evergreen recycling and auto-plug. See the [Twitter post scheduler](/features/twitter-post-scheduler)."),
+          p("GrowX's **AI Creator Studio** handles posts and threads of up to 25 parts, schedules them or adds them to a queue of time slots, and shows a best-time-to-post heat map from your own data. The free plan keeps up to 10 posts waiting; Premium adds unlimited scheduling, evergreen recycling and auto-plug. See the [Twitter post scheduler](/features/twitter-post-scheduler)."),
           p("If a tool offers AI writing, ask where the text goes. **GrowX AI** (Premium) runs on your own computer using the AI model built into Chrome, with no API key and nothing sent to GrowX, and it leaves placeholders instead of inventing facts. More on the [AI tweet writer](/features/ai-tweet-writer)."),
         ],
       },
@@ -785,7 +785,7 @@ export const growthPosts: Post[] = [
         heading: "4. Does it show what is working?",
         blocks: [
           p("Without measurement, you cannot tell good settings from bad ones. Look for post-level analytics, a way to see who followed and who unfollowed you, and per-source results if the tool follows people for you."),
-          p("GrowX Insights shows views, likes, reposts, replies, bookmarks and engagement rate for your posts (your latest 30 on the free plan, everything with Premium full analytics), compares topics and formats, and tracks daily who followed and unfollowed you (7 days of history free, full history on Premium). Daily goals, streaks and milestones keep the routine visible. See [Twitter analytics](/features/twitter-analytics)."),
+          p("GrowX Analytics shows who followed you back, a Growth Score, and views, likes, reposts, replies, bookmarks and engagement rate for your posts (your latest 30 on the free plan, everything with Premium full analytics), compares topics and formats, and tracks daily who followed and unfollowed you (7 days of history free, full history on Premium). Daily goals, streaks and milestones keep the routine visible. See [Twitter analytics](/features/twitter-analytics)."),
         ],
       },
       {
@@ -811,8 +811,8 @@ export const growthPosts: Post[] = [
         id: "price",
         heading: "7. Can you try it without paying?",
         blocks: [
-          p("GrowX has a free plan for daily use: Safe and Balanced paces, core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 accounts per run. Every account can start a 30-day Premium trial with no credit card."),
-          p("Premium adds the Turbo and X Premium paces, advanced filters, list import, the smart score, more source types, auto-replace for weak sources, unlimited scheduling, evergreen recycling, auto-plug, GrowX AI, full analytics and follower history, VIP alerts, a workspace per X account, bulk unfollow of up to 5,000, a Balanced unfollow pace and automatic cleanup. Plans are prepaid with no automatic renewal. See [pricing](/pricing)."),
+          p("GrowX has a free plan for daily use: the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 accounts per run. Every account can start a 30-day Premium trial with no credit card."),
+          p("Premium adds the Balanced, Turbo and X Premium paces, advanced filters, list import, the smart score, more source types, auto-replace for weak sources, unlimited scheduling, evergreen recycling, auto-plug, GrowX AI, full analytics and follower history, VIP alerts, a workspace per X account, bulk unfollow of up to 5,000, a Balanced unfollow pace and automatic cleanup. Plans are prepaid with no automatic renewal. See [pricing](/pricing)."),
         ],
       },
       {
@@ -847,11 +847,10 @@ export const growthPosts: Post[] = [
         heading: "Quick summary of what GrowX offers",
         blocks: [
           ul(
-            "A Chrome extension that works in your own signed-in X session, organised into Home, Grow, Create, Engage, Insights, Cleanup and Settings.",
-            "**Grow**: smart auto follow with source profiles, recent followers first, filters, a follow-back score from 1 to 99 and four pacing presets (Safe, Balanced, Turbo, X Premium pace).",
-            "**Create**: posts and threads, a scheduler with queue slots, a best-time heat map, 52 templates and, on Premium, GrowX AI.",
-            "**Engage**: the AI Reply Assistant and a People list with tags, notes and VIPs.",
-            "**Insights**: post analytics, a follower and unfollower tracker, top fans, goals, streaks and milestones.",
+            "A Chrome extension that works in your own signed-in X session, organised into Home, Grow, List follow, AI Creator Studio, Analytics, Cleanup and Settings.",
+            "**Grow**: smart auto follow with source profiles, recent followers first, filters, a follow-back score from 1 to 99 and four pacing presets (Slow, free forever; Balanced, Turbo and the X Premium pace with Premium).",
+            "**AI Creator Studio**: posts and threads, a scheduler with queue slots, a best-time heat map, 52 templates, the AI Reply Assistant and a People list with tags, notes and VIPs; GrowX AI on Premium.",
+            "**Analytics**: who followed back, Growth Score 2.0 and an AI Growth Coach, post analytics, a follower and unfollower tracker, top fans, goals, streaks and milestones.",
             "**Cleanup**: a scan for inactive and not-following-back accounts, with paced unfollowing.",
             "A free plan, a 30-day Premium trial without a credit card and prepaid Premium plans.",
           ),
@@ -865,7 +864,7 @@ export const growthPosts: Post[] = [
       },
     ],
     faq: [
-      qa("Is GrowX free?", "Yes. The free plan includes the Safe and Balanced paces, core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 per run. You can try every Premium feature free for 30 days without a credit card."),
+      qa("Is GrowX free?", "Yes. The free plan includes the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 per run. You can try every Premium feature free for 30 days without a credit card."),
       qa("Does GrowX need my X password?", "No. It works in your own signed-in x.com session and does not use X OAuth or store your X login."),
       qa("Does GrowX work on mobile?", "No. It is an extension for desktop Chrome (version 116 or later) on Windows, macOS, Linux and ChromeOS."),
       qa("How is GrowX different from a simple auto follow script?", "A script only follows. GrowX is a full X growth tool: its smart auto follow chooses who to follow with sources, filters and a follow-back score and follows at a human pace with caps and stops, and it also includes a post scheduler, an on-device AI writer (Premium), post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools."),

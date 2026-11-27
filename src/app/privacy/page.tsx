@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       <p>
         This policy describes how the GrowX website handles personal data. The GrowX Chrome extension has its own
         privacy policy inside the extension; this page covers the website, the optional account system and the
-        extension&apos;s optional usage data summarised below.
+        extension&apos;s optional usage data and TwitterScore lookup summarised below.
       </p>
       <h2>Who is responsible</h2>
       <p>{site.legalName}, {site.legalAddress}. Contact: <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.</p>
@@ -61,6 +61,12 @@ export default function PrivacyPage() {
         This data never includes your X handle or account, who you follow, your sources or lists, any post, draft, reply, AI prompt or answer,
         your email or password, tokens, cookies, links or the pages you visit. Until you answer, feature-usage events wait on your computer only
         (at most 3 days); &ldquo;No thanks&rdquo; deletes them unsent. Turning either setting off stops sending and deletes anything waiting.
+      </p>
+      <h2>TwitterScore in the extension (optional)</h2>
+      <p>
+        Since version 2.5.1 the extension can show your own account&apos;s TwitterScore (from twitterscore.io) on its Home page. Only after you
+        allow it, the extension sends your own X username, and nothing else, to twitterscore.io once a day. The score is kept in your browser.
+        Settings, General, &ldquo;Show my TwitterScore on Home&rdquo; turns it off; then nothing is sent.
       </p>
       <h2>Why we use data</h2>
       <ul>

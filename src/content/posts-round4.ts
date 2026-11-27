@@ -114,10 +114,10 @@ export const round4Posts: Post[] = [
         blocks: [
           ol(
             "Install GrowX, open x.com in the same Chrome profile and finish the setup wizard.",
-            "Set your queue slots in **Create** to the times you used in Hypefury.",
+            "Set your queue slots in **AI Creator Studio** to the times you used in Hypefury.",
             "Copy your best evergreen posts into GrowX. Use [analytics](/features/twitter-analytics) after a few weeks to pick which ones deserve evergreen slots.",
             "Turn on evergreen recycling and auto-plug in the 30-day Premium trial and set the like threshold that suits your account.",
-            "Queue a week of posts, then add growth: a few source accounts in your niche on the Safe or Balanced pace.",
+            "Queue a week of posts, then add growth: a few source accounts in your niche on the free Slow pace.",
           ),
           p(TRY),
         ],
@@ -228,7 +228,7 @@ export const round4Posts: Post[] = [
     faq: [
       { q: "Is Typefully or Tweet Hunter better?", a: "They suit different people. Typefully is focused on writing and scheduling across several networks; Tweet Hunter is an X content suite with an inspiration library and automation. Try both with your own drafts." },
       { q: "What is a good Typefully alternative for growth?", a: "If you want to grow your audience, not only publish, GrowX adds smart auto follow, List follow, an AI Reply Assistant, an unfollower tracker and cleanup on top of a scheduler and an on-device AI writer." },
-      { q: "Is there a free alternative to Tweet Hunter?", a: "GrowX has a free plan forever with Safe and Balanced auto follow, the scheduler with up to 10 posts waiting, analytics for your latest 30 posts and 52 templates. Every Premium feature can be tried free for 30 days." },
+      { q: "Is there a free alternative to Tweet Hunter?", a: "GrowX has a free plan forever with auto follow at the Slow pace, the scheduler with up to 10 posts waiting, analytics for your latest 30 posts and 52 templates. Every Premium feature can be tried free for 30 days." },
       { q: "Can I use GrowX together with Typefully?", a: "Yes. Just let only one tool post a given post, so nothing goes out twice." },
     ],
   },
@@ -430,7 +430,7 @@ export const round4Posts: Post[] = [
       { q: "Do Twitter engagement groups work?", a: "They can make a post look busier for a short time, but the engagement comes from the wrong people, X's rules on platform manipulation cover coordinated engagement, and your analytics stop reflecting your real audience." },
       { q: "Are engagement pods against X's rules?", a: "X's platform manipulation and spam policy covers coordinated activity meant to artificially inflate engagement. Groups built around trading likes and replies fall into that area, and accounts involved risk limits." },
       { q: "What is the fastest real way to get engagement on X?", a: "Reply early and thoughtfully to popular posts in your niche, post when your followers are online, and write posts that invite a response." },
-      { q: "Does GrowX like or reply automatically?", a: "No. Replies and likes from GrowX's Engage page are only sent when you press the button, and GrowX never sends direct messages." },
+      { q: "Does GrowX like or reply automatically?", a: "No. Replies and likes from GrowX's AI Creator Studio are only sent when you press the button, and GrowX never sends direct messages." },
     ],
   },
   {

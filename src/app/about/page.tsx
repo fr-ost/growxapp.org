@@ -53,7 +53,8 @@ export default function AboutPage() {
               It started as an auto follow engine with source targeting, a follow-back score and cleanup tools. Version 2.4.4 turned it
               into a complete growth tool: a post and thread scheduler, the GrowX AI writer that runs on your computer, post analytics, an
               unfollower tracker and reply targets. Version 2.4.6 added List follow, for following exactly the accounts on your own list, and version 2.5.0 the
-              AI Reply Assistant, which drafts replies in your tone that you approve. This website adds free accounts, a 30-day Premium trial and paid plans, while a useful
+              AI Reply Assistant, which drafts replies in your tone that you approve. Version 2.5.1 brought AI Creator Studio and Analytics, with who followed you back,
+              a Growth Score and an AI Growth Coach. This website adds free accounts, a 30-day Premium trial and paid plans, while a useful
               free plan stays free.
             </p>
             <p className="rounded-2xl border border-hairline bg-white px-5 py-4 text-base leading-7 shadow-[inset_3px_0_0_var(--accent)]">

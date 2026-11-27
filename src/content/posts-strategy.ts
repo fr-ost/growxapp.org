@@ -457,7 +457,7 @@ export const strategyPosts: Post[] = [
         id: "goals",
         heading: "Track the habit with goals and streaks",
         blocks: [
-          p("Frequency is a habit, and habits stick better when you can see them. GrowX's **Insights** area includes **daily goals** for posts, replies and new followers, **streaks and milestones**, and a monthly goal planner. Set goals at the level you chose, not the level you wish you had time for, and let the streak do the motivating."),
+          p("Frequency is a habit, and habits stick better when you can see them. GrowX includes **daily goals** for posts, replies and new followers, **streaks and milestones**, and a monthly goal planner. Set goals at the level you chose, not the level you wish you had time for, and let the streak do the motivating."),
         ],
       },
       {
@@ -693,7 +693,7 @@ export const strategyPosts: Post[] = [
         id: "growx",
         heading: "Templates, AI and scheduling in GrowX",
         blocks: [
-          p("GrowX keeps your ideas next to the tools that publish them, in the **Create** area of its dashboard:"),
+          p("GrowX keeps your ideas next to the tools that publish them, in the **AI Creator Studio** of its dashboard:"),
           ul(
             "**52 built-in templates** for hooks, threads, lists, stories and more, plus your own templates for structures you reuse.",
             "**GrowX AI** (Premium) drafts a post from a topic, suggests alternative hooks, improves a draft and shapes long drafts into threads. It runs on your computer with the AI model built into Chrome, nothing is sent to GrowX, and it uses {placeholders} instead of inventing facts. See the [AI tweet writer](/features/ai-tweet-writer) page.",

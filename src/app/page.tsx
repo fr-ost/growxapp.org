@@ -77,7 +77,7 @@ type Icon = ComponentType<{ size?: number; className?: string }>;
 
 const steps: { icon: Icon; title: string; body: string }[] = [
   { icon: IconChrome, title: "Add GrowX to Chrome", body: "Install the free extension. It works inside your own x.com session and never asks for your X password." },
-  { icon: IconGauge, title: "Add sources, pick a pace", body: "Name a few accounts in your niche, or let GrowX find them. Choose Safe or Balanced and press Start." },
+  { icon: IconGauge, title: "Add sources, pick a pace", body: "Name a few accounts in your niche, or let GrowX find them. Pick a pace (Slow is free forever) and press Start." },
   { icon: IconCalendar, title: "Post, reply and measure", body: "Queue a few posts for your best times, reply early to fresh posts and see what brings followers." },
 ];
 
@@ -121,7 +121,7 @@ const moreInGrowX = [
 
 const faqs = [
   { q: "What is GrowX?", a: "GrowX is a Chrome extension that brings the main X (Twitter) growth jobs into one place: smart auto follow, a post and thread scheduler, the GrowX AI writer, post analytics, an unfollower tracker, an AI Reply Assistant and cleanup tools." },
-  { q: "Is GrowX free?", a: `Yes. The free plan includes the Safe and Balanced auto follow paces, core filters, scheduling (up to 10 posts waiting), analytics for your latest 30 posts, 7 days of follower history, fresh posts to reply to and the cleanup scan. You can try every Premium feature free for ${TRIAL_DAYS} days, with no credit card.` },
+  { q: "Is GrowX free?", a: `Yes. The free plan includes auto follow at the Slow pace (about 100 a day, free forever), core filters, scheduling (up to 10 posts waiting), analytics for your latest 30 posts, who followed back, your Growth Score, 7 days of follower history, fresh posts to reply to and the cleanup scan. You can try every Premium feature free for ${TRIAL_DAYS} days, with no credit card.` },
   { q: "Do I need to give GrowX my X password?", a: "No. GrowX works through the x.com session that is already signed in to your Chrome browser. It never asks for or stores your X password and does not use X OAuth." },
   { q: "Is it safe for my X account?", a: "No tool can promise zero risk; X makes its own decisions. GrowX is built to behave like a careful person: random delays, breaks, hourly and daily caps, optional active hours and warm-up, a posting cap, and an automatic slow-down or stop whenever X shows a warning." },
   { q: "How does the post scheduler work?", a: "Write a post or thread, add images, then post now, pick a time or add it to your queue slots. GrowX posts through your signed-in x.com tab in Chrome, so Chrome needs to be running at the scheduled time." },
@@ -153,7 +153,7 @@ function HeroChip({ i, icon, title, sub, premium = false, className }: { i: numb
 
 const heroChips = (
   <>
-    <HeroChip i={0} className="-left-3 top-[26%] lg:-left-6 xl:-left-10" icon={<IconGauge size={16} />} title="Balanced pace" sub="30-75 s between follows" />
+    <HeroChip i={0} className="-left-3 top-[26%] lg:-left-6 xl:-left-10" icon={<IconGauge size={16} />} title="Slow pace, free forever" sub="50-120 s between follows" />
     <HeroChip i={1} className="-right-3 top-[14%] lg:-right-6 xl:-right-10" icon={<IconCalendar size={16} />} title="Queue slots" sub="09:00 · 13:00 · 18:30" />
     <HeroChip i={2} className="-right-3 top-[64%] lg:-right-6 xl:-right-10" icon={<IconWand size={16} />} title="GrowX AI runs on your computer" premium />
   </>
@@ -229,7 +229,7 @@ export default function HomePage() {
           <div className="relative mx-auto mt-14 max-w-5xl">
             <Stage3D variant="hero" caption="Screenshots show demo data." chips={heroChips}>
               <Screenshot
-                src="/screens/overview.webp"
+                src="/screens/overview-251.webp"
                 alt="GrowX dashboard: today's follows and goals, posts up next on X, this week's numbers and the popup with the Balanced pace running (demo data)"
                 priority
                 sizes="(min-width: 1280px) 1024px, 100vw"
@@ -337,7 +337,7 @@ export default function HomePage() {
                 </span>
               </p>
               <p className="reveal mt-5 text-sm text-white/75" style={stagger(4)}>
-                No tool can promise zero risk. Start with the Safe or Balanced pace.
+                No tool can promise zero risk. Start with the free Slow pace.
               </p>
             </div>
             <div className="reveal" style={stagger(1)}>
@@ -406,7 +406,7 @@ export default function HomePage() {
                 <span className="font-display text-5xl font-extrabold tabular-nums">$0</span> <span className="text-muted">forever</span>
               </p>
               <ul className="mt-6 space-y-3 text-sm text-text-2">
-                {["Safe & Balanced auto follow", "Schedule up to 10 posts at a time", "Analytics for your latest 30 posts", "Who unfollowed you (7 days)", "Fresh posts to reply to, cleanup scan"].map((t, i) => (
+                {["Slow auto follow, about 100 a day", "Schedule up to 10 posts at a time", "Who followed back & Growth Score", "Who unfollowed you (7 days)", "Fresh posts to reply to, cleanup scan"].map((t, i) => (
                   <li key={t} className="reveal flex gap-2" style={stagger(i)}>
                     <IconCheck size={18} className="shrink-0 text-ok" /> {t}
                   </li>
@@ -431,7 +431,7 @@ export default function HomePage() {
                 </p>
                 <p className="mt-1 text-sm text-muted tabular-nums">or $1.99 / 30 days · lifetime $59.99 ($29.99 early bird)</p>
                 <ul className="mt-6 space-y-3 text-sm text-text-2">
-                  {["Everything in Free", "GrowX AI writer, AI replies, unlimited scheduling", "Turbo & X Premium paces, smart score", "Full analytics, weekly report, follower quality", "Bulk unfollow and automatic cleanup"].map((t, i) => (
+                  {["Everything in Free", "Balanced, Turbo & X Premium paces", "GrowX AI writer, AI replies, unlimited scheduling", "Full analytics, weekly report, follower quality", "Bulk unfollow and automatic cleanup"].map((t, i) => (
                     <li key={t} className="reveal flex gap-2" style={stagger(i)}>
                       <IconCheck size={18} className="shrink-0 text-accent-ink" /> {t}
                     </li>

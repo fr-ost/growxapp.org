@@ -30,7 +30,7 @@ const CELLS: number[] = (() => {
 /** Best-time-to-post heat map: a diagonal wipe, one light pass, then rings around three cells. */
 export function DemoHeatmap(props: DemoProps) {
   return (
-    <DemoFrame title="GrowX · Insights" label={LABEL} {...props}>
+    <DemoFrame title="GrowX · Analytics" label={LABEL} {...props}>
       <div className={f.head}>
         <span className={f.headTitle}>
           Best time to post <span className={s.sub}>· from your own posts</span>

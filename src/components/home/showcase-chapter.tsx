@@ -40,20 +40,20 @@ const chapters: Chapter[] = [
     ),
     body: "GrowX follows the newest followers of accounts in your niche, the people most likely to follow you back, one at a time with breaks and caps. It keeps going in the background until you press Stop.",
     bullets: [
-      "Safe (~150 a day) and Balanced (~280 a day) paces on the free plan",
+      "The Slow pace (~100 a day) is free forever; Balanced, Turbo and X Premium come with Premium",
       "Follow-back score from 1 to 99 and filters that skip bots and inactive accounts",
       "Find sources for me: GrowX suggests sources from the accounts you follow",
     ],
-    image: "/screens/grow.webp",
-    alt: "GrowX Grow page: Sources and pace with Safe, Balanced, Turbo, X Premium and Custom presets (demo data)",
+    image: "/screens/grow-251.webp",
+    alt: "GrowX Grow page: Sources and pace with the Slow (free forever), Balanced, Turbo, X Premium and Custom presets",
     links: [{ href: "/features/twitter-auto-follow", label: "Smart auto follow" }],
     ring: { l: 11, t: 61, w: 88, h: 17 },
-    chip: "Safe ~150 · Balanced ~280 a day (free)",
+    chip: "Slow ~100 a day, free forever",
   },
   {
     key: "create",
     index: "02",
-    eyebrow: "Create",
+    eyebrow: "AI Creator Studio",
     title: (
       <>
         Write once. <span className="text-gradient">Post at your best times.</span>
@@ -65,8 +65,8 @@ const chapters: Chapter[] = [
       "52 templates and a thread splitter that counts like X does",
       "GrowX AI writes ideas, hooks and threads on your computer (Premium)",
     ],
-    image: "/screens/create.webp",
-    alt: "GrowX Create page: post composer with AI ideas, best time and queue slots (demo data)",
+    image: "/screens/studio-251.webp",
+    alt: "GrowX AI Creator Studio, Write: post composer with AI ideas, best time and queue slots (demo data)",
     links: [
       { href: "/features/twitter-post-scheduler", label: "Post scheduler" },
       { href: "/features/ai-tweet-writer", label: "GrowX AI writer" },
@@ -77,16 +77,16 @@ const chapters: Chapter[] = [
   {
     key: "insights",
     index: "03",
-    eyebrow: "Insights",
+    eyebrow: "Analytics",
     title: (
       <>
         Know which posts <span className="text-gradient">bring followers.</span>
       </>
     ),
     body: "Views, likes, replies, reposts and engagement for every post, a heat map of your best times and the topics and formats that work for your audience.",
-    bullets: ["Refreshed every 3 hours while x.com is open", "Topics and formats ranked by engagement", "Weekly report: this week vs last week (Premium)"],
-    image: "/screens/insights.webp",
-    alt: "GrowX Insights page: post numbers, best time to post heat map and what works by format (demo data)",
+    bullets: ["Refreshed every 3 hours while x.com is open", "Topics and formats ranked by engagement", "New: who followed back, a Growth Score and an AI Growth Coach"],
+    image: "/screens/analytics-251.webp",
+    alt: "GrowX Analytics, Posts: post numbers, best time to post heat map and what works by format (demo data)",
     links: [{ href: "/features/twitter-analytics", label: "Analytics" }],
     ring: { l: 9, t: 55, w: 56, h: 44 },
     chip: "Best time · week × 24 h, from your own posts",
@@ -102,8 +102,8 @@ const chapters: Chapter[] = [
     ),
     body: "X doesn't tell you who unfollowed you. GrowX checks your follower list once a day and shows every change, plus how real your audience is and who your biggest fans are.",
     bullets: ["New followers and unfollowers, day by day", "Follower quality: real, inactive, likely bots (Premium)", "Clean up accounts that don't follow back, at a safe pace"],
-    image: "/screens/followers.webp",
-    alt: "GrowX Followers page: new followers, unfollowers, follower quality score and unfollow back (demo data)",
+    image: "/screens/followers-251.webp",
+    alt: "GrowX Analytics, Followers: new followers, unfollowers, follower quality score and unfollow back (demo data)",
     links: [
       { href: "/features/twitter-unfollower-tracker", label: "Unfollower tracker" },
       { href: "/features/twitter-unfollow-tool", label: "Unfollow tool" },

@@ -2,7 +2,7 @@ import type { FeaturePage } from "./feature-types";
 
 /**
  * Feature landing pages (/features/<slug>), one per main search intent, in FEATURE_SLUGS order.
- * Every claim must match docs/PRODUCT_FACTS.md (extension v2.5.0). No invented statistics, user counts,
+ * Every claim must match docs/PRODUCT_FACTS.md (extension v2.5.1). No invented statistics, user counts,
  * ratings, testimonials or result promises; screenshots use demo data and their numbers are never quoted.
  */
 export const featurePages: FeaturePage[] = [
@@ -28,7 +28,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Twitter auto follow that targets people likely to follow back",
     lead:
       "GrowX follows the newest followers of accounts in your niche, scores every candidate for follow-back likelihood and works through the queue one account at a time, with random delays, breaks and caps. It runs inside your own signed-in x.com session in Chrome.",
-    image: { src: "/screens/grow.webp", alt: "GrowX Grow page with Find sources for me, the Safe, Balanced, Turbo, X Premium and Custom pace presets and safety badges (demo data)" },
+    image: { src: "/screens/grow-251.webp", alt: "GrowX Grow page with Find sources for me, the Slow (free forever), Balanced, Turbo, X Premium and Custom pace presets and safety badges" },
     highlights: [
       {
         title: "Sources and newest followers",
@@ -64,7 +64,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         title: "Set filters and pace",
-        text: "Keep the default filters or tune them, choose the Safe or Balanced pace, and turn on active hours and warm-up if you want them.",
+        text: "Keep the default filters or tune them, start on the free Slow pace, and turn on active hours and warm-up if you want them.",
       },
       {
         title: "Start the autopilot",
@@ -91,8 +91,8 @@ export const featurePages: FeaturePage[] = [
       {
         heading: "Pace presets and safety controls",
         paragraphs: [
-          "GrowX follows one account at a time from the extension's background, so it keeps working when the popup is closed and resumes after Chrome restarts. The pace preset sets the delay between follows, how often it rests and the rolling caps. **Safe** (about 150 a day) suits new accounts and **Balanced** (about 280 a day) is the recommended default; both are free. **Turbo** (about 390) is for aged accounts and the **X Premium** pace (about 800) is only for accounts with X Premium; both need GrowX Premium.",
-          "These controls lower risk; they cannot remove it. **No tool can promise zero risk on X**, and X can change its limits at any time. Start on Safe with warm-up turned on for a new or quiet account, watch for warnings, and move up only after a few days without any. See [how GrowX auto follow works](/blog/how-growx-auto-follow-works) for the full pacing logic.",
+          "GrowX follows one account at a time from the extension's background, so it keeps working when the popup is closed and resumes after Chrome restarts. The pace preset sets the delay between follows, how often it rests and the rolling caps. **Slow** (about 100 a day, 50 to 120 seconds apart) is free forever and gentle on new accounts. **Balanced** (about 280 a day) is recommended for most accounts, **Turbo** (about 390) is for aged accounts and the **X Premium** pace (about 800) is only for accounts with X Premium; these three come with GrowX Premium and the 30-day trial.",
+          "These controls lower risk; they cannot remove it. **No tool can promise zero risk on X**, and X can change its limits at any time. Start on Slow with warm-up turned on for a new or quiet account, watch for warnings, and move up only after a few days without any. See [how GrowX auto follow works](/blog/how-growx-auto-follow-works) for the full pacing logic.",
         ],
         bullets: [
           "Random delays, a break every few follows and occasional longer pauses",
@@ -115,14 +115,14 @@ export const featurePages: FeaturePage[] = [
       free: [
         "Source profiles, Find sources for me and recent followers first",
         "Follow-back score with core filters and a never-follow list",
-        "Safe (~150/day) and Balanced (~280/day) paces",
+        "The Slow pace (~100/day), free forever",
         "Every safety control: warm-up, active hours, slow-down, follow verification, Alt+Shift+S",
         "Source leaderboard with follow-back rate and retention",
       ],
       premium: [
         "Smart score trained on your own follow-backs",
         "More source types: a post's reposts, replies and likes, searches, #hashtags and X Lists",
-        "Turbo (~390/day), X Premium (~800/day) and custom paces above Balanced",
+        "Balanced (~280/day), Turbo (~390/day), X Premium (~800/day) and custom paces faster than Slow",
         "Auto-replace weak sources, advanced filters and list import",
         "All included in the free 30-day Premium trial, no credit card",
       ],
@@ -134,7 +134,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "How many people can I auto follow per day on X?",
-        a: "GrowX's presets aim for about 150 a day (Safe) or 280 a day (Balanced) on the free plan, and about 390 (Turbo) or 800 (X Premium accounts only) with Premium. X's own limits can change, so start low and move up only after clean days.",
+        a: "GrowX's free Slow pace aims for about 100 a day. With Premium, Balanced aims for about 280, Turbo about 390 and the X Premium pace about 800 (X Premium accounts only). X's own limits can change, so start low and move up only after clean days.",
       },
       {
         q: "Does the GrowX auto follow extension need my X password?",
@@ -151,7 +151,7 @@ export const featurePages: FeaturePage[] = [
     ],
     xHeading: "Auto follow on X that picks the right people",
     limits: [
-      { label: "Pace presets", free: "Safe (~150/day) and Balanced (~280/day)", premium: "Also Turbo (~390/day), X Premium (~800/day) and custom paces above Balanced" },
+      { label: "Pace presets", free: "Slow (~100/day), free forever", premium: "Also Balanced (~280/day), Turbo (~390/day), X Premium (~800/day) and custom paces faster than Slow" },
       { label: "Follow-back score", free: "1-99 score with core filters", premium: "Plus a smart score trained on your own follow-backs" },
       { label: "Source types", free: "Source profiles and their newest followers", premium: "Plus a post's reposts, replies and likes, searches, #hashtags and X Lists" },
       { label: "Filters", free: "Core filters, exclude keywords and a never-follow list", premium: "Plus include, location and verified filters, account age and last-active rules" },
@@ -183,7 +183,7 @@ export const featurePages: FeaturePage[] = [
     h1: "A free Twitter scheduler for posts and threads on X",
     lead:
       "Write a post or a thread, then post it now, pick a time or drop it into your next queue slot. GrowX publishes from your own x.com session in Chrome, shows when your followers are most active and keeps drafts, templates and a calendar in one place.",
-    image: { src: "/screens/create.webp", alt: "GrowX Create page with the post composer, AI ideas and queue slots (demo data)" },
+    image: { src: "/screens/studio-251.webp", alt: "GrowX AI Creator Studio with the post composer, AI ideas and queue slots (demo data)" },
     highlights: [
       {
         title: "Posts and threads",
@@ -215,7 +215,7 @@ export const featurePages: FeaturePage[] = [
     steps: [
       {
         title: "Write it",
-        text: "Open Create and write a post or a thread, or start from a template. The counter follows X's rules: links count as 23 characters and most emoji as 2.",
+        text: "Open AI Creator Studio and write a post or a thread, or start from a template. The counter follows X's rules: links count as 23 characters and most emoji as 2.",
       },
       {
         title: "Pick when",
@@ -332,7 +332,7 @@ export const featurePages: FeaturePage[] = [
     h1: "An AI tweet writer that runs privately on your own computer",
     lead:
       "GrowX AI writes, improves and threads your X posts with the AI model built into Chrome. It runs on your computer, uses your niche and voice settings, needs no API key and does not invent facts: anything it cannot know becomes a `{placeholder}`.",
-    image: { src: "/screens/create.webp", alt: "GrowX Create page with the composer, the Write, Improve, Thread it and Hooks buttons and AI ideas written on the computer (demo data)" },
+    image: { src: "/screens/studio-251.webp", alt: "GrowX AI Creator Studio with the composer, the Write, Improve, Thread it and Hooks buttons and AI ideas written on the computer (demo data)" },
     highlights: [
       {
         title: "Write and Improve",
@@ -371,7 +371,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         title: "Press an AI button",
-        text: "In Create, choose Write, Improve, Hooks or Thread it. Chrome downloads its model once the first time; after that it runs on your computer.",
+        text: "In AI Creator Studio, choose Write, Improve, Hooks or Thread it. Chrome downloads its model once the first time; after that it runs on your computer.",
       },
       {
         title: "Edit, then post or schedule",
@@ -468,11 +468,11 @@ export const featurePages: FeaturePage[] = [
   {
     slug: "twitter-analytics",
     nav: "Analytics",
-    blurb: "Post analytics, your best time to post and which posts bring followers, in your browser.",
+    blurb: "Who followed you back, a Growth Score, post analytics and your best time to post, in your browser.",
     icon: "chart",
     seoTitle: "Twitter Analytics: X Post Stats & Best Time to Post",
     description:
-      "GrowX Twitter analytics shows views, likes, replies and engagement rate for your X posts, your best time to post, and which posts brought you followers.",
+      "GrowX Twitter analytics shows who followed you back, a Growth Score with next steps, engagement for every X post, your best time to post and new followers.",
     keywords: [
       "Twitter analytics",
       "X analytics tool",
@@ -481,29 +481,31 @@ export const featurePages: FeaturePage[] = [
       "Twitter engagement rate",
       "free Twitter analytics",
       "X follower growth chart",
+      "who followed back on Twitter",
+      "Twitter growth score",
       "GrowX",
     ],
-    eyebrow: "Insights",
+    eyebrow: "Analytics · New in 2.5.1",
     h1: "Twitter analytics that show what grows your X account",
     lead:
-      "GrowX Insights reads your recent posts and followers through the x.com tab you already have open and turns them into clear numbers: engagement per post, the hours that work, the topics and formats that land, and how your audience is changing.",
-    image: { src: "/screens/insights.webp", alt: "GrowX Insights page with post stats, a best time to post heat map and engagement by format (demo data)" },
+      "GrowX Analytics reads your recent posts and followers through the x.com tab you already have open and turns them into clear numbers: who followed you back and how fast, a Growth Score with your next steps, engagement per post, the hours that work, the topics and formats that land, and how your audience is changing.",
+    image: { src: "/screens/analytics-251.webp", alt: "GrowX Analytics, Posts page with post stats, a best time to post heat map and engagement by format (demo data)" },
     highlights: [
+      {
+        title: "Who followed back",
+        text: "Everyone who followed you back after GrowX followed them: when, how long it took and from which source, with search and CSV export.",
+      },
+      {
+        title: "Growth Score and AI Growth Coach",
+        text: "One score from 0 to 100 from six parts of your own numbers, weekly growth trends, and the most useful next steps.",
+      },
       {
         title: "Post analytics",
         text: "Views, likes, reposts, replies, bookmarks and engagement rate for your recent posts, refreshed every 3 hours while x.com is open.",
       },
       {
-        title: "Best time heat map",
-        text: "A week by 24-hour grid built from your own posts' engagement and when your followers are active.",
-      },
-      {
-        title: "Topics and formats",
-        text: "See how questions, images, plain text, threads and links compare on engagement for your account.",
-      },
-      {
-        title: "Goals and streaks",
-        text: "Daily goals for posts, replies and new followers, plus streaks, milestones, a growth chart and a monthly goal planner.",
+        title: "Best time and what works",
+        text: "A week by 24-hour heat map from your own posts and followers, and how questions, images, text, threads and links compare.",
       },
       {
         title: "Posts that brought followers",
@@ -527,14 +529,22 @@ export const featurePages: FeaturePage[] = [
       },
       {
         title: "Act on it",
-        text: "Move queue slots toward your best hours, do more of the formats that work and check the weekly view to see what changed.",
+        text: "Follow the AI Growth Coach's next steps, move queue slots toward your best hours and do more of the formats that work.",
       },
     ],
     sections: [
       {
+        heading: "Who followed back, and your Growth Score",
+        paragraphs: [
+          "Analytics opens on **Who followed back**: everyone who followed you back after GrowX followed them, newest first, with when you followed, when they followed back, how long it took and the [source](/features/twitter-auto-follow) they came from. Pick the last 7, 30 or 90 days or all time, filter by source, search, or export a CSV. On top you see how many followed back, the rate among follows old enough to judge, the typical wait and your best source.",
+          "**Growth Score 2.0** turns six parts of your own numbers into one score from 0 to 100: follower growth (25%), engagement (25%), post reach (15%), consistency (15%), follow-backs (10%) and retention (10%). Each part shows its score, the numbers behind it, how it is scored and how to raise it, and a part without enough data says what it needs. The score is kept once a day with the change since last week, next to a **growth dashboard** of weekly followers, follow-backs, views and engagement.",
+          "The **AI Growth Coach** lists the most useful next steps from those numbers, weakest parts first: the autopilot, your queue, your next best time to post, and the formats and topics that do best. With Premium, **Ask GrowX AI for this week's plan** writes a short plan on your computer. Home also shows your account's **TwitterScore** from twitterscore.io next to your Growth Score, if you allow it.",
+        ],
+      },
+      {
         heading: "What GrowX Twitter analytics measures",
         paragraphs: [
-          "Insights starts with **post analytics**: views, likes, reposts, replies, bookmarks and engagement rate for each of your recent posts. The numbers refresh every 3 hours while an x.com tab is open, so you can watch how a post develops over its first day instead of checking it by hand. The free plan covers your latest 30 posts.",
+          "Next come **post analytics**: views, likes, reposts, replies, bookmarks and engagement rate for each of your recent posts. The numbers refresh every 3 hours while an x.com tab is open, so you can watch how a post develops over its first day instead of checking it by hand. The free plan covers your latest 30 posts.",
           "**What works** groups your posts by topic and format (questions, images, plain text, threads and links) and compares their engagement. Over a few weeks this answers practical questions: do your threads do better than single posts, do images help, do links hurt? Answers based on your own account beat general rules, because every niche and audience behaves differently.",
           "The **growth chart** and history show your follower count over time. Daily goals for posts, replies and new followers, **streaks**, milestones and a monthly goal planner turn the numbers into a routine you can actually keep, which matters more for growth on X than any single post that happens to go viral.",
         ],
@@ -556,16 +566,17 @@ export const featurePages: FeaturePage[] = [
       {
         heading: "Privacy and how the data is collected",
         paragraphs: [
-          "GrowX reads everything through an x.com tab that is already open, one small step per minute at most, so there is no separate login and no X password. Your settings, history, posts and analytics stay in Chrome's storage on your computer rather than on a GrowX server. Optional anonymous usage counts, which contain no X data, can be switched off.",
+          "GrowX reads everything through an x.com tab that is already open, one small step per minute at most, so there is no separate login and no X password. Your settings, history, posts and analytics stay in Chrome's storage on your computer rather than on a GrowX server. Optional anonymous usage counts, which contain no X data, can be switched off. TwitterScore on Home is optional too: if you allow it, GrowX sends only your @username to twitterscore.io once a day, and Settings, General turns it off.",
           "The trade-off is coverage. GrowX only knows what it has seen while Chrome was running with x.com open, so a fresh install starts with your recent posts and builds history from there. X's own analytics remain the official record for your account; GrowX adds the comparisons, timing and follower links in one place next to your scheduler and goals.",
         ],
       },
     ],
     plans: {
       free: [
+        "Who followed back, with CSV export",
+        "Growth Score 2.0, growth dashboard and AI Growth Coach",
         "Post analytics for your latest 30 posts",
-        "Best time to post heat map",
-        "Topics and formats by engagement",
+        "Best time to post heat map, topics and formats",
         "Growth chart, history, daily goals, streaks and milestones",
         "Follower tracker with 7 days of history and top fans",
       ],
@@ -573,14 +584,22 @@ export const featurePages: FeaturePage[] = [
         "Full analytics, including which posts brought followers",
         "Weekly report with a Monday notification",
         "Full follower history and follower quality",
-        "Weekly summary from GrowX AI",
+        "This week's plan and a weekly summary from GrowX AI",
         "All included in the free 30-day Premium trial, no credit card",
       ],
     },
     faq: [
       {
         q: "Is there a free Twitter analytics tool?",
-        a: "Yes. GrowX's free plan includes post analytics for your latest 30 posts, the best time to post heat map, topics and formats, a growth chart and daily goals.",
+        a: "Yes. GrowX's free plan includes who followed back, the Growth Score and AI Growth Coach, post analytics for your latest 30 posts, the best time to post heat map, topics and formats, a growth chart and daily goals.",
+      },
+      {
+        q: "Can I see who followed me back on X?",
+        a: "Yes, free. GrowX Analytics opens on Who followed back: everyone who followed you back after GrowX followed them, with when, how long it took and the source, plus a CSV export.",
+      },
+      {
+        q: "What is the GrowX Growth Score?",
+        a: "A score from 0 to 100 built from six parts of your own numbers: follower growth, engagement, post reach, consistency, follow-backs and retention. Each part shows how it is scored and how to raise it, and it is free.",
       },
       {
         q: "How does GrowX get my X analytics?",
@@ -601,6 +620,7 @@ export const featurePages: FeaturePage[] = [
     ],
     xHeading: "X analytics that point to your next post",
     limits: [
+      { label: "Who followed back, Growth Score and coach", free: "Included", premium: "Plus this week's plan from GrowX AI" },
       { label: "Post analytics", free: "Your latest 30 posts", premium: "Full analytics" },
       { label: "Best time to post, topics and formats", free: "Included", premium: "Included" },
       { label: "Which posts brought followers", free: "-", premium: "Included" },
@@ -633,7 +653,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Find out who unfollowed you on Twitter (X), every day",
     lead:
       "X does not tell you when someone unfollows. GrowX compares your full follower list once a day and shows who followed you and who left, with history, follower quality checks and your top fans.",
-    image: { src: "/screens/followers.webp", alt: "GrowX Followers page with new followers, unfollowers, an unfollow back button and a follower quality breakdown (demo data)" },
+    image: { src: "/screens/followers-251.webp", alt: "GrowX Analytics, Followers page with new followers, unfollowers, an unfollow back button and a follower quality breakdown (demo data)" },
     highlights: [
       {
         title: "Daily follower comparison",
@@ -674,7 +694,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         title: "Review and decide",
-        text: "Open Insights to see the changes. With Premium, you can also check follower quality and unfollow back in one click.",
+        text: "Open Analytics, Followers to see the changes. With Premium, you can also check follower quality and unfollow back in one click.",
       },
     ],
     sections: [
@@ -779,7 +799,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Unfollow non-followers and inactive accounts on X, safely",
     lead:
       "GrowX Cleanup scans everyone you follow, finds accounts that do not follow you back or have stopped posting, and lets you review and select before it unfollows anyone. Each account is re-checked right before the unfollow, at a pace built to look human.",
-    image: { src: "/screens/followers.webp", alt: "GrowX follower list with a select checkbox per account, an unfollow back button and follower quality (demo data)" },
+    image: { src: "/screens/followers-251.webp", alt: "GrowX follower list with a select checkbox per account, an unfollow back button and follower quality (demo data)" },
     highlights: [
       {
         title: "Not following back",
@@ -919,11 +939,11 @@ export const featurePages: FeaturePage[] = [
       "reply guy tool",
       "GrowX",
     ],
-    eyebrow: "Engage · New in 2.5.0",
+    eyebrow: "AI Creator Studio · AI replies",
     h1: "An AI Reply Assistant for X that drafts, and lets you decide",
     lead:
       "Early, thoughtful replies under bigger posts are one of the fastest ways to get seen on X. GrowX finds fresh posts from the accounts you watch, ranks them by how fast they take off, and GrowX AI drafts a reply to each one in your tone, on your computer. You read and approve every reply; GrowX never replies by itself.",
-    image: { src: "/screens/overview.webp", alt: "GrowX Home dashboard with daily goals, upcoming posts, this week on X and the popup with pace controls (demo data)" },
+    image: { src: "/screens/overview-251.webp", alt: "GrowX Home dashboard with daily goals, upcoming posts, this week on X and the popup with pace controls (demo data)" },
     highlights: [
       {
         title: "Fresh posts, ranked",
@@ -961,7 +981,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         title: "Open the AI Reply Assistant",
-        text: "In Engage, GrowX lists fresh posts from those accounts, ranked by how fast they take off. With Premium, press **Draft with AI** on a post or **Draft replies for all** (the top 10).",
+        text: "In AI Creator Studio, the AI Reply Assistant lists fresh posts from those accounts, ranked by how fast they take off. With Premium, press **Draft with AI** on a post or **Draft replies for all** (the top 10).",
       },
       {
         title: "Read, edit, approve",
@@ -1031,7 +1051,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "What is the GrowX AI Reply Assistant?",
-        a: "The Engage page that lists fresh posts from the accounts you watch, ranked by how fast they take off, with GrowX AI drafting a reply to each one in your tone. The list and replying by hand are free; the AI drafts and sending approved replies are Premium.",
+        a: "The page in AI Creator Studio that lists fresh posts from the accounts you watch, ranked by how fast they take off, with GrowX AI drafting a reply to each one in your tone. The list and replying by hand are free; the AI drafts and sending approved replies are Premium.",
       },
       {
         q: "Where does GrowX AI write my replies?",
@@ -1084,7 +1104,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Follow a list of Twitter accounts, exactly as you wrote it",
     lead:
       "List follow follows exactly the accounts on your own list: paste usernames, @mentions or profile links, or bring a CSV or TXT file. GrowX works through it at your pace, with the same safety as the autopilot, and shows what happened to every account.",
-    image: { src: "/screens/grow.webp", alt: "GrowX Grow page with the Safe, Balanced, Turbo, X Premium and Custom pace presets that List follow also uses (demo data)" },
+    image: { src: "/screens/grow-251.webp", alt: "GrowX Grow page with the Slow (free forever), Balanced, Turbo, X Premium and Custom pace presets that List follow also uses" },
     highlights: [
       {
         title: "Paste, upload or drop",
@@ -1133,9 +1153,9 @@ export const featurePages: FeaturePage[] = [
         ],
       },
       {
-        heading: "Safe pace, clear results",
+        heading: "Careful pace, clear results",
         paragraphs: [
-          "List follow uses the same pace presets and safety as the autopilot: random delays between follows, breaks, rolling hourly and daily caps, and an automatic slow-down or stop when X shows a warning. No tool can promise zero risk on X, so start with the Safe or Balanced pace.",
+          "List follow uses the same pace presets and safety as the autopilot: random delays between follows, breaks, rolling hourly and daily caps, and an automatic slow-down or stop when X shows a warning. No tool can promise zero risk on X, so start with the free Slow pace.",
           "Every account ends up in one state you can see: **followed**, **requested** (a protected account, so a follow request was sent), **skipped** with the reason (not found, suspended, blocked or followed before) or **failed** when X kept refusing. Retry the failed ones, export the list, and press Stop at any time without losing your progress.",
         ],
         bullets: [
@@ -1146,8 +1166,8 @@ export const featurePages: FeaturePage[] = [
       },
     ],
     plans: {
-      free: ["List follow with up to 50 accounts at a time", "Paste, CSV or TXT import", "Same pace presets and safety as the autopilot", "Retry, export and Stop without losing progress"],
-      premium: ["Lists of up to 5,000 accounts", "Turbo and X Premium paces", "Everything in smart auto follow Premium"],
+      free: ["List follow with up to 50 accounts at a time", "Paste, CSV or TXT import", "The free Slow pace and the same safety as the autopilot", "Retry, export and Stop without losing progress"],
+      premium: ["Lists of up to 5,000 accounts", "Balanced, Turbo and X Premium paces", "Everything in smart auto follow Premium"],
     },
     faq: [
       { q: "How do I follow a list of Twitter accounts?", a: "Open List follow in the GrowX dashboard, paste the usernames or profile links or upload a CSV or TXT file, and press Start. GrowX follows exactly those accounts at your pace and shows the result for each one." },
@@ -1160,7 +1180,7 @@ export const featurePages: FeaturePage[] = [
     limits: [
       { label: "List size", free: "Up to 50 accounts at a time", premium: "Up to 5,000 accounts" },
       { label: "Input", free: "Paste names or links, or a CSV or TXT file", premium: "Same" },
-      { label: "Pace presets", free: "Safe and Balanced", premium: "Also Turbo and X Premium" },
+      { label: "Pace presets", free: "Slow, free forever", premium: "Also Balanced, Turbo and X Premium" },
       { label: "Retry, export, stop without losing progress", free: "Included", premium: "Included" },
     ],
     tools: ["/tools/twitter-follower-ratio-calculator", "/tools/twitter-shadowban-checker"],

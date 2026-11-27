@@ -9,7 +9,7 @@ export interface Release {
   groups: { title: string; items: string[] }[];
 }
 
-export const CURRENT_VERSION = "2.5.0";
+export const CURRENT_VERSION = "2.5.1";
 
 /** The extension's interface languages (shared/i18n.js LANGS): BCP 47 code, native name, English name. */
 export const LANGUAGES: { code: string; native: string; english: string }[] = [
@@ -37,6 +37,64 @@ export const LANGUAGES: { code: string; native: string; english: string }[] = [
 ];
 
 export const releases: Release[] = [
+  {
+    version: "2.5.1",
+    title: "AI Creator Studio and Analytics",
+    intro:
+      "See who followed you back, your Growth Score and what to do next, and write your posts and replies in one place. Slow is the free pace now, free forever.",
+    groups: [
+      {
+        title: "Fixed for X's update",
+        items: [
+          "Following the people who reposted, replied to or liked a post works again, and so does reading your posts",
+          "GrowX now learns X's changes from X's own page and adapts by itself",
+        ],
+      },
+      {
+        title: "New: AI Creator Studio",
+        items: [
+          "Create and Engage are one place in the sidebar now: Write, Queue & calendar, Templates, Evergreen, AI Reply Assistant and People",
+          "Old links to Create and Engage open it",
+        ],
+      },
+      {
+        title: "New: Analytics (was Insights)",
+        items: [
+          "Who followed back: everyone who followed you back after GrowX followed them, with when, how long it took and the source; 7, 30 or 90 days or all time, search and CSV export",
+          "Growth Score 2.0: one score from 0 to 100 from six parts of your own numbers (follower growth, engagement, post reach, consistency, follow-backs and retention), each with how it's scored and how to raise it",
+          "Growth dashboard: followers gained and follow-backs, views and engagement per week, and your score over time",
+          "AI Growth Coach: the most useful next steps from your own numbers. Asking GrowX AI for this week's plan is Premium. [See the analytics](/features/twitter-analytics)",
+        ],
+      },
+      {
+        title: "New: your TwitterScore on Home",
+        items: [
+          "Home shows your account's TwitterScore (twitterscore.io) next to your Growth Score, with the change this week, refreshed once a day",
+          "GrowX sends only your @username, after you allow it once; turn it off in Settings, General",
+        ],
+      },
+      {
+        title: "Paces",
+        items: [
+          "Safe is now Slow: about 100 follows a day, 50 to 120 seconds apart with a 20-minute break every 10 follows. Free forever",
+          "Balanced, Turbo and X Premium come with Premium and the 30-day trial. On Free a faster choice is kept, and used again once Premium is active. [How the paces work](/how-it-works)",
+        ],
+      },
+      {
+        title: "Also new",
+        items: [
+          "The first time you start the autopilot, GrowX asks once whether you'd like to follow its creator, @0x_nation. Nobody is followed without your click",
+        ],
+      },
+      {
+        title: "Fixes",
+        items: [
+          "Signing in on a third device no longer signs you straight back out",
+          "More of GrowX in your language: a new install's empty pages, the popup's hints and every time label",
+        ],
+      },
+    ],
+  },
   {
     version: "2.5.0",
     title: "AI Reply Assistant",

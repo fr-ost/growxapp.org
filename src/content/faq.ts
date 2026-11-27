@@ -60,7 +60,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Is GrowX free?",
-        a: "Yes. The free plan is free forever and includes the Safe and Balanced auto follow paces, sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, fresh posts to reply to, analytics for your latest 30 posts, 7 days of follower history, goals, List follow with up to 50 accounts at a time and the cleanup scan with up to 200 unfollows per run.",
+        a: "Yes. The free plan is free forever and includes auto follow at the Slow pace (about 100 a day), sources and core filters, scheduling with up to 10 posts waiting, best time to post, 52 templates, fresh posts to reply to, analytics for your latest 30 posts, who followed back, the Growth Score and AI Growth Coach, 7 days of follower history, goals, List follow with up to 50 accounts at a time and the cleanup scan with up to 200 unfollows per run.",
       },
       {
         q: "How much does GrowX Premium cost?",
@@ -69,7 +69,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What do I get with Premium?",
-        a: "GrowX AI, the AI Reply Assistant and AI reply buttons on X, unlimited scheduling, evergreen recycling and auto-plug, the Turbo and X Premium paces, the smart score and more source types, advanced filters and list import, lists of up to 5,000 for List follow, full analytics with the weekly report, full follower history and follower quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account.",
+        a: "GrowX AI, the AI Reply Assistant and AI reply buttons on X, unlimited scheduling, evergreen recycling and auto-plug, the Balanced, Turbo and X Premium paces, the smart score and more source types, advanced filters and list import, lists of up to 5,000 for List follow, full analytics with the weekly report, full follower history and follower quality, VIP alerts, bulk unfollow, automatic cleanup and a workspace per X account.",
       },
       {
         q: "How do I pay?",
@@ -141,11 +141,11 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "How many people can GrowX follow per day?",
-        a: "It depends on the pace: about 150 a day on Safe, 280 on Balanced, 390 on Turbo and 800 on the X Premium pace, always within rolling hourly and daily caps. Turbo and X Premium are Premium paces meant for aged accounts and accounts with X Premium.",
+        a: "It depends on the pace: about 100 a day on Slow, the free pace, and with Premium about 280 on Balanced, 390 on Turbo and 800 on the X Premium pace, always within rolling hourly and daily caps. Turbo and X Premium are meant for aged accounts and accounts with X Premium.",
       },
       {
         q: "Is GrowX safe for my X account?",
-        a: "No tool can promise zero risk; X makes its own decisions. GrowX is built to behave like a careful person: random delays, breaks, hourly and daily caps, optional active hours and warm-up, a following-cap guard, an automatic slow-down after any X warning, and an emergency stop with Alt+Shift+S. Start new accounts on the Safe pace.",
+        a: "No tool can promise zero risk; X makes its own decisions. GrowX is built to behave like a careful person: random delays, breaks, hourly and daily caps, optional active hours and warm-up, a following-cap guard, an automatic slow-down after any X warning, and an emergency stop with Alt+Shift+S. Start new accounts on the free Slow pace.",
         more: { href: "/blog/bulk-follow-twitter-safely", label: "How to follow safely" },
       },
       {
@@ -196,7 +196,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What is the AI Reply Assistant?",
-        a: "The Engage page of GrowX: fresh posts from the accounts you watch, ranked by how fast they take off, with GrowX AI drafting a reply to each one in the tone, length and approach you pick. Premium also adds AI reply buttons beside X's own reply box. The list of fresh posts and replying by hand are free; the AI drafts are Premium.",
+        a: "A page in GrowX's AI Creator Studio: fresh posts from the accounts you watch, ranked by how fast they take off, with GrowX AI drafting a reply to each one in the tone, length and approach you pick. Premium also adds AI reply buttons beside X's own reply box. The list of fresh posts and replying by hand are free; the AI drafts are Premium.",
         more: { href: "/features/twitter-reply-targets", label: "AI Reply Assistant" },
       },
       {
@@ -254,7 +254,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Where is my data stored?",
-        a: "Your settings, sources, queue, posts, history and analytics are stored in your browser. GrowX does not upload your X data. Optional Chrome sync uses Chrome's own sync storage, and you can export a backup file at any time.",
+        a: "Your settings, sources, queue, posts, history and analytics are stored in your browser. GrowX does not upload your X data; the one optional exception is TwitterScore on Home, which sends only your @username to twitterscore.io once a day and can be turned off in Settings. Optional Chrome sync uses Chrome's own sync storage, and you can export a backup file at any time.",
         more: { href: "/privacy", label: "Privacy policy" },
       },
       {

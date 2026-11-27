@@ -3,7 +3,7 @@ import { DemoFrame, demoAtoms as f, type DemoProps } from "./frame";
 import s from "./follow-queue.module.css";
 
 const LABEL =
-  "GrowX's follow queue. The newest followers of your sources come first; everyone else gets a follow-back score from 1 to 99 and is skipped below your minimum of 55. Follows run at the Balanced pace, 30 to 75 seconds apart.";
+  "GrowX's follow queue. The newest followers of your sources come first; everyone else gets a follow-back score from 1 to 99 and is skipped below your minimum of 55. Follows run at the free Slow pace, 50 to 120 seconds apart.";
 
 const dl = (i: number) => cssVars({ "--dl": `${i * 120}ms` });
 
@@ -22,8 +22,8 @@ export function DemoFollowQueue(props: DemoProps) {
     <DemoFrame title="GrowX · Grow" label={LABEL} {...props}>
       <div className={f.head}>
         <span className={f.headTitle}>Follow queue</span>
-        <span className={`${f.chip} ${f.chipAccent}`}>Balanced · 30-75 s</span>
-        <span className={`${f.chip} ${f.hideSm}`}>Break every 18</span>
+        <span className={`${f.chip} ${f.chipAccent}`}>Slow · 50-120 s</span>
+        <span className={`${f.chip} ${f.hideSm}`}>Break every 10</span>
       </div>
       <div className={s.list}>
         <div className={`${f.row} ${s.row}`} style={dl(0)}>

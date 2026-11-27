@@ -6,7 +6,7 @@ const LABEL = "fresh posts from your niche ranked so you can reply early; you ap
 /** AI Reply Assistant: the post that is taking off rises to the top and gets a Reply button. */
 export function DemoReplyTargets(props: DemoProps) {
   return (
-    <DemoFrame title="GrowX · Engage" label={LABEL} {...props}>
+    <DemoFrame title="GrowX · AI Creator Studio" label={LABEL} {...props}>
       <div className={f.head}>
         <span className={f.headTitle}>AI Reply Assistant</span>
         <span className={f.chip}>Younger than 120 min</span>

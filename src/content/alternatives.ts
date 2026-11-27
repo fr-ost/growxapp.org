@@ -133,9 +133,9 @@ export const alternativePages: AlternativePage[] = [
         heading: "Growth: the part a content suite leaves out",
         paragraphs: [
           "Good posts still need people to see them. On a small or medium account, most new followers come from the people you follow, the replies you write and the times you post. That daily work is GrowX's core.",
-          "Smart auto follow reads the newest followers of accounts in your niche every hour, follows the most recent ones first and ranks everyone else by a follow-back score from 1 to 99. Safe and Balanced paces (about 150 and 280 follows a day) are free; random delays, breaks, hourly and daily caps and an automatic slow-down after any X warning are always on, and active hours and warm-up are there when you want them. The [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs so you can reply while it still counts (with Premium, GrowX AI drafts replies you approve), and [Cleanup](/features/twitter-unfollow-tool) finds accounts that don't follow back.",
+          "Smart auto follow reads the newest followers of accounts in your niche every hour, follows the most recent ones first and ranks everyone else by a follow-back score from 1 to 99. The Slow pace (about 100 follows a day) is free forever, with Balanced, Turbo and X Premium in Premium; random delays, breaks, hourly and daily caps and an automatic slow-down after any X warning are always on, and active hours and warm-up are there when you want them. The [AI Reply Assistant](/features/twitter-reply-targets) lists fresh posts from your sources and VIPs so you can reply while it still counts (with Premium, GrowX AI drafts replies you approve), and [Cleanup](/features/twitter-unfollow-tool) finds accounts that don't follow back.",
         ],
-        bullets: ["No tool can promise zero risk on X. Start with the Safe or Balanced pace and let GrowX slow down by itself when X shows a warning."],
+        bullets: ["No tool can promise zero risk on X. Start with the free Slow pace and let GrowX slow down by itself when X shows a warning."],
       },
       {
         heading: "Scheduling: servers versus your own Chrome",
@@ -149,9 +149,9 @@ export const alternativePages: AlternativePage[] = [
         paragraphs: ["You don't have to switch everything at once. A simple order that keeps your posting steady:"],
         steps: [
           "Install GrowX from the Chrome Web Store, open x.com in the same Chrome profile and finish the setup wizard.",
-          "Recreate your posting times as queue slots in **Create**, then move your next week of drafts across.",
-          "Add three to five source accounts in your niche, or press **Find sources for me**, and start on the Safe or Balanced pace.",
-          "After two weeks, read [Insights](/features/twitter-analytics): which topics and formats worked, and your best time to post.",
+          "Recreate your posting times as queue slots in **AI Creator Studio**, then move your next week of drafts across.",
+          "Add three to five source accounts in your niche, or press **Find sources for me**, and start on the free Slow pace.",
+          "After two weeks, read [Analytics](/features/twitter-analytics): who followed back, which topics and formats worked, and your best time to post.",
           "Try every Premium feature free for 30 days, no credit card, before deciding whether you need it.",
         ],
       },
@@ -169,7 +169,7 @@ export const alternativePages: AlternativePage[] = [
       },
       {
         q: "Is there a free alternative to Tweet Hunter?",
-        a: "GrowX has a free plan forever with Safe and Balanced auto follow, the scheduler with up to 10 posts waiting, analytics for your latest 30 posts and 52 templates. Every Premium feature can be tried free for 30 days, no credit card.",
+        a: "GrowX has a free plan forever with auto follow at the Slow pace, the scheduler with up to 10 posts waiting, analytics for your latest 30 posts, who followed back and 52 templates. Every Premium feature can be tried free for 30 days, no credit card.",
       },
       {
         q: "Does GrowX need my X password?",
@@ -262,9 +262,9 @@ export const alternativePages: AlternativePage[] = [
         paragraphs: ["A move that keeps your posting steady:"],
         steps: [
           "Install GrowX, open x.com in the same Chrome profile and finish the setup wizard.",
-          "Set your queue slots in **Create** to the times you used in Hypefury.",
+          "Set your queue slots in **AI Creator Studio** to the times you used in Hypefury.",
           "Copy your best evergreen posts across, then turn on evergreen recycling and auto-plug in the free 30-day Premium trial.",
-          "Queue a week of posts, then add growth: a few source accounts in your niche on the Safe or Balanced pace.",
+          "Queue a week of posts, then add growth: a few source accounts in your niche on the free Slow pace.",
         ],
       },
     ],
@@ -363,7 +363,7 @@ export const alternativePages: AlternativePage[] = [
         paragraphs: ["You can keep Typefully for writing and add GrowX for growth. Just let only one tool post any given post."],
         steps: [
           "Install GrowX from the Chrome Web Store and finish the setup wizard in the Chrome profile you use for x.com.",
-          "Add three to five source accounts in your niche, or press **Find sources for me**, and start the Safe or Balanced pace.",
+          "Add three to five source accounts in your niche, or press **Find sources for me**, and start the free Slow pace.",
           "Open the AI Reply Assistant once or twice a day and reply early to fresh posts in your niche.",
           "After two weeks, read your analytics and the follower tracker to see what brought people in.",
         ],

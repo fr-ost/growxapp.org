@@ -7,7 +7,7 @@ const MAX_PER_DAY = 800;
 /**
  * "Pace presets (current version)": the real preset table from docs/PRODUCT_FACTS.md as a <dl>, each with an
  * aria-hidden daily-cap bar (static width = perDay / 800; the fill draws with scroll), then the
- * Balanced rhythm strip. Lives on ink.
+ * rhythm strip of the free Slow pace. Lives on ink.
  */
 export function PaceConsole() {
   return (
@@ -21,8 +21,8 @@ export function PaceConsole() {
           <div key={p.id} className="py-3.5 first:pt-0">
             <dt className="flex flex-wrap items-center gap-2 font-semibold text-white">
               {p.name}
-              {p.id === "balanced" ? (
-                <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-white ring-1 ring-white/20">Default</span>
+              {!p.premium ? (
+                <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-white ring-1 ring-white/20">Free forever</span>
               ) : null}
               {p.premium ? (
                 <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-accent-on-ink ring-1 ring-[#ff5a68]/30">
@@ -43,7 +43,7 @@ export function PaceConsole() {
         ))}
       </dl>
       <div className="mt-5 border-t border-white/10 pt-5">
-        <DemoPaceStrip preset="balanced" tone="ink" framed={false} />
+        <DemoPaceStrip preset="slow" tone="ink" framed={false} />
       </div>
     </div>
   );

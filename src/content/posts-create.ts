@@ -71,10 +71,10 @@ export const createPosts: Post[] = [
         id: "growx-steps",
         heading: "How to schedule a tweet with GrowX, step by step",
         blocks: [
-          p("GrowX keeps posting in the **Create** area of its dashboard, and there is also a quick post box in the extension popup for one-off posts. Full details are on the [post scheduler page](/features/twitter-post-scheduler). To schedule a post:"),
+          p("GrowX keeps posting in the **AI Creator Studio** of its dashboard, and there is also a quick post box in the extension popup for one-off posts. Full details are on the [post scheduler page](/features/twitter-post-scheduler). To schedule a post:"),
           ol(
             "Install GrowX from the Chrome Web Store and make sure you are signed in to X in the same Chrome profile.",
-            "Open the GrowX dashboard and go to **Create**.",
+            "Open the GrowX dashboard and go to **AI Creator Studio**.",
             "Write your post. The composer counts characters the way X does, so the number you see is the one X will apply. Add up to four images if you need them.",
             "Choose **Post now**, **Schedule** (pick a date and time) or **Add to queue** (GrowX uses the next free slot).",
             "Open the **calendar** to see what is going out and when, and edit anything that still needs work before it is published.",
@@ -417,7 +417,7 @@ export const createPosts: Post[] = [
         id: "growx",
         heading: "Writing threads faster with GrowX",
         blocks: [
-          p("Writing a thread directly in X's composer works, but editing the middle of a long thread there is awkward. The GrowX composer, in the **Create** area of the dashboard, is built for drafting threads:"),
+          p("Writing a thread directly in X's composer works, but editing the middle of a long thread there is awkward. The GrowX composer, in the **AI Creator Studio** of the dashboard, is built for drafting threads:"),
           ul(
             "Write the whole thread in one place, **up to 25 parts**, each with its own character count using X's rules, and up to four images per post.",
             "Paste a long draft and use **Thread it** to split it into parts that fit. With [GrowX AI](/features/ai-tweet-writer) (Premium) available, Thread it can also help shape the draft into a thread; otherwise the plain splitter does the job.",
@@ -527,7 +527,7 @@ export const createPosts: Post[] = [
         id: "features",
         heading: "What GrowX AI can do",
         blocks: [
-          p("GrowX AI shows up where you already work: in the composer in **Create** and in the AI Reply Assistant in **Engage**, and right beside X's own reply box."),
+          p("GrowX AI shows up where you already work: in the composer and the AI Reply Assistant in **AI Creator Studio**, in the AI Growth Coach, and right beside X's own reply box."),
           ul(
             "**Write:** turn a topic or a few notes into a draft post.",
             "**Improve:** tighten a draft you wrote so it is clearer and shorter without changing the point.",

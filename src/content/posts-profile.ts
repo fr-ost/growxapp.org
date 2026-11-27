@@ -303,7 +303,7 @@ export const profilePosts: Post[] = [
           ul(
             "**Follow verification**: GrowX checks that follows actually stuck. If X silently stops applying them, which is one form of shadow limit, GrowX notices instead of carrying on.",
             "**Adaptive slow-down** after any warning from X, and hard **stops** on sign-out, locks, verification challenges or repeated automation warnings. It never clicks through a challenge for you.",
-            "**Safe paces**: the Safe preset waits 45 to 110 seconds between follows, rests every 12 follows and stays under about 18 an hour and 150 a day, with random delays and occasional longer pauses. Optional warm-up and active hours keep a new account quieter still.",
+            "**Careful paces**: the free Slow preset waits 50 to 120 seconds between follows, rests 20 minutes every 10 follows and stays under about 14 an hour and 100 a day, with random delays and occasional longer pauses. Optional warm-up and active hours keep a new account quieter still.",
             "**Posting safety**: a daily post cap (20 by default), a minimum gap of 5 minutes between posts and a pause on any X warning.",
             "**Emergency stop**: press **Alt+Shift+S** to stop everything at once.",
           ),
@@ -330,7 +330,7 @@ export const profilePosts: Post[] = [
         id: "try",
         heading: "Grow on X without the risky patterns",
         blocks: [
-          p(`${TRY} Start on the Safe pace with warm-up switched on, and let follow verification watch for silent limits.`),
+          p(`${TRY} Start on the free Slow pace with warm-up switched on, and let follow verification watch for silent limits.`),
         ],
       },
     ],
@@ -602,7 +602,7 @@ export const profilePosts: Post[] = [
         blocks: [
           p("Check your ratio once a month rather than every day, and write it down. The trend matters more than any snapshot. A ratio that improves while your follower count grows means your approach is working. A ratio that worsens month after month is a sign to follow more selectively or to clean up more often."),
           p("A simple monthly log is enough: the date, your followers, your following, the ratio, and one line on what you changed that month, such as a cleanup, a new posting rhythm or different sources. After a few months the log shows which changes actually moved the ratio, which tells you far more than comparing yourself with other accounts."),
-          p("GrowX Insights helps here. The growth chart shows your follower trend, and the follower tracker records once a day who followed and who unfollowed you (7 days of history on the free plan, full history on Premium). If many people you followed back leave again within days, you will see it before your ratio drifts."),
+          p("GrowX Analytics helps here. The growth chart shows your follower trend, and the follower tracker records once a day who followed and who unfollowed you (7 days of history on the free plan, full history on Premium). If many people you followed back leave again within days, you will see it before your ratio drifts."),
         ],
       },
       {
@@ -747,7 +747,7 @@ export const profilePosts: Post[] = [
         id: "growx-people",
         heading: "The AI Reply Assistant and VIPs: a complement to Lists",
         blocks: [
-          p("Lists live on X. GrowX's **Engage** area adds tools that work alongside them:"),
+          p("Lists live on X. GrowX's **AI Creator Studio** adds tools that work alongside them:"),
           ul(
             "The **AI Reply Assistant** collects fresh posts, by default younger than 120 minutes, from your sources, your VIPs and anyone you add, and ranks them by freshness and how fast they are taking off. You can reply and like from GrowX, but only when you press the button. Nothing is sent by itself.",
             "**People** keeps tags, notes, VIP and watch flags, your mutuals and the fans you don't follow back yet, so you remember who you talked to and why.",

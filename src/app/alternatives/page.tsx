@@ -179,7 +179,7 @@ export default function AlternativesPage() {
             </ol>
             <p>
               No tool can promise zero risk on X. GrowX slows down by itself after any warning from X and stops completely if your account needs attention.
-              Start with the Safe or Balanced pace.
+              Start with the free Slow pace.
             </p>
           </div>
 
@@ -187,10 +187,10 @@ export default function AlternativesPage() {
           <div className="mt-4 space-y-4 text-[1.05rem] leading-8 text-text-2 [text-wrap:pretty]">
             <p>
               You don&apos;t have to switch everything at once. Install the free extension, keep your current tool for drafting, and add a few source
-              accounts in your niche on the Safe or Balanced pace. Let only one tool post any given post, so nothing goes out twice.
+              accounts in your niche on the free Slow pace. Let only one tool post any given post, so nothing goes out twice.
             </p>
             <p>
-              After two weeks, open Insights: which topics and formats worked, your best time to post, and who followed or unfollowed you. Every Premium
+              After two weeks, open Analytics: who followed you back, which topics and formats worked, your best time to post, and who followed or unfollowed you. Every Premium
               feature can be tried free for {TRIAL_DAYS} days, no credit card. See{" "}
               <Link href="/features" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
                 all features

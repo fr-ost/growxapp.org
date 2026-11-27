@@ -15,15 +15,17 @@
 
 | Area | Feature | Source | Tier |
 |---|---|---|---|
-| Autopilot | Safe (~150/day) and Balanced (~280/day) paces | `PRESETS` in `shared/config.js` | Free |
-| Autopilot | Turbo (~390/day) and X Premium pace (~800/day) | `PRESETS.turbo`, `PRESETS.premium` | Premium |
-| Autopilot | Custom delays/caps above Balanced | `LIMITS`, `normalizeSettings` | Premium |
+| Autopilot | Slow pace (~100/day; Safe ~150/day up to 2.5.0) | `PRESETS.slow`, `FREE_PACE` in `shared/config.js` / `shared/plan.js` | Free |
+| Autopilot | Balanced (~280/day), Turbo (~390/day) and X Premium pace (~800/day) | `PRESETS`, `FAST_PACES` (Balanced was free up to 2.5.0) | Premium (and the trial) |
+| Autopilot | Custom delays/caps faster than Slow | `LIMITS`, `effectiveSettings` | Premium |
 | Autopilot | Active hours, warm-up, adaptive slow-down, follow verification, auto-resume, emergency stop | settings + `background.js` | Free |
 | Sources/queue | Source profiles, scored queue, never-follow list, manual queue review | `addSources`, `poolCmd` | Free |
 | Targeting | Score, audience size, follow ratio, posts, avatar, protected, boost keywords | `rejectReason`, `scoreUser` | Free |
 | Targeting | Include/exclude/location keywords, verified filters, account age, last-active window | `rejectReason` | Premium |
 | Targeting | Bulk "Import a list to follow" | dashboard modal | Premium |
 | List follow | Follow exactly the accounts on your own list (paste, CSV, TXT) | List follow page | Free: 50 at a time; Premium: up to 5,000 |
+| Analytics | Who followed back, Growth Score 2.0, growth dashboard, AI Growth Coach (list), TwitterScore on Home (2.5.1) | Analytics pages, `shared/growth.js`, `shared/twitterscore.js` | Free |
+| Analytics | "Ask GrowX AI for this week's plan" (AI Growth Coach) | `data-premium="aiStudio"` | Premium |
 | Insight | History, growth chart, source stats, monthly goal planner, backup/restore | analytics, history, settings pages | Free |
 | Cleanup | Account scan and review (inactive / not following back) with filters, search, sort | `startScan`, `shared/cleanup.js` | Free |
 | Cleanup | Manual selection and unfollow at a safe pace, up to a reasonable daily amount | `unfStart` | Free (limit TBD) |

@@ -68,7 +68,7 @@ export const insightPosts: Post[] = [
         id: "growx-tracker",
         heading: "How GrowX shows who unfollowed you on X",
         blocks: [
-          p("GrowX is a Chrome extension for X (Twitter). Its **Follower tracker** lives in the Insights area of the dashboard. Once a day it compares your full follower list with the previous one and shows two lists: who followed you and who **unfollowed** you."),
+          p("GrowX is a Chrome extension for X (Twitter). Its **Follower tracker** lives in the Analytics area of the dashboard. Once a day it compares your full follower list with the previous one and shows two lists: who followed you and who **unfollowed** you."),
           ul(
             "**It reads through an x.com tab that is already open**, in your own signed-in session, one small step per minute at most. It never asks for your X password.",
             "**Free plan**: 7 days of follower history, enough to connect a drop to last week's posts.",
@@ -98,7 +98,7 @@ export const insightPosts: Post[] = [
         heading: "Know your normal before you worry",
         blocks: [
           p("Every account loses some followers, even while it grows. Before you treat any day as a bad one, find your normal. Let the tracker run for a week or two and note the usual daily range of new followers and unfollowers. A day with a few more unfollows than usual is not a signal. A day with several times your usual number is worth a closer look."),
-          p("Watch the net figure as well as the unfollows. The more you post, the more people you reach, and some of them will decide you are not for them. That is a healthy trade as long as new followers keep outpacing the people who leave. The growth chart in GrowX Insights shows the overall trend, so one noisy day does not distract you from the direction you are heading."),
+          p("Watch the net figure as well as the unfollows. The more you post, the more people you reach, and some of them will decide you are not for them. That is a healthy trade as long as new followers keep outpacing the people who leave. The growth chart in GrowX Analytics shows the overall trend, so one noisy day does not distract you from the direction you are heading."),
         ],
       },
       {
@@ -192,7 +192,7 @@ export const insightPosts: Post[] = [
         heading: "What Twitter analytics are for",
         blocks: [
           p("Most people open **Twitter analytics** to check whether yesterday's post did well, feel good or bad about the view count, and close the tab. That is the least useful way to use them. Analytics on X are worth reading for one reason: to decide what to post next. Every number in this guide is judged by that test."),
-          p("You can read your numbers in several places: under each post on X, in X's own analytics screens (what they show depends on your account), or in a tool such as **GrowX**, a Chrome extension that collects your post numbers into one Insights dashboard. The ideas below work wherever your numbers come from."),
+          p("You can read your numbers in several places: under each post on X, in X's own analytics screens (what they show depends on your account), or in a tool such as **GrowX**, a Chrome extension that collects your post numbers into one Analytics dashboard. The ideas below work wherever your numbers come from."),
         ],
       },
       {
@@ -272,7 +272,7 @@ export const insightPosts: Post[] = [
       },
       {
         id: "growx-insights",
-        heading: "How GrowX Insights collects your numbers",
+        heading: "How GrowX Analytics collects your numbers",
         blocks: [
           p("GrowX does not use X OAuth or ask for your password. It reads your numbers through an **x.com tab that is already open** in your signed-in session, one small step per minute at most, and refreshes your post analytics every 3 hours while x.com is open. Everything is stored in your browser."),
           ul(
@@ -406,7 +406,7 @@ export const insightPosts: Post[] = [
         id: "reply-targets",
         heading: "How the GrowX AI Reply Assistant finds fresh posts",
         blocks: [
-          p("The hard part of a reply strategy is finding the right posts at the right moment. GrowX, a Chrome extension for X (Twitter), has an **AI Reply Assistant** in its Engage area for exactly this."),
+          p("The hard part of a reply strategy is finding the right posts at the right moment. GrowX, a Chrome extension for X (Twitter), has an **AI Reply Assistant** in its AI Creator Studio for exactly this."),
           ul(
             "It collects **fresh posts**, by default younger than 120 minutes, from your source profiles, your VIPs and any accounts you add.",
             "It ranks them by **freshness and how fast they are taking off**, so posts picking up speed rise to the top while there is still time to reply early.",
@@ -421,7 +421,7 @@ export const insightPosts: Post[] = [
         heading: "Keep track of the people you reply to",
         blocks: [
           p("Replying builds relationships, and relationships need memory. The **People** list in GrowX lets you tag accounts, add notes such as what you last talked about, mark VIPs and accounts to watch, and see your mutuals and the fans you don't follow back yet. With **VIP alerts (Premium)** you get a notification when a VIP posts, so you can be among the first replies on the accounts that matter most to you."),
-          p("The **Top fans** view in Insights shows who likes and replies to you most. Those people deserve replies too: answering your own audience is the easiest engagement you will ever get."),
+          p("The **Top fans** view in Analytics shows who likes and replies to you most. Those people deserve replies too: answering your own audience is the easiest engagement you will ever get."),
         ],
       },
       {
@@ -568,7 +568,7 @@ export const insightPosts: Post[] = [
         heading: "Measure, then change one thing at a time",
         blocks: [
           p("Tips only matter if they work for you. Each week, compare the typical engagement rate of your posts with the week before, and look at which topics and formats came out on top. Change one thing at a time, so you know what made the difference."),
-          p("GrowX **Insights** collects views, likes, reposts, replies, bookmarks and engagement rate for your latest 30 posts on the free plan, refreshed every 3 hours through an x.com tab you already have open. Its **What works** view groups results by topic and format (questions, images, text, threads and links). Premium adds which posts brought followers and a weekly report. See the [analytics feature page](/features/twitter-analytics), and the [Twitter analytics guide](/blog/twitter-analytics-guide) for how to read the numbers."),
+          p("GrowX **Analytics** collects views, likes, reposts, replies, bookmarks and engagement rate for your latest 30 posts on the free plan, refreshed every 3 hours through an x.com tab you already have open. Its **What works** view groups results by topic and format (questions, images, text, threads and links). Premium adds which posts brought followers and a weekly report. See the [analytics feature page](/features/twitter-analytics), and the [Twitter analytics guide](/blog/twitter-analytics-guide) for how to read the numbers."),
         ],
       },
       {

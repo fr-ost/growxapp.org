@@ -32,11 +32,11 @@ function layout(id: PaceId, slots: number): Layout {
 
 /**
  * A rhythm strip of follows spaced by seeded jitter inside the preset's REAL delay range, on a
- * time scale shared by all presets (so Safe looks sparse and X Premium dense), with a labelled
+ * time scale shared by all presets (so Slow looks sparse and X Premium dense), with a labelled
  * rest after every `restEvery` follows. `dots` sets the window length (dots x 36 s).
  * Motion: a lit copy is revealed left to right over 6 s, holds 2.5 s, plays twice. Base: fully lit.
  */
-export function DemoPaceStrip({ preset = "balanced", dots = 36, framed = false, ...props }: { preset?: PaceId; dots?: number } & DemoProps) {
+export function DemoPaceStrip({ preset = "slow", dots = 36, framed = false, ...props }: { preset?: PaceId; dots?: number } & DemoProps) {
   const p = pacePreset(preset);
   const { dots: xs, rests, restWidth } = layout(preset, dots);
   const label = `the ${p.name} pace: ${p.delay[0]} to ${p.delay[1]} seconds between follows, a rest every ${p.restEvery} follows, up to ${p.perHour} an hour.`;

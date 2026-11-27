@@ -9,10 +9,10 @@ import { CURRENT_VERSION, LANGUAGES, releases } from "@/content/releases";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: `What's New in GrowX ${CURRENT_VERSION}: AI Reply Assistant`,
-  description: `What's new in GrowX ${CURRENT_VERSION}: an AI Reply Assistant and one-click AI reply buttons on X, a list of your devices, and the full release notes.`,
+  title: `What's New in GrowX ${CURRENT_VERSION}: AI Creator Studio and Analytics`,
+  description: `What's new in GrowX ${CURRENT_VERSION}: AI Creator Studio, who followed you back, Growth Score 2.0, an AI Growth Coach, a free Slow pace and the full release notes.`,
   path: "/whats-new",
-  keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", `GrowX ${CURRENT_VERSION}`, "GrowX AI Reply Assistant", "AI reply buttons on X", "GrowX languages", "what's new in GrowX"],
+  keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", `GrowX ${CURRENT_VERSION}`, "GrowX AI Creator Studio", "GrowX Growth Score", "who followed back on X", "GrowX AI Reply Assistant", "what's new in GrowX"],
 });
 
 export default function WhatsNewPage() {
@@ -35,8 +35,8 @@ export default function WhatsNewPage() {
                 <IconChrome size={20} /> Get the update
               </ExternalButton>
             ) : null}
-            <LinkButton href="/features/twitter-reply-targets" variant="secondary" size="lg">
-              See the AI Reply Assistant <IconArrowRight size={17} className="nudge" />
+            <LinkButton href="/features/twitter-analytics" variant="secondary" size="lg">
+              See the new analytics <IconArrowRight size={17} className="nudge" />
             </LinkButton>
           </>
         }

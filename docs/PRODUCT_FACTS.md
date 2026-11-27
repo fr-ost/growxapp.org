@@ -1,17 +1,25 @@
-# GrowX product facts (extension v2.5.0)
+# GrowX product facts (extension v2.5.1)
 
 The single reference for website copy. Every claim on the site and in the blog must match this file, which was
 taken from the extension source (manifest, `shared/config.js`, `shared/plan.js`, `shared/whatsnew.js`,
-`shared/learn.js`, `shared/insights.js`, `shared/content.js`, `background-*.js`). When the extension changes,
+`shared/learn.js`, `shared/insights.js`, `shared/growth.js`, `shared/twitterscore.js`, `shared/content.js`, `background-*.js`).
+When the extension changes,
 update this file first.
 
 ## Identity
-- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.5.0 (release notes: /whats-new, from `shared/whatsnew.js`; detailed record in the extension's CHANGELOG.md).
-- Store description: "All-in-one X (Twitter) growth: smart auto follow, post scheduler, on-device AI writer, analytics, unfollower tracker, reply targets."
+- Name: **GrowX: The Ultimate X (Twitter) Growth Tool** (manifest name). Short name: GrowX. Version 2.5.1 (release notes: /whats-new, from `shared/whatsnew.js`; detailed record in the extension's CHANGELOG.md). 2.5.0 was the AI Reply Assistant release; 2.5.1 brought the X update fix, the Slow pace, AI Creator Studio, Analytics and TwitterScore.
+- Store description (2.5.1): "Auto follow, unfollow tool, tweet scheduler, unfollower tracker and AI replies for X (Twitter). Safe pacing, no password."
 - A Chrome extension (Chrome 116+, desktop: Windows, macOS, Linux, ChromeOS). Not a mobile app.
 - Works inside the user's own signed-in x.com session. Never asks for the X password, does not use X OAuth.
 - Developer: Shahriar Ahmed. Website: www.growxapp.org. GrowX is independent, not affiliated with X Corp.
-- Dashboard areas: **Home, Grow, Create, Engage, Insights, Cleanup, Settings** (+ Help). Popup with pace switch, Start/Pause/Stop and a quick post box.
+- Dashboard areas (2.5.1 sidebar): **Home, Grow, List follow, AI Creator Studio, Analytics, Cleanup, Settings** (+ Help). Related pages share a tab bar:
+  - Grow: Sources, Queue, Targeting, Pace & safety.
+  - AI Creator Studio (Create and Engage up to 2.5.0): Write, Queue & calendar, Templates, Evergreen, AI Reply Assistant, People. The phone tab bar calls it Studio.
+  - Analytics (Insights up to 2.5.0): Who followed back (first page), Growth, Posts, Followers, Follows, History, Weekly report.
+  - Settings: General, Appearance, AI writer, Accounts & sync.
+  - Old links to Create, Engage, Insights and Donate still open the right page. The Donate page was removed in 2.5.1.
+- Popup with pace switch, Start/Pause/Stop and a quick post box; its footer links to GrowXApp.org.
+- **Home**: Growth Score and **TwitterScore** side by side (2.5.1), today's follows and goals, posts up next, this week on X.
 
 ## Grow (smart auto follow)
 - Add **source profiles** (accounts in your niche); GrowX follows their **newest followers**. "Find sources for me" auto-finds sources from the accounts you follow (ranks them by how active, mid-sized and follow-back-prone their audience is). "Find people now" harvests immediately.
@@ -21,12 +29,17 @@ update this file first.
 - **More source types (Premium)**: a post's reposts, replies and likes; searches and #hashtags; X Lists.
 - **Auto-replace weak sources (Premium)**: after a fair trial, weak sources are retired and replaced with the best auto-found one (restorable).
 - **Source leaderboard**: follow-back rate, retention and cost per source.
-- Pace presets (seconds between follows, rest, rolling caps):
-  - Safe: 45-110 s, rest every 12, up to 18/hour, ~150/day (new accounts)
-  - Balanced: 30-75 s, rest every 18, up to 28/hour, ~280/day (recommended, default)
-  - Turbo (Premium): 18-45 s, rest every 25, up to 40/hour, ~390/day (aged accounts)
-  - X Premium (Premium): 12-32 s, rest every 35, up to 60/hour, ~800/day (accounts with X Premium only)
-  - Custom (above Balanced is Premium)
+- Pace presets (seconds between follows, rest, rolling caps; `shared/config.js` PRESETS, `shared/plan.js` FREE_PACE / FAST_PACES):
+  - **Slow (free forever, the default for new installs)**: 50-120 s, a 20-minute rest every 10 follows, up to 14/hour, ~100/day ("gentle on new accounts")
+  - Balanced (Premium): 30-75 s, a 14-minute rest every 18, up to 28/hour, ~280/day (recommended for most accounts)
+  - Turbo (Premium): 18-45 s, a 10-minute rest every 25, up to 40/hour, ~390/day (aged accounts)
+  - X Premium (Premium): 12-32 s, an 8-minute rest every 35, up to 60/hour, ~800/day (accounts with X Premium only)
+  - Custom: numbers faster than Slow are Premium
+  - Balanced, Turbo and X Premium are included in the 30-day Premium trial. On Free a faster saved choice is kept: GrowX runs at Slow, says so, and uses the saved choice again once Premium is active.
+  - Up to 2.5.0 the first pace was **Safe** (45-110 s, ~150/day) and Balanced was free and the default. A saved Safe became Slow in 2.5.1. Never describe Safe or a free Balanced as current.
+  - Cleanup's **unfollow** paces are separate and keep their names: Safe unfollow (free, 30/hour, 200/day) and Balanced unfollow (Premium, 45/hour, 320/day).
+- **X update fix (2.5.1)**: X changed its web app and refused the requests behind post sources (reposts, likes), replies and reading your posts; they work again, and GrowX now learns X's request ids, flags and newly required variables from X's own page and adapts by itself (each once, then remembered).
+- **Follow GrowX's creator (2.5.1)**: the first time someone starts the autopilot, GrowX asks once whether they'd like to follow @0x_nation, who makes GrowX. Follow follows through their own x.com tab; No thanks never asks again. Nobody is followed without that click.
 - Safety: random delays, breaks, 8% longer pauses, optional active hours (08:00-23:30 default when turned on) and days, optional warm-up (daily cap starts at 60, +20/day), session target, following-cap guard (5,000 or ~10% above your follower count), adaptive slow-down after any X warning, follow verification (shadow-limit detection), stops on sign-out/lock/challenge/repeated automation warnings, emergency stop **Alt+Shift+S**, keeps the computer awake while running, resumes after Chrome restarts, runs in the background (service worker).
 - Filters (core, free): skip already-followed / follows-you, private, no photo, optional bio, min/max followers (15 / 8,000), min following (40), min ratio 0.4, min posts (5), min account age (30 d), last active (45 d), exclude keywords (adult terms by default), follow-back boost words.
 - Advanced filters (Premium): include keywords, location keywords, verified-only / skip verified, account age and last-active rules.
@@ -42,7 +55,7 @@ update this file first.
 - Free: lists of 50 at a time (`FREE.listFollow`). Premium ("Big lists for List follow"): up to 5,000.
 - Never-follow list (blacklist).
 
-## Create (posts and threads)
+## AI Creator Studio: Write, Queue & calendar, Templates, Evergreen (posts and threads; "Create" up to 2.5.0)
 - Composer: posts and **threads** (up to 25 parts), up to 4 images per post, X's own character counting (links count 23, most emoji/CJK count 2), long posts for X Premium accounts (25,000).
 - **Post now, schedule, or Add to queue** (Buffer-style queue slots; default 09:00, 13:00, 18:30, every day).
 - **Best time to post**: a week x 24 h heat map from your own posts' engagement and when your followers are active.
@@ -58,7 +71,12 @@ update this file first.
 - Runs **on the user's computer** using the AI model built into Chrome: private, free, no API key, nothing sent to GrowX. Uses your niche and voice settings. Never invents facts (uses {placeholders}).
 - Needs a recent desktop Chrome with enough memory/disk; Chrome downloads the model once. When unavailable, the AI buttons fall back to templates and the plain thread splitter.
 
-## Insights
+## Analytics ("Insights" up to 2.5.0)
+- **Who followed back (2.5.1, free, the first Analytics page)**: everyone who followed you back after GrowX followed them, newest first: when you followed, when they followed back, how long it took and the source. The last 7, 30 or 90 days or all time, a source filter, search, CSV export and Check now. On top: how many followed back, the rate among follows old enough to judge, the typical wait and the best source.
+- **Growth Score 2.0 (2.5.1, free, Growth page)**: 0-100 from six parts of your own numbers: follower growth 25%, engagement 25%, post reach 15%, consistency 15%, follow-backs 10%, retention 10%. Each part shows its score, the numbers behind it, how it's scored and how to raise it; a part without enough data says what it needs (the score appears once two parts have data). Kept once a day, with the change since last week.
+- **Growth dashboard (2.5.1, free)**: followers gained and follow-backs per week, views and engagement per week, your score over time, and five tiles (followers, engagement, views, posts, follow-backs), each against the month before.
+- **AI Growth Coach (2.5.1)**: the most useful next steps from your own numbers (weakest parts first, the autopilot, your queue, your next best time to post, the formats and topics that do best) - free. **Ask GrowX AI for this week's plan** is Premium (GrowX AI, on your computer).
+- **TwitterScore on Home (2.5.1, free, optional)**: your own account's TwitterScore (twitterscore.io) next to your Growth Score, with the change this week; asked once a day (again after 6 hours if it failed), kept 120 days. GrowX sends only your @username, and only after Chrome's optional permission is granted (Home asks once, "Show my TwitterScore"). Settings - General - "Show my TwitterScore on Home" turns it off; then nothing is sent.
 - **Post analytics**: views, likes, reposts, replies, bookmarks and engagement rate of your recent posts, refreshed every 3 hours while x.com is open. Free: your latest **30 posts**.
 - **What works**: topics and formats (questions, images, text, threads, links) by engagement.
 - **Which posts brought followers**: new followers in the 24 h after each post above your usual pace (Premium, part of Full analytics).
@@ -69,7 +87,7 @@ update this file first.
 - Growth chart, history, daily goals (posts, replies, new followers), **streaks and milestones**, monthly goal planner.
 - Everything is read through an x.com tab that is already open, one small step per minute at most.
 
-## Engage
+## AI Creator Studio: AI Reply Assistant and People ("Engage" up to 2.5.0)
 - **AI Reply Assistant** (2.5.0; the page was called Reply targets): fresh posts (default: younger than 120 minutes) from your sources, VIPs and anyone you add, ranked by freshness and how fast they take off, so you can reply early. Reply and like by hand from GrowX: free, only when you press the button.
 - **AI drafts (Premium, `aiReply`)**: GrowX AI drafts a reply under each fresh post in your niche and voice (Settings - AI writer), on your computer. Options, saved: tone (Insightful, Friendly, Witty, Supportive, Curious, Professional), length (Short, Medium, Detailed), approach (add a point, ask a question, share an experience, agree and build on it), emojis on/off. Draft with AI on one post, or Draft replies for all (the 10 highest-ranked posts, one by one, with Stop). New draft and Shorter on each draft; edits are kept.
 - **Checks before a draft can be sent**: no repeat of a reply sent in the last 14 days, no `{placeholders}` left in, nothing over 280 characters, no two replies in one batch alike; generic text, links and hashtags get a warning.
