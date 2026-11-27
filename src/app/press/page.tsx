@@ -18,7 +18,7 @@ import type { ReactNode } from "react";
 
 export const metadata = pageMetadata({
   title: "GrowX at a Glance: Fact Sheet and Press Kit",
-  description: "GrowX at a glance: what the Chrome extension for X (Twitter) does, who makes it, the version, plans and prices, how its AI works, privacy, safety and press assets.",
+  description: "GrowX at a glance: what the Chrome extension for X (Twitter) does, who makes it, the version, plans and prices, how its AI works, privacy, safety and press kit.",
   path: "/press",
   defaultImage: false,
   keywords: ["GrowX press kit", "GrowX logo", "GrowX screenshots", "about GrowX", "X growth tool press"],
