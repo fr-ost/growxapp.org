@@ -6,7 +6,7 @@
  *   node scripts/seo-check.mjs --verbose  # also prints every page's title and description lengths
  *
  * Fails (exit 1) on any indexable page with: a missing or duplicate title or description, a title over 60
- * characters, a description outside 140-160 characters, not exactly one <h1>, a skipped heading level, a missing or wrong canonical, invalid JSON-LD,
+ * characters, a description outside 140-160 characters, an <img> without an alt attribute, not exactly one <h1>, a skipped heading level, a missing or wrong canonical, invalid JSON-LD,
  * review/rating markup, an FAQPage whose questions are not visible on the page, or an @id reference that resolves to
  * nothing. Also fails when a sitemap URL has no prerendered page, or the 404 page has the wrong title.
  */
@@ -207,6 +207,10 @@ for (const file of files) {
   else if (canonical !== expected) fail(route, `canonical is ${canonical}, expected ${expected}`);
   if (!meta(html, "property", "og:image")) fail(route, "missing og:image");
   if (!meta(html, "property", "og:image:alt")) fail(route, "missing og:image:alt");
+  // Every image has an alt attribute: a description, or alt="" for a decorative image (never missing).
+  for (const m of html.matchAll(/<img\b[^>]*>/g)) {
+    if (!/\salt=("[^"]*"|'[^']*')/.test(m[0])) fail(route, `image without alt: ${(m[0].match(/\ssrc="([^"]{0,80})/) ?? [])[1] ?? m[0].slice(0, 80)}`);
+  }
   if (meta(html, "name", "twitter:card") !== "summary_large_image") fail(route, "twitter:card is not summary_large_image");
   if (!/<link rel="alternate" type="application\/rss\+xml"[^>]*href="[^"]*\/blog\/feed\.xml"/.test(html)) fail(route, "no RSS alternate link");
   if (/\/blog\/[^/]+$/.test(route) && meta(html, "property", "og:type") !== "article") fail(route, "post og:type is not article");
