@@ -7,7 +7,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
  * The automatic trial: a new account's Premium trial starts as soon as the account is active (email confirmed, or a
  * Google sign-in), without an X account. The database binds it to the first X account the account links - in
  * practice the first autopilot run in the extension - and keeps one trial per account and per X account
- * (supabase/migrations/20261127170000_auto_trial.sql).
+ * (supabase/migrations/20261127185031_auto_trial.sql).
  *
  * Accounts created before AUTO_TRIAL_FROM keep the Start button on the dashboard (same rules, no X account needed).
  */

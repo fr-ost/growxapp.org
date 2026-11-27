@@ -77,7 +77,7 @@ with checks(item, ok) as (
          to_regprocedure('public.' || f) is null or not has_function_privilege('authenticated', to_regprocedure('public.' || f), 'EXECUTE')
   from unnest(array['admin_grant_gift(uuid,uuid,text,text)','admin_extend_gift(uuid,uuid,text,text)','admin_revoke_gift(uuid,uuid,text)','admin_set_early_bird(uuid,integer,boolean,text,timestamptz)','admin_increase_early_bird_allocation(uuid,integer,text)','admin_find_user(uuid,text)','early_bird_status()','admin_change_x_account(uuid,uuid,text,text,text)']) f
   union all
-  -- automatic trial (20261127170000_auto_trial.sql)
+  -- automatic trial (20261127185031_auto_trial.sql)
   select 'trials.x_username_normalized allows NULL (unbound trial)',
          exists (select 1 from information_schema.columns where table_schema = 'public' and table_name = 'trials' and column_name = 'x_username_normalized' and is_nullable = 'YES')
   union all

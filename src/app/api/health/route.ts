@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
       functions.x_account_base_slots = xs.error ? classifyDbError(xs.error) : "ok";
       const st = await admin.rpc("start_trial", { p_user_id: crypto.randomUUID(), p_days: TRIAL_DAYS });
       functions.start_trial = st.error && /x_username_required/.test(st.error.message ?? "") ? "ok" : st.error ? classifyDbError(st.error) : "unknown";
-      // The automatic trial (20261127170000_auto_trial.sql). A random, unknown user only gets {status: "no_account"}.
+      // The automatic trial (20261127185031_auto_trial.sql). A random, unknown user only gets {status: "no_account"}.
       const at = await admin.rpc("start_account_trial", { p_user: crypto.randomUUID(), p_days: TRIAL_DAYS });
       functions.start_account_trial = at.error ? classifyDbError(at.error) : (at.data as { status?: string } | null)?.status === "no_account" ? "ok" : "unknown";
       const allOk = [...Object.values(tables), ...Object.values(functions)].every((s) => s === "ok");

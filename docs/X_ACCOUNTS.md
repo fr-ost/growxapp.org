@@ -27,7 +27,7 @@ It also relies on `20261014000100_active_sessions.sql` (single active login), ap
 | `POST /api/x-accounts/slots/checkout` | `src/app/api/x-accounts/slots/checkout/route.ts` -> `src/lib/billing/invoice.ts` (shared with Premium checkout) |
 | Entitlement fields | `src/app/api/entitlement/route.ts` (contract in [`API.md`](API.md)) |
 | Dashboard "X accounts" section (the old editable username form was removed; `/account` redirects to `/dashboard`) | `src/app/dashboard/page.tsx`, `src/components/x-accounts-manager.tsx` |
-| Free trial | starts without an X account (automatically for new accounts, `src/lib/trial/auto.ts`); the database binds it to the first linked X account (trigger `x_account_bindings_bind_trial`, migration `20261127170000_auto_trial.sql`) and ends it if that X account already used a trial elsewhere |
+| Free trial | starts without an X account (automatically for new accounts, `src/lib/trial/auto.ts`); the database binds it to the first linked X account (trigger `x_account_bindings_bind_trial`, migration `20261127185031_auto_trial.sql`, applied to production on 2026-11-27 as version `20261127185031`) and ends it if that X account already used a trial elsewhere |
 
 ## Slot purchases (NOWPayments)
 1. `POST /api/x-accounts/slots/checkout {}` (logged in, verified email, same origin). The body must be empty.
