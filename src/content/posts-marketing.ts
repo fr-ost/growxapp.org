@@ -564,7 +564,7 @@ export const marketingPosts: Post[] = [
     seoTitle: "How to Get More Retweets and Reposts on X (Twitter)",
     title: "How to Get More Reposts on Twitter (X): Shareable Formats That Earn Retweets",
     description:
-      "How to get more retweets and reposts on X (Twitter): shareable formats, data you own, threads, quote posts and asking without begging.",
+      "How to get more retweets and reposts on X (Twitter): shareable formats, data only you have, threads, quote posts, and asking for shares without begging.",
     excerpt:
       "Reposts carry your posts into timelines you cannot reach yourself. Here is how to write posts people are glad to share, and how to ask without begging.",
     category: "Engage",

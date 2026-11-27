@@ -6,10 +6,9 @@
  *   node scripts/seo-check.mjs --verbose  # also prints every page's title and description lengths
  *
  * Fails (exit 1) on any indexable page with: a missing or duplicate title or description, a title over 60
- * characters, a description over 155, not exactly one <h1>, a skipped heading level, a missing or wrong canonical, invalid JSON-LD,
+ * characters, a description outside 140-160 characters, not exactly one <h1>, a skipped heading level, a missing or wrong canonical, invalid JSON-LD,
  * review/rating markup, an FAQPage whose questions are not visible on the page, or an @id reference that resolves to
  * nothing. Also fails when a sitemap URL has no prerendered page, or the 404 page has the wrong title.
- * Descriptions under 120 characters are reported as warnings.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -195,8 +194,8 @@ for (const file of files) {
   if (!title) fail(route, "missing <title>");
   else if (title.length > 60) fail(route, `title is ${title.length} chars (max 60): "${title}"`);
   if (!description) fail(route, "missing meta description");
-  else if (description.length > 155) fail(route, `description is ${description.length} chars (max 155)`);
-  else if (description.length < 120) warn(route, `description is ${description.length} chars (aim for 120-155)`);
+  else if (description.length > 160) fail(route, `description is ${description.length} chars (max 160)`);
+  else if (description.length < 140) fail(route, `description is ${description.length} chars (min 140)`);
   if (h1s !== 1) fail(route, `${h1s} <h1> elements`);
   const levels = [...html.replace(/<script[\s\S]*?<\/script>/g, "").matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
   levels.forEach((l, i) => {

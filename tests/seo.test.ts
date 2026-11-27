@@ -40,8 +40,8 @@ describe("blog content", () => {
 
   it.each(posts.map((p) => [p.slug, p] as const))("%s has SEO-sized metadata and valid structure", (_s, p) => {
     expect(fullTitle(p.seoTitle).length).toBeLessThanOrEqual(60);
-    expect(p.description.length).toBeGreaterThanOrEqual(120);
-    expect(p.description.length).toBeLessThanOrEqual(155);
+    expect(p.description.length).toBeGreaterThanOrEqual(140);
+    expect(p.description.length).toBeLessThanOrEqual(160);
     expect(p.title.length).toBeGreaterThan(30);
     expect(p.keywords.length).toBeGreaterThanOrEqual(4);
     expect(p.sections.length).toBeGreaterThanOrEqual(5);

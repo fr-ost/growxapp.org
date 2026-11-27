@@ -56,6 +56,11 @@ const nextConfig: NextConfig = {
       { source: "/:path*", has: [{ type: "host", value: "growxapp.org" }], destination: "https://www.growxapp.org/:path*", permanent: true },
     ];
   },
+  async rewrites() {
+    // The IndexNow key file: /<key>.txt, served from the INDEXNOW_KEY env var (src/app/api/indexnow-key/[key]/route.ts).
+    // A key is 8-128 letters, digits or dashes, so /robots.txt and /llms.txt never match.
+    return [{ source: "/:key([A-Za-z0-9-]{8,128})\\.txt", destination: "/api/indexnow-key/:key" }];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     // Optimised screenshots are cached for a year (the source files are never replaced in place).

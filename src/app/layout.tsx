@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { site } from "@/config/site";
-import { baseKeywords } from "@/lib/seo";
+import { baseKeywords, TWITTER_HANDLES } from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { GoogleTag } from "@/components/google-tag";
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: site.description,
     url: "/",
   },
-  twitter: { card: "summary_large_image", title: `${site.name}: ${site.tagline}`, description: site.description },
+  twitter: { card: "summary_large_image", ...TWITTER_HANDLES, title: `${site.name}: ${site.tagline}`, description: site.description },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   icons: {
     icon: [

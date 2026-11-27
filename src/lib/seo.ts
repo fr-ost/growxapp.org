@@ -23,7 +23,7 @@ export interface PageSeo {
    * result stays within 60 characters (see fullTitle). scripts/seo-check.mjs enforces the 60-character limit.
    */
   title: string;
-  /** Meta description, 120-155 chars, with a benefit and a call to action. */
+  /** Meta description, 140-160 chars, with a benefit and a call to action (scripts/seo-check.mjs enforces it). */
   description: string;
   path: string;
   keywords?: string[];
@@ -50,6 +50,9 @@ export function fullTitle(title: string, absolute = false): string {
 /** The blog feed, linked from every page (a page-level `alternates` replaces the layout's, so it is repeated here). */
 export const RSS_ALTERNATE = { "application/rss+xml": [{ url: "/blog/feed.xml", title: "GrowX Blog" }] };
 
+/** twitter:creator is the founder; twitter:site only once GrowX's own X handle is filled in (src/config/site.ts). */
+export const TWITTER_HANDLES = { creator: site.creatorHandle, ...(site.profiles.x ? { site: site.profiles.x } : {}) };
+
 export function pageMetadata(opts: PageSeo): Metadata {
   const title = fullTitle(opts.title, opts.absoluteTitle);
   // A page-level openGraph replaces the root one, so the default image must be repeated here.
@@ -72,7 +75,13 @@ export function pageMetadata(opts: PageSeo): Metadata {
         ? { publishedTime: opts.publishedTime, modifiedTime: opts.modifiedTime ?? opts.publishedTime, authors: [site.author] }
         : {}),
     },
-    twitter: { card: "summary_large_image", title, description: opts.description, ...(images ? { images: [{ url: DEFAULT_OG_IMAGE, alt: DEFAULT_OG_ALT }] } : {}) },
+    twitter: {
+      card: "summary_large_image",
+      ...TWITTER_HANDLES,
+      title,
+      description: opts.description,
+      ...(images ? { images: [{ url: DEFAULT_OG_IMAGE, alt: DEFAULT_OG_ALT }] } : {}),
+    },
     robots: opts.noindex
       ? { index: false, follow: false }
       : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },

@@ -13,6 +13,7 @@ export const metadata = pageMetadata({
   title: "GrowX FAQ: Pricing, Safety, Auto Follow & Scheduler",
   description: `Answers to every common GrowX question: pricing and crypto payments, the ${TRIAL_DAYS}-day free trial, auto follow safety, scheduler, GrowX AI, analytics and privacy.`,
   path: "/faq",
+  defaultImage: false,
   keywords: ["GrowX FAQ", "GrowX help", "GrowX pricing questions", "is GrowX safe", "GrowX free trial", "X auto follow FAQ", "Twitter growth tool FAQ"],
 });
 

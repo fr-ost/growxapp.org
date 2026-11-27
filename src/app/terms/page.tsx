@@ -6,6 +6,7 @@ export const metadata = pageMetadata({
   title: "Terms of Service",
   description: "Terms of service for GrowX: accounts, the free plan and trial, prepaid Premium plans and payments, acceptable use, liability and how to reach us.",
   path: "/terms",
+  defaultImage: false,
 });
 
 export default function TermsPage() {

@@ -16,6 +16,7 @@ export const metadata = pageMetadata({
   title: "About GrowX: The X (Twitter) Growth Tool",
   description: "GrowX is an independent X (Twitter) growth tool for Chrome by Shahriar Ahmed: safety-first pacing, private by design and honest claims, free to start.",
   path: "/about",
+  defaultImage: false,
   keywords: ["about GrowX", "GrowX developer", "Shahriar Ahmed", "X growth Chrome extension developer"],
 });
 

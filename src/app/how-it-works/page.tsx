@@ -16,6 +16,7 @@ export const metadata = pageMetadata({
   description:
     "How the GrowX Chrome extension works: add sources and auto follow safely, schedule posts for your best times, reply early, read analytics, clean up.",
   path: "/how-it-works",
+  defaultImage: false,
   keywords: ["how to grow on Twitter", "how GrowX works", "Twitter growth routine", "how X auto follow works", "X follow limits per day", "schedule tweets"],
 });
 

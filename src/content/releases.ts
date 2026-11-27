@@ -4,6 +4,11 @@
  */
 export interface Release {
   version: string;
+  /**
+   * The day this version was set in the extension's manifest.json (from the extension's git history), YYYY-MM-DD.
+   * Shown next to each version on /whats-new.
+   */
+  date: string;
   title: string;
   intro: string;
   groups: { title: string; items: string[] }[];
@@ -39,6 +44,7 @@ export const LANGUAGES: { code: string; native: string; english: string }[] = [
 export const releases: Release[] = [
   {
     version: "2.5.1",
+    date: "2026-11-27",
     title: "AI Creator Studio and Analytics",
     intro:
       "See who followed you back, your Growth Score and what to do next, and write your posts and replies in one place. Slow is the free pace now, free forever.",
@@ -97,6 +103,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.5.0",
+    date: "2026-11-23",
     title: "AI Reply Assistant",
     intro: "GrowX AI now writes your replies: one click beside X's reply box, or a draft under every fresh post in Engage. You approve each one.",
     groups: [
@@ -130,6 +137,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.4.9",
+    date: "2026-11-22",
     title: "See and manage your devices",
     intro: "See every device your GrowX account is signed in on, and sign any of them out.",
     groups: [
@@ -154,6 +162,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.4.8",
+    date: "2026-11-11",
     title: "Use GrowX on more devices",
     intro: "Your GrowX account can now stay signed in on one device per X account slot.",
     groups: [
@@ -173,6 +182,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.4.7",
+    date: "2026-11-06",
     title: "GrowX now speaks your language",
     intro: "GrowX is now available in 21 languages and picks your browser's language by itself. Plus a new, optional way to help shape GrowX.",
     groups: [
@@ -202,6 +212,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.4.6",
+    date: "2026-11-01",
     title: "List follow, and calmer around X's limits",
     intro: "Follow exactly the accounts on your own list, and your pace now stays yours when X limits follows for the day.",
     groups: [
@@ -227,6 +238,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.4.5",
+    date: "2026-10-29",
     title: "Simpler, and up front",
     intro: "The pace and the Start button moved next to your sources, and detailed settings fold away.",
     groups: [
@@ -247,6 +259,7 @@ export const releases: Release[] = [
   },
   {
     version: "2.4.4",
+    date: "2026-10-29",
     title: "The ultimate X growth tool",
     intro: "GrowX grew from an auto follow engine into a full X growth tool.",
     groups: [

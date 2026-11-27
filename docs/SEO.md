@@ -52,7 +52,7 @@ Both "X" and "Twitter" are used on purpose: many users still search "Twitter". K
 ## Do this yourself (cannot be done from code)
 1. **Google Search Console**: add `https://www.growxapp.org` (URL-prefix, or a Domain property via DNS). For the HTML-tag method set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` in Vercel, redeploy, then Verify. Submit `https://www.growxapp.org/sitemap.xml`.
 2. **Bing Webmaster Tools**: import from Search Console, or set `NEXT_PUBLIC_BING_SITE_VERIFICATION` (the `msvalidate.01` value) and submit the sitemap.
-3. **IndexNow** (Bing, Yandex and others): after each deploy run `node scripts/indexnow.mjs` (every sitemap URL) or `node scripts/indexnow.mjs /alternatives /pricing` (only those paths). The key file `public/<key>.txt` must be live first.
+3. **IndexNow** (Bing, Yandex and others; Bing feeds ChatGPT search): set `INDEXNOW_KEY` in Vercel (Production) so `https://www.growxapp.org/<key>.txt` serves it, then after each deploy run `INDEXNOW_KEY=<key> node scripts/indexnow.ts` (sitemap URLs changed in the last 3 days), `--since YYYY-MM-DD`, `--all`, or a list of paths. `--dry-run` prints the URLs only.
 4. **Request indexing** for new pages in Search Console's URL Inspection.
 5. **One canonical host**: in Vercel > Domains keep `www.growxapp.org` primary and redirect `growxapp.org` to it.
 6. **Republished posts** (Medium, Dev.to): set Dev.to's `canonical_url` and Medium's canonical link to the growxapp.org post URL.

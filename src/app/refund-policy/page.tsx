@@ -4,8 +4,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Refund Policy",
-  description: "How refunds, cancellations and chargebacks work for GrowX Premium plans paid in cryptocurrency. Last updated October 2026.",
+  description: "How refunds, cancellations and chargebacks work for GrowX Premium plans, which are prepaid in crypto and never renew by themselves. Updated October 2026.",
   path: "/refund-policy",
+  defaultImage: false,
 });
 
 export default function RefundPolicyPage() {

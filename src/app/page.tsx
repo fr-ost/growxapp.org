@@ -52,7 +52,7 @@ import { TrustStrip } from "@/components/trust-strip";
 import { site } from "@/config/site";
 import { Testimonials } from "@/components/testimonials";
 
-const metadataTitle = "GrowX: Chrome Extension for X (Twitter) Growth";
+const metadataTitle = "GrowX: Auto Follow & Growth Chrome Extension for X (Twitter)";
 const metadataDescription =
   "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, post scheduler, AI writer, analytics and unfollower tracker. Free to start.";
 

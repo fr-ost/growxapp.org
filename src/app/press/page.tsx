@@ -14,6 +14,7 @@ export const metadata = pageMetadata({
   title: "GrowX Press Kit: Logos, Screenshots & Facts",
   description: "GrowX press kit: logos, product screenshots, short and long descriptions, key facts and ready-made links for writing about the X (Twitter) growth tool.",
   path: "/press",
+  defaultImage: false,
   keywords: ["GrowX press kit", "GrowX logo", "GrowX screenshots", "about GrowX", "X growth tool press"],
 });
 

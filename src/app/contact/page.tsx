@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   title: "GrowX Support & Contact",
   description: "Get help with GrowX, the X (Twitter) growth extension for Chrome: email support@growxapp.org or message the developer on Telegram for setup or billing.",
   path: "/contact",
+  defaultImage: false,
   keywords: ["GrowX support", "GrowX contact", "X auto follow help"],
 });
 

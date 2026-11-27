@@ -18,6 +18,7 @@ export const metadata = pageMetadata({
   title: "GrowX Featured On: Directories and Launch Sites",
   description,
   path: "/featured",
+  defaultImage: false,
   keywords: ["GrowX featured on", "GrowX directory listing", "GrowX launch", "X growth tool directory"],
 });
 

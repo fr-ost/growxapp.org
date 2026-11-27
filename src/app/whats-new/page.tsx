@@ -7,11 +7,19 @@ import { LinkButton } from "@/components/ui/button";
 import { Container, PageHero, Section } from "@/components/ui/primitives";
 import { CURRENT_VERSION, LANGUAGES, releases } from "@/content/releases";
 import { pageMetadata } from "@/lib/seo";
+import { formatPostDate } from "@/components/blog/format-date";
+
+/** Title, description and H1 come from the latest release entry, so they follow every release by themselves. */
+const latestRelease = releases[0];
+const fullTitle = `What's New in GrowX ${latestRelease.version}: ${latestRelease.title}`;
+export const whatsNewTitle = fullTitle.length <= 60 ? fullTitle : `What's New in GrowX ${latestRelease.version}`;
+export const whatsNewDescription = `GrowX ${latestRelease.version} release notes: ${latestRelease.title}. Every version of the Chrome extension, newest first, with its date and a short summary.`;
 
 export const metadata = pageMetadata({
-  title: `What's New in GrowX ${CURRENT_VERSION}: AI Creator Studio and Analytics`,
-  description: `What's new in GrowX ${CURRENT_VERSION}: AI Creator Studio, who followed you back, Growth Score 2.0, an AI Growth Coach, a free Slow pace and the full release notes.`,
+  title: whatsNewTitle,
+  description: whatsNewDescription,
   path: "/whats-new",
+  defaultImage: false,
   keywords: ["GrowX update", "GrowX changelog", "GrowX release notes", `GrowX ${CURRENT_VERSION}`, "GrowX AI Creator Studio", "GrowX Growth Score", "who followed back on X", "GrowX AI Reply Assistant", "what's new in GrowX"],
 });
 
@@ -26,8 +34,12 @@ export default function WhatsNewPage() {
         ]}
       />
       <PageHero
-        eyebrow={`Version ${CURRENT_VERSION}`}
-        title={<>What&apos;s new in <span className="text-gradient">GrowX</span></>}
+        eyebrow={`Version ${latest.version} · ${formatPostDate(latest.date)}`}
+        title={
+          <>
+            What&apos;s new in GrowX {latest.version}: <span className="text-gradient">{latest.title}</span>
+          </>
+        }
         actions={
           <>
             <CwsButton campaign="whats-new" content="hero" size="lg">
@@ -47,6 +59,24 @@ export default function WhatsNewPage() {
 
       <Section className="pt-4 sm:pt-6 lg:pt-8">
         <Container className="max-w-4xl space-y-8">
+          <nav aria-labelledby="versions-h" className="rounded-3xl border border-hairline bg-white p-6 shadow-[var(--shadow-hair)] sm:p-8">
+            <h2 id="versions-h" className="text-xl font-extrabold tracking-tight sm:text-2xl">
+              Every version, newest first
+            </h2>
+            <ol className="mt-4 divide-y divide-hairline" data-testid="version-list">
+              {releases.map((r) => (
+                <li key={r.version} className="py-3 text-[0.95rem] leading-relaxed text-text-2">
+                  <a href={`#${anchor(r.version)}`} className="font-semibold text-text hover:text-accent-ink">
+                    GrowX {r.version}: {r.title}
+                  </a>{" "}
+                  <time dateTime={r.date} className="whitespace-nowrap text-sm tabular-nums text-muted">
+                    ({formatPostDate(r.date)})
+                  </time>
+                  <span className="mt-0.5 block">{r.intro}</span>
+                </li>
+              ))}
+            </ol>
+          </nav>
           <ReleaseCard release={latest} latest />
           <section id="languages" aria-labelledby="languages-h" className="scroll-mt-24 rounded-3xl border border-hairline bg-surface-2 p-6 sm:p-8">
             <h2 id="languages-h" className="text-2xl font-extrabold tracking-tight sm:text-3xl">
@@ -80,18 +110,23 @@ export default function WhatsNewPage() {
   );
 }
 
+const anchor = (version: string) => `v${version.replace(/\./g, "-")}`;
+
 function ReleaseCard({ release, latest = false }: { release: (typeof releases)[number]; latest?: boolean }) {
   return (
     <article
-      id={`v${release.version.replace(/\./g, "-")}`}
-      aria-labelledby={`v${release.version.replace(/\./g, "-")}-h`}
+      id={anchor(release.version)}
+      aria-labelledby={`${anchor(release.version)}-h`}
       className={`scroll-mt-24 rounded-3xl border bg-white p-6 shadow-[var(--shadow-hair)] sm:p-8 ${latest ? "border-accent/30 shadow-[var(--shadow-soft)]" : "border-hairline"}`}
     >
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-ink px-3 py-1 font-mono text-xs font-bold text-white">v{release.version}</span>
         {latest ? <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent-ink">Latest</span> : null}
+        <time dateTime={release.date} className="text-sm tabular-nums text-muted">
+          {formatPostDate(release.date)}
+        </time>
       </div>
-      <h2 id={`v${release.version.replace(/\./g, "-")}-h`} className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
+      <h2 id={`${anchor(release.version)}-h`} className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
         {release.title}
       </h2>
       <p className="mt-2 text-lg text-text-2">{release.intro}</p>

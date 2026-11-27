@@ -6,6 +6,7 @@ export const metadata = pageMetadata({
   title: "Privacy Policy",
   description: "How the GrowX website handles personal data: what it collects and what it doesn't, the providers it uses, how long data is kept and your rights.",
   path: "/privacy",
+  defaultImage: false,
 });
 
 export default function PrivacyPage() {
