@@ -12,6 +12,7 @@ import { site } from "@/config/site";
 import { FEATURE_SLUGS } from "@/content/feature-slugs";
 import { allFaqs, faqGroups } from "@/content/faq";
 import { alternativePages, getAlternative } from "@/content/alternatives";
+import { getUseCase } from "@/content/use-cases";
 import { featurePages } from "@/content/feature-pages";
 import { featuresForPost } from "@/content/post-features";
 import { toolNav } from "@/config/nav";
@@ -27,6 +28,8 @@ const routeExists = (p: string) => {
   if (feature) return (FEATURE_SLUGS as readonly string[]).includes(feature[1]);
   const alternative = clean.match(/^\/alternatives\/([^/]+)$/);
   if (alternative) return !!getAlternative(alternative[1]);
+  const useCase = clean.match(/^\/use-cases\/([^/]+)$/);
+  if (useCase) return !!getUseCase(useCase[1]);
   return existsSync(path.join(appDir, clean, "page.tsx")) || existsSync(path.join(appDir, clean, "route.ts"));
 };
 
