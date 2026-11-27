@@ -10,6 +10,7 @@ import { Container, PageHero, Section, SectionHeading } from "@/components/ui/pr
 import { featureGroups } from "@/config/features";
 import { TRIAL_DAYS } from "@/config/pricing";
 import { pageMetadata } from "@/lib/seo";
+import { TrustStrip } from "@/components/trust-strip";
 
 export const metadata = pageMetadata({
   title: "GrowX Pricing: Free Plan, Premium & 30-Day Trial",
@@ -40,6 +41,7 @@ export default function PricingPage() {
       <PageHero eyebrow="Pricing" title={<>Simple pricing. <span className="text-gradient">Free forever.</span></>} aside={<TrialTicket />}>
         Start free, try Premium for {TRIAL_DAYS} days, upgrade when it makes sense.
         <span className="mt-3 block font-semibold text-text">The {TRIAL_DAYS}-day Premium trial is completely free. No credit card needed.</span>
+        <TrustStrip campaign="pricing" className="mt-4" />
       </PageHero>
 
       <Section className="pt-14 sm:pt-16">

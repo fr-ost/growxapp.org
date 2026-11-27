@@ -25,6 +25,7 @@ import { TRIAL_DAYS } from "@/config/pricing";
 import { featurePages, getFeaturePage } from "@/content/feature-pages";
 import { getPost } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
+import { TrustStrip } from "@/components/trust-strip";
 
 export const dynamicParams = false;
 
@@ -88,6 +89,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
                 Try Premium free for {TRIAL_DAYS} days
               </LinkButton>
             </div>
+            <TrustStrip campaign={`feature-${page.slug}`} className="hero-settle mt-5" style={stagger(5)} />
           </div>
           <div className="min-w-0">
             <Stage3D

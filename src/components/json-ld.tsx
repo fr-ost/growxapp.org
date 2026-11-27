@@ -2,6 +2,7 @@ import { pricingTiers, type PricingTier } from "@/config/pricing";
 import { site } from "@/config/site";
 import { CURRENT_VERSION, LANGUAGES } from "@/content/releases";
 import { CWS_URL } from "@/lib/cws";
+import { hasRatings, socialProof } from "@/config/social-proof";
 
 /** Serialises structured data safely for an inline <script> (escapes "<" so content can't close the tag). */
 export function serializeJsonLd(data: unknown): string {
@@ -132,7 +133,17 @@ export const softwareOffers = pricingTiers.map((t) => ({
   ...(DURATION_DAYS[t.id] ? { eligibleDuration: { "@type": "QuantitativeValue", value: DURATION_DAYS[t.id], unitCode: "DAY" } } : {}),
 }));
 
-/** The GrowX extension. Defined once (home page); every other page refers to it by SOFTWARE_ID. No ratings, reviews or user counts. */
+/**
+ * The Chrome Web Store rating as schema.org AggregateRating, only when socialProof.markUpRating is on (it is off: Google
+ * says not to mark up ratings collected on another website; see src/config/social-proof.ts). The software node is
+ * defined on the home page only, which shows the same rating in its trust strip.
+ */
+export const ratingLd =
+  socialProof.markUpRating && hasRatings
+    ? { "@type": "AggregateRating", ratingValue: socialProof.cwsRating.toFixed(1), ratingCount: socialProof.cwsRatingCount, bestRating: 5, worstRating: 1 }
+    : null;
+
+/** The GrowX extension. Defined once (home page); every other page refers to it by SOFTWARE_ID. No reviews or user counts. */
 export const softwareLd = {
   "@type": "SoftwareApplication",
   "@id": SOFTWARE_ID,
@@ -154,6 +165,7 @@ export const softwareLd = {
   author: { "@id": PERSON_ID },
   publisher: { "@id": ORG_ID },
   offers: softwareOffers,
+  ...(ratingLd ? { aggregateRating: ratingLd } : {}),
   featureList: [
     "Smart auto follow from source profiles with a follow-back score from 1 to 99",
     "Human-like pacing with hourly and daily caps, warm-up and automatic slow-down",

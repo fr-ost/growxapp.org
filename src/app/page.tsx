@@ -48,6 +48,8 @@ import { getTier, TRIAL_DAYS } from "@/config/pricing";
 import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
 import { CURRENT_VERSION, releases } from "@/content/releases";
+import { TrustStrip } from "@/components/trust-strip";
+import { Testimonials } from "@/components/testimonials";
 
 const metadataTitle = "GrowX: Chrome Extension for X (Twitter) Growth";
 const metadataDescription =
@@ -218,7 +220,8 @@ export default function HomePage() {
               Create free account <IconArrowRight size={18} className="nudge" />
             </LinkButton>
           </div>
-          <ul className="hero-settle mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-text-2" style={stagger(5)}>
+          <TrustStrip campaign="home" className="hero-settle mt-6 flex justify-center" style={stagger(5)} />
+          <ul className="hero-settle mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium text-text-2" style={stagger(5)}>
             {["Free plan forever", `${TRIAL_DAYS}-day Premium trial, no credit card`, "Never asks for your X password"].map((t) => (
               <li key={t} className="flex items-center gap-1.5">
                 <IconCheck size={16} className="text-accent" /> {t}
@@ -528,6 +531,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      <Testimonials />
       <CtaBand campaign="home" />
     </>
   );
