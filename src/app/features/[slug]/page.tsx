@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { IntentLink } from "@/components/ui/intent-link";
 import { notFound } from "next/navigation";
-import { PostCard } from "@/components/blog";
+import { PostCard, formatPostDate } from "@/components/blog";
+import { ComparisonTable } from "@/components/alternatives/comparison-table";
 import { FeatureIcon } from "@/components/feature-icon";
 import { FeatureLinkCard } from "@/components/features/feature-card";
 import { LimitsTable } from "@/components/features/limits-table";
@@ -24,6 +25,9 @@ import { toolNav } from "@/config/nav";
 import { TRIAL_DAYS } from "@/config/pricing";
 import { featurePages, getFeaturePage } from "@/content/feature-pages";
 import { getPost } from "@/content/posts";
+import { MANUAL_COMPARISONS, SAFETY } from "@/content/feature-extras";
+import { useCases } from "@/content/use-cases";
+import { lastModifiedFor } from "@/app/sitemap";
 import { pageMetadata } from "@/lib/seo";
 import { TrustStrip } from "@/components/trust-strip";
 
@@ -46,6 +50,10 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
   const related = page.related.map((s) => getFeaturePage(s)).filter((p): p is NonNullable<typeof p> => !!p);
   const tools = page.tools.map((href) => toolNav.find((t) => t.href === href)).filter((t): t is NonNullable<typeof t> => !!t);
   const path = `/features/${page.slug}`;
+  const updated = lastModifiedFor(path);
+  const comparison = MANUAL_COMPARISONS[page.slug].map((r) => ({ label: r.task, them: r.byHand, growx: r.growx }));
+  const safety = SAFETY[page.slug];
+  const cases = useCases.filter((u) => u.features.includes(page.slug));
 
   return (
     <>
@@ -56,7 +64,12 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
             { name: "Features", path: "/features" },
             { name: page.nav, path },
           ]),
-          webPageLd({ path, name: page.h1, description: page.description, extra: { primaryImageOfPage: abs(page.image.src) } }),
+          webPageLd({
+            path,
+            name: page.h1,
+            description: page.description,
+            extra: { primaryImageOfPage: abs(page.image.src), ...(updated ? { dateModified: updated } : {}) },
+          }),
           faqLd(page.faq),
         ]}
       />
@@ -90,6 +103,11 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
               </LinkButton>
             </div>
             <TrustStrip campaign={`feature-${page.slug}`} className="hero-settle mt-5" style={stagger(5)} />
+            {updated ? (
+              <p className="hero-settle mt-3 text-sm text-muted" style={stagger(6)}>
+                Updated <time dateTime={updated}>{formatPostDate(updated)}</time>
+              </p>
+            ) : null}
           </div>
           <div className="min-w-0">
             <Stage3D
@@ -157,6 +175,18 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
         </Container>
       </Section>
 
+      {/* GROWX VS DOING IT BY HAND */}
+      <Section>
+        <Container className="max-w-5xl">
+          <SectionHeading eyebrow="Compared" title={`${page.nav} or doing it by hand?`} center>
+            What changes when GrowX does the repetitive part. You still decide what to keep, post and follow.
+          </SectionHeading>
+          <div className="reveal mt-10">
+            <ComparisonTable name="By hand" firstColumn="Task" stack rows={comparison} caption={`${page.nav}: doing it by hand and with GrowX compared`} />
+          </div>
+        </Container>
+      </Section>
+
       {/* DEEP DIVE (long-form copy: static) */}
       <Section>
         <Container className="max-w-[68ch]">
@@ -183,6 +213,27 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
               </section>
             ))}
           </div>
+        </Container>
+      </Section>
+
+      {/* SAFETY AND LIMITS */}
+      <Section className="border-t border-hairline">
+        <Container className="max-w-3xl">
+          <SectionHeading eyebrow="Safety and limits" title={safety.question} center />
+          <ul className="reveal mx-auto mt-10 space-y-3 text-[1.05rem] leading-relaxed text-text-2">
+            {safety.points.map((t) => (
+              <li key={t} className="flex gap-3">
+                <IconCheck size={20} className="mt-1 shrink-0 text-ok" /> <span><RichText text={t} /></span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-center text-sm text-muted [text-wrap:pretty]">
+            No tool can promise zero risk on X. GrowX is independent and not affiliated with X Corp. Read{" "}
+            <IntentLink href="/how-it-works" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
+              how GrowX works
+            </IntentLink>{" "}
+            for the full safety model.
+          </p>
         </Container>
       </Section>
 
@@ -255,6 +306,27 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
                 {related.map((r, i) => (
                   <li key={r.slug} className="reveal" style={stagger(i % 3)}>
                     <FeatureLinkCard href={`/features/${r.slug}`} icon={r.icon} label={r.nav} blurb={r.blurb} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+          {cases.length ? (
+            <>
+              <h2 className="reveal-heading mt-14 text-2xl font-extrabold tracking-tight">Use cases</h2>
+              <ul className="mt-6 grid gap-4 md:grid-cols-3">
+                {cases.map((u, i) => (
+                  <li key={u.slug} className="reveal" style={stagger(i % 3)}>
+                    <IntentLink
+                      href={`/use-cases/${u.slug}`}
+                      className="group lift flex h-full flex-col rounded-3xl border border-hairline bg-white p-5 shadow-[var(--shadow-hair)]"
+                    >
+                      <span className="font-bold group-hover:text-accent-ink">{u.nav}</span>
+                      <span className="mt-1 flex-1 text-sm text-text-2">{u.blurb}</span>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
+                        Read the plan <IconArrowRight size={15} className="nudge" />
+                      </span>
+                    </IntentLink>
                   </li>
                 ))}
               </ul>

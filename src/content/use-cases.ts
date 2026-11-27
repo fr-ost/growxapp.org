@@ -413,7 +413,7 @@ export const useCases: UseCase[] = [
         text: "Check **What works**, the best time heat map and, with Premium, the weekly report. Do more of what earned replies and followers.",
       },
     ],
-    features: ["twitter-post-scheduler", "ai-tweet-writer", "twitter-analytics", "twitter-reply-targets", "twitter-auto-follow"],
+    features: ["twitter-post-scheduler", "ai-tweet-writer", "twitter-analytics", "twitter-reply-targets", "twitter-auto-follow", "twitter-unfollower-tracker"],
     tools: ["/tools/tweet-templates", "/tools/twitter-thread-maker", "/tools/twitter-engagement-rate-calculator"],
     posts: ["build-in-public-on-twitter", "personal-branding-on-twitter", "twitter-content-calendar", "how-to-schedule-tweets", "twitter-analytics-guide"],
     faq: [

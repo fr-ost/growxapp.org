@@ -194,7 +194,7 @@ export const featurePages: FeaturePage[] = [
     nav: "Post scheduler",
     blurb: "Schedule posts and threads on X, fill queue slots and find your best time to post.",
     icon: "calendar",
-    seoTitle: "Twitter Scheduler: Schedule Tweets & Threads on X Free",
+    seoTitle: "Free Tweet Scheduler Extension: Posts & Threads on X",
     description:
       "Schedule tweets and threads free with GrowX, an X post scheduler for Chrome: queue slots, a best-time heat map, calendar, drafts and templates.",
     keywords: [
@@ -343,7 +343,7 @@ export const featurePages: FeaturePage[] = [
     nav: "AI writer",
     blurb: "Private, on-device AI that writes, improves and threads your X posts. No API key.",
     icon: "wand",
-    seoTitle: "AI Tweet Writer & Generator: Private, On-Device AI",
+    seoTitle: "AI Tweet Writer, On-Device: Private, No API Key",
     description:
       "GrowX AI is an AI tweet writer that runs on your computer in Chrome: write, improve, hooks and threads for X posts. Private, no API key, no per-use fees.",
     keywords: [
@@ -543,7 +543,7 @@ export const featurePages: FeaturePage[] = [
     nav: "Analytics",
     blurb: "Who followed you back, a Growth Score, post analytics and your best time to post, in your browser.",
     icon: "chart",
-    seoTitle: "Twitter Analytics: X Post Stats & Best Time to Post",
+    seoTitle: "Twitter Analytics Chrome Extension: Free Post Stats",
     description:
       "GrowX Twitter analytics shows who followed you back, a Growth Score with next steps, engagement for every X post, your best time to post and new followers.",
     keywords: [
@@ -675,8 +675,8 @@ export const featurePages: FeaturePage[] = [
         a: "A score from 0 to 100 built from six parts of your own numbers: follower growth, engagement, post reach, consistency, follow-backs and retention. Each part shows how it is scored and how to raise it, and it is free.",
       },
       {
-        q: "How does GrowX get my X analytics?",
-        a: "It reads your posts and followers through an x.com tab you already have open in Chrome, one small step per minute at most. It never asks for your X password.",
+        q: "How does GrowX get my X analytics, and where is the data stored?",
+        a: "It reads your posts and followers through an x.com tab you already have open in Chrome, one small step per minute at most. It never asks for your X password. Settings, history, posts and analytics stay in Chrome's extension storage on your computer, and you can export a backup file at any time.",
       },
       {
         q: "How often are my X post stats updated?",
@@ -685,10 +685,6 @@ export const featurePages: FeaturePage[] = [
       {
         q: "Can I see which tweets gained me followers?",
         a: "Yes, with Premium. Which posts brought followers highlights the posts followed by more new followers than your usual pace in the next 24 hours.",
-      },
-      {
-        q: "Where is my Twitter analytics data stored?",
-        a: "In Chrome's extension storage on your computer. Settings, history, posts and analytics stay there, and you can export a backup file at any time.",
       },
     ],
     xHeading: "X analytics that point to your next post",
@@ -709,7 +705,7 @@ export const featurePages: FeaturePage[] = [
     nav: "Unfollower tracker",
     blurb: "See who followed and who unfollowed you on X each day, with follower quality checks.",
     icon: "users",
-    seoTitle: "Twitter Unfollower Tracker: See Who Unfollowed You",
+    seoTitle: "Who Unfollowed Me on Twitter (X): Free Daily Tracker",
     description:
       "See who unfollowed you on X with GrowX, a Twitter unfollower tracker for Chrome that compares your follower list daily. Free with 7 days of history.",
     keywords: [
@@ -725,7 +721,7 @@ export const featurePages: FeaturePage[] = [
     eyebrow: "Follower tracker",
     h1: "Find out who unfollowed you on Twitter (X), every day",
     lead:
-      "X does not tell you when someone unfollows. GrowX compares your full follower list once a day and shows who followed you and who left, with history, follower quality checks and your top fans.",
+      "To see who unfollowed you on Twitter (X), you have to compare your follower list over time, because X never tells you. GrowX, a Chrome extension that is free to start, does it once a day and shows who followed you and who left, plus your top fans. The free plan keeps 7 days of history; Premium adds the full history and follower quality checks.",
     image: { src: "/screens/followers-251.webp", alt: "GrowX Analytics, Followers page with new followers, unfollowers, an unfollow back button and a follower quality breakdown (demo data)" },
     highlights: [
       {
@@ -872,6 +868,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Unfollow non-followers and inactive accounts on X, safely",
     lead:
       "GrowX Cleanup scans everyone you follow, finds accounts that do not follow you back or have stopped posting, and lets you review and select before it unfollows anyone. Each account is re-checked right before the unfollow, at a pace built to look human.",
+    // TODO: a real screenshot of the Cleanup page (demo data); this one shows the Followers page.
     image: { src: "/screens/followers-251.webp", alt: "GrowX follower list with a select checkbox per account, an unfollow back button and follower quality (demo data)" },
     highlights: [
       {
@@ -1003,7 +1000,7 @@ export const featurePages: FeaturePage[] = [
     nav: "AI Reply Assistant",
     blurb: "Fresh posts in your niche, ranked to reply early, with GrowX AI drafting replies you approve.",
     icon: "message",
-    seoTitle: "AI Reply Assistant for X (Twitter): Reply Early, Approve All",
+    seoTitle: "AI Reply Assistant for X: Reply Early, Approve All",
     description:
       "GrowX's AI Reply Assistant finds fresh posts in your niche and drafts replies in your tone with on-device AI. You approve every reply. Free 30-day trial.",
     keywords: [
@@ -1020,6 +1017,7 @@ export const featurePages: FeaturePage[] = [
     h1: "An AI Reply Assistant for X that drafts, and lets you decide",
     lead:
       "Early, thoughtful replies under bigger posts are one of the fastest ways to get seen on X. GrowX finds fresh posts from the accounts you watch, ranks them by how fast they take off, and GrowX AI drafts a reply to each one in your tone, on your computer. You read and approve every reply; GrowX never replies by itself.",
+    // TODO: a real screenshot of the AI Reply Assistant page (demo data); this one shows the Home dashboard.
     image: { src: "/screens/overview-251.webp", alt: "GrowX Home dashboard with daily goals, upcoming posts, this week on X and the popup with pace controls (demo data)" },
     highlights: [
       {
@@ -1165,7 +1163,7 @@ export const featurePages: FeaturePage[] = [
     nav: "List follow",
     blurb: "Follow exactly the accounts on your own list, from pasted names or a CSV or TXT file.",
     icon: "list",
-    seoTitle: "Follow a List of Twitter Accounts: X List Follow",
+    seoTitle: "Follow a List of Twitter Accounts: Paste or Upload",
     description:
       "Follow a list of Twitter accounts from pasted usernames, links or a CSV or TXT file. GrowX List follow works at a safe pace, free for 50 at a time.",
     keywords: [
@@ -1181,6 +1179,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Follow a list of Twitter accounts, exactly as you wrote it",
     lead:
       "List follow follows exactly the accounts on your own list: paste usernames, @mentions or profile links, or bring a CSV or TXT file. GrowX works through it at your pace, with the same safety as the autopilot, and shows what happened to every account.",
+    // TODO: a real screenshot of the List follow page (demo data); this one shows the Grow page.
     image: { src: "/screens/grow-251.webp", alt: "GrowX Grow page with the Slow (free forever), Balanced, Turbo, X Premium and Custom pace presets that List follow also uses" },
     highlights: [
       {
@@ -1252,6 +1251,10 @@ export const featurePages: FeaturePage[] = [
       { q: "What file formats does List follow accept?", a: "Pasted text, a CSV file or a TXT file. Usernames can be written with or without the @, or as x.com or twitter.com profile and post links." },
       { q: "Can List follow and the autopilot run together?", a: "No, one runs at a time so your account never follows from two queues at once. Stop one before you start the other; Stop keeps your progress." },
       { q: "What happens to protected or suspended accounts on my list?", a: "A protected account gets a follow request and is marked requested. Accounts that are not found, suspended, blocked or already followed are skipped, with the reason shown next to each one." },
+      {
+        q: "Can I follow all members of an X (Twitter) List?",
+        a: "Not with List follow: it reads usernames, @mentions and profile or post links, not List links. To follow the members of an X List, add the List as a source in smart auto follow (Premium). The autopilot then works through its members with your filters and pace.",
+      },
     ],
     xHeading: "List follow: follow a whole list on X at a safe pace",
     limits: [
