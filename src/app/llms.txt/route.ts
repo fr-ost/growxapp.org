@@ -1,43 +1,71 @@
 import { featurePages } from "@/content/feature-pages";
 import { CURRENT_VERSION } from "@/content/releases";
-import { latestFirst } from "@/content/posts";
-import { toolNav } from "@/config/nav";
-import { pricingTiers, TRIAL_DAYS } from "@/config/pricing";
+import { getPost } from "@/content/posts";
+import { PLAN_SUMMARY, pricingTiers, TRIAL_DAYS } from "@/config/pricing";
 import { site } from "@/config/site";
 import { CWS_URL } from "@/lib/cws";
 
 export const dynamic = "force-static";
 
-/** /llms.txt: a plain-text map of the site for AI assistants and answer engines (llmstxt.org). */
+/** The guides worth reading first (any that no longer exist are skipped). */
+const TOP_GUIDES = [
+  "how-to-get-more-followers-on-twitter",
+  "first-1000-followers-on-x",
+  "twitter-growth-plan",
+  "mass-follow-twitter-limits",
+  "who-unfollowed-me-on-twitter",
+  "unfollow-non-followers-twitter",
+  "how-to-schedule-tweets",
+  "best-time-to-post-on-twitter",
+  "twitter-algorithm-explained",
+  "twitter-analytics-guide",
+];
+
+/**
+ * /llms.txt (llmstxt.org): a short markdown summary of GrowX with its key links, for AI assistants. Low priority by
+ * design: the major AI search engines read the normal pages. Never indexed (X-Robots-Tag: noindex). It is a summary,
+ * not a markdown copy of the site's pages.
+ */
 export function GET() {
-  const prices = pricingTiers.filter((t) => t.priceCents).map((t) => `${t.name}: ${t.priceLabel} ${t.cadence}`).join("; ");
+  const premium = pricingTiers.filter((t) => t.priceCents).map((t) => {
+    const early = t.earlyBird ? ` (${t.earlyBird.priceLabel} for the first ${t.earlyBird.limit} lifetime buyers)` : "";
+    return `${t.name} ${t.priceLabel} ${t.cadence}${early}`;
+  });
+  const guides = TOP_GUIDES.map(getPost).filter((p): p is NonNullable<ReturnType<typeof getPost>> => !!p);
   const body = [
-    `# ${site.name}: ${site.tagline}`,
+    `# ${site.name}`,
     "",
-    `> ${site.description}`,
+    `> ${site.definition}`,
     "",
-    `GrowX is a Chrome extension (desktop Chrome 116+) by ${site.author}. It works inside the user's own signed-in x.com session and never asks for the X password. Data stays in the browser; the GrowX AI writer runs on the user's computer with the AI model built into Chrome. Free plan forever; ${TRIAL_DAYS}-day Premium trial with no credit card. Premium: ${prices}. Prepaid, no automatic renewal.`,
+    site.disambiguation,
+    `Chrome Web Store name: "${site.name}: ${site.tagline}". Current version ${CURRENT_VERSION}. Desktop Chrome 116 or newer.`,
     "",
     "## Features",
     ...featurePages.map((f) => `- [${f.nav}](${site.url}/features/${f.slug}): ${f.blurb}`),
     "",
+    "## Free vs Premium",
+    `- ${PLAN_SUMMARY.FREE}`,
+    `- Premium: ${premium.join("; ")}. Prepaid in crypto, never renews by itself.`,
+    `- A ${TRIAL_DAYS}-day Premium trial, no credit card. Details: ${site.url}/pricing`,
+    "",
+    "## Safety and privacy",
+    "- Works inside the x.com tab you are already signed in to. Never asks for your X password.",
+    "- Your queue, history and analytics stay in your browser. GrowX AI runs on your computer with the AI model built into Chrome: no API key, drafts are not sent to GrowX.",
+    "- Human pace: random delays, breaks, hourly and daily caps, a slow-down after any X warning and an emergency stop. Safety is never paywalled.",
+    "- GrowX is independent and not affiliated with or endorsed by X Corp. No tool can promise zero risk.",
+    "",
     "## Key pages",
     `- [Home](${site.url}/)`,
     `- [All features](${site.url}/features)`,
-    `- [How it works](${site.url}/how-it-works)`,
     `- [Pricing](${site.url}/pricing)`,
-    `- [Free tools](${site.url}/tools)`,
-    `- [What's new](${site.url}/whats-new): release notes for the GrowX extension (current version ${CURRENT_VERSION})`,
-    `- [FAQ](${site.url}/faq): plans and payments, free trial, auto follow safety, scheduler, GrowX AI, analytics, privacy`,
-    `- [Press kit](${site.url}/press)`,
-    `- [Chrome Web Store](${CWS_URL})`,
+    `- [How it works](${site.url}/how-it-works)`,
+    `- [GrowX at a glance (fact sheet)](${site.url}/press)`,
+    `- [FAQ](${site.url}/faq)`,
+    `- [Chrome Web Store listing](${CWS_URL})`,
     "",
-    "## Free tools (no sign-up)",
-    ...toolNav.map((t) => `- [${t.label}](${site.url}${t.href}): ${t.blurb}`),
-    "",
-    "## Guides",
-    ...latestFirst().map((p) => `- [${p.title}](${site.url}/blog/${p.slug}): ${p.description}`),
+    "## Top guides",
+    ...guides.map((p) => `- [${p.title}](${site.url}/blog/${p.slug})`),
     "",
   ].join("\n");
-  return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+  return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex" } });
 }
