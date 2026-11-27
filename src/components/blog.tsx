@@ -1,3 +1,4 @@
+import { Fragment, type ReactNode } from "react";
 import { PostCardView } from "@/components/blog/post-card";
 import { IconInfo } from "@/components/icons";
 import { ScrollSpy } from "@/components/motion/scroll-spy";
@@ -42,17 +43,22 @@ function BlockView({ block }: { block: Block }) {
  * The article body. Static by design: long-form copy never animates. The wrapper opts the
  * header progress bar into reading progress; only the h2 accent bar draws with scroll.
  */
-export function PostBody({ post }: { post: Post }) {
+/** The post's sections. `afterIntro` is placed right after the first section (the intro), `end` after the last one. */
+export function PostBody({ post, afterIntro, end }: { post: Post; afterIntro?: ReactNode; end?: ReactNode }) {
   return (
     <div data-progress-article="" className="space-y-12">
-      {post.sections.map((s) => (
-        <section key={s.id} id={s.id} className="scroll-mt-28">
-          <h2 className="h-rule text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">{s.heading}</h2>
-          <div className="mt-4 space-y-4 text-pretty text-[1.05rem] leading-8 text-text-2">
-            {s.blocks.map((b, i) => <BlockView key={i} block={b} />)}
-          </div>
-        </section>
+      {post.sections.map((s, i) => (
+        <Fragment key={s.id}>
+          <section id={s.id} className="scroll-mt-28">
+            <h2 className="h-rule text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">{s.heading}</h2>
+            <div className="mt-4 space-y-4 text-pretty text-[1.05rem] leading-8 text-text-2">
+              {s.blocks.map((b, j) => <BlockView key={j} block={b} />)}
+            </div>
+          </section>
+          {i === 0 ? afterIntro : null}
+        </Fragment>
       ))}
+      {end}
     </div>
   );
 }

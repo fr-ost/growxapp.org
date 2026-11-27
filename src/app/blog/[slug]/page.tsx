@@ -15,8 +15,9 @@ import { CwsButton } from "@/components/cws-link";
 import { LinkButton } from "@/components/ui/button";
 import { Badge, Container, Eyebrow, Section } from "@/components/ui/primitives";
 import { getFeaturePage } from "@/content/feature-pages";
-import { featuresForPost } from "@/content/post-features";
-import { getPost, posts } from "@/content/posts";
+import { featuresForPost, toolForPost } from "@/content/post-features";
+import { ExtensionCta } from "@/components/blog/extension-cta";
+import { getPost, latestFirst, posts } from "@/content/posts";
 import { toolNav } from "@/config/nav";
 import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
@@ -45,8 +46,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const post = getPost((await params).slug);
   if (!post) notFound();
-  const related = post.related.map((s) => getPost(s)).filter((p): p is NonNullable<typeof p> => !!p);
+  // Related guides: the post's own picks first, then the newest posts in the same category, three in all.
+  const related = [...post.related.map((s) => getPost(s)), ...latestFirst().filter((p) => p.category === post.category)]
+    .filter((p): p is NonNullable<typeof p> => !!p && p.slug !== post.slug)
+    .filter((p, i, all) => all.findIndex((q) => q.slug === p.slug) === i)
+    .slice(0, 3);
   const features = featuresForPost(post).map((s) => getFeaturePage(s)).filter((f): f is NonNullable<typeof f> => !!f);
+  // The in-article call to action: the post's main feature page, one free tool and the store (after the intro, at the end).
+  const mainFeature = features[0]?.slug ?? "twitter-auto-follow";
+  const tool = toolForPost(post, features[0]?.tools[0]);
+  const campaign = `blog-${post.slug}`;
 
   return (
     <>
@@ -98,8 +107,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <p className="hero-settle mt-5 text-pretty text-lg leading-relaxed text-text-2" style={stagger(3)}>{post.excerpt}</p>
               <p className="hero-settle mt-6 text-sm text-muted" style={stagger(4)}>
                 By <IntentLink href="/about" className="font-semibold text-text hover:text-accent-ink">{site.author}</IntentLink> ·{" "}
-                <time dateTime={post.datePublished}>{formatPostDate(post.datePublished)}</time>
-                {post.dateModified !== post.datePublished ? <> · Updated <time dateTime={post.dateModified}>{formatPostDate(post.dateModified)}</time></> : null}
+                <time dateTime={post.datePublished}>{formatPostDate(post.datePublished)}</time> · Updated{" "}
+                <time dateTime={post.dateModified}>{formatPostDate(post.dateModified)}</time>
               </p>
             </div>
             <div className="hidden lg:block">
@@ -112,7 +121,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Container className="grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_17rem]">
             <div className="mx-auto w-full max-w-3xl">
               <div className="mb-12 lg:hidden"><TableOfContents post={post} id="toc-mobile" /></div>
-              <PostBody post={post} />
+              <PostBody
+                post={post}
+                afterIntro={<ExtensionCta feature={mainFeature} campaign={campaign} placement="inline-cta" tool={tool} />}
+                end={<ExtensionCta feature={mainFeature} campaign={campaign} placement="end-cta" tool={tool} />}
+              />
               {post.faq?.length ? (
                 <section id="faq" className="mt-14 scroll-mt-28">
                   <h2 className="h-rule text-2xl font-extrabold tracking-tight sm:text-3xl">Frequently asked questions</h2>

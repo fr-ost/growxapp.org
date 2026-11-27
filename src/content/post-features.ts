@@ -28,3 +28,26 @@ export function featuresForPost(post: Post, max = 2): FeatureSlug[] {
   add("twitter-auto-follow");
   return out;
 }
+
+/** Words that tie a post to one of the free tools (checked against its title and keywords). */
+const TOOL_SIGNALS: [string, RegExp][] = [
+  ["/tools/twitter-shadowban-checker", /shadowban/i],
+  ["/tools/twitter-follower-ratio-calculator", /follower ratio|follow ratio|following ratio/i],
+  ["/tools/twitter-thread-maker", /thread/i],
+  ["/tools/twitter-bio-generator", /\bbio\b|profile/i],
+  ["/tools/tweet-templates", /tweet ideas|template|hook|pinned/i],
+  ["/tools/twitter-engagement-rate-calculator", /engagement|analytic|likes|views|reposts|retweet/i],
+  ["/tools/twitter-bold-text-generator", /bold|font|format/i],
+  ["/tools/tweet-character-counter", /character|length|schedul|post|tweet/i],
+];
+
+/**
+ * The free tool a post should point to: one its own text already links to, else the best keyword match on its title
+ * and keywords, else the first tool of its main feature page (`fallback`), else the character counter.
+ */
+export function toolForPost(post: Post, fallback?: string): string {
+  const linked = JSON.stringify(post.sections).match(/\]\((\/tools\/[a-z-]+)\)/);
+  if (linked) return linked[1];
+  const text = `${post.title} ${post.keywords.join(" ")}`;
+  return TOOL_SIGNALS.find(([, re]) => re.test(text))?.[0] ?? fallback ?? "/tools/tweet-character-counter";
+}
