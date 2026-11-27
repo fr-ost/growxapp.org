@@ -10,7 +10,7 @@ export const metadata = pageMetadata({
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" path="/terms" description={metadata.description as string} updated="October 2026">
+    <LegalPage title="Terms of Service" path="/terms" description={metadata.description as string} updated="November 2026">
       <h2>1. Who we are</h2>
       <p>GrowX is provided by {site.legalName}, {site.legalAddress}. These terms cover the GrowX website, accounts and the GrowX Chrome extension.</p>
       <h2>2. Not affiliated with X</h2>
@@ -23,6 +23,12 @@ export default function TermsPage() {
       </p>
       <h2>4. Accounts</h2>
       <p>You must provide accurate information and keep your credentials secure. Entering an X username does not prove ownership and grants no rights over that X account.</p>
+      <p>
+        You can sign in with your email and a password or with Continue with Google. Both lead to the same GrowX account when they use the
+        same email address, and the same plan, trial and device rules apply. If you use Google sign-in, Google shares your Google
+        account&apos;s name, email address and profile picture with GrowX through Supabase Auth, used only for your GrowX account (see
+        the <a href="/privacy">Privacy Policy</a>).
+      </p>
       <h2>5. Free plan and trial</h2>
       <p>GrowX uses a freemium model: a Free plan plus paid Premium plans. A 30-day Premium trial (all Premium features, no credit card, no commitment) may be started once per account. We may change, limit or end trials and may refuse trials where abuse is suspected.</p>
       <h2>6. Premium and payments</h2>

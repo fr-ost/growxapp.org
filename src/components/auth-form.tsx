@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
+import { useAuthBusy } from "@/components/auth/busy";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/form";
 import { Notice } from "@/components/ui/primitives";
 import type { AuthState } from "@/app/login/actions";
+import { authPagePath } from "@/lib/auth/flow";
 import { trackConversion } from "@/lib/google-conversions";
 
 export function Spinner() {
@@ -26,6 +28,8 @@ export function AuthForm({
   const [state, formAction, pending] = useActionState(action, {});
   const [show, setShow] = useState(false);
   const isLogin = mode === "login";
+  // Disabled while this form OR Continue with Google is signing in.
+  const busy = useAuthBusy("email", pending);
 
   const created = mode === "signup" && !!state.success;
   useEffect(() => {
@@ -89,7 +93,7 @@ export function AuthForm({
           </Link>
         </p>
       ) : null}
-      <Button type="submit" size="lg" className="w-full" disabled={pending || disabled} aria-busy={pending}>
+      <Button type="submit" size="lg" className="w-full" disabled={busy || disabled} aria-busy={pending}>
         {pending ? <Spinner /> : null}
         {pending ? (isLogin ? "Signing in..." : "Creating account...") : isLogin ? "Log in" : "Create free account"}
       </Button>
@@ -110,14 +114,14 @@ export function AuthForm({
         {isLogin ? (
           <>
             New to GrowX?{" "}
-            <Link href="/signup" className="font-semibold text-accent hover:underline">
+            <Link href={authPagePath("/signup", next)} className="font-semibold text-accent hover:underline">
               Create a free account
             </Link>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-accent hover:underline">
+            <Link href={authPagePath("/login", next)} className="font-semibold text-accent hover:underline">
               Log in
             </Link>
           </>

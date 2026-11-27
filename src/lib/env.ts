@@ -28,8 +28,6 @@ export function getSupabaseServiceKey(): string | null {
 
 export const isSupabaseConfigured = () => getSupabasePublicConfig() !== null;
 
-export const googleAuthEnabled = () => process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
-
 /** Exact origins (e.g. chrome-extension://<id>) allowed to call the API cross-origin. */
 export function getAllowedExtensionOrigins(): string[] {
   return (process.env.ALLOWED_EXTENSION_ORIGINS ?? "")

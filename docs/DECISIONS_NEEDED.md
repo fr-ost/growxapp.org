@@ -14,7 +14,7 @@
 - [ ] Confirm the Free/Premium split in `docs/FEATURE_SPLIT.md` (you said details are given and the extension is being updated aside; keep both in sync) and any cap on source profiles.
 - [ ] Early adopter defaults to confirm: over-cap paid purchases are auto-refunded; refunds do not free a slot.
 - [ ] Free daily manual-unfollow allowance and whether Free limits source profiles (`FEATURE_SPLIT.md`).
-- [ ] Create the Google OAuth client and enable it, if wanted.
+- [ ] Create the Google OAuth client and enable the Google provider in Supabase, if wanted: checklist in `docs/GOOGLE_SIGN_IN.md`.
 - [ ] NOWPayments account, supported crypto networks (see `BILLING.md` for the sandbox steps and the live checklist).
 - [ ] Create the NOWPayments API key + IPN secret and add them in Vercel (see `BILLING.md`).
 - [ ] Confirm: crypto plans are prepaid periods (30/365 days) with no automatic renewal; refund/chargeback revokes access immediately; late early-adopter payments with no inventory are refunded manually.

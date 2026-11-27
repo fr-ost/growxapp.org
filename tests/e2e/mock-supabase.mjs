@@ -1,5 +1,6 @@
 // Minimal Supabase (GoTrue + PostgREST) mock for local end-to-end testing.
 import http from "node:http";
+import { createHash, randomUUID } from "node:crypto";
 const PORT = Number(process.env.PORT || 54321);
 const b64 = (o) => Buffer.from(JSON.stringify(o)).toString("base64url");
 const users = new Map(); // email -> user
@@ -80,6 +81,9 @@ mkUser("brokendb@example.com", true); // simulates a project without migrations
 mkUser("nopay@example.com", true); // only the payments table is missing
 const ADMIN_USER = mkUser("admin@example.com", true); // listed in public.admins
 mkUser("support-target@example.com", false); // admin console: confirm email, suspend / unsuspend, sign out everywhere
+// Continue with Google: an existing password account (with an X account linked earlier) and an unconfirmed one.
+const PW_FIRST = mkUser("pw-first@example.com", true);
+mkUser("unconfirmed-google@example.com", false);
 const adminActions = []; // public.admin_actions (append-only)
 const userById = (id) => [...users.values()].find((u) => u.id === id) ?? null;
 const banned = (u) => !!u.banned_until && new Date(u.banned_until).getTime() > Date.now();
@@ -171,6 +175,45 @@ const send = (res, status, body) => { res.writeHead(status, { "content-type": "a
 const authUser = (req) => { const m = (req.headers.authorization || "").match(/^Bearer (.+)$/); const e = m && tokens.get(m[1]); return e ? users.get(e) : null; };
 const sessionOfToken = (req) => { const m = (req.headers.authorization || "").match(/^Bearer (.+)$/); try { return m ? JSON.parse(Buffer.from(m[1].split(".")[1], "base64url").toString()).session_id : null; } catch { return null; } };
 
+registerX({ p_user: PW_FIRST.id, p_username: "LinkedEarlier" });
+
+// ---- Google OAuth through Supabase (PKCE), as GoTrue does it: /authorize -> Google -> /callback -> redirect_to?code=
+const s256 = (v) => createHash("sha256").update(v).digest("base64url");
+const oauthFlows = new Map(); // flow id -> { redirectTo, challenge }
+const authCodes = new Map(); // auth code -> { email, challenge, at, used }
+// Supabase's Redirect URLs allow list for this mock: the app under test and the extension.
+const REDIRECTS = [/^http:\/\/localhost:3113\//, /^https:\/\/ofiancichfcakbdgekhcahflpoglfgbh\.chromiumapp\.org\//];
+const withQuery = (target, params) => { const u = new URL(target); for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v); return u.toString(); };
+const esc = (v) => String(v).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+const redirectTo = (res, location) => { res.writeHead(302, { location }); res.end(); };
+/** What GoTrue does when Google returns a verified email: a new user, or the Google identity linked to the existing one. */
+function googleSignIn(email) {
+  const now = new Date().toISOString();
+  const data = { iss: "https://accounts.google.com", sub: `g-${email}`, provider_id: `g-${email}`, email, email_verified: true, name: "Google Person", full_name: "Google Person", avatar_url: "https://lh3.googleusercontent.com/a/mock", picture: "https://lh3.googleusercontent.com/a/mock" };
+  let u = users.get(email);
+  if (!u) {
+    u = mkUser(email, true);
+    u.noPassword = true;
+    u.app_metadata = { provider: "google", providers: ["google"] };
+    u.identities = [{ id: data.sub, provider: "google", identity_data: data, created_at: now, last_sign_in_at: now }];
+    u.user_metadata = { ...data };
+    return u;
+  }
+  const g = u.identities.find((i) => i.provider === "google");
+  if (g) { g.last_sign_in_at = now; return u; }
+  const identity = { id: data.sub, provider: "google", identity_data: data, created_at: now, last_sign_in_at: now };
+  if (!u.email_confirmed_at) {
+    // unconfirmed account: its unverified password and identities are removed (pre-account-takeover protection)
+    u.email_confirmed_at = now; u.noPassword = true; u.identities = [identity];
+    u.app_metadata = { provider: "google", providers: ["google"] };
+  } else {
+    u.identities = [...u.identities, identity];
+    u.app_metadata = { ...u.app_metadata, providers: [...u.app_metadata.providers, "google"] };
+  }
+  u.user_metadata = { ...data, ...u.user_metadata };
+  return u;
+}
+
 http.createServer(async (req, res) => {
   let raw = ""; for await (const c of req) raw += c;
   const body = raw ? JSON.parse(raw) : {};
@@ -180,6 +223,36 @@ http.createServer(async (req, res) => {
   if (p === "/__log") return send(res, 200, log);
   if (p === "/__state") return send(res, 200, { sessions: [...sessions], active: [...active] });
   if (p === "/auth/v1/health") return send(res, 200, { name: "GoTrue" });
+  if (p === "/__users") { const u = users.get(String(url.searchParams.get("email") || "").toLowerCase()); return send(res, 200, u ? { count: [...users.values()].filter((x) => x.email === u.email).length, id: u.id, providers: u.app_metadata.providers, confirmed: !!u.email_confirmed_at } : { count: 0 }); }
+  if (p === "/auth/v1/settings") {
+    if (!req.headers.apikey) return send(res, 401, { message: "No API key found in request" });
+    return send(res, 200, { external: { email: true, phone: false, google: true, github: false }, disable_signup: false, mailer_autoconfirm: false, phone_autoconfirm: false, saml_enabled: false });
+  }
+  if (p === "/auth/v1/authorize") {
+    const q = url.searchParams; const to = q.get("redirect_to") || "";
+    if (q.get("provider") !== "google") return send(res, 400, { code: 400, error_code: "validation_failed", msg: "Unsupported provider: provider is not enabled" });
+    if (!REDIRECTS.some((r) => r.test(to))) return send(res, 400, { msg: "redirect_to is not in the mock's Redirect URLs" });
+    if (!q.get("code_challenge") || q.get("code_challenge_method")?.toLowerCase() !== "s256") return send(res, 400, { msg: "PKCE (S256) required" });
+    const flow = randomUUID();
+    oauthFlows.set(flow, { redirectTo: to, challenge: q.get("code_challenge") });
+    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+    return res.end(`<!doctype html><meta charset="utf-8"><title>Choose an account</title><h1>Choose an account</h1><p>to continue to GrowX (prompt: <span id="prompt">${esc(q.get("prompt") ?? "")}</span>)</p>
+<form action="/__google/continue" method="get"><input type="hidden" name="flow" value="${flow}"><label>Email <input id="google-email" name="email" type="email"></label> <button id="google-continue">Continue</button></form>
+<p><a id="google-cancel" href="/__google/continue?flow=${flow}&amp;cancel=1">Cancel</a></p>`);
+  }
+  if (p === "/__google/continue") {
+    const id = url.searchParams.get("flow") || ""; const f = oauthFlows.get(id);
+    if (!f) return send(res, 400, { msg: "unknown or used flow" });
+    oauthFlows.delete(id);
+    if (url.searchParams.get("cancel")) return redirectTo(res, withQuery(f.redirectTo, { error: "access_denied", error_description: "The user denied the request" }));
+    const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
+    if (!email) return send(res, 400, { msg: "email required" });
+    const u = googleSignIn(email);
+    if (banned(u)) return redirectTo(res, withQuery(f.redirectTo, { error: "access_denied", error_code: "user_banned", error_description: "User is banned" }));
+    const code = randomUUID();
+    authCodes.set(code, { email, challenge: f.challenge, at: Date.now(), used: false });
+    return redirectTo(res, withQuery(f.redirectTo, { code }));
+  }
   if (p === "/auth/v1/signup" && req.method === "POST") {
     if (users.has(body.email)) return send(res, 200, { ...users.get(body.email), identities: [] });
     const u = mkUser(body.email, body.email.startsWith("instant"));
@@ -204,8 +277,19 @@ http.createServer(async (req, res) => {
       const uid = sessions.get(id); const u = uid && [...users.values()].find((x) => x.id === uid);
       return u ? send(res, 200, session(u, id)) : send(res, 400, { error_code: "refresh_token_not_found", msg: "bad" });
     }
+    if (gt === "pkce") {
+      if (!body.auth_code || !body.code_verifier) return send(res, 400, { code: 400, error_code: "validation_failed", msg: "invalid request: both auth code and code verifier should be non-empty" });
+      const c = authCodes.get(body.auth_code);
+      if (!c || c.used) return send(res, 404, { code: 404, error_code: "flow_state_not_found", msg: "invalid flow state, no valid flow state found" });
+      if (Date.now() - c.at > 5 * 60_000) return send(res, 400, { code: 400, error_code: "flow_state_expired", msg: "flow state has expired" });
+      if (s256(body.code_verifier) !== c.challenge) return send(res, 400, { code: 400, error_code: "bad_code_verifier", msg: "code challenge does not match previously saved code verifier" });
+      c.used = true;
+      const gu = users.get(c.email);
+      if (banned(gu)) return send(res, 400, { code: 400, error_code: "user_banned", msg: "User is banned" });
+      return send(res, 200, session(gu));
+    }
     const u = users.get(body.email);
-    if (!u || body.password !== "correct-horse-1") return send(res, 400, { code: 400, error_code: "invalid_credentials", msg: "Invalid login credentials" });
+    if (!u || u.noPassword || body.password !== "correct-horse-1") return send(res, 400, { code: 400, error_code: "invalid_credentials", msg: "Invalid login credentials" });
     if (!u.email_confirmed_at) return send(res, 400, { code: 400, error_code: "email_not_confirmed", msg: "Email not confirmed" });
     if (banned(u)) return send(res, 400, { code: 400, error_code: "user_banned", msg: "User is banned" });
     return send(res, 200, session(u));

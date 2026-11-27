@@ -21,6 +21,12 @@ export default function PrivacyPage() {
       <h2>What the website collects</h2>
       <ul>
         <li>Account data: your email address and a password hash or Google sign-in identifier, handled by Supabase Auth.</li>
+        <li>
+          If you use Continue with Google: Google shares your Google account&apos;s name, email address and profile picture with
+          GrowX through Supabase Auth. GrowX uses them only for your GrowX account (to sign you in and to link the sign-in to the
+          account with the same email address). GrowX asks Google only for this basic profile: it never receives your Google
+          password and gets no access to your Gmail, Drive or contacts.
+        </li>
         <li>An X username, only if you choose to enter it. It is self-reported and is not verified as belonging to you.</li>
         <li>Trial records: when a trial started and when it ends.</li>
         <li>Subscription and payment records (plan, status, amount, currency, provider reference IDs). Wallet details and private keys are never requested or stored by GrowX; blockchain transactions are public by nature.</li>
@@ -71,7 +77,10 @@ export default function PrivacyPage() {
       <p>
         We keep account data while your account exists. Trial and payment records are kept as long as needed for fraud prevention, accounting and legal obligations (typically up to 7 years for payment records). Depending on where you live you may have rights to access, correct or
         delete your data. Account deletion is not yet self-service; contact us to request it. Trial and payment
-        records may be retained where needed for fraud prevention and accounting.
+        records may be retained where needed for fraud prevention and accounting. You can remove GrowX&apos;s access to your
+        Google account at any time in your Google Account settings
+        (<a href="https://myaccount.google.com/connections">myaccount.google.com/connections</a>); your GrowX account stays, and you
+        can still sign in with your email after setting a password.
       </p>
       <h2>Cookies</h2>
       <p>

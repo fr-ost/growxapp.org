@@ -1,6 +1,7 @@
 // End-to-end browser checks against a production build wired to tests/e2e/mock-supabase.mjs.
 // Run with: npm run test:e2e
 import { chromium } from "playwright-core";
+import { createHash, randomBytes } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 const CURRENT_VERSION = readFileSync(new URL("../../src/content/releases.ts", import.meta.url), "utf8").match(/CURRENT_VERSION = "([^"]+)"/)[1];
 const BASE = process.env.E2E_BASE_URL || "http://localhost:3113";
@@ -9,6 +10,8 @@ mkdirSync(OUT, { recursive: true });
 const executablePath = process.env.CHROMIUM_PATH || (existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined);
 const results = [];
 const ok = (name, cond, extra = "") => { results.push(`${cond ? "PASS" : "FAIL"}  ${name}${extra ? "  -- " + extra : ""}`); };
+// The email form's submit button (log in, sign up, reset): "Continue with Google" above it is a submit button too.
+const SUBMIT = "form:has(#email) button[type=submit]";
 const b = await chromium.launch({ executablePath });
 
 // ---------- motion helpers (redesign): step-scroll a page, then find text left invisible inside <main>
@@ -283,27 +286,27 @@ ok("dashboard redirects signed-out users to login", p.url().includes("/login?nex
 
 await p.goto(BASE + "/signup");
 await p.fill("#email", "not-an-email"); await p.fill("#password", "short");
-await p.click("button[type=submit]");
+await p.click(SUBMIT);
 await p.waitForSelector("#email-error");
 ok("signup validation shows field errors", (await p.textContent("#email-error")).includes("valid email") && !!(await p.textContent("#password-error")));
 ok("signup keeps typed email after error", (await p.inputValue("#email")) === "not-an-email");
 await p.fill("#email", "newuser@example.com"); await p.fill("#password", "correct-horse-1");
-await p.click("button[type=submit]");
+await p.click(SUBMIT);
 await p.waitForSelector("text=Check your inbox");
 ok("signup shows check-your-inbox", true);
 
 await p.goto(BASE + "/login");
 await p.fill("#email", "unconfirmed@example.com"); await p.fill("#password", "correct-horse-1");
-await p.click("button[type=submit]"); await p.waitForSelector("[role=alert]");
+await p.click(SUBMIT); await p.waitForSelector("[role=alert]");
 ok("login: unconfirmed email message", (await p.textContent("[role=alert]")).includes("confirm your email"));
 
 await p.fill("#email", "demo@example.com"); await p.fill("#password", "wrong-password-1");
-await p.click("button[type=submit]"); await p.waitForTimeout(600);
+await p.click(SUBMIT); await p.waitForTimeout(600);
 ok("login: wrong password message", (await p.textContent("[role=alert]")).includes("Invalid email or password"));
 
 await p.goto(BASE + "/login?next=//evil.com");
 await p.fill("#email", "demo@example.com"); await p.fill("#password", "correct-horse-1");
-await p.click("button[type=submit]");
+await p.click(SUBMIT);
 await p.waitForURL("**/dashboard", { timeout: 15000 });
 ok("login success -> dashboard (open redirect blocked)", new URL(p.url()).host === "localhost:3113" && p.url().endsWith("/dashboard"), p.url());
 await p.locator("h1", { hasText: "Welcome" }).waitFor();
@@ -379,7 +382,7 @@ ok("/api/entitlement 401 after sign out", ent2 === 401, String(ent2));
 // second account, same username -> trial refused
 await p.goto(BASE + "/login");
 await p.fill("#email", "other@example.com"); await p.fill("#password", "correct-horse-1");
-await p.click("button[type=submit]"); await p.waitForURL("**/dashboard");
+await p.click(SUBMIT); await p.waitForURL("**/dashboard");
 await p.fill("#x_account_username", "@DEMO_USER");
 await p.click("button:has-text('Review and link')");
 await p.locator("#x-accounts input[type=checkbox]").check();
@@ -394,7 +397,7 @@ ok("X Accounts: a username linked to another account is refused (any case/@), no
   const berrs = []; bp.on("pageerror", (e) => berrs.push(String(e)));
   await bp.goto(BASE + "/login");
   await bp.fill("#email", "brokendb@example.com"); await bp.fill("#password", "correct-horse-1");
-  await bp.click("button[type=submit]"); await bp.waitForURL("**/dashboard");
+  await bp.click(SUBMIT); await bp.waitForURL("**/dashboard");
   await bp.locator("h1", { hasText: "Welcome" }).waitFor();
   const body = await bp.locator("main").innerText();
   if (process.env.E2E_DEBUG) console.log("DASH:", body.slice(0, 1500));
@@ -408,7 +411,7 @@ ok("X Accounts: a username linked to another account is refused (any case/@), no
   const np = await nctx.newPage();
   await np.goto(BASE + "/login");
   await np.fill("#email", "nopay@example.com"); await np.fill("#password", "correct-horse-1");
-  await np.click("button[type=submit]"); await np.waitForURL("**/dashboard");
+  await np.click(SUBMIT); await np.waitForURL("**/dashboard");
   await np.locator("h1", { hasText: "Welcome" }).waitFor();
   const na = await np.locator("main").innerText();
   if (process.env.E2E_DEBUG) console.log("DASH:", na.slice(0, 1500));
@@ -427,7 +430,7 @@ ok("signed-in /login -> dashboard", p.url().endsWith("/dashboard"), p.url());
 // forgot password
 const p2 = await (await b.newContext()).newPage();
 await p2.goto(BASE + "/forgot-password");
-await p2.fill("#email", "demo@example.com"); await p2.click("button[type=submit]");
+await p2.fill("#email", "demo@example.com"); await p2.click(SUBMIT);
 await p2.waitForSelector("text=reset link is on its way");
 ok("forgot password success", true);
 await p2.goto(BASE + "/reset-password");
@@ -436,7 +439,7 @@ ok("reset-password requires a session", p2.url().includes("/login"), p2.url());
 // confirm-disabled signup path
 await p2.goto(BASE + "/signup");
 await p2.fill("#email", "instant@example.com"); await p2.fill("#password", "correct-horse-1");
-await p2.click("button[type=submit]"); await p2.waitForURL("**/dashboard", { timeout: 15000 });
+await p2.click(SUBMIT); await p2.waitForURL("**/dashboard", { timeout: 15000 });
 ok("signup without email confirmation -> dashboard", true);
 
 // callback errors (fresh, signed-out browser)
@@ -461,7 +464,7 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   const login = async (page, email) => {
     await page.goto(BASE + "/login");
     await page.fill("#email", email); await page.fill("#password", "correct-horse-1");
-    await page.click("button[type=submit]"); await page.waitForURL("**/dashboard", { timeout: 15000 });
+    await page.click(SUBMIT); await page.waitForURL("**/dashboard", { timeout: 15000 });
   };
   const bearerLogin = async (email) => { // what the extension does: sign in against Supabase directly, then register
     const r = await (await fetch(MOCK + "/auth/v1/token?grant_type=password", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, password: "correct-horse-1" }) })).json();
@@ -524,6 +527,188 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   for (const pg of [devA, devB, other]) await pg.context().close();
 }
 
+// ---------- Continue with Google (mock Google account chooser + Supabase PKCE, see mock-supabase.mjs)
+{
+  const MOCK = "http://localhost:54321";
+  const GBTN = "[data-testid=google-sign-in]";
+  const who = async (email) => (await fetch(`${MOCK}/__users?email=${encodeURIComponent(email)}`)).json();
+  const pageErrors = [];
+  const fresh = async () => {
+    const c = await b.newContext({ viewport: { width: 1280, height: 900 } });
+    const pg = await c.newPage();
+    pg.on("pageerror", (e) => pageErrors.push(String(e)));
+    return { c, pg };
+  };
+  /** Presses Continue with Google on `from` and stops at the (mock) Google account chooser. */
+  const toChooser = async (pg, from = "/login") => {
+    await pg.goto(BASE + from);
+    await pg.click(GBTN);
+    await pg.waitForURL(`${MOCK}/auth/v1/authorize**`, { timeout: 15000 });
+    return new URL(pg.url());
+  };
+  /** Chooses `email` on the chooser; resolves with the Set-Cookie header of the website's /auth/callback response. */
+  const choose = async (pg, email) => {
+    const cb = pg.waitForResponse((r) => r.url().startsWith(BASE + "/auth/callback"), { timeout: 15000 });
+    await pg.fill("#google-email", email);
+    await pg.click("#google-continue");
+    return (await (await cb).allHeaders())["set-cookie"] || "";
+  };
+  const contexts = [];
+  const open = async () => { const f = await fresh(); contexts.push(f.c); return f; };
+
+  // the button on every sign-in surface
+  const { pg: g0 } = await open();
+  for (const path of ["/login", "/signup"]) {
+    await g0.goto(BASE + path);
+    const btn = g0.locator(GBTN);
+    ok(`${path}: Continue with Google button with the Google G`, (await btn.isVisible()) && (await btn.innerText()).includes("Continue with Google") && (await btn.locator("svg path").count()) === 4 && (await btn.isEnabled()));
+    const above = await g0.evaluate((sel) => { const g = document.querySelector(sel); const e = document.querySelector("#email"); return !!g && !!e && !!(g.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING); }, GBTN);
+    ok(`${path}: Google above an "or" divider and the email form`, above && /\bor\b/i.test(await g0.locator("[data-testid=google-sign-in-block]").innerText()));
+  }
+  ok("/forgot-password has no Google button (not a sign-in form)", (await g0.goto(BASE + "/forgot-password"), (await g0.locator(GBTN).count()) === 0));
+
+  // what the button sends to Supabase
+  const start = await toChooser(g0, "/login?next=%2Fpricing");
+  const rt = new URL(start.searchParams.get("redirect_to") || "about:blank");
+  ok("Google start: provider google, PKCE S256 and the account chooser (prompt=select_account)", start.searchParams.get("provider") === "google" && start.searchParams.get("code_challenge_method") === "s256" && !!start.searchParams.get("code_challenge") && start.searchParams.get("prompt") === "select_account", start.search.slice(0, 300));
+  ok("Google start: callback on this host with next and flow=google", rt.origin === BASE && rt.pathname === "/auth/callback" && rt.searchParams.get("next") === "/pricing" && rt.searchParams.get("flow") === "google", rt.href);
+
+  // Back from Google's page: the button is usable again (no stuck spinner from the back/forward cache)
+  await g0.goBack();
+  await g0.waitForURL("**/login**", { timeout: 15000 });
+  ok("back from Google: both ways in are usable again", (await g0.locator(GBTN).isEnabled()) && (await g0.locator(SUBMIT).isEnabled()));
+
+  // cancel on Google's page
+  await toChooser(g0, "/login?next=%2Fpricing");
+  await g0.click("#google-cancel");
+  await g0.waitForURL("**/login?**", { timeout: 15000 });
+  const cu = new URL(g0.url());
+  ok("cancel on Google -> log in page with a plain message, next kept", cu.searchParams.get("error") === "google_cancelled" && cu.searchParams.get("next") === "/pricing" && (await g0.locator("main").innerText()).includes("Google sign-in was cancelled"), g0.url());
+
+  // while the sign-in starts, both buttons are disabled (the server action is slowed down to look)
+  await g0.goto(BASE + "/login");
+  await g0.route("**/login*", async (route) => { if (route.request().method() === "POST") await new Promise((r) => setTimeout(r, 1500)); await route.continue(); });
+  await g0.click(GBTN);
+  await g0.waitForTimeout(400);
+  const busy = { google: await g0.locator(GBTN).isDisabled(), email: await g0.locator(SUBMIT).isDisabled(), aria: await g0.locator(GBTN).getAttribute("aria-busy") };
+  ok("while Google sign-in starts, the Google button and the email form are disabled", busy.google && busy.email && busy.aria === "true", JSON.stringify(busy));
+  await g0.waitForURL(`${MOCK}/auth/v1/authorize**`, { timeout: 15000 });
+  await g0.unroute("**/login*");
+
+  // a brand-new Google account (from the sign-up page)
+  const NEW = "new.google.person@gmail.com";
+  ok("new Google email: no GrowX account yet", (await who(NEW)).count === 0);
+  const { c: c1, pg: g1 } = await open();
+  await c1.addInitScript(() => { window.__conversions = []; window.gtag = (...args) => window.__conversions.push(args); });
+  await toChooser(g1, "/signup");
+  const sc1 = await choose(g1, NEW);
+  await g1.waitForURL("**/dashboard", { timeout: 15000 });
+  const created = Date.now();
+  ok("first Google sign-in lands on the dashboard, signed in", (await g1.locator("h1", { hasText: "Welcome" }).count()) === 1, g1.url());
+  ok("first Google sign-in sets the one-time sign-up marker", /gx_new_signup=google/.test(sc1), sc1.slice(0, 200));
+  await g1.waitForFunction(() => (window.__conversions || []).length > 0, null, { timeout: 8000 }).catch(() => {});
+  const conv = await g1.evaluate(() => window.__conversions);
+  ok("first Google sign-in reports the sign-up conversion once", conv.filter((a) => a[0] === "event" && a[1] === "conversion" && a[2]?.send_to === "AW-TEST/signup").length === 1, JSON.stringify(conv));
+  ok("the sign-up marker is cleared once reported", !(await c1.cookies()).some((k) => k.name === "gx_new_signup"));
+  const main1 = await g1.locator("main").innerText();
+  ok("Google account: email confirmed (Google verified it)", /Email status\s*Confirmed/i.test(main1));
+  ok("Google account: says how it signs in, offers to set a password", main1.includes("You sign in with Google.") && (await g1.locator("a", { hasText: "Set a password" }).count()) === 1);
+  ok("Google account: the X account step is still required before the trial", (await g1.locator("button", { hasText: "Start my 30-day" }).isDisabled()) && main1.includes("Link your X account below first"));
+  const u1 = await who(NEW);
+  ok("Google account: one account for the email, provider google", u1.count === 1 && u1.confirmed && JSON.stringify(u1.providers) === '["google"]', JSON.stringify(u1));
+
+  // the same person comes back later: same account, not a new sign-up
+  await g1.click("button:has-text('Sign out')"); await g1.waitForURL(BASE + "/");
+  await g1.waitForTimeout(Math.max(0, 6000 - (Date.now() - created)));
+  await toChooser(g1);
+  const sc2 = await choose(g1, NEW);
+  await g1.waitForURL("**/dashboard", { timeout: 15000 });
+  ok("returning Google user: same account, not counted as a new sign-up", (await who(NEW)).id === u1.id && !/gx_new_signup=google/.test(sc2), sc2.slice(0, 200));
+
+  // the extension: PKCE through chrome.identity.launchWebAuthFlow, then Bearer calls to the website API
+  const EXT = "https://ofiancichfcakbdgekhcahflpoglfgbh.chromiumapp.org/";
+  const verifier = randomBytes(32).toString("base64url");
+  const challenge = createHash("sha256").update(verifier).digest("base64url");
+  const authz = await fetch(`${MOCK}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(EXT)}&code_challenge=${challenge}&code_challenge_method=s256`);
+  const flowId = (await authz.text()).match(/name="flow" value="([^"]+)"/)?.[1];
+  const back = await fetch(`${MOCK}/__google/continue?flow=${flowId}&email=${encodeURIComponent(NEW)}`, { redirect: "manual" });
+  const extCode = new URL(back.headers.get("location") || "https://x/").searchParams.get("code");
+  ok("extension: Google sends the code to the chromiumapp.org redirect", back.status === 302 && (back.headers.get("location") || "").startsWith(EXT) && !!extCode);
+  const pkce = (code_verifier) => fetch(`${MOCK}/auth/v1/token?grant_type=pkce`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ auth_code: extCode, code_verifier }) });
+  ok("extension: a wrong PKCE verifier is refused", (await pkce(randomBytes(32).toString("base64url"))).status === 400);
+  const tok = await (await pkce(verifier)).json();
+  ok("extension: Google sign-in gives the same Supabase user as the website", tok.user?.id === u1.id && !!tok.access_token, JSON.stringify(tok).slice(0, 120));
+  ok("extension: an auth code works only once", (await pkce(verifier)).status === 404);
+  const ext = (path, method = "GET") => fetch(BASE + path, { method, headers: { authorization: `Bearer ${tok.access_token}` } });
+  ok("extension: POST /api/session registers the Google session", (await ext("/api/session", "POST")).status === 200);
+  const ent = await ext("/api/entitlement");
+  ok("extension: /api/entitlement works with the Google token", ent.status === 200 && ["FREE", "TRIAL"].includes((await ent.json()).plan));
+  ok("extension: /api/session and /api/x-accounts work with the Google token", (await ext("/api/session")).status === 200 && (await ext("/api/x-accounts")).status === 200);
+  ok("extension sign-in does not sign the website out (separate slots)", (await g1.goto(BASE + "/dashboard"), g1.url().endsWith("/dashboard")), g1.url());
+
+  // an existing password account signs in with Google: the same account, and the device rule applies
+  const PW = "pw-first@example.com";
+  const pwBefore = await who(PW);
+  const { pg: pwDevice } = await open();
+  await pwDevice.goto(BASE + "/login"); await pwDevice.fill("#email", PW); await pwDevice.fill("#password", "correct-horse-1");
+  await pwDevice.click(SUBMIT); await pwDevice.waitForURL("**/dashboard", { timeout: 15000 });
+  const { pg: g2 } = await open();
+  await toChooser(g2);
+  const sc3 = await choose(g2, PW);
+  await g2.waitForURL("**/dashboard", { timeout: 15000 });
+  const pwAfter = await who(PW);
+  const main2 = await g2.locator("main").innerText();
+  ok("password account + Google with the same email: the same account", pwAfter.count === 1 && pwAfter.id === pwBefore.id && pwAfter.providers.includes("email") && pwAfter.providers.includes("google"), JSON.stringify(pwAfter));
+  ok("linked account keeps its X account", main2.includes("LinkedEarlier"), main2.slice(0, 300));
+  ok("linked account lists both ways in and keeps Change password", main2.includes("You sign in with email and password or Google.") && (await g2.locator("a", { hasText: "Change password" }).count()) === 1);
+  ok("linking an existing account is not counted as a new sign-up", !/gx_new_signup=google/.test(sc3));
+  await pwDevice.goto(BASE + "/dashboard"); await pwDevice.waitForURL("**/login**", { timeout: 15000 }).catch(() => {});
+  ok("device rule: the Google sign-in replaced the account's other website session", pwDevice.url().includes("error=session_replaced"), pwDevice.url());
+
+  // an unconfirmed password account: Google verifies the email, and it stays the same account
+  const UC = "unconfirmed-google@example.com";
+  const ucBefore = await who(UC);
+  const { pg: g3 } = await open();
+  await toChooser(g3); await choose(g3, UC); await g3.waitForURL("**/dashboard", { timeout: 15000 });
+  const ucAfter = await who(UC);
+  ok("unconfirmed password account + Google: same account, now confirmed", ucAfter.id === ucBefore.id && !ucBefore.confirmed && ucAfter.confirmed && /Email status\s*Confirmed/i.test(await g3.locator("main").innerText()), JSON.stringify([ucBefore, ucAfter]));
+
+  // Google first, then the email form
+  const { pg: g4 } = await open();
+  await g4.goto(BASE + "/login"); await g4.fill("#email", NEW); await g4.fill("#password", "correct-horse-1");
+  await g4.click(SUBMIT); await g4.waitForSelector("[role=alert]");
+  ok("Google-only account + password -> told to use Continue with Google", (await g4.textContent("[role=alert]")).includes("If you signed up with Google, use Continue with Google"));
+  await g4.goto(BASE + "/signup"); await g4.fill("#email", NEW); await g4.fill("#password", "correct-horse-1");
+  await g4.click(SUBMIT); await g4.waitForSelector("text=Check your inbox");
+  ok("signing up again with a Google account's email creates no second account", (await who(NEW)).count === 1 && (await g4.locator("main").innerText()).includes("use Continue with Google if you signed up with Google"));
+
+  // next is kept on success; an off-site next is ignored
+  const { pg: g5 } = await open();
+  await toChooser(g5, "/login?next=%2Fpricing"); await choose(g5, NEW);
+  await g5.waitForURL("**/pricing", { timeout: 15000 });
+  ok("Google sign-in returns to next", new URL(g5.url()).pathname === "/pricing", g5.url());
+  const { pg: g6 } = await open();
+  await toChooser(g6, "/login?next=%2F%2Fevil.com"); await choose(g6, NEW);
+  await g6.waitForURL("**/dashboard", { timeout: 15000 });
+  ok("Google sign-in with next=//evil.com stays on the site", new URL(g6.url()).host === "localhost:3113" && g6.url().endsWith("/dashboard"), g6.url());
+
+  // bad codes and callbacks that cannot finish
+  const { pg: g7 } = await open();
+  await toChooser(g7, "/login?next=%2Fpricing");
+  await g7.goto(BASE + "/auth/callback?code=00000000-dead-4bad-8bad-000000000000&flow=google&next=%2Fpricing");
+  await g7.waitForURL("**/login?**", { timeout: 15000 });
+  const bu = new URL(g7.url());
+  ok("bad or used Google code -> plain message, next kept", bu.searchParams.get("error") === "google_expired" && bu.searchParams.get("next") === "/pricing" && (await g7.locator("main").innerText()).includes("took too long or was already used"), g7.url());
+  const { pg: g8 } = await open();
+  await g8.goto(BASE + "/auth/callback?code=abc&flow=google");
+  ok("Google callback in a browser that did not start it -> plain message", new URL(g8.url()).searchParams.get("error") === "google_other_browser" && (await g8.locator("main").innerText()).includes("same browser"), g8.url());
+  await g8.goto(BASE + "/auth/callback?flow=google");
+  ok("Google callback without a code -> plain message", new URL(g8.url()).searchParams.get("error") === "google_failed" && (await g8.locator("main").innerText()).includes("Google sign-in didn't work"), g8.url());
+
+  ok("no runtime page errors in the Google flows", pageErrors.length === 0, pageErrors.join(" | ").slice(0, 300));
+  for (const c of contexts) await c.close();
+}
+
 // ---------- billing: nothing is configured in this environment, so checkout must be unavailable
 {
   const opt = await (await fetch(BASE + "/api/billing/options")).json();
@@ -577,7 +762,7 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   await mp.waitForURL("**/login?next=*");
   ok("checkout requires login and remembers the plan", decodeURIComponent(mp.url()).includes("next=/checkout?plan=PRO_MONTHLY"), mp.url());
   await mp.fill("#email", "demo@example.com"); await mp.fill("#password", "correct-horse-1");
-  await mp.click("button[type=submit]");
+  await mp.click(SUBMIT);
   await mp.waitForURL("**/checkout?plan=PRO_MONTHLY", { timeout: 15000 });
   const inv = await mp.locator("main").innerText();
   ok("invoice page shows plan, server price and prepaid term", /monthly/i.test(inv) && inv.includes("$1.99") && /30 days of Premium, prepaid/.test(inv), inv.slice(0, 300));
@@ -646,7 +831,7 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
 
 // ---------- admin dashboard: access control, Premium gifts, early-bird editor
 {
-  const signIn = async (ctx, email) => { const pg = await ctx.newPage(); await pg.goto(BASE + "/login"); await pg.fill("#email", email); await pg.fill("#password", "correct-horse-1"); await pg.click("button[type=submit]"); await pg.waitForURL("**/dashboard", { timeout: 15000 }); return pg; };
+  const signIn = async (ctx, email) => { const pg = await ctx.newPage(); await pg.goto(BASE + "/login"); await pg.fill("#email", email); await pg.fill("#password", "correct-horse-1"); await pg.click(SUBMIT); await pg.waitForURL("**/dashboard", { timeout: 15000 }); return pg; };
   const uctx = await b.newContext({ viewport: { width: 1280, height: 900 } });
   const up = await signIn(uctx, "demo@example.com");
   ok("non-admin: no Admin link on the dashboard", (await up.locator('a[href="/admin"]').count()) === 0);
@@ -770,7 +955,7 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   const tp = await signIn(tctx, "support-target@example.com");
   await act("Suspend account", "Spam reports in a test", "Suspend now");
   ok("suspend: the user's open session stops working at once", (await tp.evaluate(async () => (await fetch("/api/entitlement", { cache: "no-store" })).status)) === 401);
-  const blocked = await (async () => { const pg = await tctx.newPage(); await pg.goto(BASE + "/login"); await pg.fill("#email", "support-target@example.com"); await pg.fill("#password", "correct-horse-1"); await pg.click("button[type=submit]"); return pg.waitForURL("**/dashboard", { timeout: 4000 }).then(() => false, () => true); })();
+  const blocked = await (async () => { const pg = await tctx.newPage(); await pg.goto(BASE + "/login"); await pg.fill("#email", "support-target@example.com"); await pg.fill("#password", "correct-horse-1"); await pg.click(SUBMIT); return pg.waitForURL("**/dashboard", { timeout: 4000 }).then(() => false, () => true); })();
   ok("suspend: the user cannot sign in again", blocked);
   await ap.goto(userUrl);
   await act("Lift suspension", "Appeal accepted in a test", "Lift suspension");

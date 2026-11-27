@@ -10,6 +10,8 @@ const env = {
   NEXT_PUBLIC_SUPABASE_ANON_KEY: "anon-key", // also exercises the Vercel-integration variable name
   SUPABASE_SERVICE_ROLE_KEY: "service-key",
   NEXT_PUBLIC_SITE_URL: "https://www.growxapp.org",
+  // A sign-up conversion label, so the Google first-sign-in conversion can be checked (no Google tag runs here).
+  NEXT_PUBLIC_GOOGLE_ADS_SIGNUP: "AW-TEST/signup",
 };
 
 const build = spawnSync("node", ["node_modules/next/dist/bin/next", "build"], { cwd: root, env, stdio: "inherit" });

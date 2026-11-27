@@ -19,6 +19,7 @@ import { createClient } from "@/lib/supabase/server";
 import { requireUser } from "@/lib/supabase/require-user";
 import { loadXAccounts } from "@/lib/x-accounts";
 import { isAdmin } from "@/lib/admin/auth";
+import { signInMethods } from "@/lib/auth/flow";
 import { INVOICE_STATUSES, invoiceNumber } from "@/lib/invoices";
 
 export const metadata = pageMetadata({ title: "Dashboard", description: "Your GrowX account, plan, X accounts and payments.", path: "/dashboard", noindex: true });
@@ -83,7 +84,8 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   const canStartTrial = !!entitlement && !entitlement.trial.used && linked.length > 0 && emailConfirmed;
   // The old self-reported trial username, offered only as a starting value for linking (never linked without confirmation).
   const oldTrialName = (xProfile.data as { x_username?: string } | null)?.x_username ?? null;
-  const provider = (user.app_metadata?.provider as string | undefined) ?? "email";
+  // Google sign-in links to the same account as the email address (one account per email), so list every way in.
+  const methods = signInMethods(user.app_metadata);
   const now = serverNow();
   const openOrders = (orders.data ?? []).filter((o) => o.status === "refund_required" || !o.reservation_expires_at || Date.parse(o.reservation_expires_at) > now);
   const name = user.email?.split("@")[0] ?? "there";
@@ -240,7 +242,13 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
           </div>
         </dl>
         <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border pt-5">
-          {provider === "email" ? <LinkButton href="/forgot-password" variant="secondary" size="sm">Change password</LinkButton> : <span className="text-sm text-text-2">You sign in with {provider}.</span>}
+          <span className="text-sm text-text-2" data-testid="sign-in-methods">
+            You sign in with {methods.labels.join(" or ")}.
+          </span>
+          {/* A Google-only account has no password yet: the reset email lets it add one (same account). */}
+          <LinkButton href="/forgot-password" variant="secondary" size="sm">
+            {methods.password ? "Change password" : "Set a password"}
+          </LinkButton>
           {site.chromeStoreUrl ? (
             <ExternalButton href={site.chromeStoreUrl}>
               <IconChrome size={18} /> Get the extension

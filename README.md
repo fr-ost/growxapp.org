@@ -42,7 +42,7 @@ Owner-approved product decisions live in [`docs/PRODUCT_REQUIREMENTS.md`](docs/P
 | | What this repo actually ships |
 | --- | --- |
 | 🌐 **Marketing site** | Home, features, how it works, pricing, blog, FAQ, about, alternatives, press, what’s new, contact, and legal pages. |
-| 🔐 **Accounts** | Email sign-up with confirmation, optional Google sign-in, forgot-password and reset. Sessions are Supabase Auth cookies via `@supabase/ssr`. |
+| 🔐 **Accounts** | Email sign-up with confirmation, Continue with Google (same account as the email), forgot-password and reset. Sessions are Supabase Auth cookies via `@supabase/ssr`. |
 | 🎛️ **Dashboard** | One protected page for plan, the 30-day trial, linked X accounts, payments and the account. `/account` redirects here. |
 | 🎟️ **Entitlement** | `GET /api/entitlement` for the website session or an extension bearer token. Fails closed. Contract in [`docs/API.md`](docs/API.md). |
 | ₿ **Crypto billing** | NOWPayments hosted invoices. The customer picks the coin. Premium is granted only after a verified IPN. |
@@ -125,7 +125,7 @@ Without Supabase variables the public pages still work. Auth pages show a “not
 4. **Auth → URL Configuration.** Site URL `https://www.growxapp.org`. Redirect URLs `https://www.growxapp.org/**`, `https://growxapp.org/**`, `http://localhost:3000/**`. For cross-device email links, use the templates in [`docs/GO_LIVE.md`](docs/GO_LIVE.md):
    - Confirm signup: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/dashboard`
    - Reset password: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/reset-password`
-5. **Google (optional).** Create an OAuth client in Google Cloud, set its redirect URI to the callback URL shown in Supabase → Auth → Providers → Google, enable the provider, then set `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true`.
+5. **Google (optional).** Follow [`docs/GOOGLE_SIGN_IN.md`](docs/GOOGLE_SIGN_IN.md): a Google Cloud web client with the redirect URI `https://<project-ref>.supabase.co/auth/v1/callback`, then Supabase → Auth → Providers → Google. "Continue with Google" appears on the website (and in the extension) once the provider is enabled; there is no environment variable.
 6. Copy the **Project URL**, **publishable (anon) key** and **service_role key** (Settings → API) into your env. The service role key is a server secret: never prefix it with `NEXT_PUBLIC_`, and never commit it.
 7. Review [`docs/SECURITY.md`](docs/SECURITY.md) (SMTP, CAPTCHA, password rules) before inviting real users.
 
@@ -148,7 +148,6 @@ Names only. Copy [`.env.example`](.env.example) to `.env.local` and fill values 
 | `NEXT_PUBLIC_SUPABASE_URL` | yes | public | `SUPABASE_URL` is also accepted |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | yes | public | Anon / publishable key. Also accepted: `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_ANON_KEY` (the Vercel Supabase integration names work) |
 | `SUPABASE_SERVICE_ROLE_KEY` | for trials | **server secret** | Trial activation and `/api/health`. `SUPABASE_SECRET_KEY` is also accepted. Never prefix with `NEXT_PUBLIC_` |
-| `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED` | no | public | `true` only after enabling Google in Supabase |
 | `NEXT_PUBLIC_CHROME_STORE_URL` | no | public | Overrides the official listing in `src/config/site.ts` |
 | `NEXT_PUBLIC_SUPPORT_EMAIL` | no | public | Shown on `/contact`. Defaults to `support@growxapp.org` |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | no | public | Google Search Console token. See [`docs/SEO.md`](docs/SEO.md) |

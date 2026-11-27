@@ -7,7 +7,7 @@ The build environment that produced this code cannot reach your live site or das
 - [ ] **Environment variables (Production):**
   - `NEXT_PUBLIC_SITE_URL=https://www.growxapp.org` (**update it if it still says growxapp.net**; it is used for metadata, sitemap and robots).
   - Supabase: the Vercel Supabase integration's variables work as-is (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`). The names in `.env.example` (`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`) also work.
-  - Optional: `NEXT_PUBLIC_SUPPORT_EMAIL` (defaults to support@growxapp.org), `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true` (after enabling Google in Supabase), `BILLING_GRACE_DAYS_CARD=3`, `BILLING_GRACE_DAYS_CRYPTO=0`.
+  - Optional: `NEXT_PUBLIC_SUPPORT_EMAIL` (defaults to support@growxapp.org), `BILLING_GRACE_DAYS_CARD=3`, `BILLING_GRACE_DAYS_CRYPTO=0`.
 - [ ] **Redeploy** after changing any `NEXT_PUBLIC_*` variable (they are baked in at build time).
 
 ## 2. Supabase
@@ -22,7 +22,7 @@ The build environment that produced this code cannot reach your live site or das
   (The default templates also work, but only in the same browser that requested the email; otherwise users are told their email is confirmed and asked to log in.)
 - [ ] **Auth > SMTP:** set up a real provider and send from your domain (e.g. no-reply@growxapp.org) with SPF/DKIM. The built-in mailer sends only a few emails per hour.
 - [ ] **Auth > Attack protection:** CAPTCHA and leaked-password protection; minimum password length 8+.
-- [ ] (Optional) Google provider, callback URL as shown by Supabase.
+- [ ] (Optional) Google sign-in: follow `docs/GOOGLE_SIGN_IN.md` (Google Cloud consent screen and web client, Supabase provider, redirect URLs including the extension's `https://ofiancichfcakbdgekhcahflpoglfgbh.chromiumapp.org/**`). If an old `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED` variable is still set in Vercel, delete it: it is no longer read.
 
 ## 3. Email
 - [ ] Make sure `support@growxapp.org` exists and receives mail (it is shown on the site and in the legal drafts).

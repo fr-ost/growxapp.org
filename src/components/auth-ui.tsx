@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AuthBusyProvider } from "@/components/auth/busy";
 import { TrialTicks } from "@/components/auth/trial-ticks";
 import { IconCheck, IconLock, IconShield, IconZap } from "@/components/icons";
 import { Backdrop } from "@/components/motion/backdrop";
@@ -46,7 +47,7 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
                   The account service is not configured on this deployment.
                 </Notice>
               ) : null}
-              {children}
+              <AuthBusyProvider>{children}</AuthBusyProvider>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { baseKeywords } from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { GoogleTag } from "@/components/google-tag";
+import { NewSignupConversion } from "@/components/new-signup-conversion";
 import { MotionRuntime } from "@/components/motion/motion-runtime";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteFooter />
         <MotionRuntime />
         <GoogleTag />
+        <NewSignupConversion />
         {/* Vercel Web Analytics only exists on Vercel deployments (its script is served by Vercel). */}
         {process.env.VERCEL ? <Analytics /> : null}
       </body>

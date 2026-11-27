@@ -29,7 +29,7 @@ Three service-role-only functions (`supabase/migrations/*_active_sessions.sql`):
 | `release_active_session(user, session)` | explicit logout: forgets the row and deletes that session (and its refresh tokens) |
 
 Registration happens exactly when a login succeeds:
-* website: password login, sign-up without email confirmation, email-link (`/auth/confirm`), PKCE/OAuth (`/auth/callback`). If registration fails the login is rolled back (signed out).
+* website: password login, sign-up without email confirmation, email-link (`/auth/confirm`), PKCE email links and Continue with Google (`/auth/callback`). If registration fails the login is rolled back (signed out).
 * extension: `POST /api/session` right after its own sign-in.
 
 Enforcement on every protected operation (cookie **and** bearer): `getAuthState()` (pages, server actions, billing APIs) and
