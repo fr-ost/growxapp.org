@@ -72,6 +72,31 @@ export const pricingTiers: readonly PricingTier[] = [
   },
 ] as const;
 
+/**
+ * What each plan gets, in plain words. The /pricing plans table, the JSON-LD offers and llms.txt all read these (with
+ * the tiers above), so the page and the structured data can never drift apart.
+ */
+export const PLAN_SUMMARY: Record<PricingTierId, string> = {
+  FREE: "Free forever: auto follow at the Slow pace (about 100 a day), up to 10 scheduled posts, analytics for your latest 30 posts, who followed back and 7 days of follower history.",
+  PRO_MONTHLY: "Premium for 30 days, prepaid in crypto. Does not renew automatically.",
+  PRO_YEARLY: "Premium for 365 days, prepaid in crypto. Does not renew automatically.",
+  PRO_LIFETIME: "Premium for life, one payment in crypto.",
+};
+
+/** A tier's summary, with the early-bird price where it applies. */
+export function planSummary(t: PricingTier): string {
+  const early = t.earlyBird ? ` Early-bird price ${t.earlyBird.priceLabel} for the first ${t.earlyBird.limit} lifetime buyers.` : "";
+  return `${PLAN_SUMMARY[t.id]}${early}`;
+}
+
+/** How long a plan lasts, for the plans table. */
+export const PLAN_LENGTH: Record<PricingTierId, string> = {
+  FREE: "Forever",
+  PRO_MONTHLY: "30 days",
+  PRO_YEARLY: "365 days",
+  PRO_LIFETIME: "Lifetime",
+};
+
 /** Early-bird lifetime price: the first EARLY_BIRD_LIMIT successful lifetime purchases pay this instead of the regular price. */
 export const EARLY_BIRD_LIMIT = 100;
 

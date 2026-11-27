@@ -1,4 +1,4 @@
-import { pricingTiers, type PricingTier } from "@/config/pricing";
+import { planSummary, pricingTiers, type PricingTier } from "@/config/pricing";
 import { site } from "@/config/site";
 import { CURRENT_VERSION, LANGUAGES } from "@/content/releases";
 import { CWS_URL } from "@/lib/cws";
@@ -122,17 +122,9 @@ export const websiteLd = {
   publisher: { "@id": ORG_ID },
 };
 
-const OFFER_TEXT: Record<PricingTier["id"], (t: PricingTier) => string> = {
-  FREE: () => "Free forever: auto follow at the Slow pace (about 100 a day), up to 10 scheduled posts, analytics for your latest 30 posts, who followed back and 7 days of follower history.",
-  PRO_MONTHLY: () => "Premium for 30 days, prepaid in crypto. Does not renew automatically.",
-  PRO_YEARLY: () => "Premium for 365 days, prepaid in crypto. Does not renew automatically.",
-  PRO_LIFETIME: (t) =>
-    `Premium for life, one payment in crypto.${t.earlyBird ? ` Early-bird price ${t.earlyBird.priceLabel} for the first ${t.earlyBird.limit} lifetime buyers.` : ""}`,
-};
-
 const DURATION_DAYS: Partial<Record<PricingTier["id"], number>> = { PRO_MONTHLY: 30, PRO_YEARLY: 365 };
 
-/** The real plans from src/config/pricing.ts, as schema.org Offers. */
+/** The real plans from src/config/pricing.ts, as schema.org Offers (the same text as the /pricing plans table). */
 export const softwareOffers = pricingTiers.map((t) => ({
   "@type": "Offer",
   name: t.name,
@@ -140,7 +132,7 @@ export const softwareOffers = pricingTiers.map((t) => ({
   priceCurrency: t.currency,
   url: abs("/pricing"),
   availability: "https://schema.org/InStock",
-  description: OFFER_TEXT[t.id](t),
+  description: planSummary(t),
   ...(DURATION_DAYS[t.id] ? { eligibleDuration: { "@type": "QuantitativeValue", value: DURATION_DAYS[t.id], unitCode: "DAY" } } : {}),
 }));
 

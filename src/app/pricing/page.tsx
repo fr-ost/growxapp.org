@@ -11,6 +11,7 @@ import { featureGroups } from "@/config/features";
 import { TRIAL_DAYS } from "@/config/pricing";
 import { pageMetadata } from "@/lib/seo";
 import { TrustStrip } from "@/components/trust-strip";
+import { PlansTable } from "@/components/plans-table";
 
 export const metadata = pageMetadata({
   title: "GrowX Pricing: Free Plan, Premium & 30-Day Trial",
@@ -68,6 +69,7 @@ export default function PricingPage() {
             <h2 className="sr-only">Plans and prices</h2>
             <PricingCards />
           </div>
+          <PlansTable />
         </Container>
       </Section>
 
@@ -145,3 +147,4 @@ export default function PricingPage() {
     </>
   );
 }
+
