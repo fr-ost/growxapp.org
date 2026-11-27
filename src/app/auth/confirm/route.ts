@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { loginErrorPath, type AuthErrorCode } from "@/lib/auth/flow";
 import { isSupabaseConfigured } from "@/lib/env";
 import { registerWebSession } from "@/lib/session/web";
+import { ensureAutoTrial } from "@/lib/trial/auto";
 import { createClient } from "@/lib/supabase/server";
 import { safeNextPath } from "@/lib/validation/auth";
 
@@ -23,12 +24,14 @@ export async function GET(request: NextRequest) {
 
   if (tokenHash && type && TYPES.includes(type) && isSupabaseConfigured()) {
     const supabase = await createClient();
-    const { error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash });
+    const { data, error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash });
     if (!error) {
       if (!(await registerWebSession(supabase))) {
         await supabase.auth.signOut({ scope: "local" }).catch(() => undefined);
         return back("session_failed");
       }
+      // A new account's Premium trial starts as soon as its email is confirmed.
+      await ensureAutoTrial(data.user);
       return NextResponse.redirect(new URL(next, url.origin));
     }
     return back("link_expired");

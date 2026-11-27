@@ -113,7 +113,7 @@ update this file first.
 - Data: settings, queue, history, posts and analytics stay in the browser (`chrome.storage`). Optional anonymous usage counts (random install id, version, coarse counts; no X data) can be switched off.
 
 ## Plans (website is the source of truth for prices)
-- Free forever. 30-day Premium trial: free, no credit card, once per account, started from the website dashboard.
+- Free forever. 30-day Premium trial: free, no credit card, once per account and once per X account. Since 27 Nov 2026 it **starts automatically** when a new account is ready (email confirmed, or Google sign-in); older accounts that never used it start it from the dashboard. No X account is needed to start it: it is bound to the first X account the account links (in practice the first autopilot run), and ends early if that X account already used a trial with another account (`supabase/migrations/20261127170000_auto_trial.sql`).
 - Premium: $1.99 / 30 days, $14.99 / 365 days, $59.99 lifetime ($29.99 for the first 100 lifetime buyers). Prepaid, no auto-renew. Paid in crypto via NOWPayments.
 
 ## Copy rules

@@ -265,7 +265,7 @@ export const comparePosts: Post[] = [
         id: "start",
         heading: "Try it before you pay anything",
         blocks: [
-          p("The simplest cost check is to try both on your own account. Run GrowX's free plan for a week, start the free 30-day Premium trial when you are ready, and compare the results and the yearly cost side by side using the worksheet above."),
+          p("The simplest cost check is to try both on your own account. Create a GrowX account (the free 30-day Premium trial starts by itself), run it for a week or two, and compare the results and the yearly cost side by side using the worksheet above."),
           p(TRY),
         ],
       },
@@ -372,7 +372,7 @@ export const comparePosts: Post[] = [
             "**Day 2**: add three to five source accounts in your niche, or use **Find sources for me**, and start auto follow on the free **Slow** pace (or Balanced with Premium for an established account).",
             "**Day 3**: run a **Cleanup** scan and unfollow non-followers in small batches at the safe pace.",
             "**Day 4**: move your scheduled X posts into GrowX's queue and set your queue slots.",
-            "**Day 5 to 7**: check Analytics (who followed back) and the source leaderboard, drop weak sources, and start the free 30-day Premium trial if you want the AI writer, smart score and full analytics.",
+            "**Day 5 to 7**: check Analytics (who followed back) and the source leaderboard, drop weak sources, and use the free 30-day Premium trial (it starts with your account) to try the AI writer, smart score and full analytics.",
           ),
           p("If you still need Circleboom Publish for other networks, you can keep it for those and use GrowX for X."),
           p(TRY),

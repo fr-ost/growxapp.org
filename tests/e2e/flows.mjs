@@ -313,7 +313,7 @@ ok("login success -> dashboard (open redirect blocked)", new URL(p.url()).host =
 await p.locator("h1", { hasText: "Welcome" }).waitFor();
 ok("dashboard welcome", true);
 ok("header shows Dashboard when signed in", await p.locator("header >> text=Dashboard").first().isVisible());
-ok("trial button disabled until an X account is linked", await p.locator("button", { hasText: "Start my 30-day" }).isDisabled() && (await p.locator("main").innerText()).includes("Link your X account below first"));
+ok("older account without a trial: the Start button works without an X account", await p.locator("button", { hasText: "Start my 30-day" }).isEnabled() && !(await p.locator("main").innerText()).includes("Link your X account below first") && (await p.locator("main").innerText()).includes("first X account you run the autopilot with"));
 ok("new user without subscription sees the real Free plan", /current plan\s*free/i.test(await p.locator("main").innerText()));
 ok("no data-error banner for a healthy account", !(await p.locator("text=could not be loaded").count()));
 ok("one page: no Account tab or link, no editable username form", (await p.locator('a[href="/account"]').count()) === 0 && (await p.locator("#x_username").count()) === 0 && !(await p.locator("button:has-text('Save username')").count()));
@@ -350,6 +350,7 @@ ok("trial button enabled after linking an X account", await btn.isEnabled());
 await btn.click();
 await p.waitForSelector("text=Your trial is active", { timeout: 15000 });
 ok("trial started", true);
+ok("a trial started after linking is bound to that X account", (await p.locator("main").innerText()).includes("Linked to @Demo_User"));
 await p.reload();
 { await p.locator("main", { hasText: "Premium trial" }).waitFor({ timeout: 10000 }).catch(() => {}); const mt = await p.locator("main").innerText(); ok("plan shows Premium trial", /Premium trial/.test(mt) && (await p.locator("button", { hasText: "Start my 30-day" }).count()) === 0, mt.slice(0, 400).replace(/\s+/g, " ")); }
 ok("days-left ring shows 30", (await p.locator('[role=img][aria-label*="days of Premium left"]').getAttribute("aria-label")).startsWith("30"));
@@ -442,6 +443,13 @@ await p2.goto(BASE + "/signup");
 await p2.fill("#email", "instant@example.com"); await p2.fill("#password", "correct-horse-1");
 await p2.click(SUBMIT); await p2.waitForURL("**/dashboard", { timeout: 15000 });
 ok("signup without email confirmation -> dashboard", true);
+await p2.locator("text=Your trial is active").waitFor({ timeout: 15000 }).catch(() => {});
+{
+  const mt = await p2.locator("main").innerText();
+  ok("a new account's trial starts by itself, with no X account yet", mt.includes("Your trial is active") && mt.includes("first X account you run the autopilot with") && (await p2.locator("button", { hasText: "Start my 30-day" }).count()) === 0, mt.slice(0, 300));
+  const ent = await p2.evaluate(async () => (await fetch("/api/entitlement")).json());
+  ok("the new account's entitlement is TRIAL right away", ent.plan === "TRIAL" && ent.isPremium === true && ent.trial.active === true, JSON.stringify(ent).slice(0, 160));
+}
 
 // callback errors (fresh, signed-out browser)
 const p3 = await (await b.newContext()).newPage();
@@ -615,7 +623,12 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   const main1 = await dash(g1);
   ok("Google account: email confirmed (Google verified it)", /Email status\s*Confirmed/i.test(main1));
   ok("Google account: says how it signs in, offers to set a password", main1.includes("You sign in with Google.") && (await g1.locator("a", { hasText: "Set a password" }).count()) === 1);
-  ok("Google account: the X account step is still required before the trial", (await g1.locator("button", { hasText: "Start my 30-day" }).isDisabled()) && main1.includes("Link your X account below first"));
+  ok("new Google account: the trial starts by itself, before any X account", main1.includes("Your trial is active") && main1.includes("first X account you run the autopilot with") && (await g1.locator("button", { hasText: "Start my 30-day" }).count()) === 0, main1.slice(0, 300));
+  // the extension links the X account on the first autopilot run (POST /api/x-accounts, as here): that binds the trial
+  const linkG = await g1.evaluate(async () => { const r = await fetch("/api/x-accounts", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ username: "Google_Person", confirm: true }) }); return [r.status, await r.json()]; });
+  await g1.reload();
+  const boundText = await dash(g1);
+  ok("the first linked X account binds the new account's trial", linkG[0] === 201 && boundText.includes("Your trial is active") && boundText.includes("Linked to @Google_Person"), JSON.stringify(linkG).slice(0, 120));
   const u1 = await who(NEW);
   ok("Google account: one account for the email, provider google", u1.count === 1 && u1.confirmed && JSON.stringify(u1.providers) === '["google"]', JSON.stringify(u1));
 

@@ -20,6 +20,7 @@ import { requireUser } from "@/lib/supabase/require-user";
 import { loadXAccounts } from "@/lib/x-accounts";
 import { isAdmin } from "@/lib/admin/auth";
 import { signInMethods } from "@/lib/auth/flow";
+import { ensureAutoTrial, qualifiesForAutoTrial } from "@/lib/trial/auto";
 import { INVOICE_STATUSES, invoiceNumber } from "@/lib/invoices";
 
 export const metadata = pageMetadata({ title: "Dashboard", description: "Your GrowX account, plan, X accounts and payments.", path: "/dashboard", noindex: true });
@@ -57,7 +58,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   const supabase = await createClient();
 
   // Independent loads: one failing section never blanks the others.
-  const [ent, xAccounts, xProfile, payments, subs, orders, slotHistory, admin] = await Promise.all([
+  const [loadedEnt, xAccounts, xProfile, payments, subs, orders, slotHistory, admin, trialRow] = await Promise.all([
     tryLoadEntitlement(supabase, user.id),
     loadXAccounts(supabase, user.id).catch(() => null),
     supabase.from("x_profiles").select(COLUMNS.x_profiles).eq("user_id", user.id).maybeSingle(),
@@ -66,7 +67,15 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
     supabase.from("checkout_orders").select(COLUMNS.checkout_orders).eq("user_id", user.id).in("status", ["created", "pending", "refund_required"]).order("created_at", { ascending: false }).limit(10),
     supabase.from("account_slot_grants").select(COLUMNS.slot_grant_history).eq("user_id", user.id).order("created_at", { ascending: false }).limit(50),
     isAdmin(user.id),
+    // The trial's X binding (select * keeps working before and after the automatic-trial migration).
+    supabase.from("trials").select("*").eq("user_id", user.id).maybeSingle(),
   ]);
+  // Safety net: a new account whose trial didn't start at sign-in gets it now.
+  let ent = loadedEnt;
+  if (ent.entitlement && !ent.entitlement.trial.used && qualifiesForAutoTrial(user) && (await ensureAutoTrial(user)) === "started") {
+    ent = await tryLoadEntitlement(supabase, user.id);
+  }
+  const trial = (trialRow.data ?? null) as { status?: string; x_username_normalized?: string | null; revoked_reason?: string | null } | null;
 
   const issues: DbIssue[] = [...ent.issues];
   for (const [source, r] of [["payments", payments], ["subscriptions", subs]] as const) {
@@ -81,7 +90,11 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   const entitlement = ent.entitlement;
   const emailConfirmed = !!user.email_confirmed_at;
   const linked = xAccounts?.linkedXAccounts ?? [];
-  const canStartTrial = !!entitlement && !entitlement.trial.used && linked.length > 0 && emailConfirmed;
+  // No X account needed: the trial is bound to the first X account the account links (the first autopilot run).
+  const canStartTrial = !!entitlement && !entitlement.trial.used && emailConfirmed;
+  const trialX = trial?.x_username_normalized
+    ? (linked.find((a) => a.normalizedUsername === trial.x_username_normalized)?.username ?? trial.x_username_normalized)
+    : null;
   // The old self-reported trial username, offered only as a starting value for linking (never linked without confirmation).
   const oldTrialName = (xProfile.data as { x_username?: string } | null)?.x_username ?? null;
   // Google sign-in links to the same account as the email address (one account per email), so list every way in.
@@ -112,8 +125,8 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
           </div>
           <ol className="space-y-2.5 rounded-2xl bg-white p-5 text-text shadow-lg md:min-w-72">
             <Step done={emailConfirmed}>Confirm your email</Step>
-            <Step done={linked.length > 0}>Link your X account</Step>
-            <Step done={!!entitlement?.trial.used || !!entitlement?.isPremium}>Start Premium</Step>
+            <Step done={!!entitlement?.trial.used || !!entitlement?.isPremium}>Premium trial</Step>
+            <Step done={linked.length > 0}>Run the autopilot (links your X account)</Step>
           </ol>
         </div>
       </section>
@@ -124,15 +137,27 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
         {entitlement && !entitlement.trial.used && !entitlement.isPremium ? (
           <div className="mt-5 space-y-3 border-t border-border pt-5">
             <p className="font-semibold">Free {TRIAL_DAYS}-day Premium trial</p>
-            <p className="text-sm text-text-2">All Premium features for {TRIAL_DAYS} days. No card, no commitment. One trial per account and per X account.</p>
+            <p className="text-sm text-text-2">
+              All Premium features for {TRIAL_DAYS} days. No card, no commitment. It&apos;s linked to the first X account you run the autopilot
+              with; one trial per account and per X account.
+            </p>
             {!emailConfirmed ? <Notice tone="warn">Confirm your email address first (check your inbox).</Notice> : null}
-            {emailConfirmed && linked.length === 0 ? <Notice tone="warn">Link your X account below first.</Notice> : null}
             <StartTrialForm disabled={!canStartTrial} />
           </div>
         ) : null}
         {entitlement?.trial.active ? (
           <div className="mt-5">
-            <Notice tone="success" title="Your trial is active">Premium until {formatDate(entitlement.trial.expiresAt)}.</Notice>
+            <Notice tone="success" title="Your trial is active">
+              Premium until {formatDate(entitlement.trial.expiresAt)}.{" "}
+              {trialX ? <>Linked to @{trialX}.</> : <>It&apos;s linked to the first X account you run the autopilot with in the extension.</>}
+            </Notice>
+          </div>
+        ) : null}
+        {trial?.status === "revoked" && trial.revoked_reason === "x_account_trial_used" ? (
+          <div className="mt-5">
+            <Notice tone="warn" title="Your trial ended">
+              The first X account you linked had already used a free trial with another GrowX account. There is one trial per X account.
+            </Notice>
           </div>
         ) : null}
 

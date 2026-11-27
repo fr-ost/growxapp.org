@@ -6,6 +6,7 @@ import { EntitlementLoadError, loadEntitlement } from "@/lib/entitlement/load";
 import { getSupabasePublicConfig } from "@/lib/env";
 import { checkActiveSession, verifiedSessionId } from "@/lib/session/active";
 import { loadXAccounts, type XAccountSummary } from "@/lib/x-accounts";
+import { ensureAutoTrial, qualifiesForAutoTrial } from "@/lib/trial/auto";
 import { createClient as createCookieClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -64,11 +65,16 @@ export async function GET(request: NextRequest) {
     if (session === "revoked") return apiError(401, "session_revoked", "This session was ended because the account signed in elsewhere.", origin);
     if (session === "error") return apiError(503, "session_check_unavailable", "Could not verify the session. Try again.", origin);
 
-    const [entitlement, xAccounts] = await Promise.all([
+    const [loaded, xAccounts] = await Promise.all([
       loadEntitlement(supabase, data.user.id),
       // X accounts never block the plan answer: if they cannot be read, the fields are null ("unknown").
       loadXAccounts(supabase, data.user.id).catch(() => null),
     ]);
+    let entitlement = loaded;
+    // A new account that signed up in the extension and never opened the website: its trial starts here.
+    if (!entitlement.trial.used && qualifiesForAutoTrial(data.user) && (await ensureAutoTrial(data.user)) === "started") {
+      entitlement = await loadEntitlement(supabase, data.user.id);
+    }
     return json({ ...entitlement, ...xAccountFields(xAccounts) }, { origin });
   } catch (e) {
     // Never leak internals; never fall back to granting Premium. The cause is

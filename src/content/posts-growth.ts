@@ -811,7 +811,7 @@ export const growthPosts: Post[] = [
         id: "price",
         heading: "7. Can you try it without paying?",
         blocks: [
-          p("GrowX has a free plan for daily use: the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 accounts per run. Every account can start a 30-day Premium trial with no credit card."),
+          p("GrowX has a free plan for daily use: the Slow pace (about 100 follows a day), core filters, the scheduler with up to 10 queued posts, analytics for your latest 30 posts, 7 days of follower history and cleanup of up to 200 accounts per run. Every new account gets a 30-day Premium trial with no credit card, starting as soon as the account is created."),
           p("Premium adds the Balanced, Turbo and X Premium paces, advanced filters, list import, the smart score, more source types, auto-replace for weak sources, unlimited scheduling, evergreen recycling, auto-plug, GrowX AI, full analytics and follower history, VIP alerts, a workspace per X account, bulk unfollow of up to 5,000, a Balanced unfollow pace and automatic cleanup. Plans are prepaid with no automatic renewal. See [pricing](/pricing)."),
         ],
       },

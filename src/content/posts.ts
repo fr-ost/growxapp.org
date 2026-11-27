@@ -452,7 +452,7 @@ const corePosts: Post[] = [
           },
           {
             type: "p",
-            text: "Every GrowX account can start one free 30-day Premium trial from the website dashboard, with no credit card.",
+            text: "Every new GrowX account gets one free 30-day Premium trial as soon as it is created, with no credit card; it is linked to the first X account you run the autopilot with.",
           },
         ],
       },
@@ -718,7 +718,7 @@ const corePosts: Post[] = [
           },
           {
             type: "p",
-            text: "The best way to shape what comes next is to tell us what you need. Feature requests and bug reports go straight to the developer through [support](/contact). If you have not tried GrowX yet, [create a free account](/signup) and start the 30-day Premium trial to test every feature before you decide.",
+            text: "The best way to shape what comes next is to tell us what you need. Feature requests and bug reports go straight to the developer through [support](/contact). If you have not tried GrowX yet, [create a free account](/signup): the 30-day Premium trial starts by itself, so you can test every feature before you decide.",
           },
         ],
       },

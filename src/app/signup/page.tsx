@@ -14,7 +14,7 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
   const next = safeNextPath((await searchParams).next);
   if (await getCurrentUser()) redirect(next);
   return (
-    <AuthShell title="Create your free account" subtitle="No credit card needed. Start your 30-day Premium trial (every Premium feature, no commitment) from the dashboard whenever you are ready.">
+    <AuthShell title="Create your free account" subtitle="No credit card needed. Your 30-day Premium trial (every Premium feature, no commitment) starts as soon as your account is ready.">
       <GoogleButton next={next} />
       <AuthForm mode="signup" action={signupAction} next={next} disabled={!isSupabaseConfigured()} />
     </AuthShell>

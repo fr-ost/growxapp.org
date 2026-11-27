@@ -1,10 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { startAccountTrial } from "@/lib/trial/auto";
 import { startTrial } from "@/lib/trial/start";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
+import { TRIAL_DAYS } from "@/config/pricing";
 import { logDbIssue, toDbIssue } from "@/lib/db/errors";
 
 export interface FormState {
@@ -21,13 +23,43 @@ const TRIAL_MESSAGES = {
 } as const;
 
 /**
- * Starts the one-time trial. The trial is tied to the account's FIRST permanently linked X account
- * (there is no editable username any more). The user id comes from the verified session only.
+ * Starts the one-time trial (accounts created before the automatic trial; new accounts get it by themselves). No X
+ * account is needed: the database binds the trial to the first X account the account links, in practice at the first
+ * autopilot run. The user id comes from the verified session only.
  */
 export async function startTrialAction(): Promise<FormState> {
   const user = await getCurrentUser();
   if (!user) return { message: "Please sign in again." };
   if (!user.email_confirmed_at) return { message: TRIAL_MESSAGES.email_not_verified };
+
+  let admin;
+  try {
+    admin = createAdminClient();
+  } catch (e) {
+    console.error(JSON.stringify({ event: "start_trial_unavailable", message: e instanceof Error ? e.message.slice(0, 120) : "unknown" }));
+    return { message: `${TRIAL_MESSAGES.error} (reference: start_trial/not_configured)` };
+  }
+  const r = await startAccountTrial(admin, user.id);
+  switch (r.status) {
+    case "started":
+      revalidatePath("/dashboard");
+      return { ok: true, message: `Your ${TRIAL_DAYS}-day Premium trial has started. It's linked to the first X account you run the autopilot with.` };
+    case "already_used":
+      return { message: TRIAL_MESSAGES.already_used };
+    case "x_account_trial_used":
+      return { message: TRIAL_MESSAGES.username_already_used };
+    case "email_not_verified":
+      return { message: TRIAL_MESSAGES.email_not_verified };
+    case "not_installed":
+      return legacyStartTrial(user.id);
+    default:
+      return { message: `${TRIAL_MESSAGES.error} (reference: start_account_trial)` };
+  }
+}
+
+/** Before the automatic-trial migration: the trial needs a linked X account (its first one). */
+async function legacyStartTrial(userId: string): Promise<FormState> {
+  const user = { id: userId };
 
   // User-scoped read (RLS): the caller's own oldest active binding.
   const supabase = await createClient();
@@ -40,14 +72,7 @@ export async function startTrialAction(): Promise<FormState> {
   const username = (first.data as { username?: string } | null)?.username;
   if (!username) return { message: TRIAL_MESSAGES.x_username_required };
 
-  let admin;
-  try {
-    admin = createAdminClient();
-  } catch (e) {
-    // Most likely SUPABASE_SERVICE_ROLE_KEY is not set in this deployment.
-    console.error(JSON.stringify({ event: "start_trial_unavailable", message: e instanceof Error ? e.message.slice(0, 120) : "unknown" }));
-    return { message: `${TRIAL_MESSAGES.error} (reference: start_trial/not_configured)` };
-  }
+  const admin = createAdminClient();
 
   // public.start_trial reads the trial username from x_profiles: set it to the linked account, but only
   // while this account has never had a trial (a used trial and its history are never touched).

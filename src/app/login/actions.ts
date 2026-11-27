@@ -6,6 +6,7 @@ import { googleSignInAvailable } from "@/lib/auth/google";
 import { isSupabaseConfigured } from "@/lib/env";
 import { requestOrigin } from "@/lib/origin";
 import { registerWebSession } from "@/lib/session/web";
+import { ensureAutoTrial } from "@/lib/trial/auto";
 import { createClient } from "@/lib/supabase/server";
 import { credentialsSchema, safeNextPath } from "@/lib/validation/auth";
 
@@ -44,7 +45,7 @@ export async function loginAction(_prev: AuthState, formData: FormData): Promise
   if (!parsed.success) return { fieldErrors: fieldErrors(parsed.error), email };
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword(parsed.data);
+  const { data, error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) {
     if (error.code === "email_not_confirmed") {
       return { error: "Please confirm your email first. Check your inbox (and spam folder) for the link.", email };
@@ -58,6 +59,8 @@ export async function loginAction(_prev: AuthState, formData: FormData): Promise
     await supabase.auth.signOut({ scope: "local" }).catch(() => undefined);
     return { error: "We could not complete sign-in. Please try again.", email };
   }
+  // A new account confirmed in another browser gets its trial at its first sign-in.
+  await ensureAutoTrial(data.user);
   redirect(safeNextPath(formData.get("next")));
 }
 
@@ -85,6 +88,7 @@ export async function signupAction(_prev: AuthState, formData: FormData): Promis
       await supabase.auth.signOut({ scope: "local" }).catch(() => undefined);
       return { error: "We could not complete sign-in. Please try again.", email };
     }
+    await ensureAutoTrial(data.user);
     redirect(next);
   }
   // Supabase answers the same for an address that already has an account (no enumeration), so say what to do then.

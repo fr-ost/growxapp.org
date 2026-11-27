@@ -77,6 +77,20 @@ with checks(item, ok) as (
          to_regprocedure('public.' || f) is null or not has_function_privilege('authenticated', to_regprocedure('public.' || f), 'EXECUTE')
   from unnest(array['admin_grant_gift(uuid,uuid,text,text)','admin_extend_gift(uuid,uuid,text,text)','admin_revoke_gift(uuid,uuid,text)','admin_set_early_bird(uuid,integer,boolean,text,timestamptz)','admin_increase_early_bird_allocation(uuid,integer,text)','admin_find_user(uuid,text)','early_bird_status()','admin_change_x_account(uuid,uuid,text,text,text)']) f
   union all
+  -- automatic trial (20261127170000_auto_trial.sql)
+  select 'trials.x_username_normalized allows NULL (unbound trial)',
+         exists (select 1 from information_schema.columns where table_schema = 'public' and table_name = 'trials' and column_name = 'x_username_normalized' and is_nullable = 'YES')
+  union all
+  select 'column trials.revoked_reason', exists (select 1 from information_schema.columns where table_schema = 'public' and table_name = 'trials' and column_name = 'revoked_reason')
+  union all
+  select 'service_role (only) can execute public.start_account_trial',
+         to_regprocedure('public.start_account_trial(uuid,integer)') is not null
+         and has_function_privilege('service_role', to_regprocedure('public.start_account_trial(uuid,integer)'), 'EXECUTE')
+         and not has_function_privilege('authenticated', to_regprocedure('public.start_account_trial(uuid,integer)'), 'EXECUTE')
+         and not has_function_privilege('anon', to_regprocedure('public.start_account_trial(uuid,integer)'), 'EXECUTE')
+  union all
+  select 'trigger x_account_bindings_bind_trial', exists (select 1 from pg_trigger where tgname = 'x_account_bindings_bind_trial')
+  union all
   select 'every auth user has a profile',
          to_regclass('public.profiles') is not null
          and not exists (select 1 from auth.users u where not exists (select 1 from public.profiles p where p.id = u.id))

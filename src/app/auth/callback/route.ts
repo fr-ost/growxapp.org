@@ -10,6 +10,7 @@ import {
 } from "@/lib/auth/flow";
 import { isSupabaseConfigured } from "@/lib/env";
 import { registerWebSession } from "@/lib/session/web";
+import { ensureAutoTrial } from "@/lib/trial/auto";
 import { createClient } from "@/lib/supabase/server";
 import { safeNextPath } from "@/lib/validation/auth";
 
@@ -64,6 +65,9 @@ export async function GET(request: NextRequest) {
     await supabase.auth.signOut({ scope: "local" }).catch(() => undefined);
     return fail("session_failed");
   }
+
+  // A new account's Premium trial starts now (email confirmed or Google-verified); never blocks the sign-in.
+  await ensureAutoTrial(data.user);
 
   const res = NextResponse.redirect(new URL(next, url.origin));
   if (google) {

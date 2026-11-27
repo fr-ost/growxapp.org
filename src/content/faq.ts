@@ -39,7 +39,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Do I need a GrowX account?",
-        a: `A free account on growxapp.org is where you start the ${TRIAL_DAYS}-day Premium trial, link your X account, buy Premium and see your invoices. Signing up takes a minute with your email and a password.`,
+        a: `A free account on growxapp.org starts your ${TRIAL_DAYS}-day Premium trial by itself, and is where you link X accounts, buy Premium and see your invoices. Signing up takes a minute with your email and a password.`,
         more: { href: "/signup", label: "Create a free account" },
       },
       {
@@ -100,7 +100,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: `How does the ${TRIAL_DAYS}-day free trial work?`,
-        a: `Create a free account, confirm your email, link your X account and start the trial from your dashboard. It lasts ${TRIAL_DAYS} days, unlocks every Premium feature, needs no credit card or payment details, and each account and X account can use it once.`,
+        a: `Create a free account and confirm your email (or continue with Google): your ${TRIAL_DAYS}-day trial starts by itself. It's linked to the first X account you run the autopilot with. It lasts ${TRIAL_DAYS} days, unlocks every Premium feature, needs no credit card or payment details, and each account and X account can use it once.`,
       },
       {
         q: "What happens when the trial ends?",

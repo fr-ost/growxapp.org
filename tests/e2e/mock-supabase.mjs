@@ -20,6 +20,11 @@ function registerX({ p_user, p_username }) {
   if (used >= 2) return { status: "no_slot", used, allowed: 2 };
   const now = new Date().toISOString();
   xbindings.set(norm, { id: `dddddddd-0000-4000-8000-${String(++bindSeq).padStart(12, "0")}`, user_id: p_user, username: d, normalized_username: norm, status: "active", linked_by: "self", confirmed_at: now, created_at: now, released_at: null, released_by: null, release_reason: null });
+  const t = trials.get(p_user);
+  if (t && t.x_username_normalized == null && t.status === "active" && Date.parse(t.expires_at) > Date.now()) {
+    if (trialNames.has(norm)) Object.assign(t, { status: "revoked", revoked_reason: "x_account_trial_used" });
+    else { t.x_username_normalized = norm; trialNames.add(norm); }
+  }
   return { status: "linked", binding_id: "b-" + norm, username: d, normalized_username: norm, used: used + 1, allowed: 2 };
 }
 let n = 0;
@@ -30,9 +35,10 @@ const sessions = new Map(); // session id -> user id
 const active = new Map(); // `${userId}:${slot}` -> session id
 const sid = () => `aaaaaaaa-0000-4000-8000-${String(++sn).padStart(12, "0")}`;
 
+let seeding = true; // users made at start-up are existing accounts (before the automatic trial); later ones are new
 function mkUser(email, confirmed) {
   const u = { id: `00000000-0000-4000-8000-${String(++n).padStart(12, "0")}`, aud: "authenticated", role: "authenticated", email,
-    email_confirmed_at: confirmed ? new Date().toISOString() : null, created_at: new Date().toISOString(),
+    email_confirmed_at: confirmed ? new Date().toISOString() : null, created_at: seeding ? "2026-10-01T10:00:00.000Z" : new Date().toISOString(),
     app_metadata: { provider: "email", providers: ["email"] }, user_metadata: {}, identities: [{ id: "i", provider: "email" }] };
   users.set(email, u); return u;
 }
@@ -176,6 +182,22 @@ const authUser = (req) => { const m = (req.headers.authorization || "").match(/^
 const sessionOfToken = (req) => { const m = (req.headers.authorization || "").match(/^Bearer (.+)$/); try { return m ? JSON.parse(Buffer.from(m[1].split(".")[1], "base64url").toString()).session_id : null; } catch { return null; } };
 
 registerX({ p_user: PW_FIRST.id, p_username: "LinkedEarlier" });
+seeding = false;
+
+/** public.start_account_trial: a trial without an X account (bound at once to the first linked one, if any). */
+function startAccountTrial({ p_user, p_days }) {
+  const u = userById(p_user);
+  if (!u) return { status: "no_account" };
+  if (!u.email_confirmed_at) return { status: "email_not_verified" };
+  if (trials.has(u.id)) return { status: "already_used" };
+  const first = [...xbindings.values()].filter((b) => b.user_id === u.id).sort((a, b) => a.created_at.localeCompare(b.created_at))[0];
+  const norm = first ? first.normalized_username : null;
+  if (norm && trialNames.has(norm)) return { status: "x_account_trial_used" };
+  const started = new Date();
+  const row = { id: "t" + u.id, user_id: u.id, x_username_normalized: norm, started_at: started.toISOString(), expires_at: new Date(started.getTime() + p_days * 864e5).toISOString(), status: "active", revoked_reason: null };
+  trials.set(u.id, row); if (norm) trialNames.add(norm);
+  return { status: "started", started_at: row.started_at, expires_at: row.expires_at, x_username: norm };
+}
 
 // ---- Google OAuth through Supabase (PKCE), as GoTrue does it: /authorize -> Google -> /callback -> redirect_to?code=
 const s256 = (v) => createHash("sha256").update(v).digest("base64url");
@@ -328,6 +350,7 @@ http.createServer(async (req, res) => {
     return send(res, 200, rpcName === "register_active_session" ? rpcSessions.register(body) : rpcName === "check_active_session" ? rpcSessions.check(body) : rpcSessions.release(body));
   }
   if (rpcName === "x_account_base_slots") return isService ? send(res, 200, 2) : send(res, 401, { code: "42501", message: "permission denied" });
+  if (rpcName === "start_account_trial") return isService ? send(res, 200, startAccountTrial(body)) : send(res, 401, { code: "42501", message: "permission denied for function start_account_trial" });
   if (rpcName === "register_x_account") return isService ? send(res, 200, registerX(body)) : send(res, 401, { code: "42501", message: "permission denied for function register_x_account" });
   if (p === "/rest/v1/rpc/start_trial") {
     if (!isService) return send(res, 401, { code: "42501", message: "permission denied for function start_trial" });
