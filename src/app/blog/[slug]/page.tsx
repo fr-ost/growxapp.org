@@ -17,6 +17,8 @@ import { Badge, Container, Eyebrow, Section } from "@/components/ui/primitives";
 import { getFeaturePage } from "@/content/feature-pages";
 import { featuresForPost, toolForPost } from "@/content/post-features";
 import { ExtensionCta } from "@/components/blog/extension-cta";
+import { UseCaseLinks } from "@/components/use-case-links";
+import { useCases } from "@/content/use-cases";
 import { getPost, latestFirst, posts } from "@/content/posts";
 import { toolNav } from "@/config/nav";
 import { site } from "@/config/site";
@@ -56,6 +58,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const mainFeature = features[0]?.slug ?? "twitter-auto-follow";
   const tool = toolForPost(post, features[0]?.tools[0]);
   const campaign = `blog-${post.slug}`;
+  // Use-case pages that cite this guide.
+  const cases = useCases.filter((u) => u.posts.includes(post.slug));
 
   return (
     <>
@@ -192,6 +196,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     </li>
                   ))}
                 </ul>
+              </>
+            ) : null}
+            {cases.length ? (
+              <>
+                <h2 className="reveal-heading mt-14 text-xl font-extrabold tracking-tight sm:text-2xl">Use cases</h2>
+                <UseCaseLinks cases={cases} />
               </>
             ) : null}
           </Container>

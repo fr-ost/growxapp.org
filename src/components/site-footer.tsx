@@ -23,6 +23,7 @@ const cols = [
     links: [
       { href: "/features", label: "All features" },
       { href: "/how-it-works", label: "How it works" },
+      { href: "/use-cases", label: "Use cases" },
       { href: "/pricing", label: "Pricing" },
       { href: "/tools", label: "Free tools" },
       { href: "/blog", label: "Blog" },

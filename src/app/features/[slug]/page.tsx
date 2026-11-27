@@ -27,6 +27,7 @@ import { featurePages, getFeaturePage } from "@/content/feature-pages";
 import { getPost } from "@/content/posts";
 import { MANUAL_COMPARISONS, SAFETY } from "@/content/feature-extras";
 import { useCases } from "@/content/use-cases";
+import { UseCaseLinks } from "@/components/use-case-links";
 import { lastModifiedFor } from "@/app/sitemap";
 import { pageMetadata } from "@/lib/seo";
 import { TrustStrip } from "@/components/trust-strip";
@@ -314,22 +315,7 @@ export default async function FeatureLandingPage({ params }: { params: Promise<{
           {cases.length ? (
             <>
               <h2 className="reveal-heading mt-14 text-2xl font-extrabold tracking-tight">Use cases</h2>
-              <ul className="mt-6 grid gap-4 md:grid-cols-3">
-                {cases.map((u, i) => (
-                  <li key={u.slug} className="reveal" style={stagger(i % 3)}>
-                    <IntentLink
-                      href={`/use-cases/${u.slug}`}
-                      className="group lift flex h-full flex-col rounded-3xl border border-hairline bg-white p-5 shadow-[var(--shadow-hair)]"
-                    >
-                      <span className="font-bold group-hover:text-accent-ink">{u.nav}</span>
-                      <span className="mt-1 flex-1 text-sm text-text-2">{u.blurb}</span>
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-ink">
-                        Read the plan <IconArrowRight size={15} className="nudge" />
-                      </span>
-                    </IntentLink>
-                  </li>
-                ))}
-              </ul>
+              <UseCaseLinks cases={cases} />
             </>
           ) : null}
           {tools.length ? (
