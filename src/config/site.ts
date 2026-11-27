@@ -37,6 +37,8 @@ export const site = {
   /** One factual line that tells GrowX apart from other products called GrowX (on /about and /press). */
   disambiguation:
     "GrowX (growxapp.org) is the Chrome extension for X made by Shahriar Ahmed. It is not connected to other products or companies that use the name GrowX.",
+  /** When GrowX first launched (YYYY-MM-DD). TODO: fill in; the fact sheet row stays hidden while it is empty. */
+  launchDate: "" as string,
   /** The founder's own public profiles (Person sameAs). */
   founderProfiles: ["https://x.com/0x_nation", "https://bd.linkedin.com/in/shahriar-bmb", "https://www.shahriarahmed.net"],
   /** The founder's X handle: twitter:creator on every page. */
