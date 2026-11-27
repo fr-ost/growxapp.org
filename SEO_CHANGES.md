@@ -1,62 +1,183 @@
 # SEO and GEO overhaul (branch `seo-geo-overhaul`)
 
-Status: **plan** (this section is written before any edit; the per-task log follows as tasks land).
+Status: **done** on 27 Nov 2026, not merged. The branch is pushed as `seo-geo-overhaul`; nothing went to `main`.
 
-## What is already in place (do not break)
+Goal: rank on Google and Bing for the searches that lead to Chrome Web Store installs (SEO), and be the source AI answer
+engines quote and link when people ask about growing on X (GEO). The store name "GrowX: The Ultimate X (Twitter) Growth
+Tool" and the extension ID `ofiancichfcakbdgekhcahflpoglfgbh` are unchanged everywhere.
 
-- Next.js 16 App Router, static marketing pages, `src/lib/seo.ts` `pageMetadata()` for titles, descriptions, canonicals,
-  OG and Twitter cards; `scripts/seo-check.mjs` audits the built HTML (titles, descriptions, one H1, canonicals, JSON-LD).
-- One JSON-LD `@graph` per page (`src/components/json-ld.tsx`): Organization, founder (Person), WebSite, WebPage,
-  BreadcrumbList, FAQPage, BlogPosting; SoftwareApplication with `offers` built from `src/config/pricing.ts`.
-- `src/app/sitemap.ts` with real content dates (`src/content/page-dates.json` from git, posts use `dateModified`),
-  `src/app/robots.ts`, `src/app/llms.txt/route.ts`, per-route OG images (`src/lib/og.tsx`), IndexNow key file in `public/`.
-- Content is TypeScript data, not MDX: posts in `src/content/posts*.ts` (54), feature pages in
-  `src/content/feature-pages.ts`, comparisons in `src/content/alternatives.ts`, releases in `src/content/releases.ts`.
-- `src/proxy.ts` (Next 16 middleware) runs only on private pages; public pages stay static.
-- Analytics: `@vercel/analytics` in the root layout, Google tag and Tag Manager (`src/components/google-tag.tsx`).
+Ground rules kept throughout: no indexed URL breaks (11 merged URLs redirect in one permanent hop), the visual design,
+components and brand voice are unchanged, no invented testimonials, reviews, ratings, user counts, statistics, press,
+awards or profiles (real data lives in typed files with TODO values, and its UI hides while empty), no em or en dashes in
+new copy, one commit per task.
 
-Baseline (production build, 27 Nov 2026): homepage HTML 435,206 bytes (57,327 gzipped), of which 237,060 bytes are the
-inline React Server Components payload and 28,610 bytes inline SVG (111 icons); /pricing 302 KB, a feature page 215 KB,
-/blog 262 KB, a post 187 KB. All 39 homepage images have an `alt` attribute; the audit's "9 without alt" are the
-decorative ones with `alt=""` (checked in A8).
+## Before and after
+
+NUMBERS_TBD
+
+## What changed, per task
+
+### A1. Store link helper, UTM tags and the install click event
+- `src/lib/cws.ts` is the only file with the store URL and extension ID. `cwsUrl({ campaign, content })` adds
+  `utm_source=growxapp.org`, `utm_medium=website`, `utm_campaign=<page>` and `utm_content=<placement>`; `campaignFor(path)`
+  names the page (home, pricing, feature-<slug>, blog-<slug>, tool-<slug>, alt-<slug>, use-case-<slug>).
+- `CwsButton` and `CwsLink` replace every store link (heroes, in-post calls to action, dashboard, about, featured, what's
+  new, footer). One delegated listener (`src/components/site-analytics.tsx`) sends `add_to_chrome_click` { campaign,
+  content, path } to Vercel Web Analytics, the Google tag and Tag Manager.
+- JSON-LD (`sameAs`, `installUrl`, `downloadUrl`) and llms.txt keep the clean listing URL: they identify the entity.
+- `tests/cws.test.ts` fails if a store URL or the ID is written anywhere in `src/` outside the helper.
+
+### A2. Directory badges only on /featured, nofollow
+- The badge strip left the footer (every page). The footer keeps a text link "Featured on" to /featured.
+- On /featured every directory link is `rel="nofollow noopener"`, every badge image is lazy and sized. Three
+  directories publish only a height, so their width is a TODO in `src/data/badges.ts` rather than a guess.
+
+### A3. Social proof from real store numbers
+- `src/config/social-proof.ts`: 5.0 from 12 ratings, 242 users, copied by hand from the store listing on 27 Nov 2026.
+- `TrustStrip` ("Rated 5.0 on the Chrome Web Store · 242 users", linking to the reviews tab) sits under the hero call to
+  action on the home page and every feature page, and in the /pricing hero. It hides when there are no ratings.
+- `src/data/testimonials.ts` is an empty typed list; the home page section renders only with real entries.
+- `aggregateRating` is built from the same config but **off** (`socialProof.markUpRating: false`): see Decisions.
+
+### A4. Keyword cannibalization merges
+- Eleven URLs merged into the page that owns their intent, each with a one-hop permanent redirect. The decision and the
+  reason for every cluster (A to H) are in the A4 table below; the full redirect map follows it.
+- `scripts/check-redirects.ts` checks every merged URL on a running build (one 301 or 308, straight to the final URL,
+  which answers 200; the same on the bare domain; none left in the sitemap). `tests/redirects.test.ts` checks the map
+  (no chains, old URLs gone, every target in the sitemap); `tests/seo.test.ts` fails on any link to a removed post.
+
+### A5. Feature landing pages
+- Titles follow "<primary keyword>: <benefit> | GrowX" in 60 characters or fewer (table in Decisions). The auto follow
+  title already ranks and stays; List follow uses a truthful variant (see Decisions).
+- Every feature page now has: hero with the store button, trust strip, a screenshot (TODO for three, see manual tasks),
+  "How it works" in three steps, **"<Feature> or doing it by hand?"** (a small HTML table, rows stack on phones), **"Is
+  <feature> safe to use?"** (pace, caps and limits, each line a fact from that page), the free vs Premium limits, 4 to 6
+  FAQs, related features, free tools and guides, **use-case links**, a visible **Updated** date (also `dateModified`),
+  and the final call to action. Data: `src/content/feature-extras.ts`. Test: `tests/feature-pages.test.ts`.
+
+### A6. Use-case pages
+- `/use-cases` and three pages: crypto-twitter, new-x-account, creators-and-founders (1,150 to 1,250 words of body text
+  each, answer-first opening, question headings, a 3 to 5 step plan, FAQs with FAQPage data, Updated date).
+- In the sitemap with real dates, linked from the footer, from every feature page they rely on, and from the blog
+  posts they cite. Each owns its own intent (see the A4 note).
+
+### A7. In-article calls to action and internal links
+- `ExtensionCta` after each post's intro and at its end: the post's main feature, the store button (campaign
+  blog-<slug>), the feature page and one free tool. Every post therefore links to at least one feature and one tool.
+- Related guides: the post's own picks, then the newest posts in the same category, three in all.
+- `scripts/check-internal-links.ts` crawls every sitemap page of a running build and reports broken internal links,
+  links that point at a redirect, and orphan pages. Result in Before and after.
+
+### A8. Images and page weight
+- Every `<img>` has an alt attribute (`scripts/seo-check.mjs` fails otherwise); decorative ones use `alt=""` on purpose.
+- Screenshots use `next/image` with sizes; only hero screenshots are preloaded. The header logo no longer is (it was
+  preloaded on every page and competed with the hero image).
+- Fonts were already `next/font` (Inter and Plus Jakarta Sans, latin subset, `display: swap`), so nothing changed there.
+- The 435 KB homepage: 237 KB is the inline React Server Components payload (the page's own copy and component tree),
+  28.6 KB is 111 inline SVG icons, 62 KB is class names. It is 57 KB gzipped. An SVG sprite would save about 20 KB raw
+  (about 3 KB gzipped); not worth the risk to the design in this change. Numbers in Before and after.
+
+### A9. Metadata, verification, IndexNow, What's new
+- Home title "GrowX: Auto Follow & Growth Chrome Extension for X (Twitter)". Every title is 60 characters or fewer,
+  every description 140 to 160 (`scripts/seo-check.mjs` and `tests/seo.test.ts` enforce both), one H1 per page.
+- Every indexable page has its own Open Graph image. `twitter:creator` is @0x_nation; `twitter:site` appears only once
+  GrowX's own handle is filled in.
+- Sitemap `lastmod` is each page's real content date (`src/content/page-dates.json` from git, posts' `dateModified`).
+- Search Console and Bing verification read `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and `NEXT_PUBLIC_BING_SITE_VERIFICATION`.
+- IndexNow: `/<key>.txt` is served from `INDEXNOW_KEY`; `scripts/indexnow.ts` submits changed sitemap URLs.
+- /whats-new takes its title, H1 and description from the latest changelog entry (2.5.1), with a dated list of versions.
+
+### B1. robots.txt and AI crawlers
+- One group per AI crawler (OAI-SearchBot, ChatGPT-User, GPTBot, Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot,
+  Perplexity-User, Google-Extended, Applebot, Applebot-Extended, Bingbot, DuckAssistBot, Amazonbot, meta-externalagent,
+  MistralAI-User) with `Allow: /` and the same private disallows. The retired anthropic-ai and Claude-Web are not listed.
+- No bot protection or user-agent blocking exists in the code; Vercel's firewall is a manual check.
+- `scripts/check-ai-bots.ts` fetches four pages as each crawler and checks status 200, the H1 and main content in raw
+  HTML, no challenge, and its robots group.
+
+### B2. One entity
+- `site.definition`: "GrowX is a Chrome extension for X (Twitter) that grows your account with safe auto follow, a post
+  scheduler, on-device AI writing and replies, analytics, and an unfollower tracker. It is free to start." Used on the
+  home page, footer, /about, /press, llms.txt and the Organization, WebSite and SoftwareApplication descriptions.
+- Organization `alternateName` and `sameAs` (store listing plus only filled profiles); SoftwareApplication name "GrowX"
+  with the store name as `alternateName`; Person sameAs for Shahriar Ahmed.
+- The disambiguation line is on /about, /press and llms.txt.
+
+### B3. Fact sheet
+- /press is "GrowX at a glance": one HTML table of facts from the site's config and copy, a visible "Last updated" that
+  is also the page's `dateModified`. A launch date row stays hidden until `site.launchDate` is filled.
+
+### B4. Answer-first openings, question headings, tables
+- Every feature, tool, comparison, use-case and blog page opens with a 40 to 70 word direct answer
+  (`tests/answer-first.test.ts`, `tests/feature-pages.test.ts`). Blog posts were not rewritten: eight had sentences
+  moved or split, two got one opening sentence from facts already in the post.
+- 42 of 43 posts have at least one question heading (24 headings converted, ids unchanged).
+- Tables are real HTML: feature "by hand" tables, comparison tables, the pricing table, the fact sheet, and a new post
+  table block (used for the follow-limit post's pace presets).
+
+### B5. Comparison pages
+- Every /alternatives page has the same eight-row table (free plan, starting price, platform, auto follow, scheduler,
+  AI writing, analytics, unfollower tracking). A detail our copy never confirmed reads "Check" with a TODO naming the
+  page to verify it on. Each links the competitor's pricing page (nofollow) and has "When to choose <tool> instead".
+- GrowX prices come from `src/config/pricing.ts`. The page says when GrowX's prices were checked; "Prices checked on
+  <date>" for the competitor appears only once someone fills `theirPricesChecked` after reading their pricing page.
+- Both best-of posts open with "We make GrowX. This list includes it, and we explain the trade-offs."
+
+### B6. Pricing table and offers
+- /pricing "Every plan at a glance" is one HTML table, and the JSON-LD `offers` and llms.txt read the same config
+  (`PLAN_SUMMARY`, `planSummary`, `PLAN_LENGTH`), so they cannot drift (`tests/pricing-table.test.ts`).
+
+### B7. Freshness
+- A visible "Updated <date>" that matches `dateModified` on every post, feature page, use-case page and the fact sheet
+  ("Last updated"). /whats-new lists every version with its date. Dates moved only where content materially changed.
+
+### B8. llms.txt
+- A short markdown summary (definition, disambiguation, features, Free vs Premium, safety, key pages, top 10 guides),
+  sent with `X-Robots-Tag: noindex`.
+
+### B9. AI visibility
+- Visits referred by ChatGPT, Perplexity, Gemini, Copilot or Claude (or `utm_source=chatgpt.com`) send
+  `ai_search_visit` { channel: "AI search", ai_source, path }. AI crawler visits are logged as `{ event: "ai_crawler" }`.
+- `docs/ai-visibility-prompts.md`: 20 prompts to run monthly, with a results table.
+
+### B10. Spam guard and content plan
+- `docs/content-plan.md`: rules (one intent per page, facts only, no bulk near-duplicate pages), 25 long-tail topics,
+  intents already owned, and thin or overlapping posts with a recommendation each. Nothing applied.
 
 ## Decisions where the brief meets an existing rule or a policy
 
-- **aggregateRating (A3).** Google's review snippet guidelines say ratings must come from your own users and that sites
-  should not mark up reviews or ratings collected on other websites; Google has also said republished third-party reviews
-  are not eligible. The 5.0 rating is collected on the Chrome Web Store, so marking it up on growxapp.org risks a
-  structured-data manual action. The visible trust strip ships as asked. The `aggregateRating` code ships behind
-  `socialProof.markUpRating`, **off by default**, so Shahriar can decide after reading the guideline.
-- **Badges (A2).** `src/data/badges.ts` records that several directories require a dofollow badge in the server HTML,
-  "ideally the footer", and recheck it. The brief removes them from the footer and nofollows them. This is done as asked;
-  the risk (some directories may drop the listing) is in the manual task list.
-- **Current version.** The brief says 2.5.0; the latest changelog entry is 2.5.1 (released 27 Nov 2026). Titles read the
-  latest entry, so they say 2.5.1 now and follow future releases.
-- **Clean store URL in structured data.** Every clickable store link gets UTM parameters through the helper. JSON-LD
-  (`sameAs`, `installUrl`, `downloadUrl`) and llms.txt keep the clean listing URL: they identify the entity, and AI
-  answers that copy a link would otherwise report as "website" traffic.
+- **aggregateRating (A3).** Google's review snippet guidelines say not to mark up ratings collected on other websites.
+  The 5.0 rating is collected on the Chrome Web Store, so the markup ships switched off (`socialProof.markUpRating`).
+- **Badges (A2).** `src/data/badges.ts` notes that some directories ask for a dofollow badge, ideally in the footer.
+  The brief removes and nofollows them; done as asked, with the risk in the manual tasks.
+- **Current version.** The brief says 2.5.0; the changelog's latest is 2.5.1, so titles say 2.5.1 and follow releases.
+- **Feature titles (A5).** Rendered titles, all 60 characters or fewer:
 
-## Order of work (one commit per task)
+  | Page | Title |
+  |---|---|
+  | twitter-auto-follow | Twitter Auto Follow Tool: Smart X Auto Follow Extension (kept: it already ranks, and the pattern would drop "tool" and "X auto follow"; not clearly better) |
+  | twitter-unfollower-tracker | Who Unfollowed Me on Twitter (X): Free Daily Tracker \| GrowX |
+  | twitter-unfollow-tool | Twitter Unfollow Tool: Unfollow Non-Followers Safely \| GrowX (already matched) |
+  | twitter-post-scheduler | Free Tweet Scheduler Extension: Posts & Threads on X \| GrowX |
+  | twitter-analytics | Twitter Analytics Chrome Extension: Free Post Stats \| GrowX |
+  | ai-tweet-writer | AI Tweet Writer, On-Device: Private, No API Key \| GrowX |
+  | twitter-reply-targets | AI Reply Assistant for X: Reply Early, Approve All \| GrowX |
+  | twitter-list-follow | Follow a List of Twitter Accounts: Paste or Upload \| GrowX |
 
-1. A1 store link helper and click event; A2 badges only on /featured.
-2. A3 social proof and testimonials; A9 metadata, verification, IndexNow, /whats-new from the changelog; B1 robots.txt
-   AI crawler groups, `scripts/check-ai-bots.ts`, AI crawler log line in the proxy; B2 one entity definition.
-3. A4 cannibalization merges with one-hop permanent redirects (`next.config.ts`), `scripts/check-redirects.ts`;
-   B5 comparison tables and "When to choose X instead".
-4. A5 feature pages, A6 use-case pages, A7 `ExtensionCta`, related links and `scripts/check-internal-links.ts`,
-   B4 answer-first openings and question headings.
-5. B3 fact sheet on /press, B6 pricing table from the one pricing config, B7 visible "Updated" dates, B8 llms.txt,
-   B9 AI referrer channel and prompts doc, B10 content plan, A8 images and HTML size.
-6. Lint, typecheck, unit tests, production build, E2E, every check script; finish this file.
+- **List follow keyword.** The brief's keyword is "Follow Twitter List Members". List follow cannot read X Lists: the
+  extension's `shared/lists.js` skips List links, and an X List's members can only be added as an auto follow source
+  (Premium). A title promising it would describe a feature the page does not have, so the title says what List follow
+  does, and a new FAQ ("Can I follow all members of an X (Twitter) List?") explains the auto follow route.
+- **Unfollower tracker vs the blog post.** The brief gives the tracker "Who Unfollowed Me on Twitter (X)", which
+  /blog/who-unfollowed-me-on-twitter also targets. Done as asked; watch both in Search Console (manual tasks).
+- **Analytics FAQs.** It had 7 (the brief asks for 4 to 6); two about data access and storage became one, no answer
+  text dropped.
+- **Competitor prices (B5).** Nobody has checked competitor pricing pages yet (they were not reachable from the build
+  machine), so no competitor price is shown and the page never says their prices were checked.
+- **Clean store URL in structured data.** Every clickable store link has UTM tags; JSON-LD and llms.txt keep the clean
+  listing URL.
 
-## Redirect rules
-
-- `next.config.ts` `redirects()`, `permanent: true` (HTTP 308), destination is the absolute canonical URL so a request on
-  either host reaches the final page in one hop. No rule points at a URL that redirects again.
-- Merged posts leave `src/content/posts*.ts`, so the sitemap, RSS feed, llms.txt and blog index drop them automatically.
-  Every internal link to them is rewritten to the winner.
-
-## A4 decisions: keyword cannibalization (27 Nov 2026)
+## A4 decisions: keyword cannibalization
 
 Every page in each cluster was read before deciding. The default decision was applied unless the content clearly served
 a different search intent. A merge moved the unique, still-true content into the winner, removed the loser from the
@@ -80,3 +201,95 @@ build-in-public post owns "build in public").
 
 Outreach templates in `docs/BACKLINKS.md` and `docs/backlinks/` now point at the final URLs, so new backlinks skip the
 redirect.
+
+## Full redirect map
+
+All rules live in `next.config.ts` `redirects()`, `permanent: true` (HTTP 308). Merged URLs go to the absolute canonical
+URL, so a request on either host reaches the final page in one hop. No target redirects again.
+
+| From | To | Why |
+|---|---|---|
+| /blog/circleboom-alternatives | https://www.growxapp.org/alternatives/circleboom | A4 cluster A |
+| /blog/circleboom-vs-growx | https://www.growxapp.org/alternatives/circleboom | A4 cluster A |
+| /blog/growx-vs-circleboom-cost | https://www.growxapp.org/alternatives/circleboom | A4 cluster A |
+| /blog/hypefury-alternatives | https://www.growxapp.org/alternatives/hypefury | A4 cluster B |
+| /blog/how-to-grow-on-twitter-x | https://www.growxapp.org/blog/how-to-get-more-followers-on-twitter | A4 cluster D |
+| /blog/bulk-follow-twitter-safely | https://www.growxapp.org/blog/mass-follow-twitter-limits | A4 cluster E |
+| /blog/how-growx-auto-follow-works | https://www.growxapp.org/features/twitter-auto-follow | A4 cluster F |
+| /blog/twitter-follow-back-score-growx | https://www.growxapp.org/features/twitter-auto-follow | A4 cluster F |
+| /blog/ai-tweet-writer-growx-ai | https://www.growxapp.org/features/ai-tweet-writer | A4 cluster F |
+| /blog/growx-features-guide-scoring-filters-cleanup | https://www.growxapp.org/features | A4 cluster F |
+| /blog/growx-potential-best-practices-roadmap | https://www.growxapp.org/how-it-works | A4 cluster F |
+| /blog/:slug/opengraph-image | /blog/:slug/opengraph-image/card | Existing: old social card URLs |
+| any path on growxapp.org | https://www.growxapp.org/:path* | Existing: bare domain to the canonical host |
+
+Rewrite (not a redirect): `/<key>.txt` (8 to 128 letters, digits or dashes) serves the IndexNow key from `INDEXNOW_KEY`.
+
+## Checks and how to run them
+
+| Check | Command | Result on the final build |
+|---|---|---|
+| Lint | `npm run lint` | CHECK_TBD |
+| Typecheck | `npm run typecheck` | CHECK_TBD |
+| Unit tests | `npx vitest run` | CHECK_TBD |
+| Production build | `npm run build` | CHECK_TBD |
+| Browser flows | `npm run test:e2e` | CHECK_TBD |
+| SEO audit of built HTML | `node scripts/seo-check.mjs` | CHECK_TBD |
+| Redirects | `node scripts/check-redirects.ts` (with `npm run start`) | CHECK_TBD |
+| AI crawlers | `node scripts/check-ai-bots.ts` | CHECK_TBD |
+| Internal links | `node scripts/check-internal-links.ts` | CHECK_TBD |
+
+## Files touched
+
+FILES_TBD
+
+## Manual tasks for Shahriar
+
+Do these after the branch is merged and deployed. Each one needs your accounts or your judgment, so none was done here.
+
+1. **Google Search Console.** Add the `www.growxapp.org` property (put the token in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`
+   in Vercel, Production, then redeploy, or verify by DNS). Submit `https://www.growxapp.org/sitemap.xml`. Use URL
+   Inspection on two merged URLs (for example /blog/circleboom-vs-growx) to see the 308 to the new page, and request
+   indexing for /use-cases, /alternatives/circleboom and the eight feature pages.
+2. **Bing Webmaster Tools.** Import the site from Search Console (or set `NEXT_PUBLIC_BING_SITE_VERIFICATION`), then
+   submit the same sitemap. Copilot answers draw on Bing's index.
+3. **IndexNow.** Make a key of 8 to 128 letters, digits or dashes, set `INDEXNOW_KEY` in Vercel (Production) and
+   redeploy. Check that `https://www.growxapp.org/<key>.txt` shows the key. Then run `node scripts/indexnow.ts --all`
+   once, and `node scripts/indexnow.ts` after later deploys (it sends pages changed in the last 3 days).
+4. **Vercel Firewall and bot protection.** In the Vercel dashboard (Firewall), make sure no rule, "Bot Protection" or
+   "AI bots" managed ruleset blocks the crawlers listed in robots.txt (OAI-SearchBot, ChatGPT-User, GPTBot,
+   Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot, Perplexity-User, Applebot, Bingbot and the rest). The code
+   blocks none of them. In Vercel's logs, search for `"event":"ai_crawler"` to see them arrive.
+5. **Analytics.** `add_to_chrome_click` and `ai_search_visit` go to Vercel Web Analytics as custom events (these need a
+   Vercel plan with custom events) and to GA4 through the Google tag. In GA4, add a custom channel group "AI search"
+   (Admin, Data display, Channel groups) for sources matching chatgpt.com, chat.openai.com, perplexity.ai,
+   gemini.google.com, copilot.microsoft.com and claude.ai, and mark `add_to_chrome_click` as a key event.
+6. **Social profiles.** Fill GrowX's own profiles in `src/config/site.ts` (`profiles`: X, Product Hunt, YouTube,
+   Crunchbase, F6S) and `launchDate`, only with real values. They feed the Organization `sameAs`, `twitter:site` and the
+   fact sheet. Empty values stay out of the page.
+7. **Testimonials.** `src/data/testimonials.ts` is empty, so the section is hidden. Add only real quotes you have
+   permission to use (name, handle, text, source, link, date).
+8. **Fact sheet.** Check every row on /press. The launch date row appears once `site.launchDate` is filled.
+9. **Social proof numbers.** Update `src/config/social-proof.ts` (rating, rating count, users, `updatedAt`) from the
+   Chrome Web Store listing once a month. They show in the trust strip on the home page, /pricing and feature pages.
+10. **Rating markup.** Read Google's review snippet guidelines, then decide on `socialProof.markUpRating`. It is off
+    because the ratings are collected on the Chrome Web Store, not on growxapp.org.
+11. **Directory badges.** Badges are now only on /featured, with nofollow. Some directories ask for a dofollow badge in
+    the footer; check that each listing is still live over the next weeks. Fill the missing badge widths for Days
+    Launch, Direct2App and Submit My SaaS in `src/data/badges.ts`.
+12. **Competitor prices.** On each /alternatives page, open the competitor's pricing page, fill the Free plan and
+    Starting price cells marked "Check" (and any other "Check" you can confirm) in `src/content/alternatives.ts`, then
+    set `theirPricesChecked` to that day. Confirm Circleboom's pricing page path (now its homepage).
+13. **Screenshots.** Capture the Cleanup, AI Reply Assistant and List follow pages with demo data and use them on those
+    three feature pages (TODO comments in `src/content/feature-pages.ts`). The store images are dark marketing
+    composites with their own headlines, so they do not fit the site's screenshot style as they are.
+14. **List follow keyword.** If you want the List follow page to target "follow Twitter List members", List follow
+    first needs to accept X List links (a product change in the extension). The page explains the auto follow route
+    for now.
+15. **Search Console watch list.** After four to six weeks, check for two pages ranking for the same queries:
+    /features/twitter-unfollower-tracker and /blog/who-unfollowed-me-on-twitter; /blog/first-1000-followers-on-x and
+    /blog/twitter-growth-plan. Merge with a redirect if they compete. `docs/content-plan.md` lists more candidates.
+16. **AI visibility, monthly.** Run the 20 prompts in `docs/ai-visibility-prompts.md` in ChatGPT, Perplexity, Gemini,
+    Claude, Copilot and Google AI Mode, and log whether GrowX is mentioned and cited.
+17. **Backlinks already placed.** Links to the eleven old URLs still work through the redirects. Where you can edit a
+    placed link, point it at the new URL (the redirect map above).
