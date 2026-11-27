@@ -47,10 +47,11 @@ const { default: LoginPage } = await import("@/app/login/page");
 const { default: SignupPage } = await import("@/app/signup/page");
 
 const iso = (msAgo: number) => new Date(Date.now() - msAgo).toISOString();
-const googleUser = (createdMsAgo: number, identity?: { created: number; last: number }) => ({
+const googleUser = (createdMsAgo: number, identity?: { created: number; last: number }, lastSignInMsAgo?: number) => ({
   id: "11111111-1111-4111-8111-111111111111",
   email: "new.person@gmail.com",
   created_at: iso(createdMsAgo),
+  last_sign_in_at: lastSignInMsAgo === undefined ? undefined : iso(lastSignInMsAgo),
   app_metadata: { provider: "google", providers: ["google"] },
   identities: identity ? [{ provider: "google", created_at: iso(identity.created), last_sign_in_at: iso(identity.last) }] : undefined,
 });
@@ -149,6 +150,9 @@ describe("sign-in flow helpers", () => {
     expect(x(true, null)).toBe("google_failed");
     expect(x(true, { code: "user_banned", message: "User is banned" })).toBe("account_unavailable");
     expect(x(false, missing)).toBe("link_other_browser");
+    // a sign-up confirmation finished in a browser that started another sign-in since: the email is confirmed
+    expect(x(false, { code: "bad_code_verifier", message: "code challenge does not match previously saved code verifier" })).toBe("link_other_browser");
+    expect(x(false, { code: "bad_code_verifier" }, "/reset-password")).toBe("link_expired");
     expect(x(false, missing, "/reset-password")).toBe("reset_other_browser");
     expect(x(false, { code: "flow_state_not_found" }, "/reset-password")).toBe("link_expired");
     expect(x(false, { code: "flow_state_not_found" })).toBe("link_expired");
@@ -160,11 +164,14 @@ describe("sign-in flow helpers", () => {
   it("counts only a brand-new Google account as a new sign-up", () => {
     const now = Date.now();
     expect(flow.isNewOAuthUser(googleUser(3_000), now)).toBe(true);
-    expect(flow.isNewOAuthUser(googleUser(3_000, { created: 3_000, last: 2_500 }), now)).toBe(true);
-    // returning: old account, or a Google identity that signed in again minutes after it was created
+    // created at Supabase's callback, first session issued a moment later (what a real first sign-in looks like)
+    expect(flow.isNewOAuthUser(googleUser(3_000, { created: 3_000, last: 3_000 }, 1_000), now)).toBe(true);
+    // returning: an old account, a second session, or a Google identity that signed in again later
     expect(flow.isNewOAuthUser(googleUser(2 * 86_400_000), now)).toBe(false);
+    expect(flow.isNewOAuthUser(googleUser(2 * 60_000, { created: 2 * 60_000, last: 2 * 60_000 }, 0), now)).toBe(false);
     expect(flow.isNewOAuthUser(googleUser(5 * 60_000, { created: 5 * 60_000, last: 1_000 }), now)).toBe(false);
-    expect(flow.isNewOAuthUser(googleUser(20_000, { created: 20_000, last: 9_000 }), now)).toBe(false);
+    // Google taking over an unconfirmed email account made minutes earlier: the identity is newer than the account
+    expect(flow.isNewOAuthUser(googleUser(3 * 60_000, { created: 1_000, last: 1_000 }), now)).toBe(false);
     // an email account linked to Google keeps "email" as its first provider
     expect(flow.isNewOAuthUser({ ...passwordFirstUser, created_at: iso(1_000) }, now)).toBe(false);
     expect(flow.isNewOAuthUser({ app_metadata: { provider: "google" } }, now)).toBe(false);
@@ -177,6 +184,9 @@ describe("sign-in flow helpers", () => {
     expect(flow.signInMethods({ provider: "email", providers: ["email", "google"] }).labels).toEqual(["email and password", "Google"]);
     expect(flow.signInMethods(null).labels).toEqual(["email and password"]);
     expect(flow.signInMethods({ providers: ["github"] }).labels).toEqual(["Github"]);
+    // a Google account that set a password: Supabase keeps providers ["google"], the flag adds the password
+    expect(flow.signInMethods({ provider: "google", providers: ["google"] }, { [flow.PASSWORD_SET_FLAG]: true })).toEqual({ password: true, google: true, labels: ["email and password", "Google"] });
+    expect(flow.signInMethods({ provider: "google", providers: ["google"] }, { [flow.PASSWORD_SET_FLAG]: "yes" }).password).toBe(false);
   });
 
   it("has a message for every code, and none for unknown or hostile values", () => {

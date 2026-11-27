@@ -14,7 +14,7 @@ The build environment that produced this code cannot reach your live site or das
 - [ ] **SQL Editor:** run all five files in `supabase/migrations/` in order (all applied on production `zyzfufifzitjmwxfqbqx`, the last one, `billing_core`, on 2026-10-10), then the read-only `supabase/verify.sql` (every row `ok = true`). The Vercel integration does **not** do this for you. Details and troubleshooting: `SUPABASE_PRODUCTION.md`.
 - [ ] **Auth > URL Configuration:**
   - Site URL: `https://www.growxapp.org`
-  - Redirect URLs: `https://www.growxapp.org/**`, `https://growxapp.org/**`, `http://localhost:3000/**` (plus your `*.vercel.app` preview URL if you test there). Remove any growxapp.net entries.
+  - Redirect URLs: `https://www.growxapp.org/**`, `https://growxapp.org/**`, `http://localhost:3000/**` (plus the exact preview URL while you test there; never a `vercel.app` wildcard, see `docs/GOOGLE_SIGN_IN.md`). Remove any growxapp.net entries.
 - [ ] **Auth > Providers > Email:** enabled; **Confirm email ON**.
 - [ ] **Auth > Email Templates (recommended):** so confirmation and reset links work even when opened in a different browser or on a phone, change the link in:
   - *Confirm signup*: `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/dashboard`

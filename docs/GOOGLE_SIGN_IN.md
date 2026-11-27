@@ -74,12 +74,19 @@ Authentication → **URL Configuration**:
   - `https://www.growxapp.org/**`
   - `https://growxapp.org/**`
   - `http://localhost:3000/**` (local development)
-  - Vercel previews: `https://*-<your-vercel-team-slug>.vercel.app/**`. Copy the slug from a preview URL. It is the
-    part after the last `-` before `.vercel.app`.
   - The extension: `https://ofiancichfcakbdgekhcahflpoglfgbh.chromiumapp.org/**`
+- [ ] Preview deployments: add only the **exact** preview address you are testing, for example the branch URL
+  `https://<project>-git-<branch>-<team>.vercel.app/**`. Remove it when you are done.
+  - **Never add a wildcard on `vercel.app`**, such as `https://*.vercel.app/**` or `https://*-<team>.vercel.app/**`.
+    In these patterns `*` also matches `-`, and anyone can create a Vercel project whose address matches. That
+    person would then receive sign-in codes for GrowX accounts, for example from a reset link or a Google sign-in
+    link that they trick someone into opening.
+  - For Google sign-in on every preview, give previews a domain you own, if your Vercel plan allows it (for example
+    `https://*.preview.growxapp.org/**`), or use a separate Supabase project for previews.
 
 If a redirect is not on this list, Supabase sends the person to the Site URL instead. The symptom is landing on the
-home page with `?code=` in the address bar, still signed out.
+home page with `?code=` in the address bar, still signed out. On a preview that is not listed, Google sign-in
+therefore ends on www.growxapp.org without signing in.
 
 ### 5. Check it
 
@@ -104,7 +111,8 @@ home page with `?code=` in the address bar, still signed out.
 1. **Start.** The button submits the `googleAction` server action (`src/app/login/actions.ts`) with a hidden `next`
    (where to go afterwards). The action calls
    `signInWithOAuth({ provider: "google", options: { redirectTo, queryParams: { prompt: "select_account" } } })`.
-   - `redirectTo` is `<origin of this request>/auth/callback?next=<path>&flow=google`, so previews use their own host.
+   - `redirectTo` is `<origin of this request>/auth/callback?next=<path>&flow=google`, so a preview uses its own host
+     (it must be in the Redirect URLs, see step 4).
    - `@supabase/ssr` stores the PKCE code verifier in a cookie on that host.
    - `prompt=select_account` always shows Google's account chooser.
    - The browser goes to Supabase's `/auth/v1/authorize`, then to Google.
@@ -144,7 +152,9 @@ website API.
     Google.". This is the same answer as for an unknown address, so it does not reveal which emails have accounts.
   - Signing up with a password on that email creates nothing new, and the success message points to Continue with
     Google.
-  - **Forgot password** (or *Set a password* on the dashboard) adds a password to the same account.
+  - **Forgot password** (or *Set a password* on the dashboard) adds a password to the same account. Supabase adds no
+    email identity for it, so the website records `growx_password_set` in the account's user metadata. The dashboard
+    then shows "email and password or Google".
 - Profiles are keyed by the user id (`on_auth_user_created` → `handle_new_user()`, `on conflict do nothing`), so a
   linked account never gets a second profile.
 
@@ -162,7 +172,7 @@ step is enforced on the server.
 | Trial | Needs a confirmed email, a linked X account, and no trial used before by this account or this X account | Same server checks | `startTrialAction`, `start_trial` |
 | Referral | GrowX has no referral programme | Same | — |
 | Welcome email | None (only Supabase's confirmation email) | None | — |
-| Analytics | Google Ads sign-up conversion when the sign-up form succeeds, only if `NEXT_PUBLIC_GOOGLE_ADS_SIGNUP` is set | The same conversion, once, on the first page after the account is created (`gx_new_signup` cookie, 10 minutes, no personal data) | `auth-form.tsx`, `new-signup-conversion.tsx` |
+| Analytics | Google Ads sign-up conversion when the sign-up form succeeds, only if `NEXT_PUBLIC_GOOGLE_ADS_SIGNUP` is set | The same conversion, once, on the first page after the account is created (`gx_new_signup` cookie, 10 minutes, no personal data). It counts only a brand-new account: its first session, with a Google identity created together with it. A returning user, an email account linked to Google, or an unconfirmed email account taken over by Google is not counted | `flow.ts` (`isNewOAuthUser`), `auth-form.tsx`, `new-signup-conversion.tsx` |
 
 ## Messages on the login page
 
@@ -177,7 +187,7 @@ step is enforced on the server.
 | `google_unavailable` | The Google provider is off, or Supabase is not configured |
 | `session_failed` | Signed in, but the website session could not be registered |
 | `account_unavailable` | The account is suspended (banned) |
-| `link_expired`, `link_other_browser`, `reset_other_browser`, `auth_callback` | Email links (confirmation and password reset) |
+| `link_expired`, `link_other_browser`, `reset_other_browser`, `auth_callback` | Email links (confirmation and password reset). `link_other_browser` ("Your email is confirmed. Please log in") is used when a confirmation link cannot finish the sign-in in this browser |
 
 While Google sign-in is starting, the Google button and the email form are both disabled. A page restored with the
 browser's Back button gets a fresh, enabled button.
@@ -197,7 +207,11 @@ browser's Back button gets a fresh, enabled button.
   - `tests/google-sign-in.test.ts` checks the CSP.
 - **Logs.** The callback logs one JSON line per outcome (`auth_callback_failed`, `google_sign_in` with `new_user`).
   Lines carry no email, user id, code or token.
-- **PKCE cookies.** `@supabase/ssr` keeps up to 5 pending-flow verifier cookies. They are removed at sign-out.
+- **PKCE cookies.** Each sign-in start (Google, sign-up email, reset email) stores a code verifier cookie. The
+  callback uses the most recent one. If someone starts a second sign-in in the same browser before the first
+  finishes, the first can no longer finish and shows a "try again" or "log in" message. `@supabase/auth-js` also keeps
+  a copy per flow (up to 5 small cookies), and these are removed at sign-out. Its per-flow matching
+  (`experimental.appendPkceFlowIdToRedirects`) is experimental, so it is not turned on.
 
 ## Tests
 

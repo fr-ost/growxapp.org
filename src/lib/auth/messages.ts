@@ -11,10 +11,7 @@ export const LOGIN_ERRORS: Record<LoginNoticeCode, { text: string; tone: NoticeT
     tone: "error",
   },
   link_expired: { text: "That link has expired or was already used. Please log in, or request a new link.", tone: "error" },
-  link_other_browser: {
-    text: "Your email is confirmed. Please log in to continue (the link was opened in a different browser).",
-    tone: "success",
-  },
+  link_other_browser: { text: "Your email is confirmed. Please log in to continue.", tone: "success" },
   reset_other_browser: {
     text: "That password reset link was opened in a different browser. Request a new link and open it in the browser you use for GrowX.",
     tone: "error",

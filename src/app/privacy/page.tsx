@@ -84,7 +84,9 @@ export default function PrivacyPage() {
       </p>
       <h2>Cookies</h2>
       <p>
-        The website uses strictly necessary cookies to keep you signed in. It also uses the Google tag (Google Ads) to
+        The website uses strictly necessary cookies to keep you signed in. After your first sign-in with Google it also
+        sets one short-lived first-party cookie (gx_new_signup, no personal data, gone within 10 minutes) so the new
+        account can be counted like an email sign-up; it is deleted as soon as it has been read. It also uses the Google tag (Google Ads) to
         measure the results of our advertising, for example whether a visit from an ad led to a sign-up. Google may set
         advertising cookies and receive technical data such as your IP address, browser and the pages you visit; see{" "}
         <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from sites that use its services</a>.

@@ -15,6 +15,7 @@ Account controls (`POST /api/admin/users/:id/actions`; reason required, explicit
 * **Sign out everywhere**: deletes the user's Supabase Auth sessions (and so their refresh tokens) and active-session slots; the website and the extension are signed out. The user can sign in again. If the database refuses to touch `auth.sessions`, the action reports `auth_sessions_denied`.
 * **Suspend / lift suspension**: Supabase Auth ban (`ban_duration`), plus sign-out everywhere. Paid access, payments and all records are kept.
 * **Confirm email**, **send password reset** (the same email as "Forgot password"), **change email** (to a confirmed address no other account uses; the old and new address are logged).
+  * The reset email sent from here works only with the recommended *Reset password* template in `docs/GO_LIVE.md` (`/auth/confirm?token_hash=…`). The server sends it without a browser, so a link built from Supabase's default template carries its tokens after `#`. The site cannot read those, and the link ends on "That sign-in link is invalid". "Forgot password" on the site works with either template.
 * Not on your own account. Against another admin only "lift suspension" and "confirm email" are allowed (remove them from `public.admins` first).
 
 Deliberately not available: deleting accounts (payments and orders block it, and deleting would erase the trial record and reopen a free trial), creating payments or marking orders as paid, editing subscriptions or trials, and granting X-account slots without a payment. To give Premium, use a gift.

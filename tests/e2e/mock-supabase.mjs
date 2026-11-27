@@ -39,7 +39,7 @@ function mkUser(email, confirmed) {
 /** A login creates a NEW session; a refresh keeps the session id (like GoTrue). */
 function session(u, existing) {
   const id = existing ?? sid();
-  if (!existing) sessions.set(id, u.id);
+  if (!existing) { sessions.set(id, u.id); u.last_sign_in_at = new Date().toISOString(); }
   const exp = Math.floor(Date.now() / 1000) + 3600;
   const t = `${b64({ alg: "HS256", typ: "JWT" })}.${b64({ sub: u.id, email: u.email, aud: "authenticated", role: "authenticated", exp, iat: exp - 3600, session_id: id })}.sig`;
   tokens.set(t, u.email);
@@ -223,6 +223,12 @@ http.createServer(async (req, res) => {
   if (p === "/__log") return send(res, 200, log);
   if (p === "/__state") return send(res, 200, { sessions: [...sessions], active: [...active] });
   if (p === "/auth/v1/health") return send(res, 200, { name: "GoTrue" });
+  if (p === "/__age") { // pretend time has passed for one account (its creation, identities and last sign-in)
+    const u = users.get(String(url.searchParams.get("email") || "").toLowerCase()); const ms = Number(url.searchParams.get("seconds") || 0) * 1000;
+    const back = (t) => (t ? new Date(Date.parse(t) - ms).toISOString() : t);
+    if (u) { u.created_at = back(u.created_at); u.last_sign_in_at = back(u.last_sign_in_at); for (const i of u.identities) { i.created_at = back(i.created_at); i.last_sign_in_at = back(i.last_sign_in_at); } }
+    return send(res, u ? 200 : 404, {});
+  }
   if (p === "/__users") { const u = users.get(String(url.searchParams.get("email") || "").toLowerCase()); return send(res, 200, u ? { count: [...users.values()].filter((x) => x.email === u.email).length, id: u.id, providers: u.app_metadata.providers, confirmed: !!u.email_confirmed_at } : { count: 0 }); }
   if (p === "/auth/v1/settings") {
     if (!req.headers.apikey) return send(res, 401, { message: "No API key found in request" });
@@ -294,7 +300,14 @@ http.createServer(async (req, res) => {
     if (banned(u)) return send(res, 400, { code: 400, error_code: "user_banned", msg: "User is banned" });
     return send(res, 200, session(u));
   }
-  if (p === "/auth/v1/user") { const u = authUser(req); if (!u) return send(res, 401, { code: 401, error_code: "bad_jwt", msg: "invalid JWT" }); return send(res, 200, u); }
+  if (p === "/auth/v1/user") {
+    const u = authUser(req); if (!u) return send(res, 401, { code: 401, error_code: "bad_jwt", msg: "invalid JWT" });
+    if (req.method === "PUT") { // updateUser: a password (no email identity is added, as in GoTrue) and user_metadata
+      if (body.password) u.noPassword = false;
+      if (body.data) u.user_metadata = { ...u.user_metadata, ...body.data };
+    }
+    return send(res, 200, u);
+  }
   if (p === "/auth/v1/logout") { const id = sessionOfToken(req); if (id && url.searchParams.get("scope") === "global") { const u = authUser(req); for (const [k, v] of [...sessions]) if (u && v === u.id) revokeSession(k); } else if (id) revokeSession(id); return send(res, 204); }
   if (p === "/auth/v1/recover") return send(res, 200, {});
 

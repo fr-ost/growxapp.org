@@ -85,7 +85,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   // The old self-reported trial username, offered only as a starting value for linking (never linked without confirmation).
   const oldTrialName = (xProfile.data as { x_username?: string } | null)?.x_username ?? null;
   // Google sign-in links to the same account as the email address (one account per email), so list every way in.
-  const methods = signInMethods(user.app_metadata);
+  const methods = signInMethods(user.app_metadata, user.user_metadata);
   const now = serverNow();
   const openOrders = (orders.data ?? []).filter((o) => o.status === "refund_required" || !o.reservation_expires_at || Date.parse(o.reservation_expires_at) > now);
   const name = user.email?.split("@")[0] ?? "there";

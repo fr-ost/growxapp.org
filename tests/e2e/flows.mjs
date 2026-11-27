@@ -555,6 +555,8 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   };
   const contexts = [];
   const open = async () => { const f = await fresh(); contexts.push(f.c); return f; };
+  /** The dashboard's text once it has finished streaming (its Account panel is last). */
+  const dash = async (pg) => { await pg.locator("[data-testid=sign-in-methods]").waitFor({ timeout: 15000 }); return pg.locator("main").innerText(); };
 
   // the button on every sign-in surface
   const { pg: g0 } = await open();
@@ -603,23 +605,22 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   await toChooser(g1, "/signup");
   const sc1 = await choose(g1, NEW);
   await g1.waitForURL("**/dashboard", { timeout: 15000 });
-  const created = Date.now();
   ok("first Google sign-in lands on the dashboard, signed in", (await g1.locator("h1", { hasText: "Welcome" }).count()) === 1, g1.url());
   ok("first Google sign-in sets the one-time sign-up marker", /gx_new_signup=google/.test(sc1), sc1.slice(0, 200));
   await g1.waitForFunction(() => (window.__conversions || []).length > 0, null, { timeout: 8000 }).catch(() => {});
   const conv = await g1.evaluate(() => window.__conversions);
   ok("first Google sign-in reports the sign-up conversion once", conv.filter((a) => a[0] === "event" && a[1] === "conversion" && a[2]?.send_to === "AW-TEST/signup").length === 1, JSON.stringify(conv));
   ok("the sign-up marker is cleared once reported", !(await c1.cookies()).some((k) => k.name === "gx_new_signup"));
-  const main1 = await g1.locator("main").innerText();
+  const main1 = await dash(g1);
   ok("Google account: email confirmed (Google verified it)", /Email status\s*Confirmed/i.test(main1));
   ok("Google account: says how it signs in, offers to set a password", main1.includes("You sign in with Google.") && (await g1.locator("a", { hasText: "Set a password" }).count()) === 1);
   ok("Google account: the X account step is still required before the trial", (await g1.locator("button", { hasText: "Start my 30-day" }).isDisabled()) && main1.includes("Link your X account below first"));
   const u1 = await who(NEW);
   ok("Google account: one account for the email, provider google", u1.count === 1 && u1.confirmed && JSON.stringify(u1.providers) === '["google"]', JSON.stringify(u1));
 
-  // the same person comes back later: same account, not a new sign-up
+  // the same person comes back two minutes later: same account, not a new sign-up
   await g1.click("button:has-text('Sign out')"); await g1.waitForURL(BASE + "/");
-  await g1.waitForTimeout(Math.max(0, 6000 - (Date.now() - created)));
+  await fetch(`${MOCK}/__age?email=${encodeURIComponent(NEW)}&seconds=120`);
   await toChooser(g1);
   const sc2 = await choose(g1, NEW);
   await g1.waitForURL("**/dashboard", { timeout: 15000 });
@@ -657,7 +658,7 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   const sc3 = await choose(g2, PW);
   await g2.waitForURL("**/dashboard", { timeout: 15000 });
   const pwAfter = await who(PW);
-  const main2 = await g2.locator("main").innerText();
+  const main2 = await dash(g2);
   ok("password account + Google with the same email: the same account", pwAfter.count === 1 && pwAfter.id === pwBefore.id && pwAfter.providers.includes("email") && pwAfter.providers.includes("google"), JSON.stringify(pwAfter));
   ok("linked account keeps its X account", main2.includes("LinkedEarlier"), main2.slice(0, 300));
   ok("linked account lists both ways in and keeps Change password", main2.includes("You sign in with email and password or Google.") && (await g2.locator("a", { hasText: "Change password" }).count()) === 1);
@@ -669,9 +670,10 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   const UC = "unconfirmed-google@example.com";
   const ucBefore = await who(UC);
   const { pg: g3 } = await open();
-  await toChooser(g3); await choose(g3, UC); await g3.waitForURL("**/dashboard", { timeout: 15000 });
+  await toChooser(g3); const scUC = await choose(g3, UC); await g3.waitForURL("**/dashboard", { timeout: 15000 });
   const ucAfter = await who(UC);
-  ok("unconfirmed password account + Google: same account, now confirmed", ucAfter.id === ucBefore.id && !ucBefore.confirmed && ucAfter.confirmed && /Email status\s*Confirmed/i.test(await g3.locator("main").innerText()), JSON.stringify([ucBefore, ucAfter]));
+  ok("unconfirmed password account + Google: same account, now confirmed", ucAfter.id === ucBefore.id && !ucBefore.confirmed && ucAfter.confirmed && /Email status\s*Confirmed/i.test(await dash(g3)), JSON.stringify([ucBefore, ucAfter]));
+  ok("taking over an unconfirmed email account is not counted as a new sign-up", !/gx_new_signup=google/.test(scUC), scUC.slice(0, 200));
 
   // Google first, then the email form
   const { pg: g4 } = await open();
@@ -704,6 +706,17 @@ ok("no runtime page errors in auth flows", errs.length === 0, errs.join(" | ").s
   ok("Google callback in a browser that did not start it -> plain message", new URL(g8.url()).searchParams.get("error") === "google_other_browser" && (await g8.locator("main").innerText()).includes("same browser"), g8.url());
   await g8.goto(BASE + "/auth/callback?flow=google");
   ok("Google callback without a code -> plain message", new URL(g8.url()).searchParams.get("error") === "google_failed" && (await g8.locator("main").innerText()).includes("Google sign-in didn't work"), g8.url());
+
+  // Google first, then a password: the account adds one and can then use either way in
+  await g6.goto(BASE + "/reset-password");
+  await g6.fill("#password", "correct-horse-1"); await g6.click("form:has(#password) button[type=submit]");
+  await g6.waitForURL("**/dashboard?password=updated", { timeout: 15000 });
+  const main6 = await dash(g6);
+  ok("Google account that set a password: both ways in listed, Change password offered", main6.includes("You sign in with email and password or Google.") && (await g6.locator("a", { hasText: "Change password" }).count()) === 1, main6.slice(0, 200));
+  const { pg: g9 } = await open();
+  await g9.goto(BASE + "/login"); await g9.fill("#email", NEW); await g9.fill("#password", "correct-horse-1");
+  await g9.click(SUBMIT); await g9.waitForURL("**/dashboard", { timeout: 15000 });
+  ok("...and its password sign-in opens the same account", (await who(NEW)).id === u1.id && (await dash(g9)).includes(NEW));
 
   ok("no runtime page errors in the Google flows", pageErrors.length === 0, pageErrors.join(" | ").slice(0, 300));
   for (const c of contexts) await c.close();

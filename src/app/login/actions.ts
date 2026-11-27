@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { GOOGLE_FLOW, loginErrorPath } from "@/lib/auth/flow";
+import { GOOGLE_FLOW, loginErrorPath, PASSWORD_SET_FLAG } from "@/lib/auth/flow";
 import { googleSignInAvailable } from "@/lib/auth/google";
 import { isSupabaseConfigured } from "@/lib/env";
 import { requestOrigin } from "@/lib/origin";
@@ -140,7 +140,8 @@ export async function resetPasswordAction(_prev: AuthState, formData: FormData):
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser(); // must hold a verified recovery session
   if (!data.user) return { error: "This reset link is invalid or has expired. Request a new one." };
-  const { error } = await supabase.auth.updateUser({ password: parsed.data.password });
+  // The flag lets the dashboard show that an account created with Google now has a password too.
+  const { error } = await supabase.auth.updateUser({ password: parsed.data.password, data: { [PASSWORD_SET_FLAG]: true } });
   if (error) {
     if (error.code === "same_password") return { fieldErrors: { password: "Choose a password you have not used before." } };
     return { error: "We could not update the password. Try a different one." };
