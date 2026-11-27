@@ -1,13 +1,13 @@
 "use client";
 
 /*
- * A client component with no props on purpose: its HTML is still rendered on the server (every link and directory
- * badge is in the page source), but the page's RSC payload carries a reference instead of a second copy of the footer.
+ * A client component with no props on purpose: its HTML is still rendered on the server (every link is in the page
+ * source), but the page's RSC payload carries a reference instead of a second copy of the footer. Directory badges are
+ * not in the footer: they are listed only on /featured (linked as "Featured on" in the Company column).
  */
 import { IntentLink } from "@/components/ui/intent-link";
 import { Logo } from "@/components/logo";
 import { IconChrome, IconMail } from "@/components/icons";
-import { FeaturedOn } from "@/components/featured-on";
 import { Aurora } from "@/components/motion/aurora";
 import { MotionToggle } from "@/components/motion/motion-toggle";
 import { Wordmark } from "@/components/motion/wordmark";
@@ -106,11 +106,6 @@ export function SiteFooter() {
           </nav>
         ))}
       </Container>
-      <div className="relative border-t border-white/10">
-        <Container className="py-6">
-          <FeaturedOn />
-        </Container>
-      </div>
       <div className="relative border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-white/60 lg:flex-row lg:text-left">
           <p suppressHydrationWarning>&copy; {new Date().getFullYear()} GrowX · {site.author}</p>

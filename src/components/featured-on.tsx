@@ -1,44 +1,30 @@
-import { IntentLink } from "@/components/ui/intent-link";
-import { liveBadges, type DirectoryBadge } from "@/data/badges";
+import type { DirectoryBadge } from "@/data/badges";
 
 /**
- * One directory badge, exactly as the directory provided it (`html`): many directories verify the link, image URL,
- * alt text and rel by exact match or with a crawler, so the markup is never rebuilt, never routed through next/image,
- * and never given nofollow. It is server-rendered, so it is in the HTML a crawler fetches.
+ * A directory badge for /featured, the only page that shows them (they are not in the footer or any shared layout).
+ * The directory's own markup is kept (its link, image URL and alt text), with three changes: every link gets
+ * rel="nofollow noopener", and every image gets loading="lazy" and explicit width and height (from the badge data when
+ * the markup has none), so it never shifts the layout. It is server-rendered, so it is in the HTML a crawler fetches.
  */
-export function OfficialBadge({ badge, className = "", lazy = false }: { badge: DirectoryBadge; className?: string; lazy?: boolean }) {
-  const html = lazy ? lazyImages(badge.html ?? "") : (badge.html ?? "");
-  return <span className={`featured-badge inline-flex ${className}`} dangerouslySetInnerHTML={{ __html: html }} />;
+export function OfficialBadge({ badge, className = "" }: { badge: DirectoryBadge; className?: string }) {
+  return <span className={`featured-badge inline-flex ${className}`} dangerouslySetInnerHTML={{ __html: badgeHtml(badge) }} />;
 }
 
-/** Adds loading="lazy" to badge images that don't set loading themselves (footer only; /featured keeps the exact HTML). */
-export const lazyImages = (html: string) => html.replace(/<img\b(?![^>]*\sloading=)/g, '<img loading="lazy"');
+/** The rel every directory link gets. */
+export const DIRECTORY_REL = "nofollow noopener";
 
-/**
- * The compact "Featured on" strip in the footer: only badges that are verified, have a real slug and official HTML
- * (`liveBadges`). Muted and small (28 px high, forced over inline heights), lazy-loaded; the image's own width and
- * height attributes keep its aspect ratio, so no layout shift.
- */
-export function FeaturedOn() {
-  if (!liveBadges.length) return null;
-  return (
-    <div className="featured-on flex flex-col items-center gap-3 lg:flex-row lg:items-center lg:gap-5">
-      <p className="shrink-0 text-xs font-semibold text-white/60">
-        <IntentLink href="/featured" className="link-draw hover:text-white">
-          Featured on
-        </IntentLink>
-      </p>
-      <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 lg:justify-start">
-        {liveBadges.map((b) => (
-          <li key={b.name}>
-            <OfficialBadge
-              badge={b}
-              lazy
-              className="opacity-70 hover:opacity-100 focus-within:opacity-100 motion-ok:transition-opacity motion-ok:duration-200 text-xs font-semibold text-white/70 [&_img]:!h-7 [&_img]:!w-auto [&>a]:max-h-10"
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+/** The directory's badge markup with nofollow links and lazy, sized images (see OfficialBadge). */
+export function badgeHtml(badge: DirectoryBadge): string {
+  const html = badge.html ?? "";
+  const withRel = html.replace(/<a\b([^>]*)>/g, (_m, attrs: string) => {
+    const rest = attrs.replace(/\srel=("[^"]*"|'[^']*')/i, "");
+    return `<a${rest} rel="${DIRECTORY_REL}">`;
+  });
+  return withRel.replace(/<img\b([^>]*?)(\s*\/?)>/g, (_m, attrs: string, close: string) => {
+    let a = attrs;
+    if (!/\sloading=/i.test(a)) a += ' loading="lazy"';
+    if (!/\swidth=/i.test(a) && badge.width) a += ` width="${badge.width}"`;
+    if (!/\sheight=/i.test(a) && badge.height) a += ` height="${badge.height}"`;
+    return `<img${a}${close}>`;
+  });
 }

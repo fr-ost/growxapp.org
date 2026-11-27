@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OfficialBadge } from "@/components/featured-on";
+import { DIRECTORY_REL, OfficialBadge } from "@/components/featured-on";
 import { IconArrowRight, IconChrome } from "@/components/icons";
 import { JsonLd, breadcrumbLd, webPageLd } from "@/components/json-ld";
 import { stagger } from "@/components/motion/stagger";
@@ -62,8 +62,8 @@ export default function FeaturedPage() {
             <CwsLink campaign="featured" content="inline-cta" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
               Chrome Web Store
             </CwsLink>
-            , it is listed on the {liveBadges.length} product directories and launch platforms below. Each entry shows the site&apos;s own badge, exactly
-            as that site provides it, with a link to the listing or to the site itself.
+            , it is listed on the {liveBadges.length} product directories and launch platforms below. Each entry shows the site&apos;s own badge, with a link to the
+            listing or to the site itself.
           </p>
           <p>
             Some are directories of software and browser extensions, such as ExtensionFinder, ToolDirs and Direct2App, where you can find GrowX by
@@ -97,7 +97,7 @@ export default function FeaturedPage() {
                     <h2 className="text-lg font-bold">{b.name}</h2>
                     <OfficialBadge badge={b} className="min-h-14 items-center [&_img]:max-w-full" />
                     {link ? (
-                      <a href={link} className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-accent-ink underline-offset-4 hover:underline">
+                      <a href={link} rel={DIRECTORY_REL} className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-accent-ink underline-offset-4 hover:underline">
                         {b.listingUrl ? `GrowX on ${b.name}` : `Visit ${b.name}`} <IconArrowRight size={15} className="nudge" />
                       </a>
                     ) : null}

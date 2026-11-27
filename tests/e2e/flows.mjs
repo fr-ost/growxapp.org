@@ -65,7 +65,7 @@ const pages = ["/", "/alternatives", "/alternatives/tweet-hunter", "/alternative
 const links = new Set();
 for (const [label, vp] of [["desktop", { width: 1366, height: 900 }], ["mobile", { width: 375, height: 780 }]]) {
   const ctx = await b.newContext({ viewport: vp });
-  // Third-party images (the directory badges in the footer) are stubbed, so this check covers the site's own errors
+  // Third-party images (the directory badges on /featured) are stubbed, so this check covers the site's own errors
   // and does not depend on other sites being reachable from the test machine.
   await ctx.route((url) => url.protocol === "https:" && !/(^|\.)localhost$/.test(url.hostname), (route) =>
     route.request().resourceType() === "image"

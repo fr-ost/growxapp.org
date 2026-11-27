@@ -3,6 +3,7 @@ export type DirectoryBadge = {
   href: string | null;
   img: string | null;
   alt: string | null;
+  /** The image's size in px. null = not published by the directory: TODO measure the image and fill it in. */
   width: number | null;
   height: number | null;
   relRequirement: string;

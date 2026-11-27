@@ -22,7 +22,7 @@ const google = {
   previewFont: "https://fonts.gstatic.com",
 };
 
-// Image hosts of the directory badges shown in the footer and on /featured (their official <img> URLs, never proxied).
+// Image hosts of the directory badges on /featured (their official <img> URLs, never proxied).
 const badgeHosts = [...new Set(liveBadges.flatMap((b) => [...(b.html ?? "").matchAll(/src="(https:\/\/[^/"]+)/g)].map((m) => m[1])))].join(" ");
 
 // Production-only CSP (dev needs eval for HMR). Inline scripts are required by
