@@ -76,7 +76,7 @@ export function SiteFooter() {
         <div>
           <Logo tone="light" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-            The all-in-one X (Twitter) growth tool for Chrome: smart auto follow, a post scheduler, an AI writer, analytics and cleanup.
+            {site.definition}
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <FooterStoreLink className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink transition-[translate] duration-200 ease-glide hover:-translate-y-0.5">

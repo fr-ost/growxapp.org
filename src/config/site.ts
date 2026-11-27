@@ -26,6 +26,33 @@ export const site = {
   authorUrl: "https://www.shahriarahmed.net",
   description:
     "GrowX is the all-in-one X (Twitter) growth tool for Chrome: smart auto follow, a post scheduler, an on-device AI writer, analytics, an unfollower tracker and cleanup.",
+  /**
+   * The one canonical definition of GrowX, said the same way everywhere: the home page intro, /about, /press, the
+   * footer, the Organization and SoftwareApplication descriptions and llms.txt. Change it here only.
+   */
+  definition:
+    "GrowX is a Chrome extension for X (Twitter) that grows your account with safe auto follow, a post scheduler, on-device AI writing and replies, analytics, and an unfollower tracker. It is free to start.",
+  /** Other names GrowX is known by (the Chrome Web Store name must not change). */
+  alternateNames: ["GrowX App", "growxapp", "GrowX: The Ultimate X (Twitter) Growth Tool"],
+  /** One factual line that tells GrowX apart from other products called GrowX (on /about and /press). */
+  disambiguation:
+    "GrowX (growxapp.org) is the Chrome extension for X made by Shahriar Ahmed. It is not connected to other products or companies that use the name GrowX.",
+  /** The founder's own public profiles (Person sameAs). */
+  founderProfiles: ["https://x.com/0x_nation", "https://bd.linkedin.com/in/shahriar-bmb", "https://www.shahriarahmed.net"],
+  /** The founder's X handle: twitter:creator on every page. */
+  creatorHandle: "@0x_nation",
+  /**
+   * GrowX's own profiles. TODO: fill in when they exist (never a guess). Empty values are left out of the
+   * Organization's sameAs; twitter:site is set only when `x` has a handle.
+   */
+  profiles: {
+    /** GrowX's own X handle, with @ (for twitter:site), e.g. "@growxapp" once the account exists. */
+    x: "" as string,
+    productHunt: "" as string,
+    youtube: "" as string,
+    crunchbase: "" as string,
+    f6s: "" as string,
+  },
   url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL, process.env.VERCEL_ENV ?? process.env.NEXT_PUBLIC_VERCEL_ENV),
   supportEmail: trim(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "support@growxapp.org",
   /** Google tag (Google Ads) ID, provided by the owner. Loaded only on the production deployment. */

@@ -49,6 +49,7 @@ import { latestFirst } from "@/content/posts";
 import { pageMetadata } from "@/lib/seo";
 import { CURRENT_VERSION, releases } from "@/content/releases";
 import { TrustStrip } from "@/components/trust-strip";
+import { site } from "@/config/site";
 import { Testimonials } from "@/components/testimonials";
 
 const metadataTitle = "GrowX: Chrome Extension for X (Twitter) Growth";
@@ -209,8 +210,7 @@ export default function HomePage() {
             />
           </p>
           <p className="hero-settle mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-2 [text-wrap:pretty] sm:text-xl" style={stagger(3)}>
-            GrowX follows the right people, posts at your best times, writes with on-device AI and shows you what works. One simple
-            Chrome extension, free to start.
+            {site.definition}
           </p>
           <div className="hero-settle mt-9 flex flex-col justify-center gap-3 sm:flex-row" style={stagger(4)}>
             <CwsButton campaign="home" content="hero" size="lg" data-magnetic="6">

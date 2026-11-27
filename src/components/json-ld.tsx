@@ -83,13 +83,24 @@ export const founderLd = {
   ...authorLd,
   jobTitle: "Founder and developer",
   worksFor: { "@id": ORG_ID },
-  sameAs: [site.authorUrl, ...site.telegram.map((t) => t.href)],
+  sameAs: [...site.founderProfiles],
 };
+
+/** GrowX's own profiles that exist (src/config/site.ts `profiles`); empty TODO slots are left out. */
+export const orgProfiles = [
+  site.profiles.x ? `https://x.com/${site.profiles.x.replace(/^@/, "")}` : "",
+  site.profiles.productHunt,
+  site.profiles.youtube,
+  site.profiles.crunchbase,
+  site.profiles.f6s,
+].filter(Boolean);
 
 export const organizationLd = {
   "@type": "Organization",
   "@id": ORG_ID,
   name: site.name,
+  alternateName: [...site.alternateNames],
+  description: site.definition,
   url: site.url,
   logo: { "@type": "ImageObject", "@id": `${site.url}/#logo`, url: LOGO_URL, contentUrl: LOGO_URL, width: 512, height: 512, caption: site.name },
   image: { "@id": `${site.url}/#logo` },
@@ -98,7 +109,7 @@ export const organizationLd = {
     { "@type": "ContactPoint", contactType: "customer support", email: site.supportEmail, url: abs("/contact"), availableLanguage: ["English"] },
   ],
   founder: { "@id": PERSON_ID },
-  sameAs: [CWS_URL, site.authorUrl].filter(Boolean),
+  sameAs: [CWS_URL, ...orgProfiles],
 };
 
 export const websiteLd = {
@@ -106,7 +117,7 @@ export const websiteLd = {
   "@id": WEBSITE_ID,
   name: site.name,
   url: site.url,
-  description: site.description,
+  description: site.definition,
   inLanguage: "en",
   publisher: { "@id": ORG_ID },
 };
@@ -147,15 +158,15 @@ export const ratingLd =
 export const softwareLd = {
   "@type": "SoftwareApplication",
   "@id": SOFTWARE_ID,
-  name: "GrowX - X (Twitter) Growth Chrome Extension",
-  alternateName: ["GrowX", "GrowX: The Ultimate X (Twitter) Growth Tool"],
-  description: site.description,
+  name: site.name,
+  alternateName: `${site.name}: ${site.tagline}`,
+  description: site.definition,
   applicationCategory: "BrowserApplication",
   applicationSubCategory: "Social media growth tool",
   softwareVersion: CURRENT_VERSION,
   releaseNotes: abs("/whats-new"),
   inLanguage: LANGUAGES.map((l) => l.code),
-  operatingSystem: "Chrome (Windows, macOS, Linux, ChromeOS)",
+  operatingSystem: "Chrome",
   browserRequirements: "Requires Google Chrome 116 or newer on a desktop computer",
   url: site.url,
   image: abs("/opengraph-image"),

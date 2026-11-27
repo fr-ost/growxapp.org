@@ -55,7 +55,9 @@ export default function PressPage() {
     <>
       <JsonLd data={[breadcrumbLd([{ name: "Home", path: "/" }, { name: "Press kit", path: "/press" }]), webPageLd({ path: "/press", name: "GrowX press kit", description: "Logos, screenshots, descriptions and facts about GrowX." })]} />
       <PageHero eyebrow="Press kit" title={<>Writing about <span className="text-gradient">GrowX?</span></>}>
-        <p>
+        <p>{site.definition}</p>
+        <p className="mt-3 text-base">{site.disambiguation}</p>
+        <p className="mt-3">
           Logos, screenshots, descriptions and facts, ready to use. Questions or interview requests:{" "}
           <a className="link-draw font-semibold text-accent-ink" href={`mailto:${site.supportEmail}`}>
             {site.supportEmail}

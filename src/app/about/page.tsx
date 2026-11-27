@@ -36,7 +36,8 @@ export default function AboutPage() {
         ]}
       />
       <PageHero eyebrow="About" title={<>Growth tools built for <span className="text-gradient">careful</span> people.</>}>
-        <p>GrowX is an independent X (Twitter) growth tool for Chrome, designed and developed by {site.author}.</p>
+        <p>{site.definition} It is independent, designed and developed by {site.author}.</p>
+        <p className="mt-3 text-base">{site.disambiguation}</p>
       </PageHero>
 
       <Section>
