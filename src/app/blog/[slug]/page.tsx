@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </header>
 
         <Section className="pt-10 sm:pt-14">
-          <Container className="grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_17rem]">
+          <Container className="grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_17rem]">
             <div className="mx-auto w-full max-w-3xl">
               <div className="mb-12 lg:hidden"><TableOfContents post={post} id="toc-mobile" /></div>
               <PostBody
