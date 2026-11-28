@@ -7,10 +7,12 @@ import { badges, liveBadges } from "@/data/badges";
 import sitemap from "@/app/sitemap";
 import { site } from "@/config/site";
 
-/** Badges whose image width is not published by the directory (to be measured and filled in by hand). */
-const UNKNOWN_WIDTH = ["Days Launch", "Direct2App", "Submit My SaaS"];
-
 describe("Directory badges", () => {
+  it("Product Hunt is the only badge", () => {
+    expect(badges.map((b) => b.name)).toEqual(["Product Hunt"]);
+    expect(liveBadges).toHaveLength(1);
+  });
+
   it("only verified badges with a real slug and official HTML are live", () => {
     expect(liveBadges.length).toBeGreaterThan(0);
     for (const b of liveBadges) expect(b.verified && !b.needsSlug && !!b.html).toBe(true);
@@ -39,12 +41,10 @@ describe("Directory badges", () => {
       for (const img of html.match(/<img\b[^>]*>/g) ?? []) {
         expect(img, b.name).toMatch(/\sloading="lazy"/);
         expect(img, b.name).toMatch(/\sheight="\d+"/);
-        // width is written whenever it is known; a few directories publish only a height (TODO in src/data/badges.ts)
-        if (b.width || /\swidth=/.test(b.html ?? "")) expect(img, b.name).toMatch(/\swidth="\d+"/);
-        else expect(UNKNOWN_WIDTH, b.name).toContain(b.name);
+        expect(img, b.name).toMatch(/\swidth="\d+"/);
       }
       // the directory's own link and image are kept, and images are never proxied
-      expect(html, b.name).toContain(`href="${b.href}"`);
+      expect(html, b.name).toContain(`href="${(b.href ?? "").replace(/&/g, "&amp;")}"`);
       expect(html).not.toContain("/_next/image");
     }
   });

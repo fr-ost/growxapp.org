@@ -77,8 +77,8 @@ Console's Core Web Vitals report after deploy.
 
 ### A2. Directory badges only on /featured, nofollow
 - The badge strip left the footer (every page). The footer keeps a text link "Featured on" to /featured.
-- On /featured every directory link is `rel="nofollow noopener"`, every badge image is lazy and sized. Three
-  directories publish only a height, so their width is a TODO in `src/data/badges.ts` rather than a guess.
+- On /featured every directory link is `rel="nofollow noopener"`, every badge image is lazy and sized.
+- Update, 28 Nov 2026: all directory badges were removed; only the Product Hunt badge remains, on /featured.
 
 ### A3. Social proof from real store numbers
 - `src/config/social-proof.ts`: 5.0 from 12 ratings, 242 users, copied by hand from the store listing on 27 Nov 2026.
@@ -336,9 +336,9 @@ Do these after the branch is merged and deployed. Each one needs your accounts o
    Chrome Web Store listing once a month. They show in the trust strip on the home page, /pricing and feature pages.
 10. **Rating markup.** Read Google's review snippet guidelines, then decide on `socialProof.markUpRating`. It is off
     because the ratings are collected on the Chrome Web Store, not on growxapp.org.
-11. **Directory badges.** Badges are now only on /featured, with nofollow. Some directories ask for a dofollow badge in
-    the footer; check that each listing is still live over the next weeks. Fill the missing badge widths for Days
-    Launch, Direct2App and Submit My SaaS in `src/data/badges.ts`.
+11. **Directory badges.** On 28 Nov 2026 every directory badge was removed; only the Product Hunt badge remains, on
+    /featured (nofollow). Directories that asked for a badge on the site may drop their listing; check the ones that
+    matter to you.
 12. **Competitor prices.** On each /alternatives page, open the competitor's pricing page, fill the Free plan and
     Starting price cells marked "Check" (and any other "Check" you can confirm) in `src/content/alternatives.ts`, then
     set `theirPricesChecked` to that day. Confirm Circleboom's pricing page path (now its homepage).

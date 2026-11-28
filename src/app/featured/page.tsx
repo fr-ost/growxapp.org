@@ -12,17 +12,17 @@ import { pageMetadata } from "@/lib/seo";
 import { CwsLink } from "@/components/cws-link";
 
 const description =
-  "Launch sites and directories that list GrowX, the X (Twitter) growth extension for Chrome, with their official badges. Find GrowX there or add it free.";
+  "GrowX, the X (Twitter) growth extension for Chrome, is featured on Product Hunt. See the launch, read what it does and add GrowX to Chrome for free today.";
 
 export const metadata = pageMetadata({
-  title: "GrowX Featured On: Directories and Launch Sites",
+  title: "GrowX Featured On Product Hunt",
   description,
   path: "/featured",
   defaultImage: false,
-  keywords: ["GrowX featured on", "GrowX directory listing", "GrowX launch", "X growth tool directory"],
+  keywords: ["GrowX featured on", "GrowX Product Hunt", "GrowX launch", "X growth tool Product Hunt"],
 });
 
-/** Every live directory badge (verified, real slug, official HTML), each with a link to the listing or the directory. */
+/** The Product Hunt badge (the only badge on the site), with a link to the listing. */
 export default function FeaturedPage() {
   return (
     <>
@@ -32,14 +32,14 @@ export default function FeaturedPage() {
             { name: "Home", path: "/" },
             { name: "Featured on", path: "/featured" },
           ]),
-          webPageLd({ path: "/featured", name: "GrowX Featured On: Directories, Launch Platforms & Reviews", description }),
+          webPageLd({ path: "/featured", name: "GrowX Featured On Product Hunt", description }),
         ]}
       />
       <PageHero
         eyebrow="Featured on"
         title={
           <>
-            GrowX Featured On: <span className="text-gradient">Directories, Launch Platforms &amp; Reviews</span>
+            GrowX Featured On <span className="text-gradient">Product Hunt</span>
           </>
         }
         actions={
@@ -53,7 +53,7 @@ export default function FeaturedPage() {
           </>
         }
       >
-        <p>Product directories, launch platforms and review sites that list GrowX, each with its official badge.</p>
+        <p>GrowX launched on Product Hunt. Here is its official badge, with a link to the launch page.</p>
       </PageHero>
 
       <Section className="pb-0 pt-10 sm:pt-12">
@@ -63,14 +63,8 @@ export default function FeaturedPage() {
             <CwsLink campaign="featured" content="inline-cta" className="font-semibold text-accent-ink underline-offset-4 hover:underline">
               Chrome Web Store
             </CwsLink>
-            , it is listed on the {liveBadges.length} product directories and launch platforms below. Each entry shows the site&apos;s own badge, with a link to the
-            listing or to the site itself.
-          </p>
-          <p>
-            Some are directories of software and browser extensions, such as ExtensionFinder, ToolDirs and Direct2App, where you can find GrowX by
-            category. Others are launch platforms that present new products, such as LaunchBuck, Nick Launches, Launchit, LaunchBoosts, LaunchKiwi and
-            Next Big Product. launched.tools marks its listing of GrowX as reviewed. A listing is not an endorsement or a rating, and none of these sites
-            is connected to X Corp.
+            , GrowX is featured on Product Hunt, where new products are launched and discussed. The badge below links to the GrowX page there. A listing
+            is not an endorsement or a rating, and Product Hunt is not connected to X Corp.
           </p>
           <p>
             Wherever you found GrowX, the facts are the same: it works inside the x.com tab you are already signed in to in desktop Chrome, never asks
@@ -89,7 +83,7 @@ export default function FeaturedPage() {
 
       <Section className="pt-10 sm:pt-14">
         <Container className="max-w-5xl">
-          <ul data-spotlight-group="" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul data-spotlight-group="" className="mx-auto grid max-w-sm gap-4">
             {liveBadges.map((b, i) => {
               const link = b.listingUrl ?? b.href;
               return (
