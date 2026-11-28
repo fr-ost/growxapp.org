@@ -27,7 +27,7 @@ export function PostCover({ slug, title, className = "aspect-[16/7]" }: { slug: 
   return (
     <div data-decor="" className={`post-cover-bg relative overflow-clip ${className}`} style={centres}>
       {/* eslint-disable-next-line @next/next/no-img-element -- static decorative SVG; next/image adds nothing here */}
-      <img src={coverUrl(slug, "back")} alt="" aria-hidden="true" width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:-translate-x-1.5`} />
+      <img src={coverUrl(slug, "back")} alt={`${title}: GrowX blog cover background`} aria-hidden="true" width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:-translate-x-1.5`} />
       {/* eslint-disable-next-line @next/next/no-img-element -- static decorative SVG; next/image adds nothing here */}
       <img src={coverUrl(slug, "front")} alt={`${title}: GrowX blog cover`} width={320} height={140} loading="lazy" decoding="async" className={`${LAYER} fx:group-hover:translate-x-1.5`} />
     </div>

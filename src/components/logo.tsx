@@ -6,7 +6,7 @@ export function Logo({ className = "", tone = "dark" }: { className?: string; to
     <Link href="/" className={`group inline-flex items-center gap-2.5 ${className}`} aria-label="GrowX home">
       <Image
         src="/logo.svg"
-        alt=""
+        alt="GrowX logo"
         width={34}
         height={34}
         // Above the fold but tiny: load it eagerly without a preload, so only the hero screenshot is preloaded (A8).

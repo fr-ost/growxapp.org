@@ -49,10 +49,10 @@ describe("Directory badges", () => {
     }
   });
 
-  it("badgeHtml replaces any rel and keeps the rest of the markup", () => {
+  it("badgeHtml replaces any rel and the alt text, and keeps the rest of the markup", () => {
     const b = { ...liveBadges[0], html: '<a href="https://example.com/x" target="_blank" rel="noopener sponsored"><img src="https://example.com/b.svg" alt="Featured on Example"></a>', width: 120, height: 40 };
     expect(badgeHtml(b)).toBe(
-      '<a href="https://example.com/x" target="_blank" rel="nofollow noopener"><img src="https://example.com/b.svg" alt="Featured on Example" loading="lazy" width="120" height="40"></a>',
+      `<a href="https://example.com/x" target="_blank" rel="nofollow noopener"><img src="https://example.com/b.svg" alt="GrowX featured on ${b.name}" loading="lazy" width="120" height="40"></a>`,
     );
   });
 
