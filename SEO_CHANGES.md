@@ -1,6 +1,6 @@
 # SEO and GEO overhaul (branch `seo-geo-overhaul`)
 
-Status: **done** on 27 Nov 2026, not merged. The branch is pushed as `seo-geo-overhaul`; nothing went to `main`.
+Status: **done** (27 to 28 Nov 2026), not merged. The work is on the `seo-geo-overhaul` branch; nothing went to `main`.
 
 Goal: rank on Google and Bing for the searches that lead to Chrome Web Store installs (SEO), and be the source AI answer
 engines quote and link when people ask about growing on X (GEO). The store name "GrowX: The Ultimate X (Twitter) Growth
@@ -13,7 +13,55 @@ new copy, one commit per task.
 
 ## Before and after
 
-NUMBERS_TBD
+Measured on 27 and 28 Nov 2026 on two local production builds with the same settings: `main` at 6f0a93a (before)
+and this branch (after).
+
+**Content and structure**
+
+| Measure | Before | After |
+|---|---|---|
+| Blog posts | 54 | 43 (11 URLs merged, each redirected) |
+| URLs in the sitemap | 89 | 83 |
+| Comparison pages (/alternatives) | 3 | 4 (Circleboom added) |
+| Use-case pages | 0 | 3, plus the /use-cases hub |
+| Blog posts opening with a 40 to 70 word answer | 37 of 54 | 43 of 43 |
+| Blog posts with at least one question heading | 18 of 54 | 42 of 43 |
+| Feature pages with a 40 to 70 word opening | 7 of 8 | 8 of 8 |
+| Feature pages with 4 to 6 FAQs | 7 of 8 | 8 of 8 |
+| Feature pages with a "by hand" table, a safety section, use-case links and an Updated date | 0 of 8 | 8 of 8 |
+| Comparison pages with a 40 to 70 word opening | 1 of 3 | 4 of 4 |
+| Tool pages with a 40 to 70 word opening | 0 of 8 | 8 of 8 |
+| Store links with UTM tags and a click event | none | all, through one helper |
+| Pages with a directory badge strip | every page (footer) | /featured only |
+| robots.txt groups for AI crawlers | 0 (only `*`) | 16 |
+| SEO audit errors (`scripts/seo-check.mjs`, current rules) | 3 on 89 pages (descriptions under 140 characters) | 0 on 83 pages |
+| Internal links: broken, pointing at a redirect, orphan pages | not measured (new script) | 0, 0, 0 on 83 pages |
+| Merged URLs answering one permanent hop to a live page | n/a | 11 of 11, from both hosts |
+| AI crawlers getting the real HTML (4 pages each) | not measured (new script) | 16 of 16 |
+
+**HTML size** (raw bytes, then gzip -9)
+
+| Page | Before | After | Why it moved |
+|---|---|---|---|
+| / | 435,206 / 56,296 | 429,375 / 54,645 | Footer badge strip removed; trust strip added |
+| /pricing | 302,404 / 31,510 | 306,530 / 31,418 | The plans table added |
+| /features/twitter-auto-follow | 215,314 / 34,653 | 258,772 / 42,099 | Three merged posts' content, the "by hand" table and the safety section |
+| /blog | 261,743 / 33,347 | 207,740 / 27,769 | 11 fewer post cards |
+| /blog/twitter-algorithm-explained | 187,372 / 31,306 | 187,151 / 30,727 | In-article calls to action added; badge strip removed |
+
+**Lighthouse, mobile** (Lighthouse 13.6, default mobile preset with simulated throttling, median of 3 runs, local build)
+
+| Page | Performance | Accessibility | SEO | Best practices | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|
+| / | 99 to 99 | 96 to 100 | 100 to 100 | 100 to 100 | 1.4 s to 1.4 s | 85 to 84 ms | 0 to 0 |
+| /features/twitter-auto-follow | 100 to 100 | 96 to 100 | 100 to 100 | 100 to 100 | 1.2 s to 1.4 s | 89 to 58 ms | 0 to 0 |
+| /blog/twitter-algorithm-explained | 100 to 100 | 96 to 100 | 100 to 100 | 100 to 100 | 1.2 s to 1.2 s | 91 to 45 ms | 0 to 0 |
+| /pricing | 100 to 99 | 96 to 100 | 100 to 100 | 100 to 100 | 1.2 s to 1.2 s | 51 to 119 ms | 0 to 0 |
+
+Accessibility rose from 96 to 100 on every page because the footer badge strip is gone: one directory's badge snippet
+had 10px text with too little contrast. Performance was already high and stays within one point; TBT moves by tens of
+milliseconds between runs in a shared container, so read those as unchanged. Real-user numbers will show in Search
+Console's Core Web Vitals report after deploy.
 
 ## What changed, per task
 
@@ -229,19 +277,33 @@ Rewrite (not a redirect): `/<key>.txt` (8 to 128 letters, digits or dashes) serv
 
 | Check | Command | Result on the final build |
 |---|---|---|
-| Lint | `npm run lint` | CHECK_TBD |
-| Typecheck | `npm run typecheck` | CHECK_TBD |
-| Unit tests | `npx vitest run` | CHECK_TBD |
-| Production build | `npm run build` | CHECK_TBD |
+| Lint | `npm run lint` | Pass, no problems |
+| Typecheck | `npm run typecheck` | Pass |
+| Unit tests | `npm test` | 753 passed in 50 files |
+| Production build | `npm run build` | Pass (also green in GitHub CI on the pushed branch) |
 | Browser flows | `npm run test:e2e` | CHECK_TBD |
-| SEO audit of built HTML | `node scripts/seo-check.mjs` | CHECK_TBD |
-| Redirects | `node scripts/check-redirects.ts` (with `npm run start`) | CHECK_TBD |
-| AI crawlers | `node scripts/check-ai-bots.ts` | CHECK_TBD |
-| Internal links | `node scripts/check-internal-links.ts` | CHECK_TBD |
+| SEO audit of built HTML | `node scripts/seo-check.mjs` | 83 indexable pages, 0 errors, 0 warnings |
+| Redirects | `node scripts/check-redirects.ts` (with `npm run start`) | 11 of 11: one 308 to a live page, from www and the bare domain |
+| AI crawlers | `node scripts/check-ai-bots.ts` | 16 crawlers by 4 pages: 200, H1 and content in raw HTML, own robots group |
+| Internal links | `node scripts/check-internal-links.ts` | 83 pages: 0 broken, 0 to a redirect, 0 orphans |
 
 ## Files touched
 
-FILES_TBD
+124 files: 47 added, 76 changed, 1 deleted (`git diff --stat 6f0a93a..seo-geo-overhaul`). Unmarked files were changed.
+
+**Config and routing** (6): `next.config.ts`, `src/config/pricing.ts`, `src/config/site.ts`, `src/config/social-proof.ts` (added), `src/proxy.ts`, `tsconfig.json`.
+
+**Content data** (22): `src/content/alternatives.ts`, `src/content/faq.ts`, `src/content/feature-extras.ts` (added), `src/content/feature-pages.ts`, `src/content/page-dates.json`, `src/content/post-features.ts`, `src/content/posts-brand.ts`, `src/content/posts-compare.ts`, `src/content/posts-create.ts`, `src/content/posts-growth.ts`, `src/content/posts-insights.ts`, `src/content/posts-marketing.ts`, `src/content/posts-profile.ts`, `src/content/posts-round4.ts`, `src/content/posts-round5.ts`, `src/content/posts-strategy.ts`, `src/content/posts.ts`, `src/content/redirects.ts` (added), `src/content/releases.ts`, `src/content/use-cases.ts` (added), `src/data/badges.ts`, `src/data/testimonials.ts` (added).
+
+**Pages and routes** (48): `src/app/about/opengraph-image.tsx` (added), `src/app/about/page.tsx`, `src/app/alternatives/[slug]/page.tsx`, `src/app/alternatives/opengraph-image.tsx`, `src/app/alternatives/page.tsx`, `src/app/api/indexnow-key/[key]/route.ts` (added), `src/app/blog/[slug]/page.tsx`, `src/app/blog/page.tsx`, `src/app/contact/opengraph-image.tsx` (added), `src/app/contact/page.tsx`, `src/app/dashboard/page.tsx`, `src/app/faq/opengraph-image.tsx` (added), `src/app/faq/page.tsx`, `src/app/featured/opengraph-image.tsx` (added), `src/app/featured/page.tsx`, `src/app/features/[slug]/page.tsx`, `src/app/features/page.tsx`, `src/app/how-it-works/opengraph-image.tsx` (added), `src/app/how-it-works/page.tsx`, `src/app/layout.tsx`, `src/app/llms.txt/route.ts`, `src/app/page.tsx`, `src/app/press/opengraph-image.tsx` (added), `src/app/press/page.tsx`, `src/app/pricing/page.tsx`, `src/app/privacy/opengraph-image.tsx` (added), `src/app/privacy/page.tsx`, `src/app/refund-policy/opengraph-image.tsx` (added), `src/app/refund-policy/page.tsx`, `src/app/robots.ts`, `src/app/sitemap.ts`, `src/app/terms/opengraph-image.tsx` (added), `src/app/terms/page.tsx`, `src/app/tools/page.tsx`, `src/app/tools/tweet-character-counter/page.tsx`, `src/app/tools/tweet-templates/page.tsx`, `src/app/tools/twitter-bio-generator/page.tsx`, `src/app/tools/twitter-bold-text-generator/page.tsx`, `src/app/tools/twitter-engagement-rate-calculator/page.tsx`, `src/app/tools/twitter-follower-ratio-calculator/page.tsx`, `src/app/tools/twitter-shadowban-checker/page.tsx`, `src/app/tools/twitter-thread-maker/page.tsx`, `src/app/use-cases/[slug]/opengraph-image.tsx` (added), `src/app/use-cases/[slug]/page.tsx` (added), `src/app/use-cases/opengraph-image.tsx` (added), `src/app/use-cases/page.tsx` (added), `src/app/whats-new/opengraph-image.tsx` (added), `src/app/whats-new/page.tsx`.
+
+**Components and libraries** (20): `src/components/alternatives/comparison-table.tsx`, `src/components/blog.tsx`, `src/components/blog/extension-cta.tsx` (added), `src/components/blog/post-cover.tsx`, `src/components/cws-link.tsx` (added), `src/components/featured-on.tsx`, `src/components/footer-store-link.tsx` (added), `src/components/home/cta-band.tsx`, `src/components/json-ld.tsx`, `src/components/logo.tsx`, `src/components/plans-table.tsx` (added), `src/components/site-analytics.tsx` (added), `src/components/site-footer.tsx`, `src/components/testimonials.tsx` (added), `src/components/tools/tool-page.tsx`, `src/components/trust-strip.tsx` (added), `src/components/use-case-links.tsx` (added), `src/lib/ai-crawlers.ts` (added), `src/lib/cws.ts` (added), `src/lib/seo.ts`.
+
+**Scripts** (6): `scripts/check-ai-bots.ts` (added), `scripts/check-internal-links.ts` (added), `scripts/check-redirects.ts` (added), `scripts/indexnow.mjs` (deleted), `scripts/indexnow.ts` (added), `scripts/seo-check.mjs`.
+
+**Tests** (13): `tests/ai-crawlers.test.ts` (added), `tests/answer-first.test.ts` (added), `tests/cws.test.ts` (added), `tests/e2e/flows.mjs`, `tests/entity.test.ts` (added), `tests/feature-pages.test.ts` (added), `tests/featured-on.test.ts`, `tests/llms.test.ts` (added), `tests/pricing-table.test.ts` (added), `tests/redirects.test.ts` (added), `tests/seo.test.ts`, `tests/site-analytics.test.ts` (added), `tests/social-proof.test.ts` (added).
+
+**Docs** (9): `SEO_CHANGES.md` (added), `docs/BACKLINKS.md`, `docs/SEO.md`, `docs/ai-visibility-prompts.md` (added), `docs/backlinks/answer-bank.md`, `docs/backlinks/guest-posts.md`, `docs/backlinks/round-4.md`, `docs/backlinks/round-5.md`, `docs/content-plan.md` (added).
 
 ## Manual tasks for Shahriar
 
