@@ -281,7 +281,7 @@ Rewrite (not a redirect): `/<key>.txt` (8 to 128 letters, digits or dashes) serv
 | Typecheck | `npm run typecheck` | Pass |
 | Unit tests | `npm test` | 753 passed in 50 files |
 | Production build | `npm run build` | Pass (also green in GitHub CI on the pushed branch) |
-| Browser flows | `npm run test:e2e` | CHECK_TBD |
+| Browser flows | `npm run test:e2e` | 1652 passed, 0 failed (desktop and phone crawl of every public page, SEO audit of rendered HTML, merged URL redirects, sign-in, billing and dashboard flows against a mock backend) |
 | SEO audit of built HTML | `node scripts/seo-check.mjs` | 83 indexable pages, 0 errors, 0 warnings |
 | Redirects | `node scripts/check-redirects.ts` (with `npm run start`) | 11 of 11: one 308 to a live page, from www and the bare domain |
 | AI crawlers | `node scripts/check-ai-bots.ts` | 16 crawlers by 4 pages: 200, H1 and content in raw HTML, own robots group |
